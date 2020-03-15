@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaAccesoDatos", "CapaAccesoDatos\CapaAccesoDatos.csproj", "{5B26C992-DBC6-408C-B94E-D9670F3C9F23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapaAccesoDatos", "CapaAccesoDatos\CapaAccesoDatos.csproj", "{5B26C992-DBC6-408C-B94E-D9670F3C9F23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaLogica", "CapaLogica\CapaLogica.csproj", "{77584D82-CBA1-4D47-A05E-99A5A3301F9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapaLogica", "CapaLogica\CapaLogica.csproj", "{77584D82-CBA1-4D47-A05E-99A5A3301F9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentación", "CapaPresentación\CapaPresentación.csproj", "{D39D89F2-7B6D-4B1F-9E87-26C8746278EF}"
 EndProject

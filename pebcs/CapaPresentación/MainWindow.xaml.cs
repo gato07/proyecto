@@ -24,5 +24,10 @@ namespace CapaPresentación
         {
             InitializeComponent();
         }
+
+        private void btn_Salir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
