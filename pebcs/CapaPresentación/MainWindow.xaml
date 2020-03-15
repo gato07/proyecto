@@ -47,26 +47,5 @@
         <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Olvidaste tu contraseña" Margin="186,265.75,0,130.25" Height="24" Content="Olvidaste tu Contraseña" FontSize="7" FontWeight="Bold" HorizontalAlignment="Left" Width="109"/>
         <RepeatButton x:Name="btnLogin" ToolTip="Login" Margin="49.833,305.693,610.167,82.306" Background="#FF2B5BEB" BorderBrush="Transparent" Content="Login" />
         <RepeatButton ToolTip="Crear Cuenta" Margin="168,305.693,447,82.306" Background="#FF605ED6" BorderBrush="Transparent" Content="Crear Cuenta"/>
-        <Label x:Name="label1_Copy" Content="O inicia sesión con:" HorizontalAlignment="Left" Height="23.5" Margin="49.833,352.694,0,0" VerticalAlignment="Top" Width="153.5" FontWeight="Bold"/>
-        <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" ToolTip="Facebook" Margin="62.333,381.194,635.667,6.806" Background="#FF2437B0">
-            <ToggleButton.Content>
-                <materialDesign:PackIcon Kind="Facebook" />
-            </ToggleButton.Content>
-            <materialDesign:ToggleButtonAssist.OnContent>
-                <materialDesign:PackIcon Kind="EmoticonHappy" />
-            </materialDesign:ToggleButtonAssist.OnContent>
-        </ToggleButton>
-        <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" ToolTip="Google" Margin="129.333,381.194,568.667,6.806" Background="#FFB73A3A">
-            <materialDesign:ToggleButtonAssist.OnContent>
-                <materialDesign:PackIcon Kind="EmoticonHappy" />
-            </materialDesign:ToggleButtonAssist.OnContent>
-            <materialDesign:PackIcon Kind="Google" />
-        </ToggleButton>
-        <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" ToolTip="Linkedin" Margin="198.333,381.194,499.667,6.806" Background="#FF3A5CB7">
-            <materialDesign:ToggleButtonAssist.OnContent>
-                <materialDesign:PackIcon Kind="EmoticonHappy" />
-            </materialDesign:ToggleButtonAssist.OnContent>
-            <materialDesign:PackIcon Kind="Linkedin" />
-        </ToggleButton>
     </Grid>
 </Window>
