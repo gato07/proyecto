@@ -41,6 +41,6 @@
             <materialDesign:PackIcon Kind="Close" Height="20" Width="12" Foreground="White" />
         </ToggleButton>
         <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Olvidaste tu contraseña" Margin="126,265,0,131" Height="24" Content="Olvidaste tu Contraseña" FontSize="7" FontWeight="Bold" HorizontalAlignment="Left" Width="114"/>
-        <RepeatButton x:Name="btnLogin" ToolTip="Login" Margin="90,308,465,80" Background="#FF2B5BEB" BorderBrush="Transparent" Content="Login" />
+        <RepeatButton x:Name="btnLogin" ToolTip="Login" Margin="90,308,465,80" Background="#FF2B5BEB" BorderBrush="Transparent" Content="Login" Click="btnLogin_Click" />
     </Grid>
 </Window>
