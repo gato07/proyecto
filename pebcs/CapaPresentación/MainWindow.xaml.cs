@@ -29,5 +29,11 @@ namespace CapaPresentación
         {
             this.Close();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_Principal Ventana = new Menu_Principal();
+            Ventana.ShowDialog();
+        }
     }
 }
