@@ -92,7 +92,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="120" HorizontalAlignment="Center" Margin="0,0,10,0" Width="220">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="120" Margin="0,0,10,0">
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="60" Height="60" Margin="10">
                     <materialDesign:PackIcon Kind="Settings" Width="45" Height="50"/>
                 </Button>
