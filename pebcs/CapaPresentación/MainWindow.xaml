@@ -21,14 +21,14 @@
             </Label.Background>
         </Label>
         <Label x:Name="label1" Content="Login" HorizontalAlignment="Left" Height="43.5" Margin="44.5,46.5,0,0" VerticalAlignment="Top" Width="153.5" FontSize="22" FontWeight="Bold"/>
-        <Label x:Name="label2" Content="Bienvenido de nuevo, inicia sesión con tu cuenta " HorizontalAlignment="Left" Height="25" Margin="44,83,0,0" VerticalAlignment="Top" Width="288"/>
-        <Label x:Name="label3" Content="" HorizontalAlignment="Left" Height="4" Margin="50,111,0,0" VerticalAlignment="Top" Width="280" Background="#FF4346D3"/>
-        <Grid Grid.Row="2"  HorizontalAlignment="Left" Height="39" Margin="49.833,157.5,0,0" VerticalAlignment="Top" Width="233.167">
+        <Label x:Name="label2" Content="Bienvenido de nuevo, inicia sesión con tu cuenta " HorizontalAlignment="Left" Height="25" Margin="3,83,0,0" VerticalAlignment="Top" Width="288"/>
+        <Label x:Name="label3" Content="" HorizontalAlignment="Left" Height="4" Margin="6,111,0,0" VerticalAlignment="Top" Width="280" Background="#FF4346D3"/>
+        <Grid Grid.Row="2"  HorizontalAlignment="Left" Height="39" Margin="40,157.5,0,0" VerticalAlignment="Top" Width="233.167">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="39" Margin="-1.333,0,0,0" VerticalAlignment="Top" Width="234.5"/>
             <materialDesign:PackIcon Kind="Account" Width="20" Height="20" Foreground="{Binding ElementName=txt_Usuario,Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0" ></materialDesign:PackIcon>
             <TextBox x:Name="txt_Usuario" materialDesign:HintAssist.Hint="Usuario"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="25,0,0,0" CaretBrush="#FF2B5BEB" BorderBrush="#FF696FD0" />
         </Grid>
-        <Grid  HorizontalAlignment="Left" Height="39" Margin="49.833,211.527,0,0" VerticalAlignment="Top" Width="233.167">
+        <Grid  HorizontalAlignment="Left" Height="39" Margin="40,211.527,0,0" VerticalAlignment="Top" Width="233.167">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200*"/>
                 <ColumnDefinition Width="33*"/>
@@ -40,7 +40,7 @@
         <ToggleButton x:Name="btn_Salir" Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="Salir" Margin="712.083,0,0,400.5" Height="Auto" Width="Auto" Click="btn_Salir_Click">
             <materialDesign:PackIcon Kind="Close" Height="20" Width="12" Foreground="White" />
         </ToggleButton>
-        <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Olvidaste tu contraseña" Margin="126,265,0,131" Height="24" Content="Olvidaste tu Contraseña" FontSize="7" FontWeight="Bold" HorizontalAlignment="Left" Width="114"/>
-        <RepeatButton x:Name="btnLogin" ToolTip="Login" Margin="90,308,465,80" Background="#FF2B5BEB" BorderBrush="Transparent" Content="Login" Click="btnLogin_Click" />
+        <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Olvidaste tu contraseña" Margin="113,265,0,131" Height="24" Content="Olvidaste tu Contraseña" FontSize="7" FontWeight="Bold" HorizontalAlignment="Left" Width="114"/>
+        <RepeatButton x:Name="btnLogin" ToolTip="Login" Margin="82,308,473,80" Background="#FF2B5BEB" BorderBrush="Transparent" Content="Login" Click="btnLogin_Click" />
     </Grid>
 </Window>

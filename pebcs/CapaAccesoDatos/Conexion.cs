@@ -14,8 +14,8 @@ namespace CapaAccesoDatos
         {
             try
             {
-                //string constr = "Server=localhost;Port=3306;Database=bd_control_avaluos;Uid=admin;Password=C0ntrase#a;";
-                string constr = "Server=sql3.freemysqlhosting.net;Port=3306;Database=sql3328549;Uid=sql3328549;Password=NMeUbCLpIr;";
+                string constr = "Server=localhost;Port=3306;Database=bd_control_avaluos;Uid=admin;Password=C0ntrase#a;";
+                //string constr = "Server=sql3.freemysqlhosting.net;Port=3306;Database=sql3328549;Uid=sql3328549;Password=NMeUbCLpIr;";
                 Conector = new MySqlConnection(constr);
             }
             catch (Exception ex)
