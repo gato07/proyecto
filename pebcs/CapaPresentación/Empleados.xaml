@@ -16,10 +16,6 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-
-        <Controles:Flipper HorizontalAlignment="Left" Height="450" Margin="55,85,0,0" VerticalAlignment="Top" Width="215"/>
-        <Controles:Flipper HorizontalAlignment="Left" Height="450" Margin="350,85,0,0" VerticalAlignment="Top" Width="215"/>
-        <Controles:Flipper HorizontalAlignment="Left" Height="450" Margin="615,80,0,0" VerticalAlignment="Top" Width="215"/>
-
+        <Controles:Flipper x:Name="Flip" HorizontalAlignment="Left" Height="450" Margin="35,55,0,0" VerticalAlignment="Top" Width="220"/>
     </Grid>
 </Window>

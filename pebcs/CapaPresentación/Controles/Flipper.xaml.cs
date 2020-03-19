@@ -24,5 +24,25 @@ namespace CapaPresentación.Controles
         {
             InitializeComponent();
         }
+
+        private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        public void CargarDatosTarjeta(String NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,string Perfil,string Usuario,string Contraseña)
+        {
+            imgb.ImageSource = new BitmapImage(new Uri(Foto));
+            imgb.Stretch = Stretch.UniformToFill;
+            Etiqueta.Text = Usuario;
+            TXTNombreCompleto.Text = NombreCompleto;
+            TXTDomicilio.Text = Domicilio;
+            TXTTelefono.Text = Telefono;
+            TXTEmail.Text = Email;
+            TXTPuesto.Text = Puesto;
+            button.Background = imgb;
+            TXTPerfil.Text = Perfil;
+            TXTUsuario.Text = Usuario;
+            TXTConstraseña.Text = Contraseña;
+        }
     }
 }

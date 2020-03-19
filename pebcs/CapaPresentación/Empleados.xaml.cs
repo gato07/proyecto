@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaPresentación.Controles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CapaLogica;
 
 namespace CapaPresentación
 {
@@ -22,6 +24,12 @@ namespace CapaPresentación
         public Empleados()
         {
             InitializeComponent();
+            generartarjetas();
+        }
+        private void generartarjetas()
+        {
+            Empleado CargaDatos = new Empleado(1);
+            Flip.CargarDatosTarjeta(CargaDatos.Nombre,CargaDatos.Domicilio,CargaDatos.Telefono,CargaDatos.Email,CargaDatos.Puesto,CargaDatos.Foto,CargaDatos.Perfil,CargaDatos.Usuario,CargaDatos.Contrasena);
         }
     }
 }

@@ -23,11 +23,22 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch">
-                        <materialDesign:PackIcon Kind="AccountCircle" Height="128" Width="128" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <Button.Background>
+                                <ImageBrush x:Name="imgb" />
+                            </Button.Background>
+                        </Button>
                     </materialDesign:ColorZone>
                     <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock>
-                            James Willock
+                        <TextBlock Name="Etiqueta">
                         </TextBlock>
                         <Button Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">
                             EDITAR
@@ -64,25 +75,25 @@
                             <RowDefinition  Height="40"/>
                             <RowDefinition  Height="40"/>
                         </Grid.RowDefinitions>
-                        <TextBox  materialDesign:HintAssist.Hint="Nombre  Completo" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox  materialDesign:HintAssist.Hint="Nombre  Completo" Name="TXTNombreCompleto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="1"  materialDesign:HintAssist.Hint="Domicilio" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="1"  materialDesign:HintAssist.Hint="Domicilio" Name="TXTDomicilio" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="2"  materialDesign:HintAssist.Hint="Telefono" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="2"  materialDesign:HintAssist.Hint="Telefono" Name="TXTTelefono" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="3"  materialDesign:HintAssist.Hint="Email" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="3"  materialDesign:HintAssist.Hint="Email" Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="4"  materialDesign:HintAssist.Hint="Puesto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="4"  materialDesign:HintAssist.Hint="Puesto" Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="5"  materialDesign:HintAssist.Hint="Foto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="5"  materialDesign:HintAssist.Hint="Foto" Name="TXTFoto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="6"  materialDesign:HintAssist.Hint="Perfil" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="6"  materialDesign:HintAssist.Hint="Perfil" Name="TXTPerfil" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Usuario" Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="8"  materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="8"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0 1 0 0" Grid.Row="9">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Guardar_Click">
                             GUARDAR
                         </Button>
                     </Grid>
