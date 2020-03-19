@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CapaLogica;
 
 namespace CapaPresentación
 {
@@ -32,8 +33,7 @@ namespace CapaPresentación
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Menu_Principal Ventana = new Menu_Principal();
-            Ventana.ShowDialog();
+          
         }
     }
 }
