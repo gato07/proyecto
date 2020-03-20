@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
+using Microsoft.Win32;
 
 namespace CapaPresentación.Controles
 {
@@ -30,7 +32,7 @@ namespace CapaPresentación.Controles
         private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
         {
             Empleado emp = new Empleado();
-            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, "C:/Users/Alejandro/Pictures/pexels-photo-247885.jpeg", TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
+            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
         }
         public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,string Perfil,string Usuario,string Contraseña)
         {
@@ -51,7 +53,29 @@ namespace CapaPresentación.Controles
 
         private void buttonimg_Click(object sender, RoutedEventArgs e)
         {
-
+                OpenFileDialog openFile = new OpenFileDialog();
+                BitmapImage b = new BitmapImage();
+                openFile.Title = "Seleccione la Imagen a Mostrar";
+                openFile.Filter = "Todos(*.*) | *.*| Imagenes | *.jpg; *.gif; *.png; *.bmp";
+                if (openFile.ShowDialog() == true)
+                {
+                    if (new FileInfo(openFile.FileName).Length > 131072)
+                    {
+                        MessageBox.Show(
+                    "El tamaño máximo permitido de la imagen es de 128 KB",
+                    "Mensaje de Sistema",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning,
+                        MessageBoxResult.OK);
+                        return;
+                    }
+                    b.BeginInit();
+                    b.UriSource = new Uri(openFile.FileName);
+                    b.EndInit();
+                    imgb.ImageSource = new BitmapImage(new Uri(openFile.FileName));
+                    imgb.Stretch = Stretch.UniformToFill;
+                    buttonimg.Background = imgb;
+                }
         }
     }
 }

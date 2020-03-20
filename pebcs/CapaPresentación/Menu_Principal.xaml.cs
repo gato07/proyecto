@@ -44,7 +44,7 @@ namespace CapaPresentación
 
         private  void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            PanelPrincipal.Children.Add(new PantallaUsuario());
+            AbrirFormHijo(new PantallaUsuario());
         }
         private void AbrirFormHijo(object formhijo)
         {
