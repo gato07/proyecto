@@ -52,7 +52,7 @@ namespace CapaPresentación
             btnCerrarModulo.Visibility = Visibility.Visible;
             btnAgregarAModulo.Visibility = Visibility.Visible;
         }
-        private void AbrirFormHijo(object formhijo)
+        public void AbrirFormHijo(object formhijo)
         {
             if (this.PanelPrincipal.Children.Count > 0)
                 this.PanelPrincipal.Children.RemoveAt(0);
@@ -98,6 +98,7 @@ namespace CapaPresentación
         {
             Empleado emp = new Empleado();
             emp.Insertar(TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(),TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
+            AbrirFormHijo(new PantallaUsuario());
         }
     }
 }

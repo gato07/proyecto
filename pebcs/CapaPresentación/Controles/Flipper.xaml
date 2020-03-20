@@ -73,6 +73,7 @@
                             <RowDefinition  Height="40"/>
                             <RowDefinition  Height="40"/>
                             <RowDefinition  Height="40"/>
+                            <RowDefinition  Height="40"/>
                         </Grid.RowDefinitions>
                         <TextBox  materialDesign:HintAssist.Hint="Nombre  Completo" Name="TXTNombreCompleto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
@@ -90,8 +91,11 @@
                         </TextBox>
                         <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Guardar_Click">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="8" Click="BTN_Guardar_Click">
                             GUARDAR
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Eliminar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Eliminar_Click">
+                            ELIMINAR
                         </Button>
                     </Grid>
                 </Grid>
