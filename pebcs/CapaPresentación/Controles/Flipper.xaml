@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="410" d:DesignWidth="200">
+             d:DesignHeight="410" Width="210">
     <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,7 +33,7 @@
                                 </TransformGroup>
                             </Button.RenderTransform>
                             <Button.Background>
-                                <ImageBrush x:Name="imgb" />
+                                <ImageBrush x:Name="imgb" ImageSource="/Imagenes/Microsoft_Account.svg.png"/>
                             </Button.Background>
                         </Button>
                     </materialDesign:ColorZone>

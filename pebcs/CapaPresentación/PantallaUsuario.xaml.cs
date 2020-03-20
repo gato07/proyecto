@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
+using CapaPresentación.Controles;
 
 namespace CapaPresentación
 {
@@ -21,6 +22,7 @@ namespace CapaPresentación
     /// </summary>
     public partial class PantallaUsuario : UserControl
     {
+        Flipper[] flippers;
         public PantallaUsuario()
         {
             InitializeComponent();
@@ -28,26 +30,36 @@ namespace CapaPresentación
         }
         private void generartarjetas()
         {
+            Empleado empleado = new Empleado();
+            Empleado[] empleados = empleado.Empleados();
+            flippers = new Flipper[empleados.Length]; ;
+            int top = 0;
+            int left = 0;
+            for(int x=0;x<flippers.Length;x++)
+            {
+                flippers[x] = new Flipper();
+                flippers[x].HorizontalAlignment =HorizontalAlignment.Left;
+                Thickness thickness = flippers[x].Margin;
+                thickness.Top = top;
+                thickness.Left = left;
+                flippers[x].Margin = thickness;
+                flippers[x].CargarDatosTarjeta(empleados[x].Clave,empleados[x].Nombre,empleados[x].Domicilio,empleados[x].Telefono,empleados[x].Email,empleados[x].Puesto,empleados[x].Foto,empleados[x].Perfil,empleados[x].Usuario,empleados[x].Contrasena);
+                panelprincipal.Children.Add(flippers[x]);
+                left += 220;
+                if(x==0)
+                {
+                    top -= (267);
+                }
+                else
+                {
+                    top -=0;
+                }
+            }
+        }
+        private void AgregarDatosATarjetas()
+        {
             Empleado CargaDatos = new Empleado(18);
-            flip.CargarDatosTarjeta(CargaDatos.Clave,CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos1 = new Empleado(9);
-            //flip_Copy.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos2 = new Empleado(10);
-            //flip_Copy1.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos3 = new Empleado(11);
-            //flip_Copy2.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos4 = new Empleado(12);
-            //flip_Copy3.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos5 = new Empleado(13);
-            //flip_Copy4.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos6 = new Empleado(14);
-            //flip_Copy5.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos7 = new Empleado(15);
-            //flip_Copy6.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos8 = new Empleado(16);
-            //flip_Copy7.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
-            //Empleado CargaDatos9 = new Empleado(17);
-            //flip_Copy8.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
+            flippers[1].CargarDatosTarjeta(CargaDatos.Clave, CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
         }
     }
 }

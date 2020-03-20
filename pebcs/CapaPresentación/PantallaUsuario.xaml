@@ -5,17 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CapaPresentación"
              xmlns:Controles="clr-namespace:CapaPresentación.Controles" x:Class="CapaPresentación.PantallaUsuario"
-             mc:Ignorable="d" Height="555" Width="2240">
+             mc:Ignorable="d" Height="600" Width="auto">
     <Grid>
-        <Controles:Flipper x:Name="flip" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195"/>
-        <Controles:Flipper x:Name="flip_Copy" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="220,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy1" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="435,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy2" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="660,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy3" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="1550,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy4" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="1325,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy5" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="1105,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy6" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="880,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy7" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="1785,0,0,0"/>
-        <Controles:Flipper x:Name="flip_Copy8" HorizontalAlignment="Left" Height="455" VerticalAlignment="Top" Width="195" Margin="2015,0,0,0"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" CanContentScroll="True" VerticalAlignment="Top" >
+            <StackPanel Width="auto" Height="600" Name="panelprincipal">
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -24,6 +24,8 @@ namespace CapaPresentación.Controles
     public partial class Flipper : UserControl
     {
         int ID;
+        internal object panelprincipal;
+
         public Flipper()
         {
             InitializeComponent();
