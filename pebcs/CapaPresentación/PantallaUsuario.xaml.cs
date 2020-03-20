@@ -28,7 +28,7 @@ namespace CapaPresentación
         }
         private void generartarjetas()
         {
-            Empleado CargaDatos = new Empleado(8);
+            Empleado CargaDatos = new Empleado(18);
             flip.CargarDatosTarjeta(CargaDatos.Clave,CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
             //Empleado CargaDatos1 = new Empleado(9);
             //flip_Copy.CargarDatosTarjeta(CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);

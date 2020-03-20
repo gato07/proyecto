@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TestStack.White.ScreenObjects;
+using Microsoft.Win32;
+using System.IO;
+using CapaLogica;
 
 namespace CapaPresentación
 {
@@ -45,6 +48,9 @@ namespace CapaPresentación
         private  void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AbrirFormHijo(new PantallaUsuario());
+            titulo.Text = "USUARIOS";
+            btnCerrarModulo.Visibility = Visibility.Visible;
+            btnAgregarAModulo.Visibility = Visibility.Visible;
         }
         private void AbrirFormHijo(object formhijo)
         {
@@ -52,6 +58,46 @@ namespace CapaPresentación
                 this.PanelPrincipal.Children.RemoveAt(0);
             UserControl userControl = formhijo as UserControl;
             PanelPrincipal.Children.Add(userControl);
+        }
+        private void btnCerrarModulo_Click(object sender, RoutedEventArgs e)
+        {
+            this.PanelPrincipal.Children.RemoveAt(0);
+            titulo.Text = "BIENVENIDO";
+            btnCerrarModulo.Visibility = Visibility.Hidden;
+            btnAgregarAModulo.Visibility = Visibility.Hidden;
+        }
+
+        private void buttonimg_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            BitmapImage b = new BitmapImage();
+            openFile.Title = "Seleccione la Imagen a Mostrar";
+            openFile.Filter = "Todos(*.*) | *.*| Imagenes | *.jpg; *.gif; *.png; *.bmp";
+            if (openFile.ShowDialog() == true)
+            {
+                if (new FileInfo(openFile.FileName).Length > 131072)
+                {
+                    MessageBox.Show(
+                "El tamaño máximo permitido de la imagen es de 128 KB",
+                "Mensaje de Sistema",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning,
+                    MessageBoxResult.OK);
+                    return;
+                }
+                b.BeginInit();
+                b.UriSource = new Uri(openFile.FileName);
+                b.EndInit();
+                imgb.ImageSource = new BitmapImage(new Uri(openFile.FileName));
+                imgb.Stretch = Stretch.UniformToFill;
+                buttonimg.Background = imgb;
+            }
+        }
+
+        private void btnAgregarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            Empleado emp = new Empleado();
+            emp.Insertar(TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(),TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
         }
     }
 }
