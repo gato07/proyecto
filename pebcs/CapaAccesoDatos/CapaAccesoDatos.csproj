@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.0" />
     <PackageReference Include="MySql.Data" Version="8.0.19" />
   </ItemGroup>

@@ -232,54 +232,23 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
                 <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
                     <materialDesign:PackIcon Kind="Menu" Foreground="#FF3580BF"/>
                 </Button>
                 <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="ButtonOpenMenu_Click">
                     <materialDesign:PackIcon Kind="Menu" Foreground="#FF3580BF"/>
                 </Button>
-
-
-                <TextBlock Text="BIENVENIDO" Foreground="#FF3580BF" FontSize="30" FontWeight="Bold" Margin="5" Grid.Row="1"/>
-
-
-                <Grid Margin="5" Grid.Row="2" Grid.Column="0">
-                    <Grid.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
-                    </Grid.Effect>
-                    <Image Source="/Imagenes/pexels-photo-701026.jpeg" Stretch="UniformToFill"/>
-                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                        <TextBlock Text="Trabajo pemdiente 2" Foreground="#FFFBFBFB"/>
+                <TextBlock Text="BIENVENIDO" Foreground="#FF3580BF" FontSize="30" FontWeight="Bold" Margin="5,5,820,5" Grid.Row="1"/>
+                <ScrollViewer Grid.Row="2" Grid.Column="0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" CanContentScroll="True" Height="610" VerticalAlignment="Top" >
+                    <StackPanel Name="PanelPrincipal"  Grid.Column="0" Grid.Row="2" Margin="10" Width="1007" Height="600">
                     </StackPanel>
-                </Grid>
-                <Grid Margin="5" Grid.Row="2" Grid.Column="1">
-                    <Grid.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
-                    </Grid.Effect>
-                    <Image Source="/Imagenes/pexels-photo-701762.jpeg" Stretch="UniformToFill"/>
-                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                        <TextBlock Text="Trabajo pendiente 3" Foreground="#FFFBFBFB"/>
-                    </StackPanel>
-                </Grid>
-                <Grid Margin="5" Grid.Row="2" Grid.Column="2">
-                    <Grid.Effect>
-                        <DropShadowEffect BlurRadius="20" Color="#FFEEEEEE" ShadowDepth="1"/>
-                    </Grid.Effect>
-                    <Image Source="/Imagenes/pexels-photo-701337.jpeg" Stretch="UniformToFill"/>
-                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                        <TextBlock Text="Trabajo pendiente 4" Foreground="#FFFBFBFB"/>
-                    </StackPanel>
-                </Grid>
+                </ScrollViewer>
             </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
@@ -290,5 +259,6 @@
                 <materialDesign:PackIcon Kind="Power"/>
             </Button>
         </StackPanel>
+
     </Grid>
 </Window>

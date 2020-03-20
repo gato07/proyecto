@@ -23,7 +23,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch">
-                        <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5">
+                        <Button x:Name="buttonimg" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5" Click="buttonimg_Click">
                             <Button.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -73,7 +73,6 @@
                             <RowDefinition  Height="40"/>
                             <RowDefinition  Height="40"/>
                             <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
                         </Grid.RowDefinitions>
                         <TextBox  materialDesign:HintAssist.Hint="Nombre  Completo" Name="TXTNombreCompleto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
@@ -85,13 +84,11 @@
                         </TextBox>
                         <TextBox Grid.Row="4"  materialDesign:HintAssist.Hint="Puesto" Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="5"  materialDesign:HintAssist.Hint="Foto" Name="TXTFoto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="5"  materialDesign:HintAssist.Hint="Perfil" Name="TXTPerfil" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="6"  materialDesign:HintAssist.Hint="Perfil" Name="TXTPerfil" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="6"  materialDesign:HintAssist.Hint="Usuario" Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Usuario" Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <TextBox Grid.Row="8"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
+                        <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
                         <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Guardar_Click">
                             GUARDAR

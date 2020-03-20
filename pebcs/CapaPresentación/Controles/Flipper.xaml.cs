@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CapaLogica;
 
 namespace CapaPresentación.Controles
 {
@@ -20,6 +21,7 @@ namespace CapaPresentación.Controles
     /// </summary>
     public partial class Flipper : UserControl
     {
+        int ID;
         public Flipper()
         {
             InitializeComponent();
@@ -27,10 +29,12 @@ namespace CapaPresentación.Controles
 
         private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
         {
-
+            Empleado emp = new Empleado();
+            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, "C:/Users/Alejandro/Pictures/pexels-photo-247885.jpeg", TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
         }
-        public void CargarDatosTarjeta(string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,string Perfil,string Usuario,string Contraseña)
+        public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,string Perfil,string Usuario,string Contraseña)
         {
+            ID = CALVE;
             imgb.ImageSource = new BitmapImage(new Uri(Foto));
             imgb.Stretch = Stretch.UniformToFill;
             Etiqueta.Text = Usuario;
@@ -39,10 +43,15 @@ namespace CapaPresentación.Controles
             TXTTelefono.Text = Telefono;
             TXTEmail.Text = Email;
             TXTPuesto.Text = Puesto;
-            button.Background = imgb;
+            buttonimg.Background = imgb;
             TXTPerfil.Text = Perfil;
             TXTUsuario.Text = Usuario;
             TXTConstraseña.Text = Contraseña;
+        }
+
+        private void buttonimg_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

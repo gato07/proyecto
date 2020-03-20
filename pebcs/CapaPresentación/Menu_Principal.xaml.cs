@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TestStack.White.ScreenObjects;
 
 namespace CapaPresentación
 {
@@ -41,10 +42,16 @@ namespace CapaPresentación
             this.Close();
         }
 
-        private void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private  void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Empleados VentanaEmpleados = new Empleados();
-            VentanaEmpleados.ShowDialog();
+            PanelPrincipal.Children.Add(new PantallaUsuario());
+        }
+        private void AbrirFormHijo(object formhijo)
+        {
+            if (this.PanelPrincipal.Children.Count > 0)
+                this.PanelPrincipal.Children.RemoveAt(0);
+            UserControl userControl = formhijo as UserControl;
+            PanelPrincipal.Children.Add(userControl);
         }
     }
 }
