@@ -28,7 +28,7 @@ namespace CapaPresentación
             InitializeComponent();
             generartarjetas();
         }
-        private void generartarjetas()
+        public void generartarjetas()
         {
             Empleado empleado = new Empleado();
             Empleado[] empleados = empleado.Empleados();
@@ -37,7 +37,7 @@ namespace CapaPresentación
             int left = 0;
             for(int x=0;x<flippers.Length;x++)
             {
-                flippers[x] = new Flipper();
+                flippers[x] = new Flipper(this);
                 flippers[x].HorizontalAlignment =HorizontalAlignment.Left;
                 Thickness thickness = flippers[x].Margin;
                 thickness.Top = top;
@@ -55,11 +55,6 @@ namespace CapaPresentación
                     top -=0;
                 }
             }
-        }
-        private void AgregarDatosATarjetas()
-        {
-            Empleado CargaDatos = new Empleado(18);
-            flippers[1].CargarDatosTarjeta(CargaDatos.Clave, CargaDatos.Nombre, CargaDatos.Domicilio, CargaDatos.Telefono, CargaDatos.Email, CargaDatos.Puesto, CargaDatos.Foto, CargaDatos.Perfil, CargaDatos.Usuario, CargaDatos.Contrasena);
         }
     }
 }

@@ -24,19 +24,19 @@ namespace CapaPresentación.Controles
     public partial class Flipper : UserControl
     {
         int ID;
-        Menu_Principal mp;
-
-        public Flipper()
+        PantallaUsuario Win;
+        public Flipper(Object A)
         {
             InitializeComponent();
+            Win = A as PantallaUsuario;
         }
 
         private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
         {
             Empleado emp = new Empleado();
             emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
-            mp = new Menu_Principal();
-            mp.AbrirFormHijo(new PantallaUsuario());
+            Win.panelprincipal.Children.Clear();
+            Win.generartarjetas();
         }
         public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,string Perfil,string Usuario,string Contraseña)
         {
@@ -86,8 +86,8 @@ namespace CapaPresentación.Controles
         {
             Empleado em = new Empleado();
             em.Eliminar(ID);
-            mp = new Menu_Principal();
-            mp.AbrirFormHijo(new PantallaUsuario());
+            Win.panelprincipal.Children.Clear();
+            Win.generartarjetas();
         }
     }
 }
