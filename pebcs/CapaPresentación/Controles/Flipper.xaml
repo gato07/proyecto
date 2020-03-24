@@ -85,8 +85,12 @@
                         </TextBox>
                         <TextBox Grid.Row="4"  materialDesign:HintAssist.Hint="Puesto" Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <TextBox Grid.Row="5"  materialDesign:HintAssist.Hint="Perfil" Name="TXTPerfil" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
+                        <ComboBox Grid.Row="5" Name="listPerfil" Margin="0 1 0 0">
+                            <ComboBoxItem >Administrador</ComboBoxItem>
+                            <ComboBoxItem >Aquitecto</ComboBoxItem>
+                            <ComboBoxItem >Ingeniero</ComboBoxItem>
+                            <ComboBoxItem >Recepcionista</ComboBoxItem>
+                        </ComboBox>
                         <TextBox Grid.Row="6"  materialDesign:HintAssist.Hint="Usuario" Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
                         <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">

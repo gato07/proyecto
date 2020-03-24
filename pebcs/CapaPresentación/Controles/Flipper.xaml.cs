@@ -34,11 +34,11 @@ namespace CapaPresentación.Controles
         private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
         {
             Empleado emp = new Empleado();
-            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(TXTPerfil.Text),TXTUsuario.Text,TXTConstraseña.Text);
+            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedItem.ToString()),TXTUsuario.Text,TXTConstraseña.Text);
             Win.panelprincipal.Children.Clear();
             Win.generartarjetas();
         }
-        public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,string Perfil,string Usuario,string Contraseña)
+        public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,int Perfil,string Usuario,string Contraseña)
         {
             ID = CALVE;
             imgb.ImageSource = new BitmapImage(new Uri(Foto));
@@ -50,7 +50,7 @@ namespace CapaPresentación.Controles
             TXTEmail.Text = Email;
             TXTPuesto.Text = Puesto;
             buttonimg.Background = imgb;
-            TXTPerfil.Text = Perfil;
+            listPerfil.SelectedIndex = Perfil;
             TXTUsuario.Text = Usuario;
             TXTConstraseña.Text = Contraseña;
         }

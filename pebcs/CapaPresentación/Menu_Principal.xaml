@@ -293,8 +293,12 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Puesto" Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Perfil" Name="TXTPerfil" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
+                    <ComboBox Margin="8" Name="listPerfil">
+                        <ComboBoxItem >Administrador</ComboBoxItem>
+                        <ComboBoxItem >Aquitecto</ComboBoxItem>
+                        <ComboBoxItem >Ingeniero</ComboBoxItem>
+                        <ComboBoxItem >Recepcionista</ComboBoxItem>
+                    </ComboBox>
                     <TextBox materialDesign:HintAssist.Hint="Usuario" Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8">
