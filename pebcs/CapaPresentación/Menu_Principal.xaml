@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:CapaPresentación"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="AUTO" Width="AUTO" WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen">
@@ -263,7 +264,7 @@
                 <materialDesign:PackIcon Kind="Power"/>
             </Button>
         </StackPanel>
-        <materialDesign:DialogHost IsOpen="False" x:Name="FormularioUsuario">
+        <materialDesign:DialogHost IsOpen="False" x:Name="FormularioUsuario" >
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Width="400" Height="auto">
                     <materialDesign:Card>
@@ -298,8 +299,19 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarUsuario" Content="Agregar Usuario" Margin="4" Click="btnAgregarUsuario_Click"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarUsuario" Content="Agregar Usuario" Margin="4" Click="btnAgregarUsuario_Click" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=MessageCheck}" />
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioUsuario}"/>
+                </StackPanel>
+                
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <materialDesign:DialogHost IsOpen="False" x:Name="MessageCheck">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel>
+                    <materialDesign:Card Width="400" Height="295" >
+                        <Image x:Name="checkmark" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.AnimatedSource="/Imagenes/checkmark.gif" Source="/Imagenes/checkmark.gif" Stretch="UniformToFill"/>
+                    </materialDesign:Card>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="OK" Margin="10" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=MessageCheck}" />
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
