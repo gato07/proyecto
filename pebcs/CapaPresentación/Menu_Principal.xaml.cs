@@ -100,7 +100,7 @@ namespace CapaPresentación
             if(TXTNombreCompleto.Text!="" && TXTDomicilio.Text!="" && TXTTelefono.Text!="" && TXTEmail.Text!="" && TXTPuesto.Text!="" && imgb.ImageSource.ToString()!="" && TXTPerfil.Text!="" && TXTUsuario.Text!="" && TXTConstraseña.Text!="")
             {
                 Empleado emp = new Empleado();
-                emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, imgb.ImageSource.ToString(), TXTPerfil.Text, TXTUsuario.Text, TXTConstraseña.Text);
+                emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(TXTPerfil.Text), TXTUsuario.Text, TXTConstraseña.Text);
                 AbrirFormHijo(new PantallaUsuario());
             }
             else

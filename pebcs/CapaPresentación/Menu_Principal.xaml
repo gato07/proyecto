@@ -305,13 +305,13 @@
                 
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
-        <materialDesign:DialogHost IsOpen="False" x:Name="MessageCheck">
+        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True" x:Name="MessageCheck">
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel>
                     <materialDesign:Card Width="400" Height="295" >
                         <Image x:Name="checkmark" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.AnimatedSource="/Imagenes/checkmark.gif" Source="/Imagenes/checkmark.gif" Stretch="UniformToFill"/>
                     </materialDesign:Card>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="OK" Margin="10" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=MessageCheck}" />
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="OK" Margin="10" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioUsuario}" />
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>

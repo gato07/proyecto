@@ -43,7 +43,7 @@ namespace CapaPresentación
                 thickness.Top = top;
                 thickness.Left = left;
                 flippers[x].Margin = thickness;
-                flippers[x].CargarDatosTarjeta(empleados[x].Clave,empleados[x].Nombre,empleados[x].Domicilio,empleados[x].Telefono,empleados[x].Email,empleados[x].Puesto,empleados[x].Foto,empleados[x].Perfil,empleados[x].Usuario,empleados[x].Contrasena);
+                flippers[x].CargarDatosTarjeta(empleados[x].Clave,empleados[x].Nombre,empleados[x].Domicilio,empleados[x].Telefono,empleados[x].Email,empleados[x].Puesto,empleados[x].Foto,empleados[x].Perfil_Texto,empleados[x].Usuario,empleados[x].Contrasena);
                 panelprincipal.Children.Add(flippers[x]);
                 left += 220;
                 if(x==0)

@@ -34,7 +34,7 @@ namespace CapaPresentación.Controles
         private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
         {
             Empleado emp = new Empleado();
-            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
+            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(TXTPerfil.Text),TXTUsuario.Text,TXTConstraseña.Text);
             Win.panelprincipal.Children.Clear();
             Win.generartarjetas();
         }
