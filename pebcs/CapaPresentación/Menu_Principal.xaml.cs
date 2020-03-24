@@ -15,6 +15,7 @@ using TestStack.White.ScreenObjects;
 using Microsoft.Win32;
 using System.IO;
 using CapaLogica;
+using CapaPresentación.Controles;
 
 namespace CapaPresentación
 {
@@ -96,9 +97,16 @@ namespace CapaPresentación
 
         private void btnAgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            Empleado emp = new Empleado();
-            emp.Insertar(TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(),TXTPerfil.Text,TXTUsuario.Text,TXTConstraseña.Text);
-            AbrirFormHijo(new PantallaUsuario());
+            if(TXTNombreCompleto.Text!="" && TXTDomicilio.Text!="" && TXTTelefono.Text!="" && TXTEmail.Text!="" && TXTPuesto.Text!="" && imgb.ImageSource.ToString()!="" && TXTPerfil.Text!="" && TXTUsuario.Text!="" && TXTConstraseña.Text!="")
+            {
+                Empleado emp = new Empleado();
+                emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, imgb.ImageSource.ToString(), TXTPerfil.Text, TXTUsuario.Text, TXTConstraseña.Text);
+                AbrirFormHijo(new PantallaUsuario());
+            }
+            else
+            {
+                
+            }
         }
     }
 }
