@@ -97,16 +97,17 @@ namespace CapaPresentación
 
         private void btnAgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            //if (TXTNombreCompleto.Text != "" && TXTDomicilio.Text != "" && TXTTelefono.Text != "" && TXTEmail.Text != "" && TXTPuesto.Text != "" && imgb.ImageSource.ToString() != "" && TXTUsuario.Text != "" && TXTConstraseña.Text != "" && listPerfil.SelectedIndex!=-1)
+            Empleado emp = new Empleado();
+            if (emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text)==true)
             {
-                Empleado emp = new Empleado();
-                emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
-                AbrirFormHijo(new PantallaUsuario());
+                PantallaCheck check = new PantallaCheck();
+                check.ShowDialog();
             }
-            //else
+            else
             {
-                
+                MessageBox.Show(emp.Mensaje);
             }
+            AbrirFormHijo(new PantallaUsuario());
         }
     }
 }

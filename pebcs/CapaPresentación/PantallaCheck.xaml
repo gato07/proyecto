@@ -1,0 +1,18 @@
+﻿<Window x:Class="CapaPresentación.PantallaCheck"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:CapaPresentación"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="PantallaCheck" Height="295" WindowStyle="None" WindowStartupLocation="CenterScreen" Width="400" ResizeMode="NoResize" MouseMove="Window_MouseMove">
+    <Grid>
+        <StackPanel>
+            <materialDesign:Card Width="400" Height="295" >
+                <Image x:Name="checkmark" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.AnimatedSource="/Imagenes/checkmark.gif" Source="/Imagenes/checkmark.gif" Stretch="UniformToFill"/>
+            </materialDesign:Card>
+        </StackPanel>
+    </Grid>
+</Window>

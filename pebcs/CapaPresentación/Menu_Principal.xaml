@@ -303,19 +303,8 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarUsuario" Content="Agregar Usuario" Margin="4" Click="btnAgregarUsuario_Click" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=MessageCheck}" />
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarUsuario" Content="Agregar Usuario" Margin="4" Click="btnAgregarUsuario_Click" />
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioUsuario}"/>
-                </StackPanel>
-                
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
-        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True" x:Name="MessageCheck">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel>
-                    <materialDesign:Card Width="400" Height="295" >
-                        <Image x:Name="checkmark" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.AnimatedSource="/Imagenes/checkmark.gif" Source="/Imagenes/checkmark.gif" Stretch="UniformToFill"/>
-                    </materialDesign:Card>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="OK" Margin="10" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioUsuario}" />
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>

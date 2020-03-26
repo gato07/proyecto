@@ -114,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PantallaCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PantallaUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +126,9 @@
   <ItemGroup>
     <Compile Include="Menu_Principal.xaml.cs">
       <DependentUpon>Menu_Principal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaCheck.xaml.cs">
+      <DependentUpon>PantallaCheck.xaml</DependentUpon>
     </Compile>
     <Compile Include="PantallaUsuario.xaml.cs">
       <DependentUpon>PantallaUsuario.xaml</DependentUpon>
