@@ -246,7 +246,6 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de eliminación del Empleado, es posible que no se haya borrado"
                     + " correctamente";
                 Empleado empleado = new Empleado(Clave);
@@ -303,16 +302,17 @@ namespace CapaLogica
                 foreach (DataRow renglon in dt.Rows)
                 {
                     Empleado empleado = new Empleado(
-                        Convert.ToInt16(renglon["Clave"].ToString()),
+                        Convert.ToInt16(renglon["Clave"]),
                         renglon["Nombre"].ToString(),
                         renglon["Domicilio"].ToString(),
                         renglon["Telefono"].ToString(),
                         renglon["Email"].ToString(),
                         renglon["Puesto"].ToString(),
                         renglon["Foto"].ToString(),
-                        Convert.ToInt16(renglon["Perfil"].ToString()),
+                        Convert.ToInt16(renglon["Perfil"]),
                         renglon["Usuario"].ToString(),
                         renglon["Contrasena"].ToString());
+                    empleado.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     empleado.Existe = true;
                     empleados[i] = empleado;
                     i++;
@@ -321,7 +321,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados";
+                Mensaje = "Ocurrio un error en la construcción del arreglo de Empleados";
                 return null;
             }
         }

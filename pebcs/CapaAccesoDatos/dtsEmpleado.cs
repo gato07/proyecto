@@ -22,6 +22,7 @@ namespace CapaAccesoDatos
         public int Perfil { get; set; }
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
+        public bool Eliminado { get; set; }
         public bool Existe { get; set; }
         public string Perfil_Texto
         {
@@ -56,6 +57,7 @@ namespace CapaAccesoDatos
                 Perfil = 0;
                 Usuario = "";
                 Contrasena = "";
+                Eliminado = false;
                 Existe = false;
             }
             catch (Exception ex)
@@ -78,22 +80,24 @@ namespace CapaAccesoDatos
                 Perfil = 0;
                 Usuario = "";
                 Contrasena = "";
+                Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 DataTable dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelXClave(" + Clave + ");").Tables[0];
                 if (dt != null)
                 {
-                    this.Clave = Convert.ToInt16(dt.Rows[0]["Clave"].ToString());
+                    this.Clave = Convert.ToInt16(dt.Rows[0]["Clave"]);
                     Nombre = dt.Rows[0]["Nombre"].ToString();
                     Domicilio = dt.Rows[0]["Domicilio"].ToString();
                     Telefono = dt.Rows[0]["Telefono"].ToString();
                     Email = dt.Rows[0]["Email"].ToString();
                     Puesto = dt.Rows[0]["Puesto"].ToString();
                     Foto = dt.Rows[0]["Foto"].ToString();
-                    Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"].ToString());
+                    Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"]);
                     Usuario = dt.Rows[0]["Usuario"].ToString();
                     Contrasena = dt.Rows[0]["Contrasena"].ToString();
+                    Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
                 conexion.Desconectar();
@@ -119,6 +123,7 @@ namespace CapaAccesoDatos
                 this.Perfil = Perfil;
                 this.Usuario = Usuario;
                 this.Contrasena = Contrasena;
+                Eliminado = false;
                 Existe = false;
             }
             catch (Exception ex)
@@ -215,6 +220,7 @@ namespace CapaAccesoDatos
                 Perfil = 0;
                 this.Usuario = "";
                 Contrasena = "";
+                Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
@@ -231,6 +237,7 @@ namespace CapaAccesoDatos
                     Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"].ToString());
                     this.Usuario = dt.Rows[0]["Usuario"].ToString();
                     Contrasena = dt.Rows[0]["Contrasena"].ToString();
+                    Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
                 conexion.Desconectar();
