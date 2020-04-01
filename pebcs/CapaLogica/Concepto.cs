@@ -64,9 +64,38 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Concepto, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Tipo, Nombre, Descripcion, Costo);
-                if (res)
-                    Mensaje = "El Concepto fue registrado satisfactoriamente";
+                if (validacion.Val_Texto1(Tipo, 1, 25))
+                {
+                    if (validacion.Val_Texto2(Nombre, 1, 75))
+                    {
+                        if (validacion.Val_Texto3(Descripcion, 0, 255))
+                        {
+                            if (validacion.Val_Decimal(Costo,0.00m,9999999.99m,2))
+                            {
+                                res = dtsInsertar(Tipo, Nombre, Descripcion, Costo);
+                                if (res)
+                                    Mensaje = "El Concepto fue registrado satisfactoriamente";
+                            }
+                            else
+                                Mensaje = "El campo de Costo debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                    + " puede contener valores de moneda ($0.00).\n- El intervalo valido del"
+                                    + " campo va de $0.00 hasta $9,999,999.99.";
+                        }
+                        else
+                            Mensaje = "El campo de Descripcion debe cumplir:\n\n- Puede quedar vacío.\n- Solo"
+                                + " puede contener caracteres alfabéticos, númericos, los simbolos" 
+                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido"
+                                + " del campo es de 0 hasta 255 caracteres.";
+                    }
+                    else
+                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                        + " caracteres alfabéticos, los caracteres .- y espacios en blanco.\n- El tamaño valido del"
+                        + " campo es de 1 hasta 75 caracteres.";
+                }
+                else
+                    Mensaje = "El campo de Tipo debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del"
+                        + " campo es de 1 hasta 25 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -85,9 +114,45 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Concepto, es posible"
                     + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Tipo, Nombre, Descripcion, Costo);
-                if (res)
-                    Mensaje = "Los datos del Concepto fueron actualizados satisfactoriamente";
+                if (validacion.Val_Texto1(Tipo, 1, 25))
+                {
+                    if (validacion.Val_Texto2(Nombre, 1, 75))
+                    {
+                        if (validacion.Val_Texto3(Descripcion, 0, 255))
+                        {
+                            if (validacion.Val_Decimal(Costo, 0.00m, 9999999.99m, 2))
+                            {
+                                Concepto concepto = new Concepto(Numero);
+                                if (concepto.Existe)
+                                {
+                                    res = dtsActualizar(Numero, Tipo, Nombre, Descripcion, Costo);
+                                    if (res)
+                                        Mensaje = "Los datos del Concepto fueron actualizados satisfactoriamente";
+                                }
+                                else
+                                    Mensaje = "No existe algún Concepto con ese Número, escoja un Concepto"
+                                        + " existente para que sus datos sean actualizados";
+                            }
+                            else
+                                Mensaje = "El campo de Costo debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                    + " puede contener valores de moneda ($0.00).\n- El intervalo valido del"
+                                    + " campo va de $0.00 hasta $9,999,999.99.";
+                        }
+                        else
+                            Mensaje = "El campo de Descripcion debe cumplir:\n\n- Puede quedar vacío.\n- Solo"
+                                + " puede contener caracteres alfabéticos, númericos, los simbolos"
+                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido"
+                                + " del campo es de 0 hasta 255 caracteres.";
+                    }
+                    else
+                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                        + " caracteres alfabéticos, los caracteres .- y espacios en blanco.\n- El tamaño valido del"
+                        + " campo es de 1 hasta 75 caracteres.";
+                }
+                else
+                    Mensaje = "El campo de Tipo debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del"
+                        + " campo es de 1 hasta 25 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -105,9 +170,16 @@ namespace CapaLogica
                 bool res = false;
                 Mensaje = "Ocurrio un error en el proceso de eliminación del Concepto, es posible que no se haya borrado"
                     + " correctamente";
-                res = dtsEliminar(Numero);
-                if (res)
-                    Mensaje = "El Concepto fue eliminado satisfactoriamente";
+                Concepto concepto = new Concepto(Numero);
+                if (concepto.Existe)
+                {
+                    res = dtsEliminar(Numero);
+                    if (res)
+                        Mensaje = "El Concepto fue eliminado satisfactoriamente";
+                }
+                else
+                    Mensaje = "No existe algún Concepto con ese Número, escoja un Concepto existente"
+                            + " para que sea depurado.";
                 return res;
             }
             catch (Exception ex)

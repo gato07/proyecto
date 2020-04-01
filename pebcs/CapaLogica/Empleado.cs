@@ -66,7 +66,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Empleado, es posible que no se haya insertado"
                     + " correctamente";
-                if (validacion.Val_Texto1(Nombre, 1, 60))
+                if (validacion.Val_Texto2(Nombre, 1, 60))
                 {
                     if (validacion.Val_Domicilio(Domicilio))
                     {
@@ -121,7 +121,7 @@ namespace CapaLogica
                             }
                             else
                                 Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
-                                + " dirección de correo existente.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                         }
                         else
                             Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
@@ -155,7 +155,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Empleado, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                if (validacion.Val_Texto1(Nombre, 1, 60))
+                if (validacion.Val_Texto2(Nombre, 1, 60))
                 {
                     if (validacion.Val_Domicilio(Domicilio))
                     {
@@ -185,7 +185,8 @@ namespace CapaLogica
                                                                 Mensaje = "Los datos del Empleado fueron actualizados satisfactoriamente";
                                                         }
                                                         else
-                                                            Mensaje = "No existe algún Empleado con esa Clave.";
+                                                            Mensaje = "No existe algún Empleado con esa Clave, escoja un Empleado"
+                                                                + " existente para que sus datos sean actualizados";
                                                     }
                                                     else
                                                         Mensaje = "No es posible actualizar el nombre de Usuario del Empleado al valor"
@@ -216,7 +217,7 @@ namespace CapaLogica
                             }
                             else
                                 Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
-                                + " dirección de correo existente.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                         }
                         else
                             Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
@@ -256,7 +257,8 @@ namespace CapaLogica
                         Mensaje = "El Empleado fue eliminado satisfactoriamente";
                 }
                 else
-                    Mensaje = "No existe algún Empleado con esa Clave.";
+                    Mensaje = "No existe algún Empleado con esa Clave, escoja un Empleado existente"
+                            + " para que sea depurado.";
                 return res;
             }
             catch (Exception ex)

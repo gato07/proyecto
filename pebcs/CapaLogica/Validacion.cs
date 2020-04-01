@@ -42,11 +42,50 @@ namespace CapaLogica
             }
         }
 
+        public bool Val_Texto2(string Valor, int Min, int Max)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^[A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\,\-]{" + Min + "," + Max + "}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool Val_Texto3(string Valor, int Min, int Max)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\°\¡\!\#\$\%\&\/\=\¿\?\,\;\.\:\-]{" + Min + "," + Max + "}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool Val_Domicilio(string Valor)
         {
             try
             {
-                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\,\-\#\/]{1,255}$");
+                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\:\,\;\-\#\/]{1,255}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool Val_Domicilio(string Valor, int Min, int Max)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\:\,\;\-\#\/]{" + Min + "," + Max + "}$");
                 return expreg.IsMatch(Valor);
             }
             catch (Exception ex)
@@ -111,6 +150,35 @@ namespace CapaLogica
             try
             {
                 Regex expreg = new Regex(@"^(?=.*[0-9])(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*[\,\.\-\+\*\#\$\%\&\/\¡\!\¿\?])[0-9a-zA-ZñÑ\,\.\-\+\*\#\$\%\&\/\¡\!\¿\?]{8,16}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool Val_Decimal(decimal Valor, decimal Min, decimal Max, int Numero_Decimales)
+        {
+            try
+            {
+                string[] arreglo = Valor.ToString().Split('.');
+                string decimales = "";
+                if (arreglo.Length > 1)
+                    decimales = arreglo[1];
+                return (Valor >= Min) && (Valor <= Max) && (decimales.Length <= Numero_Decimales);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool Val_ClaveCatastral(string Valor)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^[0-9\-]{13,15}$");
                 return expreg.IsMatch(Valor);
             }
             catch (Exception ex)
