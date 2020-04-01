@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using CapaAccesoDatos;
+using System.Text;
 
 namespace CapaLogica
 {
