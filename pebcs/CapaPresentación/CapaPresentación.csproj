@@ -118,6 +118,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PantallaClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PantallaConceptos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PantallaInmuebles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PantallaUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +141,15 @@
     </Compile>
     <Compile Include="PantallaCheck.xaml.cs">
       <DependentUpon>PantallaCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaClientes.xaml.cs">
+      <DependentUpon>PantallaClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaConceptos.xaml.cs">
+      <DependentUpon>PantallaConceptos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaInmuebles.xaml.cs">
+      <DependentUpon>PantallaInmuebles.xaml</DependentUpon>
     </Compile>
     <Compile Include="PantallaUsuario.xaml.cs">
       <DependentUpon>PantallaUsuario.xaml</DependentUpon>

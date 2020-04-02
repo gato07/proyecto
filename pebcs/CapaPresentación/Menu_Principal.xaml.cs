@@ -109,5 +109,26 @@ namespace CapaPresentación
             }
             AbrirFormHijo(new PantallaUsuario());
         }
+
+        private void listViewItem4_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AbrirFormHijo(new PantallaConceptos());
+            titulo.Text = "CONCEPTOS";
+            btnCerrarModulo.Visibility = Visibility.Visible;
+        }
+
+        private void listViewItem5_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AbrirFormHijo(new PantallaClientes());
+            titulo.Text = "CLIENTES";
+            btnCerrarModulo.Visibility = Visibility.Visible;
+        }
+
+        private void listViewItem6_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AbrirFormHijo(new PantallaInmuebles());
+            titulo.Text = "INMUEBLES";
+            btnCerrarModulo.Visibility = Visibility.Visible;
+        }
     }
 }

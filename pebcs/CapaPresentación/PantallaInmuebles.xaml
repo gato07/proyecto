@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="CapaPresentación.PantallaInmuebles"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="auto" Width="1007">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.teal.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.teal.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Mode="PrimaryDark" Padding="16" CornerRadius="3" materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="600" Grid.RowSpan="2" >
+            <StackPanel Orientation="Horizontal">
+            </StackPanel>
+        </materialDesign:ColorZone>
+        <materialDesign:PopupBox  Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" ToolTip="Manage items" Margin="0 10 10 0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Button ToolTip="Agregar Inmueble" Name="BtnAgregarInmueble" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioInmuebles}">
+                    <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
+                </Button>
+                <Button ToolTip="Eliminar Inmueble" Name="BtnEliminarInmueble" Click="BtnEliminarInmueble_Click">
+                    <Path Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
+                </Button>
+                <Button ToolTip="Modificar Inmueble" Name="BtnModificarInmueble" Click="BtnModificarInmueble_Click">
+                    <materialDesign:PackIcon Kind="TooltipEdit" />
+                </Button>
+            </StackPanel>
+        </materialDesign:PopupBox>
+        <DataGrid Grid.Row="1" Margin="10,28,10,20" Background="Transparent" Name="GridConceptos" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+ materialDesign:DataGridAssist.ColumnHeaderPadding="8" />
+        <materialDesign:DialogHost IsOpen="False" x:Name="FormularioInmuebles" >
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Width="400" Height="auto">
+                    <materialDesign:Card>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Formulario  Clientes</TextBlock>
+                    </materialDesign:Card>
+                    <TextBox  materialDesign:HintAssist.Hint="ClaveCatastral" Name="TXTClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="NombrePropietario" Name="TXTNombrePropietario" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="TelefonoPropietario" Name="TXTTelefonoPropietario" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Colonia" Name="TXTColonia" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Calle" Name="TXTCalle" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="EntreCalles" Name="TXTEntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="NumeroInterior" Name="TXTNumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="NumeroExterior" Name="TXTNumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarInmueble" Content="Agregar" Margin="4" Click="btnAgregarInmueble_Click"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioInmuebles}"/>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <materialDesign:DialogHost IsOpen="False" x:Name="FormularioInmueblesModificar" >
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Width="400" Height="auto">
+                    <materialDesign:Card>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Formulario  Clientes</TextBlock>
+                    </materialDesign:Card>
+                    <TextBox  materialDesign:HintAssist.Hint="ClaveCatastral" Name="TXTClaveCatastralModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="NombrePropietario" Name="TXTNombrePropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="TelefonoPropietario" Name="TXTTelefonoPropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Colonia" Name="TXTColoniaModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Calle" Name="TXTCalleModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="EntreCalles" Name="TXTEntreCallesModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="NumeroInterior" Name="TXTNumeroInteriorModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="NumeroExterior" Name="TXTNumeroExteriorModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
+                    </TextBox>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnModificarInmueble" Content="Modificar" Margin="4" Click="btnModificarInmuebles_Click"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioInmueblesModificar}"/>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>

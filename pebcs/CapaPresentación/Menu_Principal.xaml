@@ -49,6 +49,16 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-220"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem5">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-220"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-220"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem6">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-220"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-220"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="button">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
@@ -84,7 +94,7 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FF3580BF" Margin="5,0,0,0">
-        <StackPanel x:Name="StackPanelMenu" Margin="-220,0,755,0" RenderTransformOrigin="0.5,0.5">
+        <StackPanel x:Name="StackPanelMenu" Margin="-220,0,755,-153" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -171,7 +181,7 @@
                         <TextBlock Text="Estimaciones" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem x:Name="listViewItem4" Height="80" RenderTransformOrigin="0.5,0.5">
+                <ListViewItem x:Name="listViewItem4" Height="80" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewItem4_MouseDoubleClick">
                     <ListViewItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -183,6 +193,34 @@
                     <StackPanel Orientation="Horizontal" Margin="10 0">
                         <materialDesign:PackIcon Kind="FormatListBulleted" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Conceptos" Margin="10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="listViewItem5" Height="80" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewItem5_MouseDoubleClick">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Margin="10 0">
+                        <materialDesign:PackIcon Kind="Person" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Clientes" Margin="10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="listViewItem6" Height="80" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="listViewItem6_MouseDoubleClick">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Margin="10 0">
+                        <materialDesign:PackIcon Kind="HouseGroup" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Inmuebles" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
@@ -200,7 +238,6 @@
                 <ColumnDefinition Width="AUTO"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
             <Grid Grid.Column="1" Background="#FF3580BF">
                 <Image Height="150" VerticalAlignment="Top" Source="Imagenes/back.jpg" Stretch="UniformToFill"/>
                 <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 100" Stroke="White">
@@ -225,7 +262,6 @@
                         <TextBlock Text="Pendientes" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5" Grid.Column="1"/>
                         <TextBlock Text="2" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Grid.Column="1"/>
                     </Grid>
-
                     <TextBlock TextWrapping="Wrap" Margin="10" Foreground="#FFFBFBFB" FontSize="14">ESPACIO RESERVADO PARA NOTIFICACIONES</TextBlock>
                 </StackPanel>
             </Grid>
@@ -234,7 +270,6 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="auto"/>
-
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -303,7 +338,7 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarUsuario" Content="Agregar Usuario" Margin="4" Click="btnAgregarUsuario_Click" />
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarUsuario" Content="Agregar" Margin="4" Click="btnAgregarUsuario_Click" />
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioUsuario}"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>

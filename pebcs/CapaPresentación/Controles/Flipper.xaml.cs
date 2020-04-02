@@ -25,6 +25,7 @@ namespace CapaPresentación.Controles
     {
         int ID;
         PantallaUsuario Win;
+        PantallaCheck check = new PantallaCheck();
         public Flipper(Object A)
         {
             InitializeComponent();
@@ -34,9 +35,10 @@ namespace CapaPresentación.Controles
         private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
         {
             Empleado emp = new Empleado();
-            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedItem.ToString()),TXTUsuario.Text,TXTConstraseña.Text);
+            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()),TXTUsuario.Text,TXTConstraseña.Text);
             Win.panelprincipal.Children.Clear();
             Win.generartarjetas();
+            check.ShowDialog();
         }
         public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,int Perfil,string Usuario,string Contraseña)
         {
@@ -88,6 +90,7 @@ namespace CapaPresentación.Controles
             em.Eliminar(ID);
             Win.panelprincipal.Children.Clear();
             Win.generartarjetas();
+            check.ShowDialog();
         }
     }
 }
