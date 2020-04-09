@@ -56,7 +56,7 @@ namespace CapaPresentación
         private void btnConceptoModificar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipo.Text, TXTNombre.Text, TXTDescripcion.Text, Convert.ToDecimal(TXTCosto.Text));
+            concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipoModificar.Text, TXTNombreModificar.Text, TXTDescripcionModificar.Text, Convert.ToDecimal(TXTCostoModificar.Text));
             LlenarData();
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();

@@ -70,7 +70,7 @@ namespace CapaPresentación
         private void btnClienteModificar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
+            cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTNombreModificar.Text, TXTApellidoModificar.Text, TXTTelefonoModificar.Text, TXTEmailModificar.Text);
             LlenarData();
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();
