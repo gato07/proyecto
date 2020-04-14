@@ -270,15 +270,28 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTodos()
+        public DataTable SelActivos()
         {
             try
             {
-                return dtsSelTodos();
+                return dtsSelActivos();
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados activos";
+                return null;
+            }
+        }
+
+        public DataTable SelEliminados()
+        {
+            try
+            {
+                return dtsSelEliminados();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados deshabilitados";
                 return null;
             }
         }
@@ -295,14 +308,13 @@ namespace CapaLogica
             }
         }
 
-        public Empleado[] Empleados()
+        public Empleado[] Empleados(DataTable Dt)
         {
             try
             {
                 int i = 0;
-                DataTable dt = SelTodos();
-                Empleado[] empleados = new Empleado[dt.Rows.Count];
-                foreach (DataRow renglon in dt.Rows)
+                Empleado[] empleados = new Empleado[Dt.Rows.Count];
+                foreach (DataRow renglon in Dt.Rows)
                 {
                     Empleado empleado = new Empleado(
                         Convert.ToInt16(renglon["Clave"]),
@@ -315,7 +327,8 @@ namespace CapaLogica
                         Convert.ToInt16(renglon["Perfil"]),
                         renglon["Usuario"].ToString(),
                         renglon["Contrasena"].ToString());
-                    empleado.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
+                    if(Dt.Columns.Contains("Eliminado"))
+                        empleado.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     empleado.Existe = true;
                     empleados[i] = empleado;
                     i++;
@@ -325,7 +338,7 @@ namespace CapaLogica
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en la construcción del arreglo de Empleados";
-                return null;
+                return new Empleado[0];
             }
         }
 

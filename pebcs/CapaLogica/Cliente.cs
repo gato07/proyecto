@@ -185,27 +185,39 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTodos()
+        public DataTable SelActivos()
         {
             try
             {
-                return dtsSelTodos();
+                return dtsSelActivos();
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes activos";
                 return null;
             }
         }
 
-        public Cliente[] Clientes()
+        public DataTable SelEliminados()
+        {
+            try
+            {
+                return dtsSelEliminados();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes eliminados";
+                return null;
+            }
+        }
+
+        public Cliente[] Clientes(DataTable Dt)
         {
             try
             {
                 int i = 0;
-                DataTable dt = SelTodos();
-                Cliente[] clientes = new Cliente[dt.Rows.Count];
-                foreach (DataRow renglon in dt.Rows)
+                Cliente[] clientes = new Cliente[Dt.Rows.Count];
+                foreach (DataRow renglon in Dt.Rows)
                 {
                     Cliente cliente = new Cliente(
                         Convert.ToInt16(renglon["Id"]),
@@ -213,7 +225,8 @@ namespace CapaLogica
                         renglon["Apellido"].ToString(),
                         renglon["Telefono"].ToString(),
                         renglon["Email"].ToString());
-                    cliente.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
+                    if (Dt.Columns.Contains("Eliminado"))
+                        cliente.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     cliente.Existe = true;
                     clientes[i] = cliente;
                     i++;
@@ -223,7 +236,7 @@ namespace CapaLogica
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en la construcción del arreglo de Clientes";
-                return null;
+                return new Cliente[0];
             }
         }
 

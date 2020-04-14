@@ -172,14 +172,31 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelTodos()
+        public DataTable dtsSelActivos()
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_Select();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelActivos();").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelEliminados()
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelEliminados();").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

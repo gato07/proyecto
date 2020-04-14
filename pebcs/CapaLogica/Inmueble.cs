@@ -263,27 +263,39 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTodos()
+        public DataTable SelActivos()
         {
             try
             {
-                return dtsSelTodos();
+                return dtsSelActivos();
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles activos";
                 return null;
             }
         }
 
-        public Inmueble[] Inmuebles()
+        public DataTable SelEliminados()
+        {
+            try
+            {
+                return dtsSelEliminados();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles eliminados";
+                return null;
+            }
+        }
+
+        public Inmueble[] Inmuebles(DataTable Dt)
         {
             try
             {
                 int i = 0;
-                DataTable dt = SelTodos();
-                Inmueble[] inmuebles = new Inmueble[dt.Rows.Count];
-                foreach (DataRow renglon in dt.Rows)
+                Inmueble[] inmuebles = new Inmueble[Dt.Rows.Count];
+                foreach (DataRow renglon in Dt.Rows)
                 {
                     Inmueble inmueble = new Inmueble(
                         Convert.ToInt16(renglon["Clave"]),
@@ -295,7 +307,8 @@ namespace CapaLogica
                         renglon["Entre_Calles"].ToString(),
                         renglon["Numero_Interior"].ToString(),
                         renglon["Numero_Exterior"].ToString());
-                    inmueble.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
+                    if (Dt.Columns.Contains("Eliminado"))
+                        inmueble.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     inmueble.Existe = true;
                     inmuebles[i] = inmueble;
                     i++;
@@ -305,7 +318,7 @@ namespace CapaLogica
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en la construcción del arreglo de Inmuebles";
-                return null;
+                return new Inmueble[0];
             }
         }
 

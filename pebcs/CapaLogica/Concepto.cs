@@ -191,35 +191,48 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTodos()
+        public DataTable SelActivos()
         {
             try
             {
-                return dtsSelTodos();
+                return dtsSelActivos();
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Conceptos";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Conceptos activos";
                 return null;
             }
         }
 
-        public Concepto[] Conceptos()
+        public DataTable SelEliminados()
+        {
+            try
+            {
+                return dtsSelEliminados();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Conceptos eliminados";
+                return null;
+            }
+        }
+
+        public Concepto[] Conceptos(DataTable Dt)
         {
             try
             {
                 int i = 0;
-                DataTable dt = SelTodos();
-                Concepto[] conceptos = new Concepto[dt.Rows.Count];
-                foreach (DataRow renglon in dt.Rows)
+                Concepto[] conceptos = new Concepto[Dt.Rows.Count];
+                foreach (DataRow renglon in Dt.Rows)
                 {
                     Concepto concepto = new Concepto(
-                        Convert.ToInt16(renglon["Numero"]),
-                        renglon["Tipo"].ToString(),
-                        renglon["Nombre"].ToString(),
-                        renglon["Descripcion"].ToString(),
-                        Convert.ToDecimal(renglon["Costo"]));
-                    concepto.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
+                    Convert.ToInt16(renglon["Numero"]),
+                    renglon["Tipo"].ToString(),
+                    renglon["Nombre"].ToString(),
+                    renglon["Descripcion"].ToString(),
+                    Convert.ToDecimal(renglon["Costo"]));
+                    if (Dt.Columns.Contains("Eliminado"))
+                        concepto.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     concepto.Existe = true;
                     conceptos[i] = concepto;
                     i++;
@@ -229,7 +242,7 @@ namespace CapaLogica
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en la construcción del arreglo de Conceptos";
-                return null;
+                return new Concepto[0];
             }
         }
 
