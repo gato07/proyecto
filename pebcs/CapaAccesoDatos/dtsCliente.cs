@@ -147,6 +147,23 @@ namespace CapaAccesoDatos
             }
         }
 
+        public bool dtsActivar(int Id)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_Cliente_Activar(" + Id + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public DataTable dtsSelActivos()
         {
             try

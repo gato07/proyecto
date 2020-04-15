@@ -66,12 +66,16 @@ namespace CapaLogica
             }
         }
 
-        public bool Val_Domicilio(string Valor)
+        public bool Val_RutaArchivo(string Valor)
         {
             try
             {
-                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\:\,\;\-\#\/]{1,255}$");
-                return expreg.IsMatch(Valor);
+                if (!string.IsNullOrEmpty(Valor))
+                {
+                    if (Valor.Length <= 255)
+                        return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -164,7 +168,7 @@ namespace CapaLogica
                 string decimales = "";
                 if (arreglo.Length > 1)
                     decimales = arreglo[1];
-                return (Valor >= Min) && (Valor <= Max) && (decimales.Length <= Numero_Decimales);
+                return ((Valor >= Min) && (Valor <= Max) && (decimales.Length <= Numero_Decimales));
             }
             catch (Exception ex)
             {
@@ -176,8 +180,9 @@ namespace CapaLogica
         {
             try
             {
-                Regex expreg = new Regex(@"^[0-9\-]{13,15}$");
-                return expreg.IsMatch(Valor);
+                Regex expreg1 = new Regex(@"^[0-9]{3}(\-)[0-9]{3}(\-)[0-9]{3}(\-)[0-9]{3}$");
+                Regex expreg2 = new Regex(@"^[0-9]{1}(\-)[0-9]{2}(\-)[0-9]{3}(\-)[0-9]{3,4}$");
+                return (expreg1.IsMatch(Valor) || expreg2.IsMatch(Valor));
             }
             catch (Exception ex)
             {
@@ -185,32 +190,8 @@ namespace CapaLogica
             }
         }
 
-        /*public bool Val_IdUsuario(string Valor)
-        {
-            try
-            {
-                Regex expreg = new Regex("^[0-9A-Z]{3,8}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_Contrasena(string Valor)
-        {
-            try
-            {
-                Regex expreg = new Regex(@"^[0-9a-zA-ZñÑ]{6,25}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
+        /*  
+        
         public bool Val_TipoUsuario(string Valor)
         {
             try
@@ -223,84 +204,8 @@ namespace CapaLogica
                 return false;
             }
         }
-
-        public bool Val_IdCarrera(string Valor)
-        {
-            try
-            {
-                Regex expreg = new Regex(@"^[0-9A-Z\-]{13}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_ClaveCoordinador(string Valor)
-        {
-            try
-            {
-                Regex expreg = new Regex("^[0-9A-Z]{3}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_Numero(string Valor, int Min, int Max)
-        {
-            try
-            {
-                Regex expreg = new Regex("^[0-9]{" + Min + "," + Max + "}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_Email(string Valor)
-        {
-            try
-            {
-                MailAddress email = new MailAddress(Valor);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_ClaveMaestro(string Valor)
-        {
-            try
-            {
-                Regex expreg = new Regex("^[0-9A-Z]{5}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_IdMateria(string Valor)
-        {
-            try
-            {
-                Regex expreg = new Regex(@"^[0-9A-Z\-]{8}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }*/
+        
+        */
 
 
 

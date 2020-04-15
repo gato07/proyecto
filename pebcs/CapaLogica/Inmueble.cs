@@ -84,11 +84,18 @@ namespace CapaLogica
                                         {
                                             if (validacion.Val_Domicilio(Numero_Exterior, 1, 10))
                                             {
-                                                res = dtsInsertar(Clave_Catastral, Nombre_Propietario, 
-                                                    Telefono_Propietario, Colonia, Calle, Entre_Calles, 
-                                                    Numero_Interior, Numero_Exterior);
-                                                if (res)
-                                                    Mensaje = "El Inmueble fue registrado satisfactoriamente";
+                                                Inmueble inmueble = new Inmueble();
+                                                inmueble.dtsSelXClaveCatastral(Clave_Catastral);
+                                                if (inmueble.Existe == false)
+                                                {
+                                                    res = dtsInsertar(Clave_Catastral, Nombre_Propietario, Telefono_Propietario,
+                                                     Colonia, Calle, Entre_Calles, Numero_Interior, Numero_Exterior);
+                                                    if (res)
+                                                        Mensaje = "El Inmueble fue registrado satisfactoriamente";
+                                                }
+                                                else
+                                                    Mensaje = "No es posible dar de alta al Inmueble con esa Clave catastral ya que"
+                                                        +" hay otro Inmueble que la tiene asignada, escriba otra diferente.";
                                             }
                                             else
                                                 Mensaje = "El campo de Número exterior debe cumplir:\n\n- No puede"
@@ -131,8 +138,8 @@ namespace CapaLogica
                             + " en blanco.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de Clave catastral debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
-                        + " puede contener el símbolo - y caracteres numéricos.\n- El tamaño valido del campo"
+                    Mensaje = "El campo de Clave catastral debe cumplir:\n\n- No puede quedar vacío."
+                        + "\n- Su formato correcto es ###-###-###-### ó #-##-###-####.\n- El tamaño valido del campo"
                         + " es de 13 hasta 15 caracteres.";
                 return res;
             }
@@ -169,18 +176,28 @@ namespace CapaLogica
                                         {
                                             if (validacion.Val_Domicilio(Numero_Exterior, 1, 10))
                                             {
-                                                Inmueble inmueble = new Inmueble(Clave);
-                                                if (inmueble.Existe)
+
+                                                Inmueble inmcatastral = new Inmueble();
+                                                inmcatastral.SelXClaveCatastral(Clave_Catastral);
+                                                if (inmcatastral.Existe == false || (inmcatastral.Existe && 
+                                                    inmcatastral.Clave == Clave))
                                                 {
-                                                    res = dtsActualizar(Clave, Clave_Catastral, Nombre_Propietario,
-                                                        Telefono_Propietario, Colonia, Calle, Entre_Calles,
-                                                        Numero_Interior, Numero_Exterior);
-                                                    if (res)
-                                                        Mensaje = "Los datos del Inmueble fueron actualizados satisfactoriamente";
+                                                    Inmueble inmueble = new Inmueble(Clave);
+                                                    if (inmueble.Existe)
+                                                    {
+                                                        res = dtsActualizar(Clave, Clave_Catastral, Nombre_Propietario,
+                                                            Telefono_Propietario, Colonia, Calle, Entre_Calles,
+                                                            Numero_Interior, Numero_Exterior);
+                                                        if (res)
+                                                            Mensaje = "Los datos del Inmueble fueron actualizados satisfactoriamente";
+                                                    }
+                                                    else
+                                                        Mensaje = "No existe algún Inmueble con esa Clave, escoja un"
+                                                            + " Inmueble existente para que sus datos sean actualizados";
                                                 }
                                                 else
-                                                    Mensaje = "No existe algún Inmueble con esa Clave, escoja un"
-                                                        + " Inmueble existente para que sus datos sean actualizados";
+                                                    Mensaje = "No es posible actualizar la Clave catastral del Inmueble al valor"
+                                                        + " que introdujo ya que hay otro Inmueble la tiene asiganada, escriba otro diferente.";
                                             }
                                             else
                                                 Mensaje = "El campo de Número exterior debe cumplir:\n\n- No puede"
@@ -223,9 +240,8 @@ namespace CapaLogica
                             + " en blanco.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de Clave catastral debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
-                        + " puede contener el símbolo - y caracteres numéricos.\n- El tamaño valido del campo"
-                        + " es de 13 hasta 15 caracteres.";
+                    Mensaje = "El campo de Clave catastral debe cumplir:\n\n- Su formato es el siguiente ###-###-###-###."
+                        + "\n- El tamaño valido del campo es de 13 hasta 15 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -263,6 +279,33 @@ namespace CapaLogica
             }
         }
 
+        public bool Activar(int Clave)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de activación del Inmueble, es posible que no se haya borrado"
+                    + " correctamente";
+                Inmueble inmueble = new Inmueble(Clave);
+                if (inmueble.Existe)
+                {
+                    res = dtsActivar(Clave);
+                    if (res)
+                        Mensaje = "El Inmueble fue activado satisfactoriamente";
+                }
+                else
+                    Mensaje = "No existe algún Inmueble con esa Clave, escoja un Inmueble existente"
+                            + " para que sea activado.";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de activación del Inmueble, es posible que no se haya borrado"
+                    + " correctamente";
+                return false;
+            }
+        }
+
         public DataTable SelActivos()
         {
             try
@@ -286,6 +329,18 @@ namespace CapaLogica
             {
                 Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles eliminados";
                 return null;
+            }
+        }
+
+        public void SelXClaveCatastral(string Clave_Catastral)
+        {
+            try
+            {
+                dtsSelXClaveCatastral(Clave_Catastral);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error al querer consultar a los Inmuebles por Clave catastral";
             }
         }
 

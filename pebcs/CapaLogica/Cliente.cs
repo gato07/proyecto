@@ -185,6 +185,33 @@ namespace CapaLogica
             }
         }
 
+        public bool Activar(int Id)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de Activación del Cliente, es posible que no"
+                    + " se haya activado correctamente";
+                Cliente cliente = new Cliente(Id);
+                if (cliente.Existe)
+                {
+                    res = dtsActivar(Id);
+                    if (res)
+                        Mensaje = "El Cliente fue activado satisfactoriamente";
+                }
+                else
+                    Mensaje = "No existe algún Cliente con ese Id, escoja un Cliente existente"
+                        + " para que sea activado.";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Activación del Cliente, es posible que no"
+                    + " se haya activado correctamente";
+                return false;
+            }
+        }
+
         public DataTable SelActivos()
         {
             try

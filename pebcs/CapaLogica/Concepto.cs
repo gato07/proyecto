@@ -191,6 +191,33 @@ namespace CapaLogica
             }
         }
 
+        public bool Activar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de Activación del Concepto, es posible que no se haya borrado"
+                    + " correctamente";
+                Concepto concepto = new Concepto(Numero);
+                if (concepto.Existe)
+                {
+                    res = dtsActivar(Numero);
+                    if (res)
+                        Mensaje = "El Concepto fue activado satisfactoriamente";
+                }
+                else
+                    Mensaje = "No existe algún Concepto con ese Número, escoja un Concepto existente"
+                            + " para que sea activado.";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Activación del Concepto, es posible que no se haya borrado"
+                    + " correctamente";
+                return false;
+            }
+        }
+
         public DataTable SelActivos()
         {
             try

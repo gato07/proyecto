@@ -172,6 +172,23 @@ namespace CapaAccesoDatos
             }
         }
 
+        public bool dtsActivar(int Clave)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_Inmueble_Activar(" + Clave + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public DataTable dtsSelActivos()
         {
             try
@@ -203,6 +220,46 @@ namespace CapaAccesoDatos
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public void dtsSelXClaveCatastral(string Clave_Catastral)
+        {
+            try
+            {
+                Clave = 0;
+                this.Clave_Catastral = "";
+                Nombre_Propietario = "";
+                Telefono_Propietario = "";
+                Colonia = "";
+                Calle = "";
+                Entre_Calles = "";
+                Numero_Interior = "";
+                Numero_Exterior = "";
+                Eliminado = false;
+                Existe = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelXClaveCatastral('" + Clave_Catastral + "');").Tables[0];
+                if (dt != null)
+                {
+                    Clave = Convert.ToInt16(dt.Rows[0]["Clave"]);
+                    this.Clave_Catastral = dt.Rows[0]["Clave_Catastral"].ToString();
+                    Nombre_Propietario = dt.Rows[0]["Nombre_Propietario"].ToString();
+                    Telefono_Propietario = dt.Rows[0]["Telefono_Propietario"].ToString();
+                    Colonia = dt.Rows[0]["Colonia"].ToString();
+                    Calle = dt.Rows[0]["Calle"].ToString();
+                    Entre_Calles = dt.Rows[0]["Entre_Calles"].ToString();
+                    Numero_Interior = dt.Rows[0]["Numero_Interior"].ToString();
+                    Numero_Exterior = dt.Rows[0]["Numero_Exterior"].ToString();
+                    Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
+                    Existe = true;
+                }
+                conexion.Desconectar();
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

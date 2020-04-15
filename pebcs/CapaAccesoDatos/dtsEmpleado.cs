@@ -190,6 +190,23 @@ namespace CapaAccesoDatos
             }
         }
 
+        public bool dtsActivar(int Clave)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_Empleado_Activar(" + Clave + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public DataTable dtsSelActivos()
         {
             try

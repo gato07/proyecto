@@ -67,9 +67,9 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Empleado, es posible que no se haya insertado"
                     + " correctamente";
-                if (validacion.Val_Texto2(Nombre, 1, 60))
+                if (validacion.Val_Texto1(Nombre, 1, 60))
                 {
-                    if (validacion.Val_Domicilio(Domicilio))
+                    if (validacion.Val_Domicilio(Domicilio,1,255))
                     {
                         if (validacion.Val_Numero(Telefono,1,10))
                         {
@@ -77,7 +77,7 @@ namespace CapaLogica
                             {
                                 if (validacion.Val_Texto1(Puesto, 1, 50))
                                 {
-                                    if (Foto.Length <= 255)
+                                    if (validacion.Val_RutaArchivo(Foto))
                                     {
                                         if (validacion.Val_Perfil(Perfil))
                                         {
@@ -108,11 +108,10 @@ namespace CapaLogica
                                                     + " tamaño valido del campo es de 4 hasta 15 caracteres.";
                                         }
                                         else
-                                            Mensaje = "El campo de Perfil solo puede tener los valores de Administrador, Arquitecto,"
-                                                + " Ingeniero o Recepcionista.";
+                                            Mensaje = "El campo de Perfil solo puede tener los valores de 1, 2, 3 o 4.";
                                     }
                                     else
-                                        Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío.\n- Su ruta debe existir."
+                                        Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío."
                                             + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                                 }
                                 else
@@ -156,9 +155,9 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Empleado, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                if (validacion.Val_Texto2(Nombre, 1, 60))
+                if (validacion.Val_Texto1(Nombre, 1, 60))
                 {
-                    if (validacion.Val_Domicilio(Domicilio))
+                    if (validacion.Val_Domicilio(Domicilio, 1, 255))
                     {
                         if (validacion.Val_Numero(Telefono, 1, 10))
                         {
@@ -166,7 +165,7 @@ namespace CapaLogica
                             {
                                 if (validacion.Val_Texto1(Puesto, 1, 50))
                                 {
-                                    if (Foto.Length <= 255)
+                                    if (validacion.Val_RutaArchivo(Foto))
                                     {
                                         if (validacion.Val_Perfil(Perfil))
                                         {
@@ -204,12 +203,11 @@ namespace CapaLogica
                                                     + " tamaño valido del campo es de 4 hasta 15 caracteres.";
                                         }
                                         else
-                                            Mensaje = "El campo de Perfil solo puede tener los valores de Administrador, Arquitecto,"
-                                                + " Ingeniero o Recepcionista.";
+                                            Mensaje = "El campo de Perfil solo puede tener los valores de 1, 2, 3 o 4.";
                                     }
                                     else
-                                        Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío.\n- Su ruta debe existir."
-                                            + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                        Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío."
+                                             + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                                 }
                                 else
                                     Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
@@ -265,6 +263,33 @@ namespace CapaLogica
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en el proceso de eliminación del Empleado, es posible que no se haya borrado"
+                    + " correctamente";
+                return false;
+            }
+        }
+
+        public bool Activar(int Clave)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de Activación del Empleado, es posible que no se haya borrado"
+                    + " correctamente";
+                Empleado empleado = new Empleado(Clave);
+                if (empleado.Existe)
+                {
+                    res = dtsActivar(Clave);
+                    if (res)
+                        Mensaje = "El Empleado fue activado satisfactoriamente";
+                }
+                else
+                    Mensaje = "No existe algún Empleado con esa Clave, escoja un Empleado existente"
+                            + " para que sea activado.";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Activación del Empleado, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
