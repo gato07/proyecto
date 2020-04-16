@@ -13,8 +13,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.deeppurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.deeppurple.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
@@ -28,16 +26,16 @@
                                 <RowDefinition Height="250"/>
                                 <RowDefinition Height="400"/>
                             </Grid.RowDefinitions>
-                            <materialDesign:PopupBox Grid.Row="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" ToolTip="Manage items" 
+                            <materialDesign:PopupBox Background="#E67E22" Grid.Row="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" ToolTip="Manage items" 
                                                       Margin="0,0,30,0" HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" >
                                 <StackPanel Orientation="Horizontal">
-                                    <Button ToolTip="Agregar Concepto" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}">
+                                    <Button Background="#E67E22" ToolTip="Agregar Concepto" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}">
                                         <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
                                     </Button>
-                                    <Button ToolTip="Eliminar Concepto" Name="BtnEliminar" Click="BtnEliminar_Click">
+                                    <Button Background="#E67E22" ToolTip="Eliminar Concepto" Name="BtnEliminar" Click="BtnEliminar_Click">
                                         <Path Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
                                     </Button>
-                                    <Button ToolTip="Modificar Concepto" Name="BtnModificar" Click="BtnModificar_Click">
+                                    <Button Background="#E67E22" ToolTip="Modificar Concepto" Name="BtnModificar" Click="BtnModificar_Click">
                                         <materialDesign:PackIcon Kind="TooltipEdit" />
                                     </Button>
                                 </StackPanel>
@@ -147,8 +145,8 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarConcepto" Content="Agregar" Margin="4" Click="btnAgregarConcepto_Click"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConceptos}"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarConcepto" Content="Agregar" Margin="4" Click="btnAgregarConcepto_Click" Background="#E67E22"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConceptos}" Background="#E67E22"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
@@ -166,8 +164,8 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnConceptoModificar" Content="Modificar" Margin="4" Click="btnConceptoModificar_Click"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientesModificar}"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnConceptoModificar" Content="Modificar" Margin="4" Click="btnConceptoModificar_Click" Background="#E67E22"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientesModificar}" Background="#E67E22"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>

@@ -22,7 +22,7 @@
                         <RowDefinition Height="160" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch">
+                    <materialDesign:ColorZone Background="#F1C40F" VerticalAlignment="Stretch">
                         <Button x:Name="buttonimg" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5" Click="buttonimg_Click">
                             <Button.RenderTransform>
                                 <TransformGroup>
@@ -40,7 +40,7 @@
                     <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Name="Etiqueta">
                         </TextBlock>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">
+                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">
                             EDITAR
                         </Button>
                     </StackPanel>
@@ -52,7 +52,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <materialDesign:ColorZone Mode="Accent" Padding="6">
+                    <materialDesign:ColorZone Background="#F1C40F" Mode="Accent" Padding="6">
                         <StackPanel Orientation="Horizontal">
                             <Button Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" HorizontalAlignment="Left">
                                 <materialDesign:PackIcon Kind="ArrowLeft"  HorizontalAlignment="Right" />
@@ -95,10 +95,10 @@
                         </TextBox>
                         <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
                         </TextBox>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="8" Click="BTN_Guardar_Click">
+                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="8" Click="BTN_Guardar_Click">
                             GUARDAR
                         </Button>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Eliminar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Eliminar_Click">
+                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Eliminar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Eliminar_Click">
                             ELIMINAR
                         </Button>
                     </Grid>

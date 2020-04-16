@@ -13,8 +13,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
@@ -29,15 +27,19 @@
                                 <RowDefinition Height="400"/>
                             </Grid.RowDefinitions>
                             <materialDesign:PopupBox Grid.Row="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" ToolTip="Manage items" 
-                                                      Margin="0,0,30,0" HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" >
+                                                     Margin="0,0,30,0" HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" 
+                                                     Background="#F39C12">
                                 <StackPanel Orientation="Horizontal">
-                                    <Button ToolTip="Agregar Cliente" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientes}">
+                                    <Button ToolTip="Agregar Cliente" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientes}"
+                                            Background="#F39C12">
                                         <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
                                     </Button>
-                                    <Button ToolTip="Eliminar Cliente" Name="BtnEliminar" Click="BtnEliminar_Click">
+                                    <Button ToolTip="Eliminar Cliente" Name="BtnEliminar" Click="BtnEliminar_Click"
+                                            Background="#F39C12">
                                         <Path Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
                                     </Button>
-                                    <Button ToolTip="Modificar Cliente" Name="BtnModificar" Click="BtnModificar_Click">
+                                    <Button ToolTip="Modificar Cliente" Name="BtnModificar" Click="BtnModificar_Click"
+                                            Background="#F39C12">
                                         <materialDesign:PackIcon Kind="TooltipEdit" />
                                     </Button>
                                 </StackPanel>
@@ -85,10 +87,11 @@
                                 <RowDefinition Height="400"/>
                             </Grid.RowDefinitions>
                             <Button Grid.Row="1" materialDesign:ButtonAssist.CornerRadius="25 0 0 25" 
-                                     Background="#E67E22" Style="{DynamicResource MaterialDesignRaisedButton}"
+                                     Background="#F39C12" Style="{DynamicResource MaterialDesignRaisedButton}"
                                      materialDesign:ShadowAssist.ShadowDepth="Depth3"
                                      Name="BtnRestaurar" MouseMove="BtnRestaurar_MouseMove"
-                                     Margin="837,15,0,353" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click">
+                                     Margin="837,15,0,353" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click"
+                                    >
                                 <StackPanel Width="150" Margin="-10 0 0 0">
                                     <materialDesign:PackIcon Kind="FileRestore" />
                                     <TextBlock Text="RESTAURAR" Margin="20 -18 0 0"/>
@@ -147,8 +150,8 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Email" Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarCliente" Content="Agregar" Margin="4" Click="btnAgregarCliente_Click"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientes}"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarCliente" Content="Agregar" Margin="4" Click="btnAgregarCliente_Click" Background="#F39C12"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientes}" Background="#F39C12"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
@@ -166,8 +169,8 @@
                     </TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Email" Name="TXTEmailModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
                     </TextBox>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnClienteModificar" Content="Modificar" Margin="4" Click="btnClienteModificar_Click"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientesModificar}"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnClienteModificar" Content="Modificar" Margin="4" Click="btnClienteModificar_Click" Background="#F39C12"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientesModificar}" Background="#F39C12"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
