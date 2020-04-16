@@ -33,6 +33,9 @@ namespace CapaPresentación
             DataTable table = new DataTable();
             table = inmueble.SelActivos();
             GridConceptos.ItemsSource = table.AsDataView();
+            DataTable table2 = new DataTable();
+            table2 = inmueble.SelEliminados();
+            GridConceptosEliminados.ItemsSource = table2.AsDataView();
         }
 
         private void btnModificarInmuebles_Click(object sender, RoutedEventArgs e)
@@ -43,30 +46,6 @@ namespace CapaPresentación
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();
         }
-
-        private void BtnEliminarInmueble_Click(object sender, RoutedEventArgs e)
-        {
-            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            inmueble.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
-            LlenarData();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
-        }
-
-        private void BtnModificarInmueble_Click(object sender, RoutedEventArgs e)
-        {
-            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            TXTClaveCatastralModificar.Text = data.Row.ItemArray[1].ToString();
-            TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
-            TXTTelefonoPropietarioModificar.Text = data.Row.ItemArray[3].ToString();
-            TXTColoniaModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTCalleModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTEntreCallesModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTNumeroInteriorModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTNumeroExteriorModificar.Text = data.Row.ItemArray[4].ToString();
-            FormularioInmueblesModificar.IsOpen = true;
-        }
-
         private void btnAgregarInmueble_Click(object sender, RoutedEventArgs e)
         {
             bool re;
@@ -82,6 +61,45 @@ namespace CapaPresentación
                 MessageBox.Show("no se pudo");
 
             }
+        }
+        private void BtnRestaurar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BtnRestaurar.Margin = new Thickness(837, 15, 0, 353);
+        }
+        private void BtnRestaurar_MouseMove(object sender, MouseEventArgs e)
+        {
+            BtnRestaurar.Margin = new Thickness(752, 15, 0, 353);
+        }
+        private void BtnRestaurar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView data = (GridConceptosEliminados as DataGrid).SelectedItem as DataRowView;
+            inmueble.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
+            LlenarData();
+            PantallaCheck check = new PantallaCheck();
+            check.ShowDialog();
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
+            inmueble.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
+            LlenarData();
+            PantallaCheck check = new PantallaCheck();
+            check.ShowDialog();
+        }
+
+        private void BtnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
+            TXTClaveCatastralModificar.Text = data.Row.ItemArray[1].ToString();
+            TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
+            TXTTelefonoPropietarioModificar.Text = data.Row.ItemArray[3].ToString();
+            TXTColoniaModificar.Text = data.Row.ItemArray[4].ToString();
+            TXTCalleModificar.Text = data.Row.ItemArray[4].ToString();
+            TXTEntreCallesModificar.Text = data.Row.ItemArray[4].ToString();
+            TXTNumeroInteriorModificar.Text = data.Row.ItemArray[4].ToString();
+            TXTNumeroExteriorModificar.Text = data.Row.ItemArray[4].ToString();
+            FormularioInmueblesModificar.IsOpen = true;
         }
     }
 }

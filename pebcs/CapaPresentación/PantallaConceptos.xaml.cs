@@ -34,6 +34,9 @@ namespace CapaPresentación
             DataTable table = new DataTable();
             table = concepto.SelActivos();
             GridConceptos.ItemsSource = table.AsDataView();
+            DataTable table2 = new DataTable();
+            table2 = concepto.SelEliminados();
+            GridConceptosEliminados.ItemsSource = table2.AsDataView();
         }
 
         private void btnAgregarConcepto_Click(object sender, RoutedEventArgs e)
@@ -62,7 +65,26 @@ namespace CapaPresentación
             check.ShowDialog();
         }
 
-        private void BtnEliminarConcepto_Click(object sender, RoutedEventArgs e)
+        private void BtnRestaurar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BtnRestaurar.Margin = new Thickness(837, 15, 0, 353);
+        }
+
+        private void BtnRestaurar_MouseMove(object sender, MouseEventArgs e)
+        {
+            BtnRestaurar.Margin = new Thickness(752, 15, 0, 353);
+        }
+
+        private void BtnRestaurar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView data = (GridConceptosEliminados as DataGrid).SelectedItem as DataRowView;
+            concepto.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
+            LlenarData();
+            PantallaCheck check = new PantallaCheck();
+            check.ShowDialog();
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
             concepto.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
@@ -71,7 +93,7 @@ namespace CapaPresentación
             check.ShowDialog();
         }
 
-        private void BtnModificarConcepto_Click(object sender, RoutedEventArgs e)
+        private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
             TXTTipoModificar.Text = data.Row.ItemArray[1].ToString();

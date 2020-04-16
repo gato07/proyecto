@@ -93,6 +93,10 @@ namespace CapaPresentación
         private void BtnRestaurar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView data = (GridConceptosEliminados as DataGrid).SelectedItem as DataRowView;
+            cliente.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
+            LlenarData();
+            PantallaCheck check = new PantallaCheck();
+            check.ShowDialog();
         }
     }
 }
