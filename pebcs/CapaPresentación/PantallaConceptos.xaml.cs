@@ -32,7 +32,7 @@ namespace CapaPresentación
         public void LlenarData()
         {
             DataTable table = new DataTable();
-            table = concepto.SelTodos();
+            table = concepto.SelActivos();
             GridConceptos.ItemsSource = table.AsDataView();
         }
 

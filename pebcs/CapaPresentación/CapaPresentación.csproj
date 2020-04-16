@@ -114,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Menu_Principal2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PantallaCheck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +142,9 @@
   <ItemGroup>
     <Compile Include="Menu_Principal.xaml.cs">
       <DependentUpon>Menu_Principal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_Principal2.xaml.cs">
+      <DependentUpon>Menu_Principal2.xaml</DependentUpon>
     </Compile>
     <Compile Include="PantallaCheck.xaml.cs">
       <DependentUpon>PantallaCheck.xaml</DependentUpon>
@@ -207,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\checkmark.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\logoEmpresa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

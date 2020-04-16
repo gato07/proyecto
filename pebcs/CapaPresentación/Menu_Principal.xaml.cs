@@ -46,7 +46,7 @@ namespace CapaPresentación
             this.Close();
         }
 
-        private  void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             AbrirFormHijo(new PantallaUsuario());
             titulo.Text = "USUARIOS";

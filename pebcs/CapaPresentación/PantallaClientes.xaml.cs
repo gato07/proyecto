@@ -20,8 +20,11 @@ namespace CapaPresentación
         public void LlenarData()
         {
             DataTable table = new DataTable();
-            table = cliente.SelTodos();
+            table = cliente.SelActivos();
             GridConceptos.ItemsSource = table.AsDataView();
+            DataTable table2 = new DataTable();
+            table2 = cliente.SelEliminados();
+            GridConceptosEliminados.ItemsSource = table2.AsDataView();
         }
         private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
         {
@@ -75,6 +78,21 @@ namespace CapaPresentación
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();
 
+        }
+
+        private void BtnRestaurar_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            BtnRestaurar.Margin = new Thickness(837, 15, 0, 353);
+        }
+
+        private void BtnRestaurar_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            BtnRestaurar.Margin = new Thickness(752, 15, 0, 353);
+        }
+
+        private void BtnRestaurar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView data = (GridConceptosEliminados as DataGrid).SelectedItem as DataRowView;
         }
     }
 }

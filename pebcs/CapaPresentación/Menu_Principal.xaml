@@ -240,7 +240,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1" Background="#FF3580BF">
                 <Image Height="150" VerticalAlignment="Top" Source="Imagenes/back.jpg" Stretch="UniformToFill"/>
-                <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 100" Stroke="White">
+                <Ellipse     Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 100" Stroke="White">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/Imagenes/pexels-photo-247885.jpeg" Stretch="UniformToFill"/>
                     </Ellipse.Fill>

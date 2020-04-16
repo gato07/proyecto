@@ -31,7 +31,7 @@ namespace CapaPresentación
         public void LlenarData()
         {
             DataTable table = new DataTable();
-            table = inmueble.SelTodos();
+            table = inmueble.SelActivos();
             GridConceptos.ItemsSource = table.AsDataView();
         }
 

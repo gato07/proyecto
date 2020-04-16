@@ -31,7 +31,7 @@ namespace CapaPresentación
         public void generartarjetas()
         {
             Empleado empleado = new Empleado();
-            Empleado[] empleados = empleado.Empleados();
+            Empleado[] empleados = empleado.Empleados(empleado.SelActivos());
             flippers = new Flipper[empleados.Length]; ;
             int top = 0;
             int left = 0;
