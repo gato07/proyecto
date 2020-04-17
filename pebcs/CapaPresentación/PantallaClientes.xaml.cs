@@ -28,19 +28,12 @@ namespace CapaPresentación
         }
         private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
         {
-            bool re;
-            re = cliente.dtsInsertar(TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
-            if (re)
-            {
-                PantallaCheck check = new PantallaCheck();
-                LlenarData();
-                check.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("no se pudo");
-                
-            }
+
+            cliente.dtsInsertar(TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
+            PantallaCheck check = new PantallaCheck();
+            LlenarData();
+            check.ShowDialog();
+
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
