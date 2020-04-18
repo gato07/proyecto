@@ -48,7 +48,7 @@ namespace CapaPresentación
 
         private void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AbrirFormHijo(new PantallaUsuario());
+            AbrirFormHijo(new PantallaUsuario(this));
             titulo.Text = "USUARIOS";
             btnCerrarModulo.Visibility = Visibility.Visible;
             btnAgregarAModulo.Visibility = Visibility.Visible;
@@ -107,7 +107,7 @@ namespace CapaPresentación
             {
                 MessageBox.Show(emp.Mensaje);
             }
-            AbrirFormHijo(new PantallaUsuario());
+            AbrirFormHijo(new PantallaUsuario(this));
         }
 
         private void listViewItem4_MouseDoubleClick(object sender, MouseButtonEventArgs e)

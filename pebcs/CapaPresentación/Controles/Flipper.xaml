@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="410" Width="210">
+             d:DesignHeight="270" Width="210">
     <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,8 +14,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
-    <Grid Margin="0,0,0,10">
-        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+    <Grid>
+        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10">
             <materialDesign:Flipper.FrontContent>
                 <Grid Height="256" Width="200">
                     <Grid.RowDefinitions>
@@ -40,70 +40,14 @@
                     <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Name="Etiqueta">
                         </TextBlock>
-                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">
+                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}" 
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0"
+                                Name="Btn_Editar" Click="Btn_Editar_Click">
                             EDITAR
                         </Button>
                     </StackPanel>
                 </Grid>
             </materialDesign:Flipper.FrontContent>
-            <materialDesign:Flipper.BackContent>
-                <Grid Height="450" Width="200">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <materialDesign:ColorZone Background="#F1C40F" Mode="Accent" Padding="6">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" HorizontalAlignment="Left">
-                                <materialDesign:PackIcon Kind="ArrowLeft"  HorizontalAlignment="Right" />
-                            </Button>
-                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">
-                                EDITAR EMPLEADO
-                            </TextBlock>
-                        </StackPanel>
-                    </materialDesign:ColorZone>
-                    <Grid Grid.Row="1" Margin="0 3 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="450" Width="172">
-                        <Grid.RowDefinitions>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                            <RowDefinition  Height="40"/>
-                        </Grid.RowDefinitions>
-                        <TextBox  materialDesign:HintAssist.Hint="Nombre  Completo" Name="TXTNombreCompleto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <TextBox Grid.Row="1"  materialDesign:HintAssist.Hint="Domicilio" Name="TXTDomicilio" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <TextBox Grid.Row="2"  materialDesign:HintAssist.Hint="Telefono" Name="TXTTelefono" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <TextBox Grid.Row="3"  materialDesign:HintAssist.Hint="Email" Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <TextBox Grid.Row="4"  materialDesign:HintAssist.Hint="Puesto" Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <ComboBox Grid.Row="5" Name="listPerfil" Margin="0 1 0 0">
-                            <ComboBoxItem >Administrador</ComboBoxItem>
-                            <ComboBoxItem >Aquitecto</ComboBoxItem>
-                            <ComboBoxItem >Ingeniero</ComboBoxItem>
-                            <ComboBoxItem >Recepcionista</ComboBoxItem>
-                        </ComboBox>
-                        <TextBox Grid.Row="6"  materialDesign:HintAssist.Hint="Usuario" Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <TextBox Grid.Row="7"  materialDesign:HintAssist.Hint="Contraseña" Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="0 1 0 0">
-                        </TextBox>
-                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Guardar" Margin="0 1 0 0" Grid.Row="8" Click="BTN_Guardar_Click">
-                            GUARDAR
-                        </Button>
-                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}"  Name="BTN_Eliminar" Margin="0 1 0 0" Grid.Row="9" Click="BTN_Eliminar_Click">
-                            ELIMINAR
-                        </Button>
-                    </Grid>
-                </Grid>
-            </materialDesign:Flipper.BackContent>
         </materialDesign:Flipper>
     </Grid>
 </UserControl>

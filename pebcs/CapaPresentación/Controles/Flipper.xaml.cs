@@ -25,36 +25,41 @@ namespace CapaPresentación.Controles
     {
         int ID;
         PantallaUsuario Win;
+        Menu_Principal2 MN;
         PantallaCheck check = new PantallaCheck();
-        public Flipper(Object A)
+        string[] Datos = new string[10];
+        public Flipper(Object A,Object B)
         {
             InitializeComponent();
             Win = A as PantallaUsuario;
+            MN = B as Menu_Principal2;
         }
 
-        private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
+        //private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Empleado emp = new Empleado();
+        //    emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()),TXTUsuario.Text,TXTConstraseña.Text);
+        //    Win.panelprincipal.Children.Clear();
+        //    Win.generartarjetas();
+        //    check.ShowDialog();
+        //}
+        public void CargarDatosTarjeta(int CALVE, string NombreCompleto, string Domicilio, string Telefono, string Email, string Puesto, string Foto, int Perfil, string Usuario, string Contraseña)
         {
-            Empleado emp = new Empleado();
-            emp.Actualizar(ID,TXTNombreCompleto.Text,TXTDomicilio.Text,TXTTelefono.Text,TXTEmail.Text,TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()),TXTUsuario.Text,TXTConstraseña.Text);
-            Win.panelprincipal.Children.Clear();
-            Win.generartarjetas();
-            check.ShowDialog();
-        }
-        public void CargarDatosTarjeta(int CALVE,string NombreCompleto,string Domicilio, string Telefono,string Email,string Puesto,string Foto,int Perfil,string Usuario,string Contraseña)
-        {
+            Datos[0] = CALVE.ToString();
+            Datos[1] = NombreCompleto;
+            Datos[2] = Domicilio;
+            Datos[3] = Telefono.ToString();
+            Datos[4] = Email;
+            Datos[5] = Puesto;
+            Datos[6] = Foto;
+            Datos[7] = Perfil.ToString();
+            Datos[8] = Usuario;
+            Datos[9] = Contraseña;
             ID = CALVE;
             imgb.ImageSource = new BitmapImage(new Uri(Foto));
             imgb.Stretch = Stretch.UniformToFill;
             Etiqueta.Text = Usuario;
-            TXTNombreCompleto.Text = NombreCompleto;
-            TXTDomicilio.Text = Domicilio;
-            TXTTelefono.Text = Telefono;
-            TXTEmail.Text = Email;
-            TXTPuesto.Text = Puesto;
             buttonimg.Background = imgb;
-            listPerfil.SelectedIndex = Perfil;
-            TXTUsuario.Text = Usuario;
-            TXTConstraseña.Text = Contraseña;
         }
 
         private void buttonimg_Click(object sender, RoutedEventArgs e)
@@ -88,9 +93,16 @@ namespace CapaPresentación.Controles
         {
             Empleado em = new Empleado();
             em.Eliminar(ID);
-            Win.panelprincipal.Children.Clear();
+            Win.GridContenedor.Children.Clear();
             Win.generartarjetas();
             check.ShowDialog();
+        }
+
+        private void Btn_Editar_Click(object sender, RoutedEventArgs e)
+        {
+            //this.Cursor = Cursors.Wait;
+            //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
+            MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos));
         }
     }
 }

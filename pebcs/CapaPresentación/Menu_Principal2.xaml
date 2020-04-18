@@ -10,7 +10,7 @@
     <Grid >
         <materialDesign:Card Height="710" Margin="0,0,884,0" Background="DarkGray">
             <StackPanel>
-                <Button Margin="0,80,146,0" materialDesign:ButtonAssist.CornerRadius="0 25 25 0" 
+                <Button Margin="0,80,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                 Background="#1ABC9C" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnLicencias" MouseMove="BtnLicencias_MouseMove" MouseLeave="BtnLicencias_MouseLeave">
                     <StackPanel Width="150" Margin="-10 0 0 0">
@@ -18,7 +18,7 @@
                         <TextBlock Text="LICENCIAS" Margin="20 -18 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 25 25 0" 
+                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                 Background="#16A085" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnDictamenes" MouseLeave="BtnDictamenes_MouseLeave" MouseMove="BtnDictamenes_MouseMove">
                     <StackPanel Width="150" Margin="-10 0 0 0">
@@ -26,7 +26,7 @@
                         <TextBlock Text="DICTAMENES" Margin="20 -18 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 25 25 0" 
+                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                 Background="#27AE60" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnEstimaciones" MouseLeave="BtnEstimaciones_MouseLeave" MouseMove="BtnEstimaciones_MouseMove">
                     <StackPanel Width="150" Margin="-10 0 0 0">
@@ -42,7 +42,7 @@
                         <TextBlock Text="CARGA DE TRABAJO" Margin="20 -18 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 10 10 0 " 
+                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0 " 
                 Background="#F1C40F" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3" 
                 Name="BtnEmpleados" Click="BtnEmpleados_Click" MouseLeave="BtnEmpleados_MouseLeave" MouseMove="BtnEmpleados_MouseMove">
@@ -51,7 +51,7 @@
                         <TextBlock Text="EMPLEADOS" Margin="20 -18 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 15 15 0" 
+                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                 Background="#F39C12" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 Name="BtnClientes" Click="BtnClientes_Click" MouseLeave="BtnClientes_MouseLeave" MouseMove="BtnClientes_MouseMove">
@@ -60,7 +60,7 @@
                         <TextBlock Text="CLIENTES" Margin="20 -18 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 20 20 0" 
+                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                 Background="#E67E22" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 Name="BtnConceptos" Click="BtnConceptos_Click" MouseLeave="BtnConceptos_MouseLeave" MouseMove="BtnConceptos_MouseMove">
@@ -69,7 +69,7 @@
                         <TextBlock Text="CONCEPTOS" Margin="20 -18 0 0"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 25 25 0" 
+                <Button Margin="0,20,146,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                 Background="#D35400" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 Name="BtnInmuebles" Click="BtnInmuebles_Click" MouseLeave="BtnInmuebles_MouseLeave" MouseMove="BtnInmuebles_MouseMove">

@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CapaPresentación"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Controles="clr-namespace:CapaPresentación.Controles" x:Class="CapaPresentación.PantallaUsuario"
-             mc:Ignorable="d" Height="712" Width="auto">
+             mc:Ignorable="d" Height="712" Width="882">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
@@ -29,7 +30,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
             <!--SCROLLBARS-->
             <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
                 <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
@@ -53,7 +53,6 @@
                                     </Track.DecreaseRepeatButton>
                                 </Track>
                             </Grid>
-
                             <ControlTemplate.Triggers>
                                 <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
                                     <Setter Value="{DynamicResource ButtonSelectBrush}" 
@@ -91,8 +90,64 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <StackPanel Width="auto" Height="600" Name="panelprincipal"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
+            <Grid Name="GridContenedor" Width="870" Height="auto">
+
+            </Grid>
         </ScrollViewer>
+        <materialDesign:Card Grid.Row="0" Height="100">
+            <StackPanel Margin="25,10,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180*" />
+                        <ColumnDefinition Width="162*" />
+                        <ColumnDefinition Width="172*" />
+                        <ColumnDefinition Width="172*" />
+                        <ColumnDefinition Width="171*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ToggleButton Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Margin="0,0,100,0" />
+                    <TextBox x:Name="txt_Busqueda" materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                             CaretBrush="#F1C40F" BorderBrush="#F1C40F"  Grid.Column="1" Margin="0,0,0,4" Grid.Row="2"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
+                            Grid.Column="4" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Limpiar" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" >
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Broom"/>
+                            <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
+                            Grid.Column="4" Grid.Row="1" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_AgregarEmpleado" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseMove="Btn_AgregarEmpleado_MouseMove" MouseLeave="Btn_AgregarEmpleado_MouseLeave" >
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="UserAdd"/>
+                            <TextBlock Text="Agregar" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <ComboBox x:Name="FilledComboBx" Grid.Row="1" Grid.Column="2" 
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,12,8,4" BorderBrush="#F1C40F" Height="28">
+                        <ComboBoxItem
+                            Content="Nombre" />
+                        <ComboBoxItem
+                            Content="Puesto" />
+                        <ComboBoxItem
+                            Content="Correo" />
+                        <ComboBoxItem
+                            Content="RFC" />
+                    </ComboBox>
+                    <TextBlock Text="EMPLEADOS" Name="titulo" Foreground="#F1C40F" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

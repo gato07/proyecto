@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="CapaPresentación.Pantalla_PerfilUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="712" d:DesignWidth="882">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <materialDesign:Card  Grid.Row="0" Height="356" Margin="5">
+            <Grid>
+                <TextBlock Text="INFORMACIÓN DE: USUARIO PRUEBA" Name="titulo" Foreground="#F1C40F" FontSize="30" FontWeight="Bold" Margin="160,5,160,311"  />
+                <Button x:Name="Btn_Imagen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="Auto" Height="Auto" RenderTransformOrigin="0.5,0.5" Margin="25,35,742,216">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Button.Background>
+                        <ImageBrush x:Name="img" ImageSource="Imagenes/pexels-photo-247885.jpeg" Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
+                <DockPanel Margin="150,60,110,26">
+                    <StackPanel Width="300">
+                        <TextBox  materialDesign:HintAssist.Hint="Nombre  Completo" x:Name="TXTNombreCompleto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F" />
+                        <TextBox materialDesign:HintAssist.Hint="Domicilio" x:Name="TXTDomicilio" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                        <TextBox materialDesign:HintAssist.Hint="Telefono" x:Name="TXTTelefono" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                        <TextBox materialDesign:HintAssist.Hint="Email" x:Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                    </StackPanel>
+                    <StackPanel Width="300">
+                        <TextBox materialDesign:HintAssist.Hint="Puesto" x:Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                        <ComboBox Margin="8 17 8 8" x:Name="listPerfil" materialDesign:HintAssist.Hint="Perfil" BorderBrush="#F1C40F">
+                            <ComboBoxItem Content="Administrador"  BorderBrush="#F1C40F"/>
+                            <ComboBoxItem Content="Aquitecto"  BorderBrush="#F1C40F" />
+                            <ComboBoxItem Content="Ingeniero"  BorderBrush="#F1C40F"/>
+                            <ComboBoxItem Content="Recepcionista"  BorderBrush="#F1C40F"/>
+                        </ComboBox>
+                        <TextBox materialDesign:HintAssist.Hint="Usuario" x:Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                        <TextBox materialDesign:HintAssist.Hint="Contraseña" x:Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                    </StackPanel>
+                </DockPanel>
+                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="820,36,0,285" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Guardar" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Guardar_MouseLeave" MouseMove="Btn_Guardar_MouseMove" >
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="AccountEdit"/>
+                        <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="820,81,0,240" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                    x:Name="Btn_Limpiar" 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove" >
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Broom"/>
+                        <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="820,126,0,195" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                    x:Name="Btn_Cancelar" 
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cancelar_MouseLeave" MouseMove="Btn_Cancelar_MouseMove" >
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Cancel"/>
+                        <TextBlock Text="Cancelar" Margin="20 -17 0 0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="1" Height="352" Margin="5">
+            <StackPanel>
+                <TextBlock Text="RELACIONES DE: USUARIO PRUEBA" Name="titulo2" Foreground="#F1C40F" FontSize="30" FontWeight="Bold" Margin="160,5,160,0"  />
+                <DataGrid Margin="10,10,10,10" Background="Transparent" x:Name="GridConceptosEliminados" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="8" Height="284" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="CAMPO 1"/>
+                        <DataGridTextColumn Header="CAMPO 2"/>
+                        <DataGridTextColumn Header="CAMPO 3"/>
+                        <DataGridTextColumn Header="CAMPO 4"/>
+                        <DataGridTextColumn Header="CAMPO 5"/>
+                        <DataGridTextColumn Header="CAMPO 6"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

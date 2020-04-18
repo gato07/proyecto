@@ -138,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pantalla_PerfilUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Menu_Principal.xaml.cs">
@@ -160,6 +164,9 @@
     </Compile>
     <Compile Include="PantallaUsuario.xaml.cs">
       <DependentUpon>PantallaUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantalla_PerfilUsuario.xaml.cs">
+      <DependentUpon>Pantalla_PerfilUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
