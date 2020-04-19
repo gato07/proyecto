@@ -122,7 +122,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Inmueble_Insert('" + Clave_Catastral + "','"
+                res = conexion.Consulta_Accion("CALL SP_Inmueble_Insertar('" + Clave_Catastral + "','"
                     + Nombre_Propietario + "','" + Telefono_Propietario + "','" + Colonia + "','" + Calle + 
                     "','" + Entre_Calles + "','" + Numero_Interior + "','" + Numero_Exterior + "');");
                 conexion.Desconectar();
@@ -143,7 +143,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Inmueble_Update(" + Clave + ",'" + Clave_Catastral + "','"
+                res = conexion.Consulta_Accion("CALL SP_Inmueble_Actualizar(" + Clave + ",'" + Clave_Catastral + "','"
                     + Nombre_Propietario + "','" + Telefono_Propietario + "','" + Colonia + "','" + Calle +
                     "','" + Entre_Calles + "','" + Numero_Interior + "','" + Numero_Exterior + "');");
                 conexion.Desconectar();
@@ -162,7 +162,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Inmueble_Delete(" + Clave + ");");
+                res = conexion.Consulta_Accion("CALL SP_Inmueble_Eliminar(" + Clave + ");");
                 conexion.Desconectar();
                 return res;
             }
@@ -189,31 +189,15 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelActivos()
+        public DataTable dtsSelXCampoEliminado(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelActivos();").Tables[0];
-                conexion.Desconectar();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
-        public DataTable dtsSelEliminados()
-        {
-            try
-            {
-                DataTable dt = null;
-                Conexion conexion = new Conexion();
-                conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelEliminados();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelXCampoEliminado(" 
+                    + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

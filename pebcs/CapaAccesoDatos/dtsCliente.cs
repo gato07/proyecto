@@ -15,6 +15,7 @@ namespace CapaAccesoDatos
         #region Propiedades
 
         public int Id { get; set; }
+        //public string Rfc { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Telefono { get; set; }
@@ -31,6 +32,7 @@ namespace CapaAccesoDatos
             try
             {
                 Id = 0;
+                //Rfc = "";
                 Nombre = "";
                 Apellido = "";
                 Telefono = "";
@@ -49,6 +51,7 @@ namespace CapaAccesoDatos
             try
             {
                 this.Id = 0;
+                //Rfc = "";
                 Nombre = "";
                 Apellido = "";
                 Telefono = "";
@@ -61,6 +64,7 @@ namespace CapaAccesoDatos
                 if (dt != null)
                 {
                     this.Id = Convert.ToInt16(dt.Rows[0]["Id"]);
+                    //Rfc = dt.Rows[0]["Rfc"].ToString();
                     Nombre = dt.Rows[0]["Nombre"].ToString();
                     Apellido = dt.Rows[0]["Apellido"].ToString();
                     Telefono = dt.Rows[0]["Telefono"].ToString();
@@ -76,11 +80,12 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsCliente(int Id, string Nombre, string Apellido, string Telefono, string Email)
+        public dtsCliente(int Id/*, string Rfc*/, string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
                 this.Id = Id;
+                //this.Rfc = Rfc;
                 this.Nombre = Nombre;
                 this.Apellido = Apellido;
                 this.Telefono = Telefono;
@@ -94,15 +99,17 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(string Nombre, string Apellido, string Telefono, string Email)
+        public bool dtsInsertar(/*string Rfc,*/ string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Cliente_Insert('" + Nombre + "','"
+                res = conexion.Consulta_Accion("CALL SP_Cliente_Insertar('" + Nombre + "','"
                     + Apellido + "','" + Telefono + "','" + Email + "');");
+                /*res = conexion.Consulta_Accion("CALL SP_Cliente_Insert('" + Rfc + "','" + Nombre + "','"
+                    + Apellido + "','" + Telefono + "','" + Email + "');");*/
                 conexion.Desconectar();
                 return res;
             }
@@ -119,7 +126,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Cliente_Update(" + Id + ",'" + Nombre + "','"
+                res = conexion.Consulta_Accion("CALL SP_Cliente_Actualizar(" + Id + ",'" + Nombre + "','"
                     + Apellido + "','" + Telefono + "','" + Email + "');");
                 conexion.Desconectar();
                 return res;
@@ -137,7 +144,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Cliente_Delete(" + Id + ");");
+                res = conexion.Consulta_Accion("CALL SP_Cliente_Eliminar(" + Id + ");");
                 conexion.Desconectar();
                 return res;
             }
@@ -164,14 +171,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelActivos()
+        public DataTable dtsSelXCampoEliminado(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelActivos();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelXCampoEliminado(" + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -181,22 +188,39 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelEliminados()
+        /*public void dtsSelXRfc(string Rfc)
         {
             try
             {
-                DataTable dt = null;
+                Id = 0;
+                this.Rfc = "";
+                Nombre = "";
+                Apellido = "";
+                Telefono = "";
+                Email = "";
+                Eliminado = false;
+                Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelEliminados();").Tables[0];
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelXRfc(" + Id + ");").Tables[0];
+                if (dt != null)
+                {
+                    Id = Convert.ToInt16(dt.Rows[0]["Id"]);
+                    this.Rfc = dt.Rows[0]["Rfc"].ToString();
+                    Nombre = dt.Rows[0]["Nombre"].ToString();
+                    Apellido = dt.Rows[0]["Apellido"].ToString();
+                    Telefono = dt.Rows[0]["Telefono"].ToString();
+                    Email = dt.Rows[0]["Email"].ToString();
+                    Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
+                    Existe = true;
+                }
                 conexion.Desconectar();
-                return dt;
             }
             catch (Exception ex)
             {
-                return null;
+
             }
-        }
+        }*/
 
         #endregion Metodos
     }

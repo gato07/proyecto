@@ -100,7 +100,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Concepto_Insert('" + Tipo + "','"
+                res = conexion.Consulta_Accion("CALL SP_Concepto_Insertar('" + Tipo + "','"
                     + Nombre + "','" + Descripcion + "'," + Costo + ");");
                 conexion.Desconectar();
                 return res;
@@ -118,7 +118,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Concepto_Update(" + Numero +  ",'" + Tipo + "','"
+                res = conexion.Consulta_Accion("CALL SP_Concepto_Actualizar(" + Numero +  ",'" + Tipo + "','"
                     + Nombre + "','" + Descripcion + "'," + Costo + ");");
                 conexion.Desconectar();
                 return res;
@@ -163,14 +163,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelActivos()
+        public DataTable dtsSelXCampoEliminado(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelActivos();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelXCampoEliminado(" + Eliminado +");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -180,22 +180,6 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelEliminados()
-        {
-            try
-            {
-                DataTable dt = null;
-                Conexion conexion = new Conexion();
-                conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelEliminados();").Tables[0];
-                conexion.Desconectar();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
 
         #endregion Metodos
 

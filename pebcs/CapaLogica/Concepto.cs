@@ -85,18 +85,19 @@ namespace CapaLogica
                         else
                             Mensaje = "El campo de Descripcion debe cumplir:\n\n- Puede quedar vacío.\n- Solo"
                                 + " puede contener caracteres alfabéticos, númericos, los simbolos" 
-                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido"
-                                + " del campo es de 0 hasta 255 caracteres.";
+                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- Debe tener solo un espacio en"
+                                + " blanco entre palabras.\n- El tamaño valido del campo es de 0 hasta 255 caracteres.";
                     }
                     else
-                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos, los caracteres .- y espacios en blanco.\n- El tamaño valido del"
-                        + " campo es de 1 hasta 75 caracteres.";
+                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                        + " contener caracteres alfabéticos, los caracteres .- y espacios en blanco.\n- Debe"
+                        + " tener solo un espacio en blanco entre palabras.\n- El tamaño valido del campo es"
+                        + " de 1 hasta 75 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Tipo debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del"
-                        + " campo es de 1 hasta 25 caracteres.";
+                        + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco"
+                        + " entre palabras.\n- El tamaño valido del campo es de 1 hasta 25 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -142,18 +143,19 @@ namespace CapaLogica
                         else
                             Mensaje = "El campo de Descripcion debe cumplir:\n\n- Puede quedar vacío.\n- Solo"
                                 + " puede contener caracteres alfabéticos, númericos, los simbolos"
-                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido"
-                                + " del campo es de 0 hasta 255 caracteres.";
+                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- Debe tener solo un espacio en"
+                                + " blanco entre palabras.\n- El tamaño valido del campo es de 0 hasta 255 caracteres.";
                     }
                     else
-                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos, los caracteres .- y espacios en blanco.\n- El tamaño valido del"
-                        + " campo es de 1 hasta 75 caracteres.";
+                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                        + " contener caracteres alfabéticos, los caracteres .- y espacios en blanco.\n- Debe"
+                        + " tener solo un espacio en blanco entre palabras.\n- El tamaño valido del campo es"
+                        + " de 1 hasta 75 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Tipo debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del"
-                        + " campo es de 1 hasta 25 caracteres.";
+                        + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco"
+                        + " entre palabras.\n- El tamaño valido del campo es de 1 hasta 25 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -222,7 +224,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelActivos();
+                return dtsSelXCampoEliminado();
             }
             catch (Exception ex)
             {
@@ -235,7 +237,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelEliminados();
+                return dtsSelXCampoEliminado(true);
             }
             catch (Exception ex)
             {
@@ -244,7 +246,7 @@ namespace CapaLogica
             }
         }
 
-        public Concepto[] Conceptos(DataTable Dt)
+        public Concepto[] TableToArray(DataTable Dt)
         {
             try
             {
@@ -252,12 +254,17 @@ namespace CapaLogica
                 Concepto[] conceptos = new Concepto[Dt.Rows.Count];
                 foreach (DataRow renglon in Dt.Rows)
                 {
-                    Concepto concepto = new Concepto(
-                    Convert.ToInt16(renglon["Numero"]),
-                    renglon["Tipo"].ToString(),
-                    renglon["Nombre"].ToString(),
-                    renglon["Descripcion"].ToString(),
-                    Convert.ToDecimal(renglon["Costo"]));
+                    Concepto concepto = new Concepto();
+                    if (Dt.Columns.Contains("Numero"))
+                        concepto.Numero = Convert.ToInt16(renglon["Numero"]);
+                    if (Dt.Columns.Contains("Tipo"))
+                        concepto.Tipo = renglon["Tipo"].ToString();
+                    if (Dt.Columns.Contains("Nombre"))
+                        concepto.Nombre = renglon["Nombre"].ToString();
+                    if (Dt.Columns.Contains("Descripcion"))
+                        concepto.Descripcion = renglon["Descripcion"].ToString();
+                    if (Dt.Columns.Contains("Costo"))
+                        concepto.Costo = Convert.ToDecimal(renglon["Costo"]);
                     if (Dt.Columns.Contains("Eliminado"))
                         concepto.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     concepto.Existe = true;

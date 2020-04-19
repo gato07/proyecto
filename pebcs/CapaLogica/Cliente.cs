@@ -44,8 +44,8 @@ namespace CapaLogica
             }
         }
 
-        public Cliente(int Id, string Nombre, string Apellido, string Telefono, string Email):
-            base(Id, Nombre, Apellido, Telefono, Email)
+        public Cliente(int Id/*, string Rfc*/, string Nombre, string Apellido, string Telefono, string Email) :
+            base(Id/*, Rfc*/, Nombre, Apellido, Telefono, Email)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Nombre, string Apellido, string Telefono, string Email)
+        public bool Insertar(/*string Rfc,*/ string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace CapaLogica
                         {
                             if (validacion.Val_Email(Email))
                             {
-                                res = dtsInsertar(Nombre, Apellido, Telefono, Email);
+                                res = dtsInsertar(/*Rfc,*/ Nombre, Apellido, Telefono, Email);
                                 if (res)
                                     Mensaje = "El Cliente fue registrado satisfactoriamente";                
                             }
@@ -216,7 +216,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelActivos();
+                return dtsSelXCampoEliminado();
             }
             catch (Exception ex)
             {
@@ -229,7 +229,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelEliminados();
+                return dtsSelXCampoEliminado(true);
             }
             catch (Exception ex)
             {
@@ -238,7 +238,19 @@ namespace CapaLogica
             }
         }
 
-        public Cliente[] Clientes(DataTable Dt)
+        /*public void SelXRfc(string Rfc)
+        {
+            try
+            {
+                dtsSelXRfc(Rfc);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error al querer consultar a los Clientes por RFC";
+            }
+        }*/
+
+        public Cliente[] TableToArray(DataTable Dt)
         {
             try
             {
@@ -246,13 +258,20 @@ namespace CapaLogica
                 Cliente[] clientes = new Cliente[Dt.Rows.Count];
                 foreach (DataRow renglon in Dt.Rows)
                 {
-                    Cliente cliente = new Cliente(
-                        Convert.ToInt16(renglon["Id"]),
-                        renglon["Nombre"].ToString(),
-                        renglon["Apellido"].ToString(),
-                        renglon["Telefono"].ToString(),
-                        renglon["Email"].ToString());
-                    if (Dt.Columns.Contains("Eliminado"))
+                    Cliente cliente = new Cliente();
+                    if(Dt.Columns.Contains("Id"))
+                        cliente.Id = Convert.ToInt16(renglon["Id"]);
+                    /*if (Dt.Columns.Contains("Rfc"))
+                        cliente.Rfc = renglon["Rfc"].ToString();*/
+                    if (Dt.Columns.Contains("Nombre"))
+                        cliente.Nombre = renglon["Nombre"].ToString();
+                    if (Dt.Columns.Contains("Apellido"))
+                        cliente.Apellido = renglon["Apellido"].ToString();
+                    if (Dt.Columns.Contains("Telefono"))
+                        cliente.Telefono = renglon["Telefono"].ToString();
+                    if (Dt.Columns.Contains("Email"))
+                        cliente.Email = renglon["Email"].ToString();
+                    if(Dt.Columns.Contains("Eliminado"))
                         cliente.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     cliente.Existe = true;
                     clientes[i] = cliente;

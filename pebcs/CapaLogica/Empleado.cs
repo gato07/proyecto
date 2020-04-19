@@ -69,9 +69,9 @@ namespace CapaLogica
                     + " correctamente";
                 if (validacion.Val_Texto1(Nombre, 1, 60))
                 {
-                    if (validacion.Val_Domicilio(Domicilio,1,255))
+                    if (validacion.Val_Domicilio(Domicilio, 1, 255))
                     {
-                        if (validacion.Val_Numero(Telefono,1,10))
+                        if (validacion.Val_Numero(Telefono, 1, 10))
                         {
                             if (validacion.Val_Email(Email))
                             {
@@ -79,7 +79,7 @@ namespace CapaLogica
                                 {
                                     if (validacion.Val_RutaArchivo(Foto))
                                     {
-                                        if (validacion.Val_Perfil(Perfil))
+                                        if (Perfil >= 1 && Perfil <= 4)
                                         {
                                             if (validacion.Val_Usuario(Usuario))
                                             {
@@ -115,8 +115,9 @@ namespace CapaLogica
                                             + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                                 }
                                 else
-                                    Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
+                                    Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                        + " contener caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un"
+                                        + " espacio en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta"
                                         + " 50 caracteres.";
                             }
                             else
@@ -129,13 +130,14 @@ namespace CapaLogica
                     }
                     else
                         Mensaje = "El campo de Domicilio debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                            + " caracteres alfabéticos, numéricos, los símbolos #.-,/ y espacios en blanco."
-                            + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                            + " caracteres alfabéticos, numéricos, los símbolos #:.-;,/ y espacios en blanco."
+                            + "\n- Debe tener solo un espacio en blanco entre palabras.\n- El tamaño valido"
+                            + " del campo es de 1 hasta 255 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
-                        + " 60 caracteres.";
+                        + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco"
+                        + " entre palabras.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -167,7 +169,7 @@ namespace CapaLogica
                                 {
                                     if (validacion.Val_RutaArchivo(Foto))
                                     {
-                                        if (validacion.Val_Perfil(Perfil))
+                                        if (Perfil >= 1 && Perfil <= 4)
                                         {
                                             if (validacion.Val_Usuario(Usuario))
                                             {
@@ -210,8 +212,9 @@ namespace CapaLogica
                                              + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                                 }
                                 else
-                                    Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
+                                    Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                        + " contener caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un"
+                                        + " espacio en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta"
                                         + " 50 caracteres.";
                             }
                             else
@@ -224,13 +227,14 @@ namespace CapaLogica
                     }
                     else
                         Mensaje = "El campo de Domicilio debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                            + " caracteres alfabéticos, numéricos, los símbolos #.-,/ y espacios en blanco."
-                            + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                            + " caracteres alfabéticos, numéricos, los símbolos #:.-;,/ y espacios en blanco."
+                            + "\n- Debe tener solo un espacio en blanco entre palabras.\n- El tamaño valido"
+                            + " del campo es de 1 hasta 255 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
-                        + " 60 caracteres.";
+                        + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco"
+                        + " entre palabras.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -299,7 +303,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelActivos();
+                return dtsSelXCampoEliminado();
             }
             catch (Exception ex)
             {
@@ -312,11 +316,11 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelEliminados();
+                return dtsSelXCampoEliminado(true);
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados deshabilitados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados eliminados";
                 return null;
             }
         }
@@ -333,7 +337,59 @@ namespace CapaLogica
             }
         }
 
-        public Empleado[] Empleados(DataTable Dt)
+        public DataTable SelLikeClave(int Clave, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeClave(Clave, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Clave";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeNombre(string Nombre, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeNombre(Nombre, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Nombre";
+                return null;
+            }
+        }
+
+        public DataTable SelLikePuesto(string Puesto, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikePuesto(Puesto, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Puesto";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeEmail(string Email, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeEmail(Email, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Email";
+                return null;
+            }
+        }
+
+        public Empleado[] TableToArray(DataTable Dt)
         {
             try
             {
@@ -341,18 +397,28 @@ namespace CapaLogica
                 Empleado[] empleados = new Empleado[Dt.Rows.Count];
                 foreach (DataRow renglon in Dt.Rows)
                 {
-                    Empleado empleado = new Empleado(
-                        Convert.ToInt16(renglon["Clave"]),
-                        renglon["Nombre"].ToString(),
-                        renglon["Domicilio"].ToString(),
-                        renglon["Telefono"].ToString(),
-                        renglon["Email"].ToString(),
-                        renglon["Puesto"].ToString(),
-                        renglon["Foto"].ToString(),
-                        Convert.ToInt16(renglon["Perfil"]),
-                        renglon["Usuario"].ToString(),
-                        renglon["Contrasena"].ToString());
-                    if(Dt.Columns.Contains("Eliminado"))
+                    Empleado empleado = new Empleado();
+                    if(Dt.Columns.Contains("Clave"))
+                        empleado.Clave = Convert.ToInt16(renglon["Clave"]);
+                    if(Dt.Columns.Contains("Nombre"))
+                        empleado.Nombre = renglon["Nombre"].ToString();
+                    if(Dt.Columns.Contains("Domicilio"))
+                        empleado.Domicilio = renglon["Domicilio"].ToString();
+                    if(Dt.Columns.Contains("Telefono"))
+                        empleado.Telefono = renglon["Telefono"].ToString();
+                    if(Dt.Columns.Contains("Email"))
+                        empleado.Email = renglon["Email"].ToString();
+                    if(Dt.Columns.Contains("Puesto"))
+                        empleado.Puesto = renglon["Puesto"].ToString();
+                    if(Dt.Columns.Contains("Foto"))
+                        empleado.Foto = renglon["Foto"].ToString();
+                    if (Dt.Columns.Contains("Perfil"))
+                        empleado.Perfil = Convert.ToInt16(renglon["Perfil"]);
+                    if (Dt.Columns.Contains("Usuario"))
+                        empleado.Usuario = renglon["Usuario"].ToString();
+                    if (Dt.Columns.Contains("Contrasena"))
+                        empleado.Contrasena = renglon["Contrasena"].ToString();
+                    if (Dt.Columns.Contains("Eliminado"))
                         empleado.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     empleado.Existe = true;
                     empleados[i] = empleado;

@@ -141,7 +141,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Empleado_Insert('" + Nombre + "','" 
+                res = conexion.Consulta_Accion("CALL SP_Empleado_Insertar('" + Nombre + "','" 
                     + Domicilio + "','" + Telefono + "','" + Email + "','" + Puesto + "','" + Foto + "'," 
                     + Perfil + ",'" + Usuario + "','" + Contrasena + "');");
                 conexion.Desconectar();
@@ -161,7 +161,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Empleado_Update(" + Clave + ",'" + Nombre + "','"
+                res = conexion.Consulta_Accion("CALL SP_Empleado_Actualizar(" + Clave + ",'" + Nombre + "','"
                     + Domicilio + "','" + Telefono + "','" + Email + "','" + Puesto + "','" + Foto + "',"
                     + Perfil + ",'" + Usuario + "','" + Contrasena + "');");
                 conexion.Desconectar();
@@ -180,7 +180,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Empleado_Delete(" + Clave + ");");
+                res = conexion.Consulta_Accion("CALL SP_Empleado_Eliminar(" + Clave + ");");
                 conexion.Desconectar();
                 return res;
             }
@@ -207,31 +207,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelActivos()
+        public DataTable dtsSelXCampoEliminado(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelActivos();").Tables[0];
-                conexion.Desconectar();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
-        public DataTable dtsSelEliminados()
-        {
-            try
-            {
-                DataTable dt = null;
-                Conexion conexion = new Conexion();
-                conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelEliminados();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelXCampoEliminado("+ Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -280,6 +263,78 @@ namespace CapaAccesoDatos
             catch (Exception ex)
             {
 
+            }
+        }
+
+        public DataTable dtsSelLikeClave(int Clave, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikeClave('" + Clave + "'," 
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeNombre(string Nombre, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikeNombre('" + Nombre + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikePuesto(string Puesto, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikePuesto('" + Puesto + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeEmail(string Email, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikeEmail('" + Email + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 

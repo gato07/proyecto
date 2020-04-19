@@ -100,31 +100,36 @@ namespace CapaLogica
                                             else
                                                 Mensaje = "El campo de Número exterior debe cumplir:\n\n- No puede"
                                                     + " quedar vacío.\n- Solo puede contener caracteres alfabeticos,"
-                                                    + " numericos, los simbolos .:,;-/# y espacios en blanco."
-                                                    + " \n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
+                                                    + " numericos, los simbolos .:,;-/# y espacios en blanco.\n- Debe"
+                                                    + " tener solo un espacio en blanco entre palabras.\n- El tamaño"
+                                                    + " valido del campo es de 1 hasta 10 caracteres.";
                                         }
                                         else
                                             Mensaje = "El campo de Número interior debe cumplir:\n\n- Puede quedar"
                                             + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                            + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                            + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                            + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                             + " campo es de 0 hasta 10 caracteres.";
                                     }
                                     else
                                         Mensaje = "El campo de Entre calles debe cumplir:\n\n- Puede quedar"
                                     + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                     + " campo es de 0 hasta 100 caracteres.";
                                 }
                                 else
                                     Mensaje = "El campo de Calle debe cumplir:\n\n- No puede quedar"
                                     + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                     + " campo es de 1 hasta 50 caracteres.";
                             }
                             else
                                 Mensaje = "El campo de Colonia debe cumplir:\n\n- No puede quedar"
                                     + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                     + " campo es de 1 hasta 50 caracteres.";
                         }
                         else
@@ -135,7 +140,8 @@ namespace CapaLogica
                     else
                         Mensaje = "El campo de Nombre del propietario debe cumplir:\n\n- No puede quedar vacío."
                             + "\n- Solo puede contener caracteres alfabéticos, los simbolos .,- y espacios"
-                            + " en blanco.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
+                            + " en blanco.\n- Debe tener solo un espacio en blanco entre palabras."
+                            + "\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Clave catastral debe cumplir:\n\n- No puede quedar vacío."
@@ -202,31 +208,36 @@ namespace CapaLogica
                                             else
                                                 Mensaje = "El campo de Número exterior debe cumplir:\n\n- No puede"
                                                     + " quedar vacío.\n- Solo puede contener caracteres alfabeticos,"
-                                                    + " numericos, los simbolos .:,;-/# y espacios en blanco."
-                                                    + " \n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
+                                                    + " numericos, los simbolos .:,;-/# y espacios en blanco.\n- Debe"
+                                                    + " tener solo un espacio en blanco entre palabras.\n- El tamaño"
+                                                    + " valido del campo es de 1 hasta 10 caracteres.";
                                         }
                                         else
                                             Mensaje = "El campo de Número interior debe cumplir:\n\n- Puede quedar"
                                             + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                            + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                            + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                            + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                             + " campo es de 0 hasta 10 caracteres.";
                                     }
                                     else
                                         Mensaje = "El campo de Entre calles debe cumplir:\n\n- Puede quedar"
                                     + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                     + " campo es de 0 hasta 100 caracteres.";
                                 }
                                 else
                                     Mensaje = "El campo de Calle debe cumplir:\n\n- No puede quedar"
                                     + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                     + " campo es de 1 hasta 50 caracteres.";
                             }
                             else
                                 Mensaje = "El campo de Colonia debe cumplir:\n\n- No puede quedar"
                                     + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- El tamaño valido del"
+                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
+                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
                                     + " campo es de 1 hasta 50 caracteres.";
                         }
                         else
@@ -237,7 +248,8 @@ namespace CapaLogica
                     else
                         Mensaje = "El campo de Nombre del propietario debe cumplir:\n\n- No puede quedar vacío."
                             + "\n- Solo puede contener caracteres alfabéticos, los simbolos .,- y espacios"
-                            + " en blanco.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
+                            + " en blanco.\n- Debe tener solo un espacio en blanco entre palabras."
+                            + "\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Clave catastral debe cumplir:\n\n- Su formato es el siguiente ###-###-###-###."
@@ -310,7 +322,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelActivos();
+                return dtsSelXCampoEliminado();
             }
             catch (Exception ex)
             {
@@ -323,7 +335,7 @@ namespace CapaLogica
         {
             try
             {
-                return dtsSelEliminados();
+                return dtsSelXCampoEliminado(true);
             }
             catch (Exception ex)
             {
@@ -344,7 +356,7 @@ namespace CapaLogica
             }
         }
 
-        public Inmueble[] Inmuebles(DataTable Dt)
+        public Inmueble[] TableToArray(DataTable Dt)
         {
             try
             {
@@ -352,16 +364,25 @@ namespace CapaLogica
                 Inmueble[] inmuebles = new Inmueble[Dt.Rows.Count];
                 foreach (DataRow renglon in Dt.Rows)
                 {
-                    Inmueble inmueble = new Inmueble(
-                        Convert.ToInt16(renglon["Clave"]),
-                        renglon["Clave_Catastral"].ToString(),
-                        renglon["Nombre_Propietario"].ToString(),
-                        renglon["Telefono_Propietario"].ToString(),
-                        renglon["Colonia"].ToString(),
-                        renglon["Calle"].ToString(),
-                        renglon["Entre_Calles"].ToString(),
-                        renglon["Numero_Interior"].ToString(),
-                        renglon["Numero_Exterior"].ToString());
+                    Inmueble inmueble = new Inmueble();
+                    if (Dt.Columns.Contains("Clave"))
+                        inmueble.Clave = Convert.ToInt16(renglon["Clave"]);
+                    if (Dt.Columns.Contains("Clave_Catastral"))
+                        inmueble.Clave_Catastral =  renglon["Clave_Catastral"].ToString();
+                    if (Dt.Columns.Contains("Nombre_Propietario"))
+                        inmueble.Nombre_Propietario = renglon["Nombre_Propietario"].ToString();
+                    if (Dt.Columns.Contains("Telefono_Propietario"))
+                        inmueble.Telefono_Propietario = renglon["Telefono_Propietario"].ToString();
+                    if (Dt.Columns.Contains("Colonia"))
+                        inmueble.Colonia = renglon["Colonia"].ToString();
+                    if (Dt.Columns.Contains("Calle"))
+                        inmueble.Calle = renglon["Calle"].ToString();
+                    if (Dt.Columns.Contains("Entre_Calles"))
+                        inmueble.Entre_Calles = renglon["Entre_Calles"].ToString();
+                    if (Dt.Columns.Contains("Numero_Interior"))
+                        inmueble.Numero_Interior = renglon["Numero_Interior"].ToString();
+                    if (Dt.Columns.Contains("Numero_Exterior"))
+                        inmueble.Numero_Exterior = renglon["Numero_Exterior"].ToString();
                     if (Dt.Columns.Contains("Eliminado"))
                         inmueble.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     inmueble.Existe = true;

@@ -27,12 +27,27 @@ namespace CapaLogica
             }
         }
 
-        public bool Val_Texto1(string Valor, int Min, int Max)
+        /*public bool Val_Texto1(string Valor, int Min, int Max)
         {
             try
             {
                 Regex expreg = new Regex(@"^[A-Za-zÑñÁÉÍÓÚáéíóúÜü\s]{" + Min + "," + Max + "}$");
                 return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }*/
+
+        public bool Val_Texto1(string Valor, int Min, int Max)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^([A-Za-zÑñÁÉÍÓÚáéíóúÜü]+(\s[A-Za-zÑñÁÉÍÓÚáéíóúÜü]+)*)?$");
+                if(expreg.IsMatch(Valor))
+                    return (Valor.Length >= Min && Valor.Length <= Max);
+                return false;
             }
             catch (Exception ex)
             {
@@ -44,8 +59,10 @@ namespace CapaLogica
         {
             try
             {
-                Regex expreg = new Regex(@"^[A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\,\-]{" + Min + "," + Max + "}$");
-                return expreg.IsMatch(Valor);
+                Regex expreg = new Regex(@"^([A-Za-zÑñÁÉÍÓÚáéíóúÜü\.\,\-]+(\s[A-Za-zÑñÁÉÍÓÚáéíóúÜü\.\,\-]+)*)?$");
+                if (expreg.IsMatch(Valor))
+                    return (Valor.Length >= Min && Valor.Length <= Max);
+                return false;
             }
             catch (Exception ex)
             {
@@ -57,8 +74,11 @@ namespace CapaLogica
         {
             try
             {
-                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\°\¡\!\#\$\%\&\/\=\¿\?\,\;\.\:\-]{" + Min + "," + Max + "}$");
-                return expreg.IsMatch(Valor);
+                Regex expreg = new Regex(@"^([0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\°\¡\!\#\$\%\&\/\=\¿\?\,\;\.\:\-]+"
+                + @"(\s[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\°\¡\!\#\$\%\&\/\=\¿\?\,\;\.\:\-]+)*)?$");
+                if (expreg.IsMatch(Valor))
+                    return (Valor.Length >= Min && Valor.Length <= Max);
+                return false;
             }
             catch (Exception ex)
             {
@@ -87,8 +107,10 @@ namespace CapaLogica
         {
             try
             {
-                Regex expreg = new Regex(@"^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\s\.\:\,\;\-\#\/]{" + Min + "," + Max + "}$");
-                return expreg.IsMatch(Valor);
+                Regex expreg = new Regex(@"^([0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\.\:\,\;\-\#\/]+(\s[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\.\:\,\;\-\#\/]+)*)?$");
+                if (expreg.IsMatch(Valor))
+                    return (Valor.Length >= Min && Valor.Length <= Max);
+                return false;
             }
             catch (Exception ex)
             {
@@ -114,19 +136,7 @@ namespace CapaLogica
             try
             {
                 var email = new MailAddress(Valor);
-                return ((email.Address == Valor) && (Valor.Length <= 255));
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool Val_Perfil(int Valor)
-        {
-            try
-            {
-                return ((Valor >= 1) && (Valor <= 4));
+                return (email.Address == Valor && Valor.Length <= 255);
             }
             catch (Exception ex)
             {
@@ -168,7 +178,7 @@ namespace CapaLogica
                 string decimales = "";
                 if (arreglo.Length > 1)
                     decimales = arreglo[1];
-                return ((Valor >= Min) && (Valor <= Max) && (decimales.Length <= Numero_Decimales));
+                return (Valor >= Min && Valor <= Max && decimales.Length <= Numero_Decimales);
             }
             catch (Exception ex)
             {
