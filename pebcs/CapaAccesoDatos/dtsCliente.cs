@@ -15,7 +15,7 @@ namespace CapaAccesoDatos
         #region Propiedades
 
         public int Id { get; set; }
-        //public string Rfc { get; set; }
+        public string Rfc { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Telefono { get; set; }
@@ -32,7 +32,7 @@ namespace CapaAccesoDatos
             try
             {
                 Id = 0;
-                //Rfc = "";
+                Rfc = "";
                 Nombre = "";
                 Apellido = "";
                 Telefono = "";
@@ -51,7 +51,7 @@ namespace CapaAccesoDatos
             try
             {
                 this.Id = 0;
-                //Rfc = "";
+                Rfc = "";
                 Nombre = "";
                 Apellido = "";
                 Telefono = "";
@@ -64,7 +64,7 @@ namespace CapaAccesoDatos
                 if (dt != null)
                 {
                     this.Id = Convert.ToInt16(dt.Rows[0]["Id"]);
-                    //Rfc = dt.Rows[0]["Rfc"].ToString();
+                    Rfc = dt.Rows[0]["Rfc"].ToString();
                     Nombre = dt.Rows[0]["Nombre"].ToString();
                     Apellido = dt.Rows[0]["Apellido"].ToString();
                     Telefono = dt.Rows[0]["Telefono"].ToString();
@@ -80,12 +80,12 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsCliente(int Id/*, string Rfc*/, string Nombre, string Apellido, string Telefono, string Email)
+        public dtsCliente(int Id, string Rfc, string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
                 this.Id = Id;
-                //this.Rfc = Rfc;
+                this.Rfc = Rfc;
                 this.Nombre = Nombre;
                 this.Apellido = Apellido;
                 this.Telefono = Telefono;
@@ -99,17 +99,15 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(/*string Rfc,*/ string Nombre, string Apellido, string Telefono, string Email)
+        public bool dtsInsertar(string Rfc, string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Cliente_Insertar('" + Nombre + "','"
+                res = conexion.Consulta_Accion("CALL SP_Cliente_Insertar('" + Rfc + "','" + Nombre + "','"
                     + Apellido + "','" + Telefono + "','" + Email + "');");
-                /*res = conexion.Consulta_Accion("CALL SP_Cliente_Insert('" + Rfc + "','" + Nombre + "','"
-                    + Apellido + "','" + Telefono + "','" + Email + "');");*/
                 conexion.Desconectar();
                 return res;
             }
@@ -119,14 +117,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Id, string Nombre, string Apellido, string Telefono, string Email)
+        public bool dtsActualizar(int Id, string Rfc, string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Cliente_Actualizar(" + Id + ",'" + Nombre + "','"
+                res = conexion.Consulta_Accion("CALL SP_Cliente_Actualizar(" + Id + ",'" + Rfc + "','" + Nombre + "','"
                     + Apellido + "','" + Telefono + "','" + Email + "');");
                 conexion.Desconectar();
                 return res;
@@ -188,7 +186,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        /*public void dtsSelXRfc(string Rfc)
+        public void dtsSelXRfc(string Rfc)
         {
             try
             {
@@ -202,7 +200,7 @@ namespace CapaAccesoDatos
                 Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelXRfc(" + Id + ");").Tables[0];
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelXRfc('" + Rfc + "');").Tables[0];
                 if (dt != null)
                 {
                     Id = Convert.ToInt16(dt.Rows[0]["Id"]);
@@ -220,7 +218,7 @@ namespace CapaAccesoDatos
             {
 
             }
-        }*/
+        }
 
         #endregion Metodos
     }

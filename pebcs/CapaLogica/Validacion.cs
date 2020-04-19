@@ -27,19 +27,6 @@ namespace CapaLogica
             }
         }
 
-        /*public bool Val_Texto1(string Valor, int Min, int Max)
-        {
-            try
-            {
-                Regex expreg = new Regex(@"^[A-Za-zÑñÁÉÍÓÚáéíóúÜü\s]{" + Min + "," + Max + "}$");
-                return expreg.IsMatch(Valor);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }*/
-
         public bool Val_Texto1(string Valor, int Min, int Max)
         {
             try
@@ -200,13 +187,11 @@ namespace CapaLogica
             }
         }
 
-        /*  
-        
-        public bool Val_TipoUsuario(string Valor)
+        public bool Val_Rfc(string Valor)
         {
             try
             {
-                Regex expreg = new Regex("^(ALUMNO|MAESTRO|COORDINADOR){1}$");
+                Regex expreg = new Regex(@"^[A-ZÑ\&]{3,4}[0-9]{6}[0-9A-ZÑ]{3}$");
                 return expreg.IsMatch(Valor);
             }
             catch (Exception ex)
@@ -214,10 +199,6 @@ namespace CapaLogica
                 return false;
             }
         }
-        
-        */
-
-
 
         #endregion Metodos
 

@@ -44,8 +44,8 @@ namespace CapaLogica
             }
         }
 
-        public Cliente(int Id/*, string Rfc*/, string Nombre, string Apellido, string Telefono, string Email) :
-            base(Id/*, Rfc*/, Nombre, Apellido, Telefono, Email)
+        public Cliente(int Id, string Rfc, string Nombre, string Apellido, string Telefono, string Email) :
+            base(Id, Rfc, Nombre, Apellido, Telefono, Email)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(/*string Rfc,*/ string Nombre, string Apellido, string Telefono, string Email)
+        public bool Insertar(string Rfc, string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
@@ -65,35 +65,50 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Cliente, es posible que no se haya insertado"
                     + " correctamente";
-                if (validacion.Val_Texto1(Nombre, 1, 30))
+                if (validacion.Val_Rfc(Rfc))
                 {
-                    if (validacion.Val_Texto1(Apellido, 1, 30))
+                    if (validacion.Val_Texto1(Nombre, 1, 30))
                     {
-                        if (validacion.Val_Numero(Telefono, 1, 10))
+                        if (validacion.Val_Texto1(Apellido, 1, 30))
                         {
-                            if (validacion.Val_Email(Email))
+                            if (validacion.Val_Numero(Telefono, 1, 10))
                             {
-                                res = dtsInsertar(/*Rfc,*/ Nombre, Apellido, Telefono, Email);
-                                if (res)
-                                    Mensaje = "El Cliente fue registrado satisfactoriamente";                
+                                if (validacion.Val_Email(Email))
+                                {
+                                    Cliente cliente = new Cliente();
+                                    cliente.SelXRfc(Rfc);
+                                    if (cliente.Existe == false)
+                                    {
+                                        res = dtsInsertar(Rfc, Nombre, Apellido, Telefono, Email);
+                                        if (res)
+                                            Mensaje = "El Cliente fue registrado satisfactoriamente";
+                                    }
+                                    else
+                                        Mensaje = "No es posible dar de alta al Cliente con ese Rfc ya que hay otro Cliente que"
+                                        + " lo tiene asignado, escriba otro diferente.";
+                                }
+                                else
+                                    Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
+                                    + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                             }
                             else
-                                Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
-                                + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                                    + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
                         }
                         else
-                            Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                                + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
+                            Mensaje = "El campo de Apellido debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
+                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                     }
                     else
-                        Mensaje = "El campo de Apellido debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
-                        + " 30 caracteres.";
+                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
+                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
-                        + " 30 caracteres.";
+                    Mensaje = "El campo de RFC debe cumplir:\n\n- No puede quedar vacío."
+                        + "\n- Su formato correcto es AAA000000### ó AAAA000000###.\n- El tamaño valido del campo"
+                        + " es de 12 hasta 13 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -104,7 +119,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Id, string Nombre, string Apellido, string Telefono, string Email)
+        public bool Actualizar(int Id, string Rfc, string Nombre, string Apellido, string Telefono, string Email)
         {
             try
             {
@@ -112,42 +127,57 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Cliente, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                if (validacion.Val_Texto1(Nombre, 1, 30))
+                if (validacion.Val_Rfc(Rfc))
                 {
-                    if (validacion.Val_Texto1(Apellido, 1, 30))
+                    if (validacion.Val_Texto1(Nombre, 1, 30))
                     {
-                        if (validacion.Val_Numero(Telefono, 1, 10))
+                        if (validacion.Val_Texto1(Apellido, 1, 30))
                         {
-                            if (validacion.Val_Email(Email))
+                            if (validacion.Val_Numero(Telefono, 1, 10))
                             {
-                                Cliente cliente = new Cliente(Id);
-                                if (cliente.Existe)
+                                if (validacion.Val_Email(Email))
                                 {
-                                    res = dtsActualizar(Id, Nombre, Apellido, Telefono, Email);
-                                    if (res)
-                                        Mensaje = "Los datos del Cliente fueron actualizados satisfactoriamente.";
+                                    Cliente rfc = new Cliente();
+                                    rfc.SelXRfc(Rfc);
+                                    if (rfc.Existe == false || (rfc.Existe && rfc.Id == Id))
+                                    {
+                                        Cliente cliente = new Cliente(Id);
+                                        if (cliente.Existe)
+                                        {
+                                            res = dtsActualizar(Id, Rfc, Nombre, Apellido, Telefono, Email);
+                                            if (res)
+                                                Mensaje = "Los datos del Cliente fueron actualizados satisfactoriamente.";
+                                        }
+                                        else
+                                            Mensaje = "No existe algún Cliente con esa Id, escoja un Cliente"
+                                                + " existente para que sus datos sean actualizados.";
+                                    }
+                                    else
+                                        Mensaje = "No es posible actualizar el nombre de Usuario del Empleado al valor"
+                                            + " que introdujo ya que hay otro Empleado que lo esta usando, escriba otro diferente.";
                                 }
                                 else
-                                    Mensaje = "No existe algún Cliente con esa Id, escoja un Cliente"
-                                        + " existente para que sus datos sean actualizados.";
+                                    Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
+                                    + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                             }
                             else
-                                Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
-                                + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                                    + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
                         }
                         else
-                            Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                                + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
+                            Mensaje = "El campo de Apellido debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
+                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                     }
                     else
-                        Mensaje = "El campo de Apellido debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
-                        + " 30 caracteres.";
+                        Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
+                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                        + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
-                        + " 30 caracteres.";
+                    Mensaje = "El campo de RFC debe cumplir:\n\n- No puede quedar vacío."
+                        + "\n- Su formato correcto es AAA000000### ó AAAA000000###.\n- El tamaño valido del campo"
+                        + " es de 12 hasta 13 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -238,7 +268,7 @@ namespace CapaLogica
             }
         }
 
-        /*public void SelXRfc(string Rfc)
+        public void SelXRfc(string Rfc)
         {
             try
             {
@@ -248,7 +278,7 @@ namespace CapaLogica
             {
                 Mensaje = "Ocurrio un error al querer consultar a los Clientes por RFC";
             }
-        }*/
+        }
 
         public Cliente[] TableToArray(DataTable Dt)
         {
@@ -261,8 +291,8 @@ namespace CapaLogica
                     Cliente cliente = new Cliente();
                     if(Dt.Columns.Contains("Id"))
                         cliente.Id = Convert.ToInt16(renglon["Id"]);
-                    /*if (Dt.Columns.Contains("Rfc"))
-                        cliente.Rfc = renglon["Rfc"].ToString();*/
+                    if (Dt.Columns.Contains("Rfc"))
+                        cliente.Rfc = renglon["Rfc"].ToString();
                     if (Dt.Columns.Contains("Nombre"))
                         cliente.Nombre = renglon["Nombre"].ToString();
                     if (Dt.Columns.Contains("Apellido"))
