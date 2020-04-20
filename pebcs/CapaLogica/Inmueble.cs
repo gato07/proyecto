@@ -182,7 +182,6 @@ namespace CapaLogica
                                         {
                                             if (validacion.Val_Domicilio(Numero_Exterior, 1, 10))
                                             {
-
                                                 Inmueble inmcatastral = new Inmueble();
                                                 inmcatastral.SelXClaveCatastral(Clave_Catastral);
                                                 if (inmcatastral.Existe == false || (inmcatastral.Existe && 

@@ -118,18 +118,21 @@ namespace CapaPresentación
 
         private void Btn_Guardar_Click(object sender, RoutedEventArgs e)
         {
-            if(empleado)
+            bool res = false;
+            if (empleado)
             {
                 emp = new Empleado();
-                emp.Actualizar(ID, TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
-                check.ShowDialog();
+                res = emp.Actualizar(ID, TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
             }
             else if(empleado==false)
             {
                 emp = new Empleado();
-                emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
-                check.ShowDialog();
+                res = emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
             }
+            if (res)
+                check.ShowDialog();
+            else
+                MessageBox.Show(emp.Mensaje);
         }
         private void Btn_Eliminar_MouseLeave(object sender, MouseEventArgs e)
         {

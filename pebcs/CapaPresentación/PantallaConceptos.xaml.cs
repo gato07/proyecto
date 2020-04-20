@@ -41,28 +41,41 @@ namespace CapaPresentación
 
         private void btnAgregarConcepto_Click(object sender, RoutedEventArgs e)
         {
-            bool re;
-            re = concepto.dtsInsertar(TXTTipo.Text, TXTNombre.Text, TXTDescripcion.Text, Convert.ToDecimal(TXTCosto.Text));
-            if (re)
+            bool res = false;
+            if (Decimal.TryParse(TXTCosto.Text, out decimal costo))
             {
-                PantallaCheck check = new PantallaCheck();
-                LlenarData();
-                check.ShowDialog();
+                res = concepto.Insertar(TXTTipo.Text, TXTNombre.Text, TXTDescripcion.Text, costo);
+                if (res)
+                {
+                    PantallaCheck check = new PantallaCheck();
+                    LlenarData();
+                    check.ShowDialog();
+                }
+                else
+                    MessageBox.Show(concepto.Mensaje);
             }
             else
-            {
-                MessageBox.Show("no se pudo");
-
-            }
+                MessageBox.Show("El campo de Costo debe ser numerico con decimales");
         }
 
         private void btnConceptoModificar_Click(object sender, RoutedEventArgs e)
         {
+            bool res = false;
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipoModificar.Text, TXTNombreModificar.Text, TXTDescripcionModificar.Text, Convert.ToDecimal(TXTCostoModificar.Text));
-            LlenarData();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
+            if (Decimal.TryParse(TXTCostoModificar.Text, out decimal costo))
+            {
+                res = concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipoModificar.Text, TXTNombreModificar.Text, TXTDescripcionModificar.Text, costo);
+                if (res)
+                {
+                    LlenarData();
+                    PantallaCheck check = new PantallaCheck();
+                    check.ShowDialog();
+                }
+                else
+                    MessageBox.Show(concepto.Mensaje);
+            }
+            else
+                MessageBox.Show("El campo de Costo debe ser numerico con decimales");
         }
 
         private void BtnRestaurar_MouseLeave(object sender, MouseEventArgs e)

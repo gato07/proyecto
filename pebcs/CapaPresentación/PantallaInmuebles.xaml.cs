@@ -40,16 +40,22 @@ namespace CapaPresentación
 
         private void btnModificarInmuebles_Click(object sender, RoutedEventArgs e)
         {
+            bool res = false;
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, TXTColoniaModificar.Text, TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
-            LlenarData();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
+            res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, TXTColoniaModificar.Text, TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
+            if (res)
+            {
+                LlenarData();
+                PantallaCheck check = new PantallaCheck();
+                check.ShowDialog();
+            }
+            else
+                MessageBox.Show(inmueble.Mensaje);
         }
         private void btnAgregarInmueble_Click(object sender, RoutedEventArgs e)
         {
-            bool re;
-            re = inmueble.dtsInsertar(TXTClaveCatastral.Text,TXTNombrePropietario.Text,TXTTelefonoPropietario.Text,TXTColonia.Text,TXTCalle.Text,TXTEntreCalles.Text,TXTNumeroInterior.Text,TXTNumeroExterior.Text);
+            bool re = false;
+            re = inmueble.Insertar(TXTClaveCatastral.Text,TXTNombrePropietario.Text,TXTTelefonoPropietario.Text,TXTColonia.Text,TXTCalle.Text,TXTEntreCalles.Text,TXTNumeroInterior.Text,TXTNumeroExterior.Text);
             if (re)
             {
                 PantallaCheck check = new PantallaCheck();
@@ -57,10 +63,7 @@ namespace CapaPresentación
                 check.ShowDialog();
             }
             else
-            {
-                MessageBox.Show("no se pudo");
-
-            }
+                MessageBox.Show(inmueble.Mensaje);
         }
         private void BtnRestaurar_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -95,10 +98,10 @@ namespace CapaPresentación
             TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
             TXTTelefonoPropietarioModificar.Text = data.Row.ItemArray[3].ToString();
             TXTColoniaModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTCalleModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTEntreCallesModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTNumeroInteriorModificar.Text = data.Row.ItemArray[4].ToString();
-            TXTNumeroExteriorModificar.Text = data.Row.ItemArray[4].ToString();
+            TXTCalleModificar.Text = data.Row.ItemArray[5].ToString();
+            TXTEntreCallesModificar.Text = data.Row.ItemArray[6].ToString();
+            TXTNumeroInteriorModificar.Text = data.Row.ItemArray[7].ToString();
+            TXTNumeroExteriorModificar.Text = data.Row.ItemArray[8].ToString();
             FormularioInmueblesModificar.IsOpen = true;
         }
     }
