@@ -28,12 +28,10 @@ namespace CapaPresentación
         }
         private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
         {
-
-            cliente.dtsInsertar(TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
+            //cliente.Insertar(TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
             PantallaCheck check = new PantallaCheck();
             LlenarData();
             check.ShowDialog();
-
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +64,7 @@ namespace CapaPresentación
         private void btnClienteModificar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
-            cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTNombreModificar.Text, TXTApellidoModificar.Text, TXTTelefonoModificar.Text, TXTEmailModificar.Text);
+            //cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTNombreModificar.Text, TXTApellidoModificar.Text, TXTTelefonoModificar.Text, TXTEmailModificar.Text);
             LlenarData();
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();

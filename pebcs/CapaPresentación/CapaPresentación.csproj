@@ -91,7 +91,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controles\Flipper.xaml">
+    <Page Include="Controles\FlipperUsuarioActivo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controles\FlipperUsuarioInactivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,8 +107,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controles\Flipper.xaml.cs">
-      <DependentUpon>Flipper.xaml</DependentUpon>
+    <Compile Include="Controles\FlipperUsuarioActivo.xaml.cs">
+      <DependentUpon>FlipperUsuarioActivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\FlipperUsuarioInactivo.xaml.cs">
+      <DependentUpon>FlipperUsuarioInactivo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

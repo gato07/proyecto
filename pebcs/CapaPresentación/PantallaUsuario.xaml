@@ -91,16 +91,14 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
-            <Grid Name="GridContenedor" Width="870" Height="auto">
-
-            </Grid>
+            <Grid Name="GridContenedor" Width="870" Height="auto"/>
         </ScrollViewer>
-        <materialDesign:Card Grid.Row="0" Height="100">
-            <StackPanel Margin="25,10,0,0">
+        <materialDesign:Card Grid.Row="0" Height="150">
+            <StackPanel Margin="25,0,0,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="180*" />
@@ -110,32 +108,43 @@
                         <ColumnDefinition Width="171*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition  Height="50"/>
+                        <RowDefinition  Height="50"/>
+                        <RowDefinition  Height="50"/>
                     </Grid.RowDefinitions>
-                    <ToggleButton Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Margin="0,0,100,0" />
-                    <TextBox x:Name="txt_Busqueda" materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
-                             CaretBrush="#F1C40F" BorderBrush="#F1C40F"  Grid.Column="1" Margin="0,0,0,4" Grid.Row="2"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
-                            Grid.Column="4" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                    <ToggleButton Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
+                                  Margin="0,0,100,0" Name="Activador" IsChecked="False" Click="Activador_Click"/>
+                    <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                             CaretBrush="#F1C40F" BorderBrush="#F1C40F"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" KeyUp="TxtBusqueda_KeyUp"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
+                            Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Cerrar" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove"  >
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
+                            <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" IsEnabled="False"
+                            Grid.Column="4" Grid.Row="1" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Limpiar" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" Click="Btn_Limpiar_Click" >
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Broom"/>
                             <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
-                            Grid.Column="4" Grid.Row="1" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Grid.Column="4" Grid.Row="2" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_AgregarEmpleado" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseMove="Btn_AgregarEmpleado_MouseMove" MouseLeave="Btn_AgregarEmpleado_MouseLeave" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseMove="Btn_AgregarEmpleado_MouseMove" MouseLeave="Btn_AgregarEmpleado_MouseLeave" Click="Btn_AgregarEmpleado_Click" >
                         <StackPanel>
                             <materialDesign:PackIcon Kind="UserAdd"/>
                             <TextBlock Text="Agregar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <ComboBox x:Name="FilledComboBx" Grid.Row="1" Grid.Column="2" 
-                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,12,8,4" BorderBrush="#F1C40F" Height="28">
+                    <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#F1C40F" Height="28">
                         <ComboBoxItem
                             Content="Nombre" />
                         <ComboBoxItem
@@ -143,9 +152,17 @@
                         <ComboBoxItem
                             Content="Correo" />
                         <ComboBoxItem
-                            Content="RFC" />
+                            Content="Usuario" />
                     </ComboBox>
                     <TextBlock Text="EMPLEADOS" Name="titulo" Foreground="#F1C40F" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
+                    <Grid Grid.Row="2" Grid.Column="0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="ACTIVOS:" Name="ACTIVOS" Foreground="#F1C40F" FontSize="15" FontWeight="Bold" Grid.Row="0"/>
+                        <TextBlock Text="INACTIVOS:" Name="INACTIVOS" Foreground="#F1C40F" FontSize="15" FontWeight="Bold" Grid.Row="1"/>
+                    </Grid>
                 </Grid>
             </StackPanel>
         </materialDesign:Card>

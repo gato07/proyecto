@@ -64,29 +64,29 @@ namespace CapaPresentación.Controles
 
         private void buttonimg_Click(object sender, RoutedEventArgs e)
         {
-                OpenFileDialog openFile = new OpenFileDialog();
-                BitmapImage b = new BitmapImage();
-                openFile.Title = "Seleccione la Imagen a Mostrar";
-                openFile.Filter = "Todos(*.*) | *.*| Imagenes | *.jpg; *.gif; *.png; *.bmp";
-                if (openFile.ShowDialog() == true)
-                {
-                    if (new FileInfo(openFile.FileName).Length > 131072)
-                    {
-                        MessageBox.Show(
-                    "El tamaño máximo permitido de la imagen es de 128 KB",
-                    "Mensaje de Sistema",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Warning,
-                        MessageBoxResult.OK);
-                        return;
-                    }
-                    b.BeginInit();
-                    b.UriSource = new Uri(openFile.FileName);
-                    b.EndInit();
-                    imgb.ImageSource = new BitmapImage(new Uri(openFile.FileName));
-                    imgb.Stretch = Stretch.UniformToFill;
-                    buttonimg.Background = imgb;
-                }
+                //OpenFileDialog openFile = new OpenFileDialog();
+                //BitmapImage b = new BitmapImage();
+                //openFile.Title = "Seleccione la Imagen a Mostrar";
+                //openFile.Filter = "Todos(*.*) | *.*| Imagenes | *.jpg; *.gif; *.png; *.bmp";
+                //if (openFile.ShowDialog() == true)
+                //{
+                //    if (new FileInfo(openFile.FileName).Length > 131072)
+                //    {
+                //        MessageBox.Show(
+                //    "El tamaño máximo permitido de la imagen es de 128 KB",
+                //    "Mensaje de Sistema",
+                //        MessageBoxButton.OK,
+                //        MessageBoxImage.Warning,
+                //        MessageBoxResult.OK);
+                //        return;
+                //    }
+                //    b.BeginInit();
+                //    b.UriSource = new Uri(openFile.FileName);
+                //    b.EndInit();
+                //    imgb.ImageSource = new BitmapImage(new Uri(openFile.FileName));
+                //    imgb.Stretch = Stretch.UniformToFill;
+                //    buttonimg.Background = imgb;
+                //}
         }
 
         private void BTN_Eliminar_Click(object sender, RoutedEventArgs e)
@@ -102,7 +102,17 @@ namespace CapaPresentación.Controles
         {
             //this.Cursor = Cursors.Wait;
             //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
-            MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos));
+            MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos,MN));
+        }
+
+        private void Flipper_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Flip.Margin = new Thickness(10, 10, 10, 10);
+        }
+
+        private void Flipper_MouseMove(object sender, MouseEventArgs e)
+        {
+            Flip.Margin = new Thickness(0, 0, 0, 0);
         }
     }
 }

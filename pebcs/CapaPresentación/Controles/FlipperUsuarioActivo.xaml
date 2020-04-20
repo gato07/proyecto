@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CapaPresentación.Controles.Flipper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:CapaPresentación.Controles"
+             mc:Ignorable="d" 
+             d:DesignHeight="270" Width="210">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+    <Grid>
+        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10" MouseLeave="Flipper_MouseLeave" MouseMove="Flipper_MouseMove" Name="Flip" >
+            <materialDesign:Flipper.FrontContent>
+                <Grid Height="256" Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="160" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone Background="#F1C40F" VerticalAlignment="Stretch">
+                        <Button x:Name="buttonimg" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5" Click="buttonimg_Click">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <Button.Background>
+                                <ImageBrush x:Name="imgb" ImageSource="/Imagenes/Microsoft_Account.svg.png"/>
+                            </Button.Background>
+                        </Button>
+                    </materialDesign:ColorZone>
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock  Name="Etiqueta" FontWeight="Bold"/>
+                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}" 
+                                Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0"
+                                Name="Btn_Editar" Click="Btn_Editar_Click">
+                            EDITAR
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Flipper.FrontContent>
+        </materialDesign:Flipper>
+    </Grid>
+</UserControl>
