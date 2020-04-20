@@ -337,15 +337,15 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeClave(int Clave, bool Eliminado = false)
+        public DataTable SelLikeUsuario(string Usuario, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeClave(Clave, Eliminado);
+                return dtsSelLikeUsuario(Usuario, Eliminado);
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Clave";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Usuario";
                 return null;
             }
         }

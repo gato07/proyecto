@@ -266,14 +266,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeClave(int Clave, bool Eliminado = false)
+        public DataTable dtsSelLikeUsuario(string Usuario, bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikeClave('" + Clave + "'," 
+                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikeUsuario('" + Usuario + "'," 
                     + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
