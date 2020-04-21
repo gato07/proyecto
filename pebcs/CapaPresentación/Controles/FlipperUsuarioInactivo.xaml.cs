@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using CapaLogica;
 
 namespace CapaPresentación.Controles
@@ -30,13 +32,24 @@ namespace CapaPresentación.Controles
             InitializeComponent();
             Win = A as PantallaUsuario;
             MN = B as Menu_Principal2;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            var fadeAnimation = new DoubleAnimation();
+            fadeAnimation.From = 1;
+            fadeAnimation.To = 0.5;
+            fadeAnimation.AutoReverse = true;
+            Flip.BeginAnimation(Label.OpacityProperty, fadeAnimation);
+        }
         private void Flip_MouseLeave(object sender, MouseEventArgs e)
         {
             Flip.Margin = new Thickness(10, 10, 10, 10);
         }
-
         private void Flip_MouseMove(object sender, MouseEventArgs e)
         {
             Flip.Margin = new Thickness(0, 0, 0, 0);
