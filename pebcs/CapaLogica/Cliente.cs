@@ -280,6 +280,58 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelLikeRfc(string Rfc, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeRfc(Rfc, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes por RFC";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeNombre(string Nombre, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeNombre(Nombre, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes por Nombre";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeTelefono(string Telefono, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeTelefono(Telefono, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes por Telefono";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeEmail(string Email, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeEmail(Email, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Clientes por Email";
+                return null;
+            }
+        }
+
         public Cliente[] TableToArray(DataTable Dt)
         {
             try

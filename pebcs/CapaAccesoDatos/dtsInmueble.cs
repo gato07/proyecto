@@ -247,6 +247,78 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelLikeClaveCatastral(string Clave_Catastral, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelLikeClaveCatastral('" + Clave_Catastral + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeNombrePropietario(string Nombre_Propietario, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelLikeNombrePropietario('" + Nombre_Propietario + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeTelefonoPropietario(string Telefono_Propietario, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelLikeTelefonoPropietario('" + Telefono_Propietario + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeColonia(string Colonia, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Inmueble_SelLikeColonia('" + Colonia + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         #endregion Metodos
 
     }

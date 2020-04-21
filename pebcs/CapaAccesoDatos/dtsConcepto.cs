@@ -180,6 +180,60 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelLikeTipo(string Tipo, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelLikeTipo('" + Tipo + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeNombre(string Nombre, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelLikeNombre('" + Nombre + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeDescripcion(string Descripcion, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelLikeDescripcion('" + Descripcion + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
         #endregion Metodos
 

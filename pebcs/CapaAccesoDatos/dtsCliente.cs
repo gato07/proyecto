@@ -220,6 +220,78 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelLikeRfc(string Rfc, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelLikeRfc('" + Rfc + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeNombre(string Nombre, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelLikeNombre('" + Nombre + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeTelefono(string Telefono, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelLikeTelefono('" + Telefono + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeEmail(string Email, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Cliente_SelLikeEmail('" + Email + "',"
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         #endregion Metodos
     }
 }

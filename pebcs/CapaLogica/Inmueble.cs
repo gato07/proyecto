@@ -355,6 +355,58 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelLikeClaveCatastral(string Clave_Catastral, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeClaveCatastral(Clave_Catastral, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles por Clave Catastral";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeNombrePropietario(string Nombre_Propietario, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeNombrePropietario(Nombre_Propietario, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles por Nombre del Propietario";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeTelefonoPropietario(string Telefono_Propietario, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeTelefonoPropietario(Telefono_Propietario, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles por Telefono del Propietario";
+                return null;
+            }
+        }
+
+        public DataTable SelLikeColonia(string Colonia, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelLikeColonia(Colonia, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Inmuebles por Colonia";
+                return null;
+            }
+        }
+
         public Inmueble[] TableToArray(DataTable Dt)
         {
             try
