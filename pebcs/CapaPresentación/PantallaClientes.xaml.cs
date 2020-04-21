@@ -30,6 +30,66 @@ namespace CapaPresentación
             GridClientesInactivos.ItemsSource = table2.AsDataView();
             INACTIVOS.Text = "INACTIVOS: " + table2.Rows.Count.ToString();
         }
+        public void llenarDataLikeRFC(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = cliente.SelLikeRfc(txt, Actividad);
+                GridClientesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = cliente.SelLikeRfc(txt, Actividad);
+                GridClientesActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeNombre(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = cliente.SelLikeNombre(txt, Actividad);
+                GridClientesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = cliente.SelLikeNombre(txt, Actividad);
+                GridClientesActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeTelefono(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = cliente.SelLikeTelefono(txt, Actividad);
+                GridClientesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = cliente.SelLikeTelefono(txt, Actividad);
+                GridClientesActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeCorreo(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = cliente.SelLikeEmail(txt, Actividad);
+                GridClientesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = cliente.SelLikeEmail(txt, Actividad);
+                GridClientesActivos.ItemsSource = table.AsDataView();
+            }
+        }
         private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
         {
             cliente.Insertar(TXTRfc.Text,TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
@@ -148,22 +208,22 @@ namespace CapaPresentación
             else if (OpcionesActivos.SelectedIndex == 0)
             {
                 TxtBusquedaActivos.MaxLength = 13;
-                //Busqueda RFC
+                llenarDataLikeRFC(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 1)
             {
                 TxtBusquedaActivos.MaxLength = 30;
-                //Busqueda Nombre
+                llenarDataLikeNombre(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 2)
             {
                 TxtBusquedaActivos.MaxLength = 10;
-                //Busqueda Telofno
+                llenarDataLikeTelefono(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 3)
             {
                 TxtBusquedaActivos.MaxLength = 255;
-                //Buesqueda Email
+                llenarDataLikeCorreo(TxtBusquedaActivos.Text,false);
             }
         }
         private void TxtBusquedaInactivos_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -176,22 +236,22 @@ namespace CapaPresentación
             else if (OpcionesInactivos.SelectedIndex == 0)
             {
                 TxtBusquedaInactivos.MaxLength = 13;
-                //Busqueda RFC 
+                llenarDataLikeRFC(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 1)
             {
                 TxtBusquedaInactivos.MaxLength = 30;
-                //Busqueda Nombre
+                llenarDataLikeNombre(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 2)
             {
                 TxtBusquedaInactivos.MaxLength = 10;
-                //Busqueda Telofno
+                llenarDataLikeTelefono(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 3)
             {
                 TxtBusquedaInactivos.MaxLength = 255;
-                //Buesqueda Email
+                llenarDataLikeCorreo(TxtBusquedaInactivos.Text, true);
             }
         }
     }

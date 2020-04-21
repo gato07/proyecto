@@ -39,6 +39,66 @@ namespace CapaPresentación
             GridInmueblesInactivos.ItemsSource = table2.AsDataView();
             INACTIVOS.Text = "INACTIVOS: " + table2.Rows.Count.ToString();
         }
+        public void llenarDataLikeClaveCatastral(string txt,bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = inmueble.SelLikeClaveCatastral(txt, Actividad);
+                GridInmueblesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if(Actividad==false)
+            {
+                DataTable table = new DataTable();
+                table = inmueble.SelLikeClaveCatastral(txt, Actividad);
+                GridInmueblesActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeNombrePropietario(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = inmueble.SelLikeNombrePropietario(txt, Actividad);
+                GridInmueblesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = inmueble.SelLikeNombrePropietario(txt, Actividad);
+                GridInmueblesActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeTelefonoPropietario(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = inmueble.SelLikeTelefonoPropietario(txt, Actividad);
+                GridInmueblesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = inmueble.SelLikeTelefonoPropietario(txt, Actividad);
+                GridInmueblesActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeColonia(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = inmueble.SelLikeColonia(txt, Actividad);
+                GridInmueblesInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = inmueble.SelLikeColonia(txt, Actividad);
+                GridInmueblesActivos.ItemsSource = table.AsDataView();
+            }
+        }
         private void btnModificarInmuebles_Click(object sender, RoutedEventArgs e)
         {
             bool res = false;
@@ -138,22 +198,22 @@ namespace CapaPresentación
             else if (OpcionesActivos.SelectedIndex == 0)
             {
                 TxtBusquedaActivos.MaxLength = 15;
-                //Busqueda Clave Catastral
+                llenarDataLikeClaveCatastral(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 1)
             {
                 TxtBusquedaActivos.MaxLength = 60;
-                //Busqueda Nombre Propitario
+                llenarDataLikeNombrePropietario(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 2)
             {
                 TxtBusquedaActivos.MaxLength = 10;
-                //Busqueda Telofno Propietario
+                llenarDataLikeTelefonoPropietario(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 3)
             {
                 TxtBusquedaActivos.MaxLength = 50;
-                //Buesqueda Colonia
+                llenarDataLikeColonia(TxtBusquedaActivos.Text,false);
             }
         }
         private void ActivadorInactivos_Click(object sender, RoutedEventArgs e)
@@ -183,22 +243,22 @@ namespace CapaPresentación
             else if (OpcionesInactivos.SelectedIndex == 0)
             {
                 TxtBusquedaInactivos.MaxLength = 15;
-                //Busqueda Clave catastral 
+                llenarDataLikeClaveCatastral(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 1)
             {
                 TxtBusquedaInactivos.MaxLength = 60;
-                //Busqueda Nombre propietario
+                llenarDataLikeNombrePropietario(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 2)
             {
                 TxtBusquedaInactivos.MaxLength = 10;
-                //Busqueda Telofno propietario
+                llenarDataLikeTelefonoPropietario(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 3)
             {
                 TxtBusquedaInactivos.MaxLength = 50;
-                //Buesqueda Colonia
+                llenarDataLikeColonia(TxtBusquedaInactivos.Text, true);
             }
         }
         private void Btn_Cerrar_Click(object sender, RoutedEventArgs e)

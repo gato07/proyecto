@@ -84,8 +84,6 @@
                                                 Content="Nombre" />
                                             <ComboBoxItem
                                                 Content="Descripción" />
-                                            <ComboBoxItem
-                                                Content="Costo" />
                                         </ComboBox>
                                     </Grid>
                                 </StackPanel>
@@ -143,8 +141,6 @@
                                                 Content="Nombre" />
                                             <ComboBoxItem
                                                 Content="Descripción" />
-                                            <ComboBoxItem
-                                                Content="Costo" />
                                         </ComboBox>
                                     </Grid>
                                 </StackPanel>

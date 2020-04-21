@@ -40,6 +40,51 @@ namespace CapaPresentación
             GridConceptosInactivos.ItemsSource = table2.AsDataView();
             INACTIVOS.Text = "Inactivos: " + table2.Rows.Count.ToString();
         }
+        public void llenarDataLikeTipo(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table = new DataTable();
+                table = concepto.SelLikeTipo(txt, Actividad);
+                GridConceptosActivos.ItemsSource = table.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table2 = new DataTable();
+                table2 = concepto.SelLikeTipo(txt, Actividad);
+                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+            }
+        }
+        public void llenarDataLikeNombre(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = concepto.SelLikeNombre(txt, Actividad);
+                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = concepto.SelLikeNombre(txt, Actividad);
+                GridConceptosActivos.ItemsSource = table.AsDataView();
+            }
+        }
+        public void llenarDataLikeDescripcion(string txt, bool Actividad)
+        {
+            if (Actividad)
+            {
+                DataTable table2 = new DataTable();
+                table2 = concepto.SelLikeDescripcion(txt, Actividad);
+                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+            }
+            else if (Actividad == false)
+            {
+                DataTable table = new DataTable();
+                table = concepto.SelLikeDescripcion(txt, Actividad);
+                GridConceptosActivos.ItemsSource = table.AsDataView();
+            }
+        }
         private void btnAgregarConcepto_Click(object sender, RoutedEventArgs e)
         {
             bool res = false;
@@ -137,23 +182,19 @@ namespace CapaPresentación
             else if (OpcionesActivos.SelectedIndex == 0)
             {
                 TxtBusquedaActivos.MaxLength = 25;
-                //Busqueda Tipo
+                llenarDataLikeTipo(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 1)
             {
                 TxtBusquedaActivos.MaxLength = 75;
-                //Busqueda Nombre
+                llenarDataLikeNombre(TxtBusquedaActivos.Text,false);
             }
             else if (OpcionesActivos.SelectedIndex == 2)
             {
                 TxtBusquedaActivos.MaxLength = 255;
-                //Busqueda Descripcion
+                llenarDataLikeDescripcion(TxtBusquedaActivos.Text,false);
             }
-            else if (OpcionesActivos.SelectedIndex == 3)
-            {
-                TxtBusquedaActivos.MaxLength = 10;
-                //Buesqueda Costo
-            }
+
         }
         private void ActivadorInactivos_Click(object sender, RoutedEventArgs e)
         {
@@ -182,23 +223,19 @@ namespace CapaPresentación
             else if (OpcionesInactivos.SelectedIndex == 0)
             {
                 TxtBusquedaInactivos.MaxLength = 25;
-                //Busqueda Tipo 
+                llenarDataLikeTipo(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 1)
             {
                 TxtBusquedaInactivos.MaxLength = 75;
-                //Busqueda Nombre
+                llenarDataLikeNombre(TxtBusquedaInactivos.Text, true);
             }
             else if (OpcionesInactivos.SelectedIndex == 2)
             {
                 TxtBusquedaInactivos.MaxLength = 255;
-                //Busqueda Descripcion
+                llenarDataLikeDescripcion(TxtBusquedaInactivos.Text, true);
             }
-            else if (OpcionesInactivos.SelectedIndex == 3)
-            {
-                TxtBusquedaInactivos.MaxLength = 10;
-                //Buesqueda Costo
-            }
+
         }
         private void Btn_Cerrar_Click(object sender, RoutedEventArgs e)
         {
