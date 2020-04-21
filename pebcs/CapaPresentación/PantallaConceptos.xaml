@@ -19,113 +19,148 @@
     <Grid>
         <materialDesign:Card Height="712">
             <StackPanel>
-                <TabControl Height="670" Margin="0 40 0 0">
+                <StackPanel Margin="25,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180*" />
+                            <ColumnDefinition Width="162*" />
+                            <ColumnDefinition Width="172*" />
+                            <ColumnDefinition Width="172*" />
+                            <ColumnDefinition Width="171*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="50"/>
+                            <RowDefinition  Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
+                            Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Cerrar" Click="Btn_Cerrar_Click"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove" >
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
+                                <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Text="CONCEPTOS" Name="titulo" Foreground="#E67E22" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
+                        <Grid Grid.Row="1" Grid.Column="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="ACTIVOS:" Name="ACTIVOS" Foreground="#E67E22" FontSize="15" FontWeight="Bold" Grid.Row="0"/>
+                            <TextBlock Text="INACTIVOS:" Name="INACTIVOS" Foreground="#E67E22" FontSize="15" FontWeight="Bold" Grid.Row="1"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+                <TabControl Height="610" Margin="0 0 0 0">
                     <TabItem Header="Activos">
                         <Grid Background="#FFE5E5E5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="250"/>
-                                <RowDefinition Height="400"/>
-                            </Grid.RowDefinitions>
-                            <materialDesign:PopupBox Background="#E67E22" Grid.Row="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" ToolTip="Manage items" 
-                                                      Margin="0,0,30,0" HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Background="#E67E22" ToolTip="Agregar Concepto" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}">
-                                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
-                                    </Button>
-                                    <Button Background="#E67E22" ToolTip="Eliminar Concepto" Name="BtnEliminar" Click="BtnEliminar_Click">
-                                        <Path Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" Stretch="Uniform" Width="15" Height="15" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" />
-                                    </Button>
-                                    <Button Background="#E67E22" ToolTip="Modificar Concepto" Name="BtnModificar" Click="BtnModificar_Click">
-                                        <materialDesign:PackIcon Kind="TooltipEdit" />
-                                    </Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Margin="0,0,0,0" Grid.Column="0" Grid.Row="0">
+                                    <Grid  Margin="0 0 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="300" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton Grid.Column="0" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
+                                                      Margin="0,0,0,0" Name="ActivadorActivos" IsChecked="False" Click="ActivadorActivos_Click" />
+                                        <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }" 
+                                                 CaretBrush="#E67E22" BorderBrush="#E67E22"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaActivos" IsEnabled="False" KeyUp="TxtBusquedaActivos_KeyUp"/>
+                                        <ComboBox Name="OpcionesActivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
+                                                  materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#E67E22" Height="28">
+                                            <ComboBoxItem
+                                                Content="Tipo" />
+                                            <ComboBoxItem
+                                                Content="Nombre" />
+                                            <ComboBoxItem
+                                                Content="Descripción" />
+                                            <ComboBoxItem
+                                                Content="Costo" />
+                                        </ComboBox>
+                                    </Grid>
                                 </StackPanel>
-                            </materialDesign:PopupBox>
-                            <DataGrid  Grid.Row="1" Margin="10,60,10,0" Background="Transparent" Name="GridConceptos" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                                <materialDesign:PopupBox Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" 
+                                                     Margin="0,0,30,0" HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" 
+                                                     Background="#E67E22" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button ToolTip="Agregar Concepto" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}"
+                                            Background="#E67E22" IsEnabled="True">
+                                            <materialDesign:PackIcon Kind="Add" />
+                                        </Button>
+                                        <Button ToolTip="Eliminar Concepto" Name="BtnEliminar" Click="BtnEliminar_Click"
+                                            Background="#E67E22">
+                                            <materialDesign:PackIcon Kind="Delete" />
+                                        </Button>
+                                        <Button ToolTip="Modificar Concepto" Name="BtnModificar" Click="BtnModificar_Click"
+                                            Background="#E67E22">
+                                            <materialDesign:PackIcon Kind="Edit" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                                <DataGrid  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0" Background="Transparent" Name="GridConceptosActivos" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                                        materialDesign:DataGridAssist.ColumnHeaderPadding="8" />
-                            <materialDesign:Card Grid.Row="0" materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="32" Height="230" Margin="10,10,10,0">
-                                <DockPanel Margin="0,0,0,-24">
-                                    <StackPanel Margin="0,0,515,0" Width="355">
-                                        <Label Margin="10 0 0 0">Inmuebles</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Dictamenes</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                    <StackPanel Margin="-420,0,0,0" Width="355">
-                                        <Label Margin="10 0 0 0">Licencias</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Estimaciones</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                </DockPanel>
-                            </materialDesign:Card>
+                            </Grid>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Inactivos">
                         <Grid Background="#FFE5E5E5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="250"/>
-                                <RowDefinition Height="400"/>
-                            </Grid.RowDefinitions>
-                            <Button Grid.Row="1" materialDesign:ButtonAssist.CornerRadius="25 0 0 25" 
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="120"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Margin="25,0,0,0" Grid.Column="0" Grid.Row="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="300" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
+                                                      Margin="0,0,0,0" Name="ActivadorInactivos" IsChecked="False" Click="ActivadorInactivos_Click" />
+                                        <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                                                 CaretBrush="#E67E22" BorderBrush="#E67E22"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaInactivos" IsEnabled="False" KeyUp="TxtBusquedaInactivos_KeyUp"/>
+                                        <ComboBox Name="OpcionesInactivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
+                                                  materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#E67E22" Height="28">
+                                            <ComboBoxItem
+                                                Content="Tipo" />
+                                            <ComboBoxItem
+                                                Content="Nombre" />
+                                            <ComboBoxItem
+                                                Content="Descripción" />
+                                            <ComboBoxItem
+                                                Content="Costo" />
+                                        </ComboBox>
+                                    </Grid>
+                                </StackPanel>
+                                <Button Grid.Row="0" Grid.Column="1" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" 
                                      Background="#E67E22" Style="{DynamicResource MaterialDesignRaisedButton}"
                                      materialDesign:ShadowAssist.ShadowDepth="Depth3"
                                      Name="BtnRestaurar" MouseMove="BtnRestaurar_MouseMove"
-                                     Margin="837,15,0,353" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click">
-                                <StackPanel Width="150" Margin="-10 0 0 0">
-                                    <materialDesign:PackIcon Kind="FileRestore" />
-                                    <TextBlock Text="RESTAURAR" Margin="20 -18 0 0"/>
-                                </StackPanel>
-                            </Button>
-                            <DataGrid  Grid.Row="1" Margin="10,60,10,0" Background="Transparent" Name="GridConceptosEliminados" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-                                       materialDesign:DataGridAssist.ColumnHeaderPadding="8"/>
-                            <materialDesign:Card Grid.Row="0" materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="32" Height="230" Margin="10,10,10,0">
-                                <DockPanel Margin="0,0,0,-24">
-                                    <StackPanel Margin="0,0,515,0" Width="355">
-                                        <Label Margin="10 0 0 0">Inmuebles</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Dictamenes</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
+                                     Margin="81,4,0,4" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click" >
+                                    <StackPanel Width="150" Margin="-10 0 0 0">
+                                        <materialDesign:PackIcon Kind="FileRestore" />
+                                        <TextBlock Text="RESTAURAR" Margin="20 -18 0 0"/>
                                     </StackPanel>
-                                    <StackPanel Margin="-420,0,0,0" Width="355">
-                                        <Label Margin="10 0 0 0">Licencias</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Estimaciones</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                </DockPanel>
-                            </materialDesign:Card>
+                                </Button>
+                                <DataGrid  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0" Background="Transparent" Name="GridConceptosInactivos" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                                       materialDesign:DataGridAssist.ColumnHeaderPadding="8" />
+                            </Grid>
                         </Grid>
                     </TabItem>
                 </TabControl>
@@ -135,18 +170,14 @@
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Width="400" Height="auto">
                     <materialDesign:Card>
-                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Formulario  Clientes</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Agregar Concepto</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="Tipo" Name="TXTTipo" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
+                    <TextBox  materialDesign:HintAssist.Hint="Tipo" Name="TXTTipo" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="25"/>
+                    <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
+                    <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
+                    <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="10"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarConcepto" Content="Agregar" Margin="4" Click="btnAgregarConcepto_Click" Background="#E67E22"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConceptos}" Background="#E67E22"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}" Background="#E67E22"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
@@ -154,18 +185,14 @@
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Width="400" Height="auto">
                     <materialDesign:Card>
-                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Formulario  Conceptos</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Conceptos</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="Tipo" Name="TXTTipoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
-                    <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8">
-                    </TextBox>
+                    <TextBox  materialDesign:HintAssist.Hint="Tipo" Name="TXTTipoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="25"/>
+                    <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
+                    <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
+                    <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="10"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnConceptoModificar" Content="Modificar" Margin="4" Click="btnConceptoModificar_Click" Background="#E67E22"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientesModificar}" Background="#E67E22"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConceptosModificar}" Background="#E67E22"/>
                 </StackPanel>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>

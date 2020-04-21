@@ -32,16 +32,17 @@ namespace CapaPresentación
         {
             DataTable table = new DataTable();
             table = inmueble.SelActivos();
-            GridConceptos.ItemsSource = table.AsDataView();
+            GridInmueblesActivos.ItemsSource = table.AsDataView();
+            ACTIVOS.Text = "ACTIVOS: " + table.Rows.Count.ToString();
             DataTable table2 = new DataTable();
             table2 = inmueble.SelEliminados();
-            GridConceptosEliminados.ItemsSource = table2.AsDataView();
+            GridInmueblesInactivos.ItemsSource = table2.AsDataView();
+            INACTIVOS.Text = "INACTIVOS: " + table2.Rows.Count.ToString();
         }
-
         private void btnModificarInmuebles_Click(object sender, RoutedEventArgs e)
         {
             bool res = false;
-            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
+            DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
             res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, TXTColoniaModificar.Text, TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
             if (res)
             {
@@ -67,33 +68,31 @@ namespace CapaPresentación
         }
         private void BtnRestaurar_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnRestaurar.Margin = new Thickness(837, 15, 0, 353);
+            BtnRestaurar.Margin = new Thickness(81, 4, 0, 4);
         }
         private void BtnRestaurar_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnRestaurar.Margin = new Thickness(752, 15, 0, 353);
+            BtnRestaurar.Margin = new Thickness(0, 4, 0, 4);
         }
         private void BtnRestaurar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptosEliminados as DataGrid).SelectedItem as DataRowView;
+            DataRowView data = (GridInmueblesInactivos as DataGrid).SelectedItem as DataRowView;
             inmueble.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
             LlenarData();
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();
         }
-
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
+            DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
             inmueble.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
             LlenarData();
             PantallaCheck check = new PantallaCheck();
             check.ShowDialog();
         }
-
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptos as DataGrid).SelectedItem as DataRowView;
+            DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
             TXTClaveCatastralModificar.Text = data.Row.ItemArray[1].ToString();
             TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
             TXTTelefonoPropietarioModificar.Text = data.Row.ItemArray[3].ToString();
@@ -103,6 +102,108 @@ namespace CapaPresentación
             TXTNumeroInteriorModificar.Text = data.Row.ItemArray[7].ToString();
             TXTNumeroExteriorModificar.Text = data.Row.ItemArray[8].ToString();
             FormularioInmueblesModificar.IsOpen = true;
+        }
+        private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
+        }
+        private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
+        {
+            Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
+        }
+        private void ActivadorActivos_Click(object sender, RoutedEventArgs e)
+        {
+            if (ActivadorActivos.IsChecked == true)
+            {
+                OpcionesActivos.IsEnabled = true;
+                TxtBusquedaActivos.IsEnabled = true;
+                OpcionesActivos.SelectedIndex = -1;
+                TxtBusquedaActivos.Clear();
+            }
+            else
+            {
+                OpcionesActivos.IsEnabled = false;
+                TxtBusquedaActivos.IsEnabled = false;
+                OpcionesActivos.SelectedIndex = -1;
+                TxtBusquedaActivos.Clear();
+            }
+        }
+        private void TxtBusquedaActivos_KeyUp(object sender, KeyEventArgs e)
+        {
+            //ACTIVOS
+            if (OpcionesActivos.SelectedIndex == -1)
+            {
+                LlenarData();
+            }
+            else if (OpcionesActivos.SelectedIndex == 0)
+            {
+                TxtBusquedaActivos.MaxLength = 15;
+                //Busqueda Clave Catastral
+            }
+            else if (OpcionesActivos.SelectedIndex == 1)
+            {
+                TxtBusquedaActivos.MaxLength = 60;
+                //Busqueda Nombre Propitario
+            }
+            else if (OpcionesActivos.SelectedIndex == 2)
+            {
+                TxtBusquedaActivos.MaxLength = 10;
+                //Busqueda Telofno Propietario
+            }
+            else if (OpcionesActivos.SelectedIndex == 3)
+            {
+                TxtBusquedaActivos.MaxLength = 50;
+                //Buesqueda Colonia
+            }
+        }
+        private void ActivadorInactivos_Click(object sender, RoutedEventArgs e)
+        {
+            if (ActivadorInactivos.IsChecked == true)
+            {
+                OpcionesInactivos.IsEnabled = true;
+                TxtBusquedaInactivos.IsEnabled = true;
+                OpcionesInactivos.SelectedIndex = -1;
+                TxtBusquedaInactivos.Clear();
+            }
+            else
+            {
+                OpcionesInactivos.IsEnabled = false;
+                TxtBusquedaInactivos.IsEnabled = false;
+                OpcionesInactivos.SelectedIndex = -1;
+                TxtBusquedaInactivos.Clear();
+            }
+        }
+        private void TxtBusquedaInactivos_KeyUp(object sender, KeyEventArgs e)
+        {
+            //INACTIVOS
+            if (OpcionesInactivos.SelectedIndex == -1)
+            {
+                LlenarData();
+            }
+            else if (OpcionesInactivos.SelectedIndex == 0)
+            {
+                TxtBusquedaInactivos.MaxLength = 15;
+                //Busqueda Clave catastral 
+            }
+            else if (OpcionesInactivos.SelectedIndex == 1)
+            {
+                TxtBusquedaInactivos.MaxLength = 60;
+                //Busqueda Nombre propietario
+            }
+            else if (OpcionesInactivos.SelectedIndex == 2)
+            {
+                TxtBusquedaInactivos.MaxLength = 10;
+                //Busqueda Telofno propietario
+            }
+            else if (OpcionesInactivos.SelectedIndex == 3)
+            {
+                TxtBusquedaInactivos.MaxLength = 50;
+                //Buesqueda Colonia
+            }
+        }
+        private void Btn_Cerrar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -119,7 +119,7 @@ namespace CapaPresentación
 
         private void listViewItem5_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AbrirFormHijo(new PantallaClientes());
+            AbrirFormHijo(new PantallaClientes(this));
             titulo.Text = "CLIENTES";
             btnCerrarModulo.Visibility = Visibility.Visible;
         }

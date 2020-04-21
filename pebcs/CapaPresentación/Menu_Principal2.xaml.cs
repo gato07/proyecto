@@ -37,7 +37,7 @@ namespace CapaPresentación
 
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaClientes());
+            AbrirFormHijo(new PantallaClientes(this));
         }
 
         private void BtnConceptos_Click(object sender, RoutedEventArgs e)

@@ -391,12 +391,10 @@ namespace CapaPresentación
                 generartarjetasLikeUsuario(TxtBusqueda);
             }
         }
-
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
             Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
         }
-
         private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
         {
             Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
