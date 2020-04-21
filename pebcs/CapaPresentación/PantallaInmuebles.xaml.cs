@@ -28,14 +28,26 @@ namespace CapaPresentación
             InitializeComponent();
             LlenarData();
         }
+
+        private DataTable PresentacionTable(DataTable Dt)
+        {
+            Dt.Columns["Clave_Catastral"].ColumnName = "Clave Catastral";
+            Dt.Columns["Nombre_Propietario"].ColumnName = "Nombre Propietario";
+            Dt.Columns["Telefono_Propietario"].ColumnName = "Telefono Propietario";
+            Dt.Columns["Entre_Calles"].ColumnName = "Entre Calles";
+            Dt.Columns["Numero_Interior"].ColumnName = "Numero Interior";
+            Dt.Columns["Numero_Exterior"].ColumnName = "Numero Exterior";
+            return Dt;
+        }
+        
         public void LlenarData()
         {
             DataTable table = new DataTable();
-            table = inmueble.SelActivos();
+            table = PresentacionTable(inmueble.SelActivos());
             GridInmueblesActivos.ItemsSource = table.AsDataView();
             ACTIVOS.Text = "ACTIVOS: " + table.Rows.Count.ToString();
             DataTable table2 = new DataTable();
-            table2 = inmueble.SelEliminados();
+            table2 = PresentacionTable(inmueble.SelEliminados());
             GridInmueblesInactivos.ItemsSource = table2.AsDataView();
             INACTIVOS.Text = "INACTIVOS: " + table2.Rows.Count.ToString();
         }

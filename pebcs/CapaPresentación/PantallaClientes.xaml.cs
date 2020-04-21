@@ -32,10 +32,16 @@ namespace CapaPresentación
         }
         private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
         {
-            cliente.Insertar(TXTRfc.Text,TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
-            PantallaCheck check = new PantallaCheck();
-            LlenarData();
-            check.ShowDialog();
+            bool res = false;
+            res = cliente.Insertar(TXTRfc.Text,TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
+            if (res)
+            {
+                PantallaCheck check = new PantallaCheck();
+                LlenarData();
+                check.ShowDialog();
+            }
+            else
+                MessageBox.Show(cliente.Mensaje);
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -65,12 +71,17 @@ namespace CapaPresentación
         }
         private void btnClienteModificar_Click(object sender, RoutedEventArgs e)
         {
+            bool res = false;
             DataRowView data = (GridClientesActivos as DataGrid).SelectedItem as DataRowView;
-            cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()),TXTRfcModificar.Text, TXTNombreModificar.Text, TXTApellidoModificar.Text, TXTTelefonoModificar.Text, TXTEmailModificar.Text);
-            LlenarData();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
-
+            res = cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()),TXTRfcModificar.Text, TXTNombreModificar.Text, TXTApellidoModificar.Text, TXTTelefonoModificar.Text, TXTEmailModificar.Text);
+            if (res)
+            {
+                LlenarData();
+                PantallaCheck check = new PantallaCheck();
+                check.ShowDialog();
+            }
+            else
+                MessageBox.Show(cliente.Mensaje);
         }
         private void BtnRestaurar_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {

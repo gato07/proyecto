@@ -84,7 +84,7 @@ namespace CapaLogica
                                             Mensaje = "El Cliente fue registrado satisfactoriamente";
                                     }
                                     else
-                                        Mensaje = "No es posible dar de alta al Cliente con ese Rfc ya que hay otro Cliente que"
+                                        Mensaje = "No es posible dar de alta al Cliente con ese RFC ya que hay otro Cliente que"
                                         + " lo tiene asignado, escriba otro diferente.";
                                 }
                                 else
@@ -153,8 +153,8 @@ namespace CapaLogica
                                                 + " existente para que sus datos sean actualizados.";
                                     }
                                     else
-                                        Mensaje = "No es posible actualizar el nombre de Usuario del Empleado al valor"
-                                            + " que introdujo ya que hay otro Empleado que lo esta usando, escriba otro diferente.";
+                                        Mensaje = "No es posible actualizar el RFC del Cliente al valor"
+                                            + " que introdujo ya que hay otro Cliente que lo tiene, escriba otro diferente.";
                                 }
                                 else
                                     Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
