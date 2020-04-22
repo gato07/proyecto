@@ -31,15 +31,21 @@ namespace CapaPresentación
 
         private DataTable PresentacionTable(DataTable Dt)
         {
-            Dt.Columns["Clave_Catastral"].ColumnName = "Clave Catastral";
-            Dt.Columns["Nombre_Propietario"].ColumnName = "Nombre Propietario";
-            Dt.Columns["Telefono_Propietario"].ColumnName = "Telefono Propietario";
-            Dt.Columns["Entre_Calles"].ColumnName = "Entre Calles";
-            Dt.Columns["Numero_Interior"].ColumnName = "Numero Interior";
-            Dt.Columns["Numero_Exterior"].ColumnName = "Numero Exterior";
-            return Dt;
+            try
+            {
+                Dt.Columns["Clave_Catastral"].ColumnName = "Clave Catastral";
+                Dt.Columns["Nombre_Propietario"].ColumnName = "Nombre Propietario";
+                Dt.Columns["Telefono_Propietario"].ColumnName = "Telefono Propietario";
+                Dt.Columns["Entre_Calles"].ColumnName = "Entre Calles";
+                Dt.Columns["Numero_Interior"].ColumnName = "Numero Interior";
+                Dt.Columns["Numero_Exterior"].ColumnName = "Numero Exterior";
+                return Dt;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
-        
         public void LlenarData()
         {
             DataTable table = new DataTable();
@@ -56,13 +62,13 @@ namespace CapaPresentación
             if (Actividad)
             {
                 DataTable table2 = new DataTable();
-                table2 = inmueble.SelLikeClaveCatastral(txt, Actividad);
+                table2 = PresentacionTable(inmueble.SelLikeClaveCatastral(txt, Actividad));
                 GridInmueblesInactivos.ItemsSource = table2.AsDataView();
             }
             else if(Actividad==false)
             {
                 DataTable table = new DataTable();
-                table = inmueble.SelLikeClaveCatastral(txt, Actividad);
+                table = PresentacionTable(inmueble.SelLikeClaveCatastral(txt, Actividad));
                 GridInmueblesActivos.ItemsSource = table.AsDataView();
             }
         }
@@ -71,13 +77,13 @@ namespace CapaPresentación
             if (Actividad)
             {
                 DataTable table2 = new DataTable();
-                table2 = inmueble.SelLikeNombrePropietario(txt, Actividad);
+                table2 = PresentacionTable(inmueble.SelLikeNombrePropietario(txt, Actividad));
                 GridInmueblesInactivos.ItemsSource = table2.AsDataView();
             }
             else if (Actividad == false)
             {
                 DataTable table = new DataTable();
-                table = inmueble.SelLikeNombrePropietario(txt, Actividad);
+                table = PresentacionTable(inmueble.SelLikeNombrePropietario(txt, Actividad));
                 GridInmueblesActivos.ItemsSource = table.AsDataView();
             }
         }
@@ -86,13 +92,13 @@ namespace CapaPresentación
             if (Actividad)
             {
                 DataTable table2 = new DataTable();
-                table2 = inmueble.SelLikeTelefonoPropietario(txt, Actividad);
+                table2 = PresentacionTable(inmueble.SelLikeTelefonoPropietario(txt, Actividad));
                 GridInmueblesInactivos.ItemsSource = table2.AsDataView();
             }
             else if (Actividad == false)
             {
                 DataTable table = new DataTable();
-                table = inmueble.SelLikeTelefonoPropietario(txt, Actividad);
+                table = PresentacionTable(inmueble.SelLikeTelefonoPropietario(txt, Actividad));
                 GridInmueblesActivos.ItemsSource = table.AsDataView();
             }
         }
@@ -101,13 +107,13 @@ namespace CapaPresentación
             if (Actividad)
             {
                 DataTable table2 = new DataTable();
-                table2 = inmueble.SelLikeColonia(txt, Actividad);
+                table2 = PresentacionTable(inmueble.SelLikeColonia(txt, Actividad));
                 GridInmueblesInactivos.ItemsSource = table2.AsDataView();
             }
             else if (Actividad == false)
             {
                 DataTable table = new DataTable();
-                table = inmueble.SelLikeColonia(txt, Actividad);
+                table = PresentacionTable(inmueble.SelLikeColonia(txt, Actividad));
                 GridInmueblesActivos.ItemsSource = table.AsDataView();
             }
         }
