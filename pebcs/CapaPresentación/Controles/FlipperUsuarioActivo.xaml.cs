@@ -30,9 +30,16 @@ namespace CapaPresentación.Controles
         string[] Datos = new string[10];
         public Flipper(Object A,Object B)
         {
-            InitializeComponent();
-            Win = A as PantallaUsuario;
-            MN = B as Menu_Principal2;
+            try
+            {
+                InitializeComponent();
+                Win = A as PantallaUsuario;
+                MN = B as Menu_Principal2;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         //private void BTN_Guardar_Click(object sender, RoutedEventArgs e)
@@ -45,25 +52,34 @@ namespace CapaPresentación.Controles
         //}
         public void CargarDatosTarjeta(int CALVE, string NombreCompleto, string Domicilio, string Telefono, string Email, string Puesto, string Foto, int Perfil, string Usuario, string Contraseña)
         {
-            Datos[0] = CALVE.ToString();
-            Datos[1] = NombreCompleto;
-            Datos[2] = Domicilio;
-            Datos[3] = Telefono.ToString();
-            Datos[4] = Email;
-            Datos[5] = Puesto;
-            Datos[6] = Foto;
-            Datos[7] = Perfil.ToString();
-            Datos[8] = Usuario;
-            Datos[9] = Contraseña;
-            ID = CALVE;
-            imgb.ImageSource = new BitmapImage(new Uri(Foto));
-            imgb.Stretch = Stretch.UniformToFill;
-            Etiqueta.Text = Usuario;
-            buttonimg.Background = imgb;
+            try
+            {
+                Datos[0] = CALVE.ToString();
+                Datos[1] = NombreCompleto;
+                Datos[2] = Domicilio;
+                Datos[3] = Telefono.ToString();
+                Datos[4] = Email;
+                Datos[5] = Puesto;
+                Datos[6] = Foto;
+                Datos[7] = Perfil.ToString();
+                Datos[8] = Usuario;
+                Datos[9] = Contraseña;
+                ID = CALVE;
+                imgb.ImageSource = new BitmapImage(new Uri(Foto));
+                imgb.Stretch = Stretch.UniformToFill;
+                Etiqueta.Text = Usuario;
+                buttonimg.Background = imgb;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void buttonimg_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
                 //OpenFileDialog openFile = new OpenFileDialog();
                 //BitmapImage b = new BitmapImage();
                 //openFile.Title = "Seleccione la Imagen a Mostrar";
@@ -87,32 +103,65 @@ namespace CapaPresentación.Controles
                 //    imgb.Stretch = Stretch.UniformToFill;
                 //    buttonimg.Background = imgb;
                 //}
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BTN_Eliminar_Click(object sender, RoutedEventArgs e)
         {
-            Empleado em = new Empleado();
-            em.Eliminar(ID);
-            Win.GridContenedor.Children.Clear();
-            Win.generartarjetas();
-            check.ShowDialog();
+            try
+            {
+                Empleado em = new Empleado();
+                em.Eliminar(ID);
+                Win.GridContenedor.Children.Clear();
+                Win.generartarjetas();
+                check.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void Btn_Editar_Click(object sender, RoutedEventArgs e)
         {
-            //this.Cursor = Cursors.Wait;
-            //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
-            MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos,MN));
+            try
+            {
+                //this.Cursor = Cursors.Wait;
+                //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
+                MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos, MN));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void Flipper_MouseLeave(object sender, MouseEventArgs e)
         {
-            Flip.Margin = new Thickness(10, 10, 10, 10);
+            try
+            {
+                Flip.Margin = new Thickness(10, 10, 10, 10);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void Flipper_MouseMove(object sender, MouseEventArgs e)
         {
-            Flip.Margin = new Thickness(0, 0, 0, 0);
+            try
+            {
+                Flip.Margin = new Thickness(0, 0, 0, 0);
+            }
+            catch (Exception ex)
+            { 
+
+            }
         }
     }
 }

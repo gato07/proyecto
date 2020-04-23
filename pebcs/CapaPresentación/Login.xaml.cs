@@ -22,18 +22,39 @@ namespace CapaPresentación
     {
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void btn_Salir_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Menu_Principal Ventana = new Menu_Principal();
-            Ventana.ShowDialog();
+            try
+            {
+                Menu_Principal Ventana = new Menu_Principal();
+                Ventana.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

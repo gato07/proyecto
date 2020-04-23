@@ -26,228 +26,359 @@ namespace CapaPresentación
         Concepto concepto = new Concepto();
         public PantallaConceptos()
         {
-            InitializeComponent();
-            LlenarData();
+            try
+            {
+                InitializeComponent();
+                LlenarData();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         public void LlenarData()
         {
-            DataTable table = new DataTable();
-            table = concepto.SelActivos();
-            GridConceptosActivos.ItemsSource = table.AsDataView();
-            ACTIVOS.Text = "Activos: " + table.Rows.Count.ToString();
-            DataTable table2 = new DataTable();
-            table2 = concepto.SelEliminados();
-            GridConceptosInactivos.ItemsSource = table2.AsDataView();
-            INACTIVOS.Text = "Inactivos: " + table2.Rows.Count.ToString();
+            try
+            {
+                DataTable table = new DataTable();
+                table = concepto.SelActivos();
+                GridConceptosActivos.ItemsSource = table.AsDataView();
+                ACTIVOS.Text = "Activos: " + table.Rows.Count.ToString();
+                DataTable table2 = new DataTable();
+                table2 = concepto.SelEliminados();
+                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                INACTIVOS.Text = "Inactivos: " + table2.Rows.Count.ToString();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         public void llenarDataLikeTipo(string txt, bool Actividad)
         {
-            if (Actividad)
+            try
             {
-                DataTable table = new DataTable();
-                table = concepto.SelLikeTipo(txt, Actividad);
-                GridConceptosActivos.ItemsSource = table.AsDataView();
+                if (Actividad)
+                {
+                    DataTable table = new DataTable();
+                    table = concepto.SelLikeTipo(txt, Actividad);
+                    GridConceptosActivos.ItemsSource = table.AsDataView();
+                }
+                else if (Actividad == false)
+                {
+                    DataTable table2 = new DataTable();
+                    table2 = concepto.SelLikeTipo(txt, Actividad);
+                    GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                }
             }
-            else if (Actividad == false)
+            catch(Exception ex)
             {
-                DataTable table2 = new DataTable();
-                table2 = concepto.SelLikeTipo(txt, Actividad);
-                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+
             }
         }
         public void llenarDataLikeNombre(string txt, bool Actividad)
         {
-            if (Actividad)
+            try
             {
-                DataTable table2 = new DataTable();
-                table2 = concepto.SelLikeNombre(txt, Actividad);
-                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                if (Actividad)
+                {
+                    DataTable table2 = new DataTable();
+                    table2 = concepto.SelLikeNombre(txt, Actividad);
+                    GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                }
+                else if (Actividad == false)
+                {
+                    DataTable table = new DataTable();
+                    table = concepto.SelLikeNombre(txt, Actividad);
+                    GridConceptosActivos.ItemsSource = table.AsDataView();
+                }
             }
-            else if (Actividad == false)
+            catch(Exception ex)
             {
-                DataTable table = new DataTable();
-                table = concepto.SelLikeNombre(txt, Actividad);
-                GridConceptosActivos.ItemsSource = table.AsDataView();
+
             }
         }
         public void llenarDataLikeDescripcion(string txt, bool Actividad)
         {
-            if (Actividad)
+            try
             {
-                DataTable table2 = new DataTable();
-                table2 = concepto.SelLikeDescripcion(txt, Actividad);
-                GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                if (Actividad)
+                {
+                    DataTable table2 = new DataTable();
+                    table2 = concepto.SelLikeDescripcion(txt, Actividad);
+                    GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                }
+                else if (Actividad == false)
+                {
+                    DataTable table = new DataTable();
+                    table = concepto.SelLikeDescripcion(txt, Actividad);
+                    GridConceptosActivos.ItemsSource = table.AsDataView();
+                }
             }
-            else if (Actividad == false)
+            catch(Exception ex)
             {
-                DataTable table = new DataTable();
-                table = concepto.SelLikeDescripcion(txt, Actividad);
-                GridConceptosActivos.ItemsSource = table.AsDataView();
+
             }
         }
         private void btnAgregarConcepto_Click(object sender, RoutedEventArgs e)
         {
-            bool res = false;
-            if (Decimal.TryParse(TXTCosto.Text, out decimal costo))
+            try
             {
-                res = concepto.Insertar(TXTTipo.Text, TXTNombre.Text, TXTDescripcion.Text, costo);
-                if (res)
+                bool res = false;
+                if (Decimal.TryParse(TXTCosto.Text, out decimal costo))
                 {
-                    PantallaCheck check = new PantallaCheck();
-                    LlenarData();
-                    check.ShowDialog();
+                    res = concepto.Insertar(TXTTipo.Text, TXTNombre.Text, TXTDescripcion.Text, costo);
+                    if (res)
+                    {
+                        PantallaCheck check = new PantallaCheck();
+                        LlenarData();
+                        check.ShowDialog();
+                    }
+                    else
+                        MessageBox.Show(concepto.Mensaje);
                 }
                 else
-                    MessageBox.Show(concepto.Mensaje);
+                    MessageBox.Show("El campo de Costo debe ser numerico con decimales");
             }
-            else
-                MessageBox.Show("El campo de Costo debe ser numerico con decimales");
+            catch(Exception ex)
+            {
+
+            }
         }
         private void btnConceptoModificar_Click(object sender, RoutedEventArgs e)
         {
-            bool res = false;
-            DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
-            if (Decimal.TryParse(TXTCostoModificar.Text, out decimal costo))
+            try
             {
-                res = concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipoModificar.Text, TXTNombreModificar.Text, TXTDescripcionModificar.Text, costo);
-                if (res)
+                bool res = false;
+                DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
+                if (Decimal.TryParse(TXTCostoModificar.Text, out decimal costo))
                 {
-                    LlenarData();
-                    PantallaCheck check = new PantallaCheck();
-                    check.ShowDialog();
+                    res = concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipoModificar.Text, TXTNombreModificar.Text, TXTDescripcionModificar.Text, costo);
+                    if (res)
+                    {
+                        LlenarData();
+                        PantallaCheck check = new PantallaCheck();
+                        check.ShowDialog();
+                    }
+                    else
+                        MessageBox.Show(concepto.Mensaje);
                 }
                 else
-                    MessageBox.Show(concepto.Mensaje);
+                    MessageBox.Show("El campo de Costo debe ser numerico con decimales");
             }
-            else
-                MessageBox.Show("El campo de Costo debe ser numerico con decimales");
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnRestaurar_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnRestaurar.Margin = new Thickness(81, 4, 0, 4);
+            try
+            {
+                BtnRestaurar.Margin = new Thickness(81, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnRestaurar_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnRestaurar.Margin = new Thickness(0, 4, 0, 4);
+            try
+            {
+                BtnRestaurar.Margin = new Thickness(0, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnRestaurar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptosInactivos as DataGrid).SelectedItem as DataRowView;
-            concepto.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
-            LlenarData();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
+            try
+            {
+                DataRowView data = (GridConceptosInactivos as DataGrid).SelectedItem as DataRowView;
+                concepto.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
+                LlenarData();
+                PantallaCheck check = new PantallaCheck();
+                check.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
-            concepto.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
-            LlenarData();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
+            try
+            {
+                DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
+                concepto.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
+                LlenarData();
+                PantallaCheck check = new PantallaCheck();
+                check.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
-            TXTTipoModificar.Text = data.Row.ItemArray[1].ToString();
-            TXTNombreModificar.Text = data.Row.ItemArray[2].ToString();
-            TXTDescripcionModificar.Text = data.Row.ItemArray[3].ToString();
-            TXTCostoModificar.Text = data.Row.ItemArray[4].ToString();
-            FormularioConceptosModificar.IsOpen = true;
+            try
+            {
+                DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
+                TXTTipoModificar.Text = data.Row.ItemArray[1].ToString();
+                TXTNombreModificar.Text = data.Row.ItemArray[2].ToString();
+                TXTDescripcionModificar.Text = data.Row.ItemArray[3].ToString();
+                TXTCostoModificar.Text = data.Row.ItemArray[4].ToString();
+                FormularioConceptosModificar.IsOpen = true;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void ActivadorActivos_Click(object sender, RoutedEventArgs e)
         {
-            if (ActivadorActivos.IsChecked == true)
+            try
             {
-                OpcionesActivos.IsEnabled = true;
-                TxtBusquedaActivos.IsEnabled = true;
-                OpcionesActivos.SelectedIndex = -1;
-                TxtBusquedaActivos.Clear();
+                if (ActivadorActivos.IsChecked == true)
+                {
+                    OpcionesActivos.IsEnabled = true;
+                    TxtBusquedaActivos.IsEnabled = true;
+                    OpcionesActivos.SelectedIndex = -1;
+                    TxtBusquedaActivos.Clear();
+                }
+                else
+                {
+                    OpcionesActivos.IsEnabled = false;
+                    TxtBusquedaActivos.IsEnabled = false;
+                    OpcionesActivos.SelectedIndex = -1;
+                    TxtBusquedaActivos.Clear();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                OpcionesActivos.IsEnabled = false;
-                TxtBusquedaActivos.IsEnabled = false;
-                OpcionesActivos.SelectedIndex = -1;
-                TxtBusquedaActivos.Clear();
+
             }
         }
         private void TxtBusquedaActivos_KeyUp(object sender, KeyEventArgs e)
         {
-            //ACTIVOS
-            if (OpcionesActivos.SelectedIndex == -1)
+            try
             {
-                LlenarData();
+                //ACTIVOS
+                if (OpcionesActivos.SelectedIndex == -1)
+                {
+                    LlenarData();
+                }
+                else if (OpcionesActivos.SelectedIndex == 0)
+                {
+                    TxtBusquedaActivos.MaxLength = 25;
+                    llenarDataLikeTipo(TxtBusquedaActivos.Text, false);
+                }
+                else if (OpcionesActivos.SelectedIndex == 1)
+                {
+                    TxtBusquedaActivos.MaxLength = 75;
+                    llenarDataLikeNombre(TxtBusquedaActivos.Text, false);
+                }
+                else if (OpcionesActivos.SelectedIndex == 2)
+                {
+                    TxtBusquedaActivos.MaxLength = 255;
+                    llenarDataLikeDescripcion(TxtBusquedaActivos.Text, false);
+                }
             }
-            else if (OpcionesActivos.SelectedIndex == 0)
+            catch(Exception ex)
             {
-                TxtBusquedaActivos.MaxLength = 25;
-                llenarDataLikeTipo(TxtBusquedaActivos.Text,false);
-            }
-            else if (OpcionesActivos.SelectedIndex == 1)
-            {
-                TxtBusquedaActivos.MaxLength = 75;
-                llenarDataLikeNombre(TxtBusquedaActivos.Text,false);
-            }
-            else if (OpcionesActivos.SelectedIndex == 2)
-            {
-                TxtBusquedaActivos.MaxLength = 255;
-                llenarDataLikeDescripcion(TxtBusquedaActivos.Text,false);
-            }
 
+            }
         }
         private void ActivadorInactivos_Click(object sender, RoutedEventArgs e)
         {
-            if (ActivadorInactivos.IsChecked == true)
+            try
             {
-                OpcionesInactivos.IsEnabled = true;
-                TxtBusquedaInactivos.IsEnabled = true;
-                OpcionesInactivos.SelectedIndex = -1;
-                TxtBusquedaInactivos.Clear();
+                if (ActivadorInactivos.IsChecked == true)
+                {
+                    OpcionesInactivos.IsEnabled = true;
+                    TxtBusquedaInactivos.IsEnabled = true;
+                    OpcionesInactivos.SelectedIndex = -1;
+                    TxtBusquedaInactivos.Clear();
+                }
+                else
+                {
+                    OpcionesInactivos.IsEnabled = false;
+                    TxtBusquedaInactivos.IsEnabled = false;
+                    OpcionesInactivos.SelectedIndex = -1;
+                    TxtBusquedaInactivos.Clear();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                OpcionesInactivos.IsEnabled = false;
-                TxtBusquedaInactivos.IsEnabled = false;
-                OpcionesInactivos.SelectedIndex = -1;
-                TxtBusquedaInactivos.Clear();
+
             }
         }
         private void TxtBusquedaInactivos_KeyUp(object sender, KeyEventArgs e)
         {
-            //INACTIVOS
-            if (OpcionesInactivos.SelectedIndex == -1)
+            try
             {
-                LlenarData();
+                //INACTIVOS
+                if (OpcionesInactivos.SelectedIndex == -1)
+                {
+                    LlenarData();
+                }
+                else if (OpcionesInactivos.SelectedIndex == 0)
+                {
+                    TxtBusquedaInactivos.MaxLength = 25;
+                    llenarDataLikeTipo(TxtBusquedaInactivos.Text, true);
+                }
+                else if (OpcionesInactivos.SelectedIndex == 1)
+                {
+                    TxtBusquedaInactivos.MaxLength = 75;
+                    llenarDataLikeNombre(TxtBusquedaInactivos.Text, true);
+                }
+                else if (OpcionesInactivos.SelectedIndex == 2)
+                {
+                    TxtBusquedaInactivos.MaxLength = 255;
+                    llenarDataLikeDescripcion(TxtBusquedaInactivos.Text, true);
+                }
             }
-            else if (OpcionesInactivos.SelectedIndex == 0)
+            catch(Exception ex)
             {
-                TxtBusquedaInactivos.MaxLength = 25;
-                llenarDataLikeTipo(TxtBusquedaInactivos.Text, true);
-            }
-            else if (OpcionesInactivos.SelectedIndex == 1)
-            {
-                TxtBusquedaInactivos.MaxLength = 75;
-                llenarDataLikeNombre(TxtBusquedaInactivos.Text, true);
-            }
-            else if (OpcionesInactivos.SelectedIndex == 2)
-            {
-                TxtBusquedaInactivos.MaxLength = 255;
-                llenarDataLikeDescripcion(TxtBusquedaInactivos.Text, true);
-            }
 
+            }
         }
         private void Btn_Cerrar_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
 
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
+            try
+            {
+                Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
+            try
+            {
+                Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

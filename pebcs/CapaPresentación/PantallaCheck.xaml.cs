@@ -21,14 +21,28 @@ namespace CapaPresentación
     {
         public PantallaCheck()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            this.Cursor = Cursors.Wait;
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
-            this.Cursor = null;
-            this.Close();
+            try
+            {
+                this.Cursor = Cursors.Wait;
+                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
+                this.Cursor = null;
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

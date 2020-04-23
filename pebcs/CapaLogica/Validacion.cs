@@ -191,7 +191,7 @@ namespace CapaLogica
         {
             try
             {
-                Regex expreg = new Regex(@"^[A-ZÑ\&]{3,4}[0-9]{6}[0-9A-ZÑ]{3}$");
+                Regex expreg = new Regex(@"^[a-zA-ZñÑ\&]{3,4}[0-9]{6}[0-9a-zA-ZñÑ]{3}$");
                 return expreg.IsMatch(Valor);
             }
             catch (Exception ex)

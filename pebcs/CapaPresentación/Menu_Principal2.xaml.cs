@@ -21,112 +21,255 @@ namespace CapaPresentación
     {
         public Menu_Principal2()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         public void AbrirFormHijo(object formhijo)
         {
-            if (this.PanelContenedor.Children.Count > 0)
-                this.PanelContenedor.Children.RemoveAt(0);
-            UserControl userControl = formhijo as UserControl;
-            PanelContenedor.Children.Add(userControl);
+            try
+            {
+                if (this.PanelContenedor.Children.Count > 0)
+                    this.PanelContenedor.Children.RemoveAt(0);
+                UserControl userControl = formhijo as UserControl;
+                PanelContenedor.Children.Add(userControl);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaUsuario(this));
-        }
+            try
+            {
+                AbrirFormHijo(new PantallaUsuario(this));
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaClientes(this));
-        }
+            try
+            {
+                AbrirFormHijo(new PantallaClientes(this));
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnConceptos_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaConceptos());
-        }
+            try
+            {
+                AbrirFormHijo(new PantallaConceptos());
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnInmuebles_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaInmuebles());
+            try
+            {
+                AbrirFormHijo(new PantallaInmuebles());
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnLicencias_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnLicencias.Margin = new Thickness(0, 80, 0, 0);
-        }
+            try
+            {
+                BtnLicencias.Margin = new Thickness(0, 80, 0, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnLicencias_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnLicencias.Margin = new Thickness(0, 80, 146, 0);
-        }
+            try
+            {
+                BtnLicencias.Margin = new Thickness(0, 80, 146, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnDictamenes_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnDictamenes.Margin = new Thickness(0, 20, 146, 0);
+            try
+            {
+                BtnDictamenes.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
-
         private void BtnDictamenes_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnDictamenes.Margin = new Thickness(0, 20, 0, 0);
-        }
+            try
+            {
+                BtnDictamenes.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnEstimaciones_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnEstimaciones.Margin = new Thickness(0,20, 146, 0);
-        }
+            try
+            {
+                BtnEstimaciones.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnEstimaciones_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnEstimaciones.Margin = new Thickness(0,20, 0, 0);
-        }
+            try
+            {
+                BtnEstimaciones.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnCargaDeTrabajo_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnCargaDeTrabajo.Margin = new Thickness(0,20, 146, 0);
-        }
+            try
+            {
+                BtnCargaDeTrabajo.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnCargaDeTrabajo_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnCargaDeTrabajo.Margin = new Thickness(0,20, 0, 0);
-        }
+            try
+            {
+                BtnCargaDeTrabajo.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private void BtnEmpleados_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnEmpleados.Margin = new Thickness(0, 20, 146, 0);
+            try
+            {
+                BtnEmpleados.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnEmpleados_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnEmpleados.Margin = new Thickness(0, 20, 0, 0);
+            try
+            {
+                BtnEmpleados.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnClientes_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnClientes.Margin = new Thickness(0, 20, 146, 0);
+            try
+            {
+                BtnClientes.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnClientes_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnClientes.Margin = new Thickness(0, 20, 0, 0);
+            try
+            {
+                BtnClientes.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnConceptos_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnConceptos.Margin = new Thickness(0, 20, 146, 0);
+            try
+            {
+                BtnConceptos.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnConceptos_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnConceptos.Margin = new Thickness(0, 20, 0, 0);
+            try
+            {
+                BtnConceptos.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnInmuebles_MouseLeave(object sender, MouseEventArgs e)
         {
-            BtnInmuebles.Margin = new Thickness(0, 20, 146, 0);
+            try
+            {
+                BtnInmuebles.Margin = new Thickness(0, 20, 146, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnInmuebles_MouseMove(object sender, MouseEventArgs e)
         {
-            BtnInmuebles.Margin = new Thickness(0, 20, 0, 0);
+            try
+            {
+                BtnInmuebles.Margin = new Thickness(0, 20, 0, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

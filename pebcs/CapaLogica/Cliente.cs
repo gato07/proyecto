@@ -79,6 +79,7 @@ namespace CapaLogica
                                     cliente.SelXRfc(Rfc);
                                     if (cliente.Existe == false)
                                     {
+                                        Rfc = Rfc.ToUpper();
                                         res = dtsInsertar(Rfc, Nombre, Apellido, Telefono, Email);
                                         if (res)
                                             Mensaje = "El Cliente fue registrado satisfactoriamente";
@@ -144,6 +145,7 @@ namespace CapaLogica
                                         Cliente cliente = new Cliente(Id);
                                         if (cliente.Existe)
                                         {
+                                            Rfc = Rfc.ToUpper();
                                             res = dtsActualizar(Id, Rfc, Nombre, Apellido, Telefono, Email);
                                             if (res)
                                                 Mensaje = "Los datos del Cliente fueron actualizados satisfactoriamente.";

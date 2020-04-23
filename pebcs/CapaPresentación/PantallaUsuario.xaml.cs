@@ -30,99 +30,103 @@ namespace CapaPresentación
         Empleado emp;
         public PantallaUsuario(object A)
         {
-            InitializeComponent();
-            Mn = A as Menu_Principal2;
-            generartarjetas();
+            try
+            {
+                InitializeComponent();
+                Mn = A as Menu_Principal2;
+                generartarjetas();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public void generartarjetas()
         {
-            Empleado empleado = new Empleado();
-            Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelActivos());
-            Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelEliminados());
-            ActualizarContadores(empleadosActivos,empleadosInactivos);
-            flippers = new Flipper[empleadosActivos.Length];
-            flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
-            int fila = 1;
-            int columna = 1;
-            agregarcolumnas();
-            agregarfila(flippers.Length+flipperInactivos.Length);
-            for (int x=0;x<flippers.Length;x++)
+            try
             {
-                flippers[x] = new Flipper(this,Mn);
-                flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave,empleadosActivos[x].Nombre,empleadosActivos[x].Domicilio,empleadosActivos[x].Telefono,empleadosActivos[x].Email,empleadosActivos[x].Puesto,empleadosActivos[x].Foto,empleadosActivos[x].Perfil,empleadosActivos[x].Usuario,empleadosActivos[x].Contrasena);
-                Grid.SetColumn(flippers[x], columna - 1);
-                Grid.SetRow(flippers[x],fila-1);
-                GridContenedor.Children.Add(flippers[x]);
-                if (columna > 3)
+                Empleado empleado = new Empleado();
+                Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelActivos());
+                Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelEliminados());
+                ActualizarContadores(empleadosActivos, empleadosInactivos);
+                flippers = new Flipper[empleadosActivos.Length];
+                flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
+                int fila = 1;
+                int columna = 1;
+                agregarcolumnas();
+                agregarfila(flippers.Length + flipperInactivos.Length);
+                for (int x = 0; x < flippers.Length; x++)
                 {
-                    columna = 1;
-                    fila++;
+                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    Grid.SetColumn(flippers[x], columna - 1);
+                    Grid.SetRow(flippers[x], fila - 1);
+                    GridContenedor.Children.Add(flippers[x]);
+                    if (columna > 3)
+                    {
+                        columna = 1;
+                        fila++;
+                    }
+                    else
+                    {
+                        columna++;
+                    }
                 }
-                else
+                for (int x = 0; x < flipperInactivos.Length; x++)
                 {
-                    columna++;
+                    flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                    Grid.SetColumn(flipperInactivos[x], columna - 1);
+                    Grid.SetRow(flipperInactivos[x], fila - 1);
+                    GridContenedor.Children.Add(flipperInactivos[x]);
+                    if (columna > 3)
+                    {
+                        columna = 1;
+                        fila++;
+                    }
+                    else
+                    {
+                        columna++;
+                    }
                 }
             }
-            for (int x = 0; x < flipperInactivos.Length; x++)
+            catch(Exception ex)
             {
-                flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
-                flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
-                Grid.SetColumn(flipperInactivos[x], columna - 1);
-                Grid.SetRow(flipperInactivos[x], fila - 1);
-                GridContenedor.Children.Add(flipperInactivos[x]);
-                if (columna > 3)
-                {
-                    columna = 1;
-                    fila++;
-                }
-                else
-                {
-                    columna++;
-                }
+
             }
         }
         public void ActualizarContadores(Empleado[] A,Empleado[] B)
         {
-            ACTIVOS.Text = "ACTIVOS: " + A.Length.ToString();
-            INACTIVOS.Text = "INACTIVOS: " + B.Length.ToString();
+            try
+            {
+                ACTIVOS.Text = "ACTIVOS: " + A.Length.ToString();
+                INACTIVOS.Text = "INACTIVOS: " + B.Length.ToString();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         public void generartarjetasLikeNombre(TextBox Busqueda)
         {
-            Empleado empleado = new Empleado();
-            Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeNombre(Busqueda.Text,false));
-            Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeNombre(Busqueda.Text,true));
-            flippers = new Flipper[empleadosActivos.Length];
-            flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
-            int fila = 1;
-            int columna = 1;
-            agregarcolumnas();
-            agregarfila(flippers.Length + flipperInactivos.Length);
-            for (int x = 0; x < flippers.Length; x++)
+            try
             {
-                flippers[x] = new Flipper(this, Mn);
-                flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
-                Grid.SetColumn(flippers[x], columna - 1);
-                Grid.SetRow(flippers[x], fila - 1);
-                GridContenedor.Children.Add(flippers[x]);
-                if (columna > 3)
+                Empleado empleado = new Empleado();
+                Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeNombre(Busqueda.Text, false));
+                Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeNombre(Busqueda.Text, true));
+                flippers = new Flipper[empleadosActivos.Length];
+                flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
+                int fila = 1;
+                int columna = 1;
+                agregarcolumnas();
+                agregarfila(flippers.Length + flipperInactivos.Length);
+                for (int x = 0; x < flippers.Length; x++)
                 {
-                    columna = 1;
-                    fila++;
-                }
-                else
-                {
-                    columna++;
-                }
-            }
-            if(flipperInactivos.Length!=0)
-            {
-                for (int x = 0; x < flipperInactivos.Length; x++)
-                {
-                    flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
-                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
-                    Grid.SetColumn(flipperInactivos[x], columna - 1);
-                    Grid.SetRow(flipperInactivos[x], fila - 1);
-                    GridContenedor.Children.Add(flipperInactivos[x]);
+                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    Grid.SetColumn(flippers[x], columna - 1);
+                    Grid.SetRow(flippers[x], fila - 1);
+                    GridContenedor.Children.Add(flippers[x]);
                     if (columna > 3)
                     {
                         columna = 1;
@@ -133,45 +137,52 @@ namespace CapaPresentación
                         columna++;
                     }
                 }
+                if (flipperInactivos.Length != 0)
+                {
+                    for (int x = 0; x < flipperInactivos.Length; x++)
+                    {
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        Grid.SetColumn(flipperInactivos[x], columna - 1);
+                        Grid.SetRow(flipperInactivos[x], fila - 1);
+                        GridContenedor.Children.Add(flipperInactivos[x]);
+                        if (columna > 3)
+                        {
+                            columna = 1;
+                            fila++;
+                        }
+                        else
+                        {
+                            columna++;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         public void generartarjetasLikeUsuario(TextBox Busqueda)
         {
-            Empleado empleado = new Empleado();
-            Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeUsuario(Busqueda.Text, false));
-            Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeUsuario(Busqueda.Text, true));
-            flippers = new Flipper[empleadosActivos.Length];
-            flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
-            int fila = 1;
-            int columna = 1;
-            agregarcolumnas();
-            agregarfila(flippers.Length + flipperInactivos.Length);
-            for (int x = 0; x < flippers.Length; x++)
+            try
             {
-                flippers[x] = new Flipper(this, Mn);
-                flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
-                Grid.SetColumn(flippers[x], columna - 1);
-                Grid.SetRow(flippers[x], fila - 1);
-                GridContenedor.Children.Add(flippers[x]);
-                if (columna > 3)
+                Empleado empleado = new Empleado();
+                Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeUsuario(Busqueda.Text, false));
+                Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeUsuario(Busqueda.Text, true));
+                flippers = new Flipper[empleadosActivos.Length];
+                flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
+                int fila = 1;
+                int columna = 1;
+                agregarcolumnas();
+                agregarfila(flippers.Length + flipperInactivos.Length);
+                for (int x = 0; x < flippers.Length; x++)
                 {
-                    columna = 1;
-                    fila++;
-                }
-                else
-                {
-                    columna++;
-                }
-            }
-            if (flipperInactivos.Length != 0)
-            {
-                for (int x = 0; x < flipperInactivos.Length; x++)
-                {
-                    flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
-                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
-                    Grid.SetColumn(flipperInactivos[x], columna - 1);
-                    Grid.SetRow(flipperInactivos[x], fila - 1);
-                    GridContenedor.Children.Add(flipperInactivos[x]);
+                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    Grid.SetColumn(flippers[x], columna - 1);
+                    Grid.SetRow(flippers[x], fila - 1);
+                    GridContenedor.Children.Add(flippers[x]);
                     if (columna > 3)
                     {
                         columna = 1;
@@ -182,45 +193,52 @@ namespace CapaPresentación
                         columna++;
                     }
                 }
+                if (flipperInactivos.Length != 0)
+                {
+                    for (int x = 0; x < flipperInactivos.Length; x++)
+                    {
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        Grid.SetColumn(flipperInactivos[x], columna - 1);
+                        Grid.SetRow(flipperInactivos[x], fila - 1);
+                        GridContenedor.Children.Add(flipperInactivos[x]);
+                        if (columna > 3)
+                        {
+                            columna = 1;
+                            fila++;
+                        }
+                        else
+                        {
+                            columna++;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         public void generartarjetasLikeCorreo(TextBox Busqueda)
         {
-            Empleado empleado = new Empleado();
-            Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeEmail(Busqueda.Text, false));
-            Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeEmail(Busqueda.Text, true));
-            flippers = new Flipper[empleadosActivos.Length];
-            flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
-            int fila = 1;
-            int columna = 1;
-            agregarcolumnas();
-            agregarfila(flippers.Length + flipperInactivos.Length);
-            for (int x = 0; x < flippers.Length; x++)
-            {
-                flippers[x] = new Flipper(this, Mn);
-                flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
-                Grid.SetColumn(flippers[x], columna - 1);
-                Grid.SetRow(flippers[x], fila - 1);
-                GridContenedor.Children.Add(flippers[x]);
-                if (columna > 3)
+            try
+            { 
+                Empleado empleado = new Empleado();
+                Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeEmail(Busqueda.Text, false));
+                Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeEmail(Busqueda.Text, true));
+                flippers = new Flipper[empleadosActivos.Length];
+                flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
+                int fila = 1;
+                int columna = 1;
+                agregarcolumnas();
+                agregarfila(flippers.Length + flipperInactivos.Length);
+                for (int x = 0; x < flippers.Length; x++)
                 {
-                    columna = 1;
-                    fila++;
-                }
-                else
-                {
-                    columna++;
-                }
-            }
-            if (flipperInactivos.Length != 0)
-            {
-                for (int x = 0; x < flipperInactivos.Length; x++)
-                {
-                    flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
-                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
-                    Grid.SetColumn(flipperInactivos[x], columna - 1);
-                    Grid.SetRow(flipperInactivos[x], fila - 1);
-                    GridContenedor.Children.Add(flipperInactivos[x]);
+                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    Grid.SetColumn(flippers[x], columna - 1);
+                    Grid.SetRow(flippers[x], fila - 1);
+                    GridContenedor.Children.Add(flippers[x]);
                     if (columna > 3)
                     {
                         columna = 1;
@@ -231,45 +249,52 @@ namespace CapaPresentación
                         columna++;
                     }
                 }
+                if (flipperInactivos.Length != 0)
+                {
+                    for (int x = 0; x < flipperInactivos.Length; x++)
+                    {
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        Grid.SetColumn(flipperInactivos[x], columna - 1);
+                        Grid.SetRow(flipperInactivos[x], fila - 1);
+                        GridContenedor.Children.Add(flipperInactivos[x]);
+                        if (columna > 3)
+                        {
+                            columna = 1;
+                            fila++;
+                        }
+                        else
+                        {
+                            columna++;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         public void generartarjetasLikePuesto(TextBox Busqueda)
         {
-            Empleado empleado = new Empleado();
-            Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikePuesto(Busqueda.Text, false));
-            Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikePuesto(Busqueda.Text, true));
-            flippers = new Flipper[empleadosActivos.Length];
-            flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
-            int fila = 1;
-            int columna = 1;
-            agregarcolumnas();
-            agregarfila(flippers.Length + flipperInactivos.Length);
-            for (int x = 0; x < flippers.Length; x++)
+            try
             {
-                flippers[x] = new Flipper(this, Mn);
-                flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
-                Grid.SetColumn(flippers[x], columna - 1);
-                Grid.SetRow(flippers[x], fila - 1);
-                GridContenedor.Children.Add(flippers[x]);
-                if (columna > 3)
+                Empleado empleado = new Empleado();
+                Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikePuesto(Busqueda.Text, false));
+                Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikePuesto(Busqueda.Text, true));
+                flippers = new Flipper[empleadosActivos.Length];
+                flipperInactivos = new FlipperUsuarioInactivo[empleadosInactivos.Length];
+                int fila = 1;
+                int columna = 1;
+                agregarcolumnas();
+                agregarfila(flippers.Length + flipperInactivos.Length);
+                for (int x = 0; x < flippers.Length; x++)
                 {
-                    columna = 1;
-                    fila++;
-                }
-                else
-                {
-                    columna++;
-                }
-            }
-            if (flipperInactivos.Length != 0)
-            {
-                for (int x = 0; x < flipperInactivos.Length; x++)
-                {
-                    flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
-                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
-                    Grid.SetColumn(flipperInactivos[x], columna - 1);
-                    Grid.SetRow(flipperInactivos[x], fila - 1);
-                    GridContenedor.Children.Add(flipperInactivos[x]);
+                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Puesto, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    Grid.SetColumn(flippers[x], columna - 1);
+                    Grid.SetRow(flippers[x], fila - 1);
+                    GridContenedor.Children.Add(flippers[x]);
                     if (columna > 3)
                     {
                         columna = 1;
@@ -280,124 +305,239 @@ namespace CapaPresentación
                         columna++;
                     }
                 }
+                if (flipperInactivos.Length != 0)
+                {
+                    for (int x = 0; x < flipperInactivos.Length; x++)
+                    {
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Puesto, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        Grid.SetColumn(flipperInactivos[x], columna - 1);
+                        Grid.SetRow(flipperInactivos[x], fila - 1);
+                        GridContenedor.Children.Add(flipperInactivos[x]);
+                        if (columna > 3)
+                        {
+                            columna = 1;
+                            fila++;
+                        }
+                        else
+                        {
+                            columna++;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         public void agregarcolumnas()
         {
-            for(int x=0;x<4;x++)
+            try
             {
-                columnDefinition = new ColumnDefinition();
-                GridContenedor.ColumnDefinitions.Add(columnDefinition);
+                for (int x = 0; x < 4; x++)
+                {
+                    columnDefinition = new ColumnDefinition();
+                    GridContenedor.ColumnDefinitions.Add(columnDefinition);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         public void agregarfila(int c)
         {
-            int res;
-            if((c%4)==0)
+            try
             {
-                 res = c / 4;
+                int res;
+                if ((c % 4) == 0)
+                {
+                    res = c / 4;
+                }
+                else
+                {
+                    res = (c / 4) + 1;
+                }
+                for (int x = 0; x < res; x++)
+                {
+                    rowDefinition = new RowDefinition();
+                    GridContenedor.RowDefinitions.Add(rowDefinition);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                 res = (c / 4)+1;
-            }
-            for (int x=0;x<res;x++)
-            {
-                rowDefinition = new RowDefinition();
-                GridContenedor.RowDefinitions.Add(rowDefinition);
+
             }
         }
         private void Btn_Limpiar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Limpiar.Margin = new Thickness(119, 4, 0, 4);
+            try
+            {
+                Btn_Limpiar.Margin = new Thickness(119, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Limpiar.Margin = new Thickness(69, 4, 0, 4);
+            try
+            {
+                Btn_Limpiar.Margin = new Thickness(69, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_AgregarEmpleado_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_AgregarEmpleado.Margin = new Thickness(69, 4, 0, 4);
+            try
+            {
+                Btn_AgregarEmpleado.Margin = new Thickness(69, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_AgregarEmpleado_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_AgregarEmpleado.Margin = new Thickness(119, 4, 0, 4);
+            try
+            {
+                Btn_AgregarEmpleado.Margin = new Thickness(119, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Activador_Click(object sender, RoutedEventArgs e)
         {
-            if (Activador.IsChecked == true)
+            try
             {
-                Opciones.IsEnabled = true;
-                Btn_Limpiar.IsEnabled = true;
-                TxtBusqueda.IsEnabled = true;
-                Opciones.SelectedIndex = -1;
-                TxtBusqueda.Clear();
+                if (Activador.IsChecked == true)
+                {
+                    Opciones.IsEnabled = true;
+                    Btn_Limpiar.IsEnabled = true;
+                    TxtBusqueda.IsEnabled = true;
+                    Opciones.SelectedIndex = -1;
+                    TxtBusqueda.Clear();
+                }
+                else
+                {
+                    Opciones.IsEnabled = false;
+                    Btn_Limpiar.IsEnabled = false;
+                    TxtBusqueda.IsEnabled = false;
+                    Opciones.SelectedIndex = -1;
+                    TxtBusqueda.Clear();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Opciones.IsEnabled = false;
-                Btn_Limpiar.IsEnabled = false;
-                TxtBusqueda.IsEnabled = false;
-                Opciones.SelectedIndex = -1;
-                TxtBusqueda.Clear();
+
             }
         }
         private void Btn_Limpiar_Click(object sender, RoutedEventArgs e)
         {
-            Opciones.SelectedIndex = -1;
-            TxtBusqueda.Clear();
-            LimpiarGrid();
-            generartarjetas();
-        }
-        private void Btn_AgregarEmpleado_Click(object sender, RoutedEventArgs e)
-        {
-            Mn.AbrirFormHijo(new Pantalla_PerfilUsuario(null,Mn));
-        }
-        public void LimpiarGrid()
-        {
-            GridContenedor.Children.Clear();
-            GridContenedor.ColumnDefinitions.Clear();
-            GridContenedor.RowDefinitions.Clear();
-        }
-        private void TxtBusqueda_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (Opciones.SelectedIndex == -1)
+            try
             {
+                Opciones.SelectedIndex = -1;
+                TxtBusqueda.Clear();
                 LimpiarGrid();
                 generartarjetas();
             }
-            else if (Opciones.SelectedIndex==0)
+            catch(Exception ex)
             {
-                LimpiarGrid();
-                TxtBusqueda.MaxLength = 60;
-                generartarjetasLikeNombre(TxtBusqueda);
+
             }
-            else if(Opciones.SelectedIndex == 1)
+        }
+        private void Btn_AgregarEmpleado_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                LimpiarGrid();
-                TxtBusqueda.MaxLength =50;
-                generartarjetasLikePuesto(TxtBusqueda);
+                Mn.AbrirFormHijo(new Pantalla_PerfilUsuario(null, Mn));
             }
-            else if (Opciones.SelectedIndex == 2)
+            catch(Exception ex)
             {
-                LimpiarGrid();
-                TxtBusqueda.MaxLength = 255;
-                generartarjetasLikeCorreo(TxtBusqueda);
+
             }
-            else if (Opciones.SelectedIndex == 3)
+        }
+        public void LimpiarGrid()
+        {
+            try
             {
-                LimpiarGrid();
-                TxtBusqueda.MaxLength = 15;
-                generartarjetasLikeUsuario(TxtBusqueda);
+                GridContenedor.Children.Clear();
+                GridContenedor.ColumnDefinitions.Clear();
+                GridContenedor.RowDefinitions.Clear();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        private void TxtBusqueda_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (Opciones.SelectedIndex == -1)
+                {
+                    LimpiarGrid();
+                    generartarjetas();
+                }
+                else if (Opciones.SelectedIndex == 0)
+                {
+                    LimpiarGrid();
+                    TxtBusqueda.MaxLength = 60;
+                    generartarjetasLikeNombre(TxtBusqueda);
+                }
+                else if (Opciones.SelectedIndex == 1)
+                {
+                    LimpiarGrid();
+                    TxtBusqueda.MaxLength = 50;
+                    generartarjetasLikePuesto(TxtBusqueda);
+                }
+                else if (Opciones.SelectedIndex == 2)
+                {
+                    LimpiarGrid();
+                    TxtBusqueda.MaxLength = 255;
+                    generartarjetasLikeCorreo(TxtBusqueda);
+                }
+                else if (Opciones.SelectedIndex == 3)
+                {
+                    LimpiarGrid();
+                    TxtBusqueda.MaxLength = 15;
+                    generartarjetasLikeUsuario(TxtBusqueda);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
+            try
+            {
+                Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
+            try
+            {
+                Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

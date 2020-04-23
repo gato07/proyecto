@@ -29,57 +29,99 @@ namespace CapaPresentación.Controles
         string[] Datos = new string[10];
         public FlipperUsuarioInactivo(object A, Object B)
         {
-            InitializeComponent();
-            Win = A as PantallaUsuario;
-            MN = B as Menu_Principal2;
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            try
+            {
+                InitializeComponent();
+                Win = A as PantallaUsuario;
+                MN = B as Menu_Principal2;
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(2);
+                timer.Tick += Timer_Tick;
+                timer.Start();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            var fadeAnimation = new DoubleAnimation();
-            fadeAnimation.From = 1;
-            fadeAnimation.To = 0.5;
-            fadeAnimation.AutoReverse = true;
-            Flip.BeginAnimation(Label.OpacityProperty, fadeAnimation);
+            try
+            {
+                var fadeAnimation = new DoubleAnimation();
+                fadeAnimation.From = 1;
+                fadeAnimation.To = 0.5;
+                fadeAnimation.AutoReverse = true;
+                Flip.BeginAnimation(Label.OpacityProperty, fadeAnimation);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Flip_MouseLeave(object sender, MouseEventArgs e)
         {
-            Flip.Margin = new Thickness(10, 10, 10, 10);
+            try
+            {
+                Flip.Margin = new Thickness(10, 10, 10, 10);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Flip_MouseMove(object sender, MouseEventArgs e)
         {
-            Flip.Margin = new Thickness(0, 0, 0, 0);
+            try
+            {
+                Flip.Margin = new Thickness(0, 0, 0, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         public void CargarDatosTarjeta(int CALVE, string NombreCompleto, string Domicilio, string Telefono, string Email, string Puesto, string Foto, int Perfil, string Usuario, string Contraseña)
         {
-            Datos[0] = CALVE.ToString();
-            Datos[1] = NombreCompleto;
-            Datos[2] = Domicilio;
-            Datos[3] = Telefono.ToString();
-            Datos[4] = Email;
-            Datos[5] = Puesto;
-            Datos[6] = Foto;
-            Datos[7] = Perfil.ToString();
-            Datos[8] = Usuario;
-            Datos[9] = Contraseña;
-            ID = CALVE;
-            imgb.ImageSource = new BitmapImage(new Uri(Foto));
-            imgb.Stretch = Stretch.UniformToFill;
-            Etiqueta.Text = Usuario;
-            buttonimg.Background = imgb;
+            try
+            {
+                Datos[0] = CALVE.ToString();
+                Datos[1] = NombreCompleto;
+                Datos[2] = Domicilio;
+                Datos[3] = Telefono.ToString();
+                Datos[4] = Email;
+                Datos[5] = Puesto;
+                Datos[6] = Foto;
+                Datos[7] = Perfil.ToString();
+                Datos[8] = Usuario;
+                Datos[9] = Contraseña;
+                ID = CALVE;
+                imgb.ImageSource = new BitmapImage(new Uri(Foto));
+                imgb.Stretch = Stretch.UniformToFill;
+                Etiqueta.Text = Usuario;
+                buttonimg.Background = imgb;
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
         private void Btn_Restaurar_Click(object sender, RoutedEventArgs e)
         {
-            Empleado emp = new Empleado();
-            PantallaCheck check = new PantallaCheck();
-            check.ShowDialog();
-            //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
-            emp.Activar(ID);
-            MN.AbrirFormHijo(new PantallaUsuario(MN));
+            try
+            {
+                Empleado emp = new Empleado();
+                PantallaCheck check = new PantallaCheck();
+                check.ShowDialog();
+                //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
+                emp.Activar(ID);
+                MN.AbrirFormHijo(new PantallaUsuario(MN));
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }
