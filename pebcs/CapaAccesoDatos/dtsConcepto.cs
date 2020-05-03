@@ -180,14 +180,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelNombreCostoXEliminado(bool Eliminado = false)
+        public DataTable dtsSelNumeroNombreCostoXEli(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelNomCosXEli(" + Eliminado + ");").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelNumNomCosXEli(" + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -197,14 +197,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelNombreCostoXTipoEliminado(string Tipo, bool Eliminado = false)
+        public DataTable dtsSelNumeroNombreCostoXTipEli(string Tipo, bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelNomCosXTipoEli('" + Tipo + "'," + Eliminado + ");").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelNumNomCosXTipEli('" + Tipo + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

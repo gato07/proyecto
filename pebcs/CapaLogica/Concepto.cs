@@ -246,11 +246,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelNombreCostoXEliminado(bool Eliminado = false)
+        public DataTable SelNumeroNombreCostoXEli(bool Eliminado = false)
         {
             try
             {
-                return dtsSelNombreCostoXEliminado(Eliminado);
+                return dtsSelNumeroNombreCostoXEli(Eliminado);
             }
             catch (Exception ex)
             {
@@ -259,11 +259,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelNombreCostoXTipoEliminado(string Tipo, bool Eliminado = false)
+        public DataTable SelNumeroNombreCostoXTipEli(string Tipo, bool Eliminado = false)
         {
             try
             {
-                return dtsSelNombreCostoXTipoEliminado(Tipo, Eliminado);
+                return dtsSelNumeroNombreCostoXTipEli(Tipo, Eliminado);
             }
             catch (Exception ex)
             {
