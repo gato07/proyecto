@@ -180,6 +180,40 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelNombreCostoXEliminado(bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelNomCosXEli(" + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelNombreCostoXTipoEliminado(string Tipo, bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Concepto_SelNomCosXTipoEli('" + Tipo + "'," + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public DataTable dtsSelLikeTipo(string Tipo, bool Eliminado = false)
         {
             try

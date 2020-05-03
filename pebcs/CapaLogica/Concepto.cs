@@ -246,6 +246,32 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelNombreCostoXEliminado(bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelNombreCostoXEliminado(Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Conceptos por el campo Eliminado";
+                return null;
+            }
+        }
+
+        public DataTable SelNombreCostoXTipoEliminado(string Tipo, bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelNombreCostoXTipoEliminado(Tipo, Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Conceptos por Tipo y el campo Eliminado";
+                return null;
+            }
+        }
+
         public DataTable SelLikeTipo(string Tipo, bool Eliminado = false)
         {
             try
