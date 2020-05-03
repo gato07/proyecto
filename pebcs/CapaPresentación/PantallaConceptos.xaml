@@ -168,7 +168,11 @@
                     <materialDesign:Card>
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Agregar Concepto</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="Tipo" Name="TXTTipo" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="25"/>
+                    <ComboBox Name="OpcionesTipo" Grid.Row="2" Grid.Column="2"
+                              materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22" >
+                        <ComboBoxItem Content="Pago De Honorarios" />
+                        <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                    </ComboBox>
                     <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
                     <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
                     <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="10"/>
@@ -183,7 +187,11 @@
                     <materialDesign:Card>
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Conceptos</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="Tipo" Name="TXTTipoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="25"/>
+                    <ComboBox Name="OpcionesTipoModificar" Grid.Row="2" Grid.Column="2" 
+                              materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22" >
+                        <ComboBoxItem Content="Pago De Honorarios" />
+                        <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                    </ComboBox>
                     <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
                     <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
                     <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="10"/>

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="CapaPresentación.PantallaPresupuestos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación"
+             mc:Ignorable="d" 
+             d:DesignHeight="712" d:DesignWidth="882">
+    <Grid>
+        <materialDesign:Card Height="712">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox Name="OpcionesTipoModificar" Grid.Row="0" 
+                              materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#3498DB" >
+                    <ComboBoxItem Content="Pago De Honorarios" />
+                    <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                </ComboBox>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Name="NombreCliente" Grid.Row="1" 
+                              materialDesign:HintAssist.Hint="Cliente"  Margin="9,8,7,64" BorderBrush="#3498DB" >
+                        <ComboBoxItem Content="Cliente 1" />
+                        <ComboBoxItem Content="Cliente 2" />
+                    </ComboBox>
+                    <TextBox Grid.Row="1" materialDesign:HintAssist.Hint="Cliente" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="9,49,7,7" CaretBrush="#3498DB" BorderBrush="#3498DB" MaxLength="255"/>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox Grid.Column="0">
+                            <ListBoxItem>concepto 1</ListBoxItem>
+                            <ListBoxItem>concepto 2</ListBoxItem>
+                            <ListBoxItem>concepto 3</ListBoxItem>
+                            <ListBoxItem>concepto 4</ListBoxItem>
+                            <ListBoxItem>concepto 5</ListBoxItem>
+                            <ListBoxItem>concepto 6</ListBoxItem>
+                            <ListBoxItem>concepto 7</ListBoxItem>
+                            <ListBoxItem>concepto 8</ListBoxItem>
+                            <ListBoxItem>concepto 9</ListBoxItem>
+                            <ListBoxItem>concepto 10</ListBoxItem>
+                            <ListBoxItem>concepto 11</ListBoxItem>
+                            <ListBoxItem>concepto 12</ListBoxItem>
+                        </ListBox>
+                        <ListBox Grid.Column="1">
+                            <ListBoxItem>concepto 1</ListBoxItem>
+                            <ListBoxItem>concepto 2</ListBoxItem>
+                            <ListBoxItem>concepto 3</ListBoxItem>
+                            <ListBoxItem>concepto 4</ListBoxItem>
+                            <ListBoxItem>concepto 5</ListBoxItem>
+                            <ListBoxItem>concepto 6</ListBoxItem>
+                            <ListBoxItem>concepto 7</ListBoxItem>
+                            <ListBoxItem>concepto 8</ListBoxItem>
+                            <ListBoxItem>concepto 9</ListBoxItem>
+                            <ListBoxItem>concepto 10</ListBoxItem>
+                            <ListBoxItem>concepto 11</ListBoxItem>
+                            <ListBoxItem>concepto 12</ListBoxItem>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

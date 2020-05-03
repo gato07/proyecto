@@ -191,7 +191,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaClientes(this));
+                AbrirFormHijo(new PantallaClientes());
                 titulo.Text = "CLIENTES";
                 btnCerrarModulo.Visibility = Visibility.Visible;
             }

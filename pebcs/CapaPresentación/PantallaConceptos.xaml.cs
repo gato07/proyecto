@@ -24,6 +24,7 @@ namespace CapaPresentación
     public partial class PantallaConceptos : UserControl
     {
         Concepto concepto = new Concepto();
+        string tipo;
         public PantallaConceptos()
         {
             try
@@ -127,7 +128,15 @@ namespace CapaPresentación
                 bool res = false;
                 if (Decimal.TryParse(TXTCosto.Text, out decimal costo))
                 {
-                    res = concepto.Insertar(TXTTipo.Text, TXTNombre.Text, TXTDescripcion.Text, costo);
+                    if (OpcionesTipo.SelectedIndex == 0)
+                    {
+                        tipo = "Pago De Honorarios";
+                    }
+                    else if (OpcionesTipo.SelectedIndex == 1)
+                    {
+                        tipo = "Pago Ante Ayuntamiento";
+                    }
+                    res = concepto.Insertar(tipo, TXTNombre.Text, TXTDescripcion.Text, costo);
                     if (res)
                     {
                         PantallaCheck check = new PantallaCheck();
@@ -153,7 +162,15 @@ namespace CapaPresentación
                 DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
                 if (Decimal.TryParse(TXTCostoModificar.Text, out decimal costo))
                 {
-                    res = concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTTipoModificar.Text, TXTNombreModificar.Text, TXTDescripcionModificar.Text, costo);
+                    if (OpcionesTipoModificar.SelectedIndex == 0)
+                    {
+                        tipo = "Pago De Honorarios";
+                    }
+                    else if (OpcionesTipoModificar.SelectedIndex == 1)
+                    {
+                        tipo = "Pago Ante Ayuntamiento";
+                    }
+                    res = concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), tipo, TXTNombreModificar.Text, TXTDescripcionModificar.Text, costo);
                     if (res)
                     {
                         LlenarData();
@@ -228,7 +245,18 @@ namespace CapaPresentación
             try
             {
                 DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
-                TXTTipoModificar.Text = data.Row.ItemArray[1].ToString();
+                if(data.Row.ItemArray[1].ToString().Length==18)
+                {
+                    OpcionesTipoModificar.SelectedIndex = 0;
+                    tipo = "Pago De Honorarios";
+                }
+                else if (data.Row.ItemArray[1].ToString().Length == 22)
+                {
+                    OpcionesTipoModificar.SelectedIndex = 1;
+                    tipo = "Pago Ante Ayuntamiento";
+
+                }
+                //TXTTipoModificar.Text = data.Row.ItemArray[1].ToString();
                 TXTNombreModificar.Text = data.Row.ItemArray[2].ToString();
                 TXTDescripcionModificar.Text = data.Row.ItemArray[3].ToString();
                 TXTCostoModificar.Text = data.Row.ItemArray[4].ToString();

@@ -245,11 +245,11 @@
                     <materialDesign:Card>
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Agregar Cliente</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="RFC" Name="TXTRfc" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox  materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox materialDesign:HintAssist.Hint="Apellido" Name="TXTApellido" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox materialDesign:HintAssist.Hint="Telefono" Name="TXTTelefono" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox materialDesign:HintAssist.Hint="Email" Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
+                    <TextBox  materialDesign:HintAssist.Hint="RFC" Name="TXTRfc" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="13"/>
+                    <TextBox  materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="30"/>
+                    <TextBox materialDesign:HintAssist.Hint="Apellido" Name="TXTApellido" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="30"/>
+                    <TextBox materialDesign:HintAssist.Hint="Telefono" Name="TXTTelefono" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="10"/>
+                    <TextBox materialDesign:HintAssist.Hint="Email" Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="255"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarCliente" Content="Agregar" Margin="4" Click="btnAgregarCliente_Click" Background="#F39C12"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientes}" Background="#F39C12"/>
                 </StackPanel>
@@ -261,11 +261,11 @@
                     <materialDesign:Card>
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Cliente</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="RFC" Name="TXTRfcModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox  materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox materialDesign:HintAssist.Hint="Apellido" Name="TXTApellidoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox materialDesign:HintAssist.Hint="Telefono" Name="TXTTelefonoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
-                    <TextBox materialDesign:HintAssist.Hint="Email" Name="TXTEmailModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12"/>
+                    <TextBox  materialDesign:HintAssist.Hint="RFC" Name="TXTRfcModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="13"/>
+                    <TextBox  materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="30"/>
+                    <TextBox materialDesign:HintAssist.Hint="Apellido" Name="TXTApellidoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="30"/>
+                    <TextBox materialDesign:HintAssist.Hint="Telefono" Name="TXTTelefonoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="10"/>
+                    <TextBox materialDesign:HintAssist.Hint="Email" Name="TXTEmailModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F39C12" BorderBrush="#F39C12" MaxLength="255"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnClienteModificar" Content="Modificar" Margin="4" Click="btnClienteModificar_Click" Background="#F39C12"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioClientesModificar}" Background="#F39C12"/>
                 </StackPanel>

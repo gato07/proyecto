@@ -99,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controles\TarjetaLicencia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,6 +116,9 @@
     </Compile>
     <Compile Include="Controles\FlipperUsuarioInactivo.xaml.cs">
       <DependentUpon>FlipperUsuarioInactivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\TarjetaLicencia.xaml.cs">
+      <DependentUpon>TarjetaLicencia.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -138,6 +145,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PantallaInmuebles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PantallaLicencias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PantallaPresupuestos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +183,12 @@
     </Compile>
     <Compile Include="PantallaInmuebles.xaml.cs">
       <DependentUpon>PantallaInmuebles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaLicencias.xaml.cs">
+      <DependentUpon>PantallaLicencias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaPresupuestos.xaml.cs">
+      <DependentUpon>PantallaPresupuestos.xaml</DependentUpon>
     </Compile>
     <Compile Include="PantallaUsuario.xaml.cs">
       <DependentUpon>PantallaUsuario.xaml</DependentUpon>

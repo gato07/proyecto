@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="CapaPresentación.Controles.TarjetaLicencia"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación.Controles"
+             mc:Ignorable="d" d:DesignWidth="280" Height="140">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- you only need bring this resource in if you want to specify the circular style statically -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <materialDesign:ColorZone Grid.Column="0" Background="#1ABC9C" Height="140"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Licencia De Construcción" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="9" FontWeight="Bold"/>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="44"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="130"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Folio:" Name="TBFolio"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Tipo Obra:" Name="TBTipObra" Margin="5 0 0 0" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Uso:" Name="TBUso" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="No.Licencia:" Name="TBNoLicencia" Margin="5 0 0 0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Presupuesto:" Name="TBPresupuesto" Margin="5 0 0 0" />
+                        <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,0,5,0">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
+                        </materialDesign:ColorZone>
+                        <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 0 5 0" CornerRadius="10 0 10 10">
+
+                        </materialDesign:ColorZone>
+                        <ProgressBar Value="50" Grid.Row="4" Height="Auto" Grid.ColumnSpan="2"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

@@ -12,13 +12,11 @@ namespace CapaPresentación
     public partial class PantallaClientes : UserControl
     {
         Cliente cliente = new Cliente();
-        Menu_Principal2 Mn;
-        public PantallaClientes(Object A)
+        public PantallaClientes()
         {
             try
             {
                 InitializeComponent();
-                Mn = A as Menu_Principal2;
                 LlenarData();
             }
             catch(Exception ex)

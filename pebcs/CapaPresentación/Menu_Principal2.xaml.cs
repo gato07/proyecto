@@ -59,7 +59,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaClientes(this));
+                AbrirFormHijo(new PantallaClientes());
             }
             catch(Exception ex)
             {
@@ -92,7 +92,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnLicencias.Margin = new Thickness(0, 80, 0, 0);
+                BtnLicencias.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -103,7 +103,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnLicencias.Margin = new Thickness(0, 80, 146, 0);
+                BtnLicencias.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -114,7 +114,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnDictamenes.Margin = new Thickness(0, 20, 146, 0);
+                BtnDictamenes.Margin = new Thickness(0, 10, 120, 0);
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnDictamenes.Margin = new Thickness(0, 20, 0, 0);
+                BtnDictamenes.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -136,7 +136,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnEstimaciones.Margin = new Thickness(0, 20, 146, 0);
+                BtnEstimaciones.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -147,7 +147,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnEstimaciones.Margin = new Thickness(0, 20, 0, 0);
+                BtnEstimaciones.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -158,7 +158,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnCargaDeTrabajo.Margin = new Thickness(0, 20, 146, 0);
+                BtnCargaDeTrabajo.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -169,7 +169,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnCargaDeTrabajo.Margin = new Thickness(0, 20, 0, 0);
+                BtnCargaDeTrabajo.Margin = new Thickness(0,10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -180,7 +180,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnEmpleados.Margin = new Thickness(0, 20, 146, 0);
+                BtnEmpleados.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -192,7 +192,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnEmpleados.Margin = new Thickness(0, 20, 0, 0);
+                BtnEmpleados.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -204,7 +204,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnClientes.Margin = new Thickness(0, 20, 146, 0);
+                BtnClientes.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -216,7 +216,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnClientes.Margin = new Thickness(0, 20, 0, 0);
+                BtnClientes.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -228,7 +228,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnConceptos.Margin = new Thickness(0, 20, 146, 0);
+                BtnConceptos.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -240,7 +240,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnConceptos.Margin = new Thickness(0, 20, 0, 0);
+                BtnConceptos.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
             {
@@ -252,7 +252,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnInmuebles.Margin = new Thickness(0, 20, 146, 0);
+                BtnInmuebles.Margin = new Thickness(0, 10, 120, 0);
             }
             catch(Exception ex)
             {
@@ -264,9 +264,43 @@ namespace CapaPresentación
         {
             try
             {
-                BtnInmuebles.Margin = new Thickness(0, 20, 0, 0);
+                BtnInmuebles.Margin = new Thickness(0, 10, 0, 0);
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void BtnLicencias_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirFormHijo(new PantallaLicencias());
+        }
+
+        private void BtnPresupuesto_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirFormHijo(new PantallaPresupuestos());
+        }
+
+        private void BtnPresupuesto_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                BtnPresupuesto.Margin = new Thickness(0, 80, 120, 0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void BtnPresupuesto_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                BtnPresupuesto.Margin = new Thickness(0, 80, 0, 0);
+            }
+            catch (Exception ex)
             {
 
             }
