@@ -24,16 +24,30 @@ namespace CapaPresentación
 
             }
         }
+
+        private DataTable PresentacionTable(DataTable Dt)
+        {
+            try
+            {
+                Dt.Columns["Rfc"].ColumnName = "RFC";
+                Dt.Columns["Telefono"].ColumnName = "Teléfono";
+                return Dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         public void LlenarData()
         {
             try
             {
                 DataTable table = new DataTable();
-                table = cliente.SelActivos();
+                table = PresentacionTable(cliente.SelActivos());
                 GridClientesActivos.ItemsSource = table.AsDataView();
                 ACTIVOS.Text = "ACTIVOS: " + table.Rows.Count.ToString();
                 DataTable table2 = new DataTable();
-                table2 = cliente.SelEliminados();
+                table2 = PresentacionTable(cliente.SelEliminados());
                 GridClientesInactivos.ItemsSource = table2.AsDataView();
                 INACTIVOS.Text = "INACTIVOS: " + table2.Rows.Count.ToString();
             }
@@ -49,13 +63,13 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = cliente.SelLikeRfc(txt, Actividad);
+                    table2 = PresentacionTable(cliente.SelLikeRfc(txt, Actividad));
                     GridClientesInactivos.ItemsSource = table2.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table = new DataTable();
-                    table = cliente.SelLikeRfc(txt, Actividad);
+                    table = PresentacionTable(cliente.SelLikeRfc(txt, Actividad));
                     GridClientesActivos.ItemsSource = table.AsDataView();
                 }
             }
@@ -71,13 +85,13 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = cliente.SelLikeNombre(txt, Actividad);
+                    table2 = PresentacionTable(cliente.SelLikeNombre(txt, Actividad));
                     GridClientesInactivos.ItemsSource = table2.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table = new DataTable();
-                    table = cliente.SelLikeNombre(txt, Actividad);
+                    table = PresentacionTable(cliente.SelLikeNombre(txt, Actividad));
                     GridClientesActivos.ItemsSource = table.AsDataView();
                 }
             }
@@ -93,13 +107,13 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = cliente.SelLikeTelefono(txt, Actividad);
+                    table2 = PresentacionTable(cliente.SelLikeTelefono(txt, Actividad));
                     GridClientesInactivos.ItemsSource = table2.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table = new DataTable();
-                    table = cliente.SelLikeTelefono(txt, Actividad);
+                    table = PresentacionTable(cliente.SelLikeTelefono(txt, Actividad));
                     GridClientesActivos.ItemsSource = table.AsDataView();
                 }
             }
@@ -115,13 +129,13 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = cliente.SelLikeEmail(txt, Actividad);
+                    table2 = PresentacionTable(cliente.SelLikeEmail(txt, Actividad));
                     GridClientesInactivos.ItemsSource = table2.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table = new DataTable();
-                    table = cliente.SelLikeEmail(txt, Actividad);
+                    table = PresentacionTable(cliente.SelLikeEmail(txt, Actividad));
                     GridClientesActivos.ItemsSource = table.AsDataView();
                 }
             }

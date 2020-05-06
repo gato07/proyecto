@@ -39,11 +39,11 @@ namespace CapaLogica
             }
         }*/
 
-        public List<string> BuscarColoniaXCodigoPostal(string Codigo_Postal)
+        public string[] BuscarColoniaXCodigoPostal(string Codigo_Postal)
         {
             try
             {
-                List<string> colonias = new List<string>();
+                string[] colonias = new string[] {"Centro" };
                 string url = "https://api-sepomex.hckdrk.mx/query/get_colonia_por_cp/" + Codigo_Postal;
                 var response = new WebClient().DownloadData(url);
                 var responseutf8 = Encoding.UTF8.GetString(response);
@@ -52,12 +52,12 @@ namespace CapaLogica
                 Code_Error = Convert.ToInt16(json.code_error);
                 Error_Message = Convert.ToString(json.error_message);*/
                 string resultado = Convert.ToString(json.response.colonia);
-                colonias = JsonConvert.DeserializeObject<List<string>>(resultado);
+                colonias = JsonConvert.DeserializeObject<string[]>(resultado);
                 return colonias;
             }
             catch (Exception ex)
             {
-                return new List<string>();
+                return new string[]{ "Centro" };
             }
         }
 

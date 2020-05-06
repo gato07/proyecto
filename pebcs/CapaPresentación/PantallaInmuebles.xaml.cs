@@ -40,12 +40,12 @@ namespace CapaPresentación
         {
             try
             {
-                Dt.Columns["Clave_Catastral"].ColumnName = "Clave Catastral";
-                Dt.Columns["Nombre_Propietario"].ColumnName = "Nombre Propietario";
-                Dt.Columns["Telefono_Propietario"].ColumnName = "Telefono Propietario";
-                Dt.Columns["Entre_Calles"].ColumnName = "Entre Calles";
-                Dt.Columns["Numero_Interior"].ColumnName = "Numero Interior";
-                Dt.Columns["Numero_Exterior"].ColumnName = "Numero Exterior";
+                Dt.Columns["Clave_Catastral"].ColumnName = "Clave catastral";
+                Dt.Columns["Nombre_Propietario"].ColumnName = "Nombre propietario";
+                Dt.Columns["Telefono_Propietario"].ColumnName = "Teléfono propietario";
+                Dt.Columns["Entre_Calles"].ColumnName = "Entre calles";
+                Dt.Columns["Numero_Interior"].ColumnName = "Número interior";
+                Dt.Columns["Numero_Exterior"].ColumnName = "Número exterior";
                 return Dt;
             }
             catch(Exception ex)
@@ -165,7 +165,7 @@ namespace CapaPresentación
             {
                 bool res = false;
                 DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
-                res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, TXTColoniaModificar.Text, TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
+                res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, CMBColoniaModificar.Text.Trim(), TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
                 if (res)
                 {
                     LlenarData();
@@ -185,7 +185,7 @@ namespace CapaPresentación
             try
             {
                 bool re = false;
-                re = inmueble.Insertar(TXTClaveCatastral.Text, TXTNombrePropietario.Text, TXTTelefonoPropietario.Text, TXTColonia.Text, TXTCalle.Text, TXTEntreCalles.Text, TXTNumeroInterior.Text, TXTNumeroExterior.Text);
+                re = inmueble.Insertar(TXTClaveCatastral.Text, TXTNombrePropietario.Text, TXTTelefonoPropietario.Text, CMBColonia.Text.Trim(), TXTCalle.Text, TXTEntreCalles.Text, TXTNumeroInterior.Text, TXTNumeroExterior.Text);
                 if (re)
                 {
                     PantallaCheck check = new PantallaCheck();
@@ -260,7 +260,8 @@ namespace CapaPresentación
                 TXTClaveCatastralModificar.Text = data.Row.ItemArray[1].ToString();
                 TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
                 TXTTelefonoPropietarioModificar.Text = data.Row.ItemArray[3].ToString();
-                TXTColoniaModificar.Text = data.Row.ItemArray[4].ToString();
+                CMBColoniaModificar.ItemsSource = new string[]{data.Row.ItemArray[4].ToString()};
+                CMBColoniaModificar.SelectedIndex = 0;
                 TXTCalleModificar.Text = data.Row.ItemArray[5].ToString();
                 TXTEntreCallesModificar.Text = data.Row.ItemArray[6].ToString();
                 TXTNumeroInteriorModificar.Text = data.Row.ItemArray[7].ToString();
@@ -419,6 +420,40 @@ namespace CapaPresentación
 
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void TXTCodigoPostal_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string codpos = TXTCodigoPostal.Text.Trim();
+                if (codpos.Length == 5)
+                {
+                    Sepomex sepomex = new Sepomex();
+                    CMBColonia.ItemsSource = sepomex.BuscarColoniaXCodigoPostal(codpos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void TXTCodigoPostalModificar_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string codpos = TXTCodigoPostalModificar.Text.Trim();
+                if (codpos.Length == 5)
+                {
+                    Sepomex sepomex = new Sepomex();
+                    CMBColoniaModificar.ItemsSource = sepomex.BuscarColoniaXCodigoPostal(codpos);
+                }
+            }
+            catch (Exception ex)
             {
 
             }

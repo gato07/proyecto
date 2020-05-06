@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
 using System.Data;
-
+using System.Globalization;
 
 namespace CapaPresentación
 {
@@ -37,16 +37,39 @@ namespace CapaPresentación
 
             }
         }
+
+        private DataTable PresentacionTable(DataTable Dt)
+        {
+            try
+            {
+                DataTable copia = Dt.Clone();
+                copia.Columns["Descripcion"].ColumnName = "Descripción";
+                copia.Columns["Costo"].DataType = typeof(string);
+                int i = 0;
+                foreach (DataRow row in Dt.Rows)
+                {
+                    copia.ImportRow(row);
+                    copia.Rows[i]["Costo"] = Convert.ToDecimal(copia.Rows[i]["Costo"]).ToString("C");
+                    i++;
+                }
+                return copia;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public void LlenarData()
         {
             try
             {
                 DataTable table = new DataTable();
-                table = concepto.SelActivos();
+                table = PresentacionTable(concepto.SelActivos());
                 GridConceptosActivos.ItemsSource = table.AsDataView();
                 ACTIVOS.Text = "Activos: " + table.Rows.Count.ToString();
                 DataTable table2 = new DataTable();
-                table2 = concepto.SelEliminados();
+                table2 = PresentacionTable(concepto.SelEliminados());
                 GridConceptosInactivos.ItemsSource = table2.AsDataView();
                 INACTIVOS.Text = "Inactivos: " + table2.Rows.Count.ToString();
             }
@@ -55,6 +78,7 @@ namespace CapaPresentación
 
             }
         }
+        
         public void llenarDataLikeTipo(string txt, bool Actividad)
         {
             try
@@ -62,14 +86,14 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table = new DataTable();
-                    table = concepto.SelLikeTipo(txt, Actividad);
-                    GridConceptosActivos.ItemsSource = table.AsDataView();
+                    table = PresentacionTable(concepto.SelLikeTipo(txt, Actividad));
+                    GridConceptosInactivos.ItemsSource = table.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = concepto.SelLikeTipo(txt, Actividad);
-                    GridConceptosInactivos.ItemsSource = table2.AsDataView();
+                    table2 = PresentacionTable(concepto.SelLikeTipo(txt, Actividad));
+                    GridConceptosActivos.ItemsSource = table2.AsDataView();
                 }
             }
             catch(Exception ex)
@@ -84,13 +108,13 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = concepto.SelLikeNombre(txt, Actividad);
+                    table2 = PresentacionTable(concepto.SelLikeNombre(txt, Actividad));
                     GridConceptosInactivos.ItemsSource = table2.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table = new DataTable();
-                    table = concepto.SelLikeNombre(txt, Actividad);
+                    table = PresentacionTable(concepto.SelLikeNombre(txt, Actividad));
                     GridConceptosActivos.ItemsSource = table.AsDataView();
                 }
             }
@@ -106,13 +130,13 @@ namespace CapaPresentación
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
-                    table2 = concepto.SelLikeDescripcion(txt, Actividad);
+                    table2 = PresentacionTable(concepto.SelLikeDescripcion(txt, Actividad));
                     GridConceptosInactivos.ItemsSource = table2.AsDataView();
                 }
                 else if (Actividad == false)
                 {
                     DataTable table = new DataTable();
-                    table = concepto.SelLikeDescripcion(txt, Actividad);
+                    table = PresentacionTable(concepto.SelLikeDescripcion(txt, Actividad));
                     GridConceptosActivos.ItemsSource = table.AsDataView();
                 }
             }
@@ -126,7 +150,8 @@ namespace CapaPresentación
             try
             {
                 bool res = false;
-                if (Decimal.TryParse(TXTCosto.Text, out decimal costo))
+                if (Decimal.TryParse(TXTCosto.Text.Trim(), NumberStyles.Currency,
+                    CultureInfo.CurrentCulture.NumberFormat, out decimal costo))
                 {
                     if (OpcionesTipo.SelectedIndex == 0)
                     {
@@ -160,7 +185,8 @@ namespace CapaPresentación
             {
                 bool res = false;
                 DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
-                if (Decimal.TryParse(TXTCostoModificar.Text, out decimal costo))
+                if (Decimal.TryParse(TXTCostoModificar.Text.Trim(), NumberStyles.Currency, 
+                    CultureInfo.CurrentCulture.NumberFormat, out decimal costo))
                 {
                     if (OpcionesTipoModificar.SelectedIndex == 0)
                     {

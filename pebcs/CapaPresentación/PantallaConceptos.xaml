@@ -74,10 +74,10 @@
                                         </Grid.ColumnDefinitions>
                                         <ToggleButton Grid.Column="0" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
                                                       Margin="0,0,0,0" Name="ActivadorActivos" IsChecked="False" Click="ActivadorActivos_Click" />
-                                        <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }" 
+                                        <TextBox materialDesign:HintAssist.Hint="Búsqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }" 
                                                  CaretBrush="#E67E22" BorderBrush="#E67E22"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaActivos" IsEnabled="False" KeyUp="TxtBusquedaActivos_KeyUp"/>
                                         <ComboBox Name="OpcionesActivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                                                  materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#E67E22" Height="28">
+                                                  materialDesign:HintAssist.Hint="Opciones de Búsqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#E67E22" Height="28">
                                             <ComboBoxItem
                                                 Content="Tipo" />
                                             <ComboBoxItem
@@ -131,10 +131,10 @@
                                         </Grid.ColumnDefinitions>
                                         <ToggleButton Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
                                                       Margin="0,0,0,0" Name="ActivadorInactivos" IsChecked="False" Click="ActivadorInactivos_Click" />
-                                        <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                                        <TextBox materialDesign:HintAssist.Hint="Búsqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
                                                  CaretBrush="#E67E22" BorderBrush="#E67E22"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaInactivos" IsEnabled="False" KeyUp="TxtBusquedaInactivos_KeyUp"/>
                                         <ComboBox Name="OpcionesInactivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                                                  materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#E67E22" Height="28">
+                                                  materialDesign:HintAssist.Hint="Opciones de Búsqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#E67E22" Height="28">
                                             <ComboBoxItem
                                                 Content="Tipo" />
                                             <ComboBoxItem
@@ -174,7 +174,7 @@
                         <ComboBoxItem Content="Pago Ante Ayuntamiento" />
                     </ComboBox>
                     <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
-                    <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
+                    <TextBox materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
                     <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="10"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarConcepto" Content="Agregar" Margin="4" Click="btnAgregarConcepto_Click" Background="#E67E22"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}" Background="#E67E22"/>
@@ -193,7 +193,7 @@
                         <ComboBoxItem Content="Pago Ante Ayuntamiento" />
                     </ComboBox>
                     <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
-                    <TextBox materialDesign:HintAssist.Hint="Descripcion" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
+                    <TextBox materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
                     <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="10"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnConceptoModificar" Content="Modificar" Margin="4" Click="btnConceptoModificar_Click" Background="#E67E22"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConceptosModificar}" Background="#E67E22"/>
