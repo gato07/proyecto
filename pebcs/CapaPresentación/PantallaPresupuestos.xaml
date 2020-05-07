@@ -7,62 +7,123 @@
              xmlns:local="clr-namespace:CapaPresentación"
              mc:Ignorable="d" 
              d:DesignHeight="712" d:DesignWidth="882">
+    <Control.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TemplateListaDepresupuesto">
+                <materialDesign:Card>
+                    <Grid Height="60" Width="240">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Name="TxtNombrePresupuestoFront" Text="{Binding ConceptoA}" Grid.Row="0" HorizontalAlignment="Center" />
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="TxtPrecioPresupuestoFront" Text="{Binding ImporteA}" Grid.Column="0" HorizontalAlignment="Center" />
+                            <Button Grid.Column="1" Name="BtnAgregar" Click="BtnAgregar_Click" Background="#3498DB" >
+                                Agregar
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </DataTemplate>
+            <DataTemplate x:Key="TemplateListaDepresupuestoAgregado">
+                <materialDesign:Card>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Name="TxtNombrePresupuestoAgregado" Text="{Binding ConceptoA}" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                        <TextBox Name="TxtPrecioAgregado"  Grid.Column="1" Text="{Binding ImporteA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
+                        <TextBox Name="TxtCantidadAgregado"  Grid.Column="2" Text="{Binding CantidadA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
+                        <TextBlock Name="TxtTotalAgregado" Grid.Column="3" Text="{Binding TotalA}" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                        <Button Name="BtnQuitar" Click="BtnQuitar_Click" Grid.Column="4" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" Background="#3498DB">
+                            <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
     <Grid>
         <materialDesign:Card Height="712">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="200"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ComboBox Name="OpcionesTipoModificar" Grid.Row="0" 
-                              materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#3498DB" >
-                    <ComboBoxItem Content="Pago De Honorarios" />
-                    <ComboBoxItem Content="Pago Ante Ayuntamiento" />
-                </ComboBox>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Presupuesto" HorizontalAlignment="Center" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
+                        <ToggleButton Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Margin="30,0,612,0" Name="Activador" Click="Activador_Click" />
+                        <TextBox materialDesign:HintAssist.Hint="Nombre A Quien Va Dirijido"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                                                 CaretBrush="#3498DB" BorderBrush="#3498DB" Margin="80,0,42,5" Grid.Row="2" Name="TxtBusquedaCliente" IsEnabled="False" />
+                        <ComboBox Name="Clientes" Grid.Row="1"
+                              materialDesign:HintAssist.Hint="Seleccione Un Cliente" Margin="80,0,42,5" BorderBrush="#3498DB">
+                            <ComboBoxItem Content="Cliente 1" />
+                            <ComboBoxItem Content="Cliente 2" />
+                        </ComboBox>
+                        <ComboBox Name="OpcionesTipo" Grid.Row="3"
+                              materialDesign:HintAssist.Hint="Tipo De Presupuesto" Margin="80,14,42,8" BorderBrush="#3498DB" SelectionChanged="OpcionesTipo_SelectionChanged" >
+                            <ComboBoxItem Content="Pago De Honorarios" />
+                            <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="148,0,0,160" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Cerrar" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove"  >
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
+                                <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="148,60,0,100" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Limpiar"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove" >
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="Broom"/>
+                                <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="148,120,0,40" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_GenerarPresupuesto" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_GenerarPresupuesto_MouseLeave" MouseMove="Btn_GenerarPresupuesto_MouseMove" >
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="FileDocument"/>
+                                <TextBlock Text="Agregar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Grid>
                 <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <ComboBox Name="NombreCliente" Grid.Row="1" 
-                              materialDesign:HintAssist.Hint="Cliente"  Margin="9,8,7,64" BorderBrush="#3498DB" >
-                        <ComboBoxItem Content="Cliente 1" />
-                        <ComboBoxItem Content="Cliente 2" />
-                    </ComboBox>
-                    <TextBox Grid.Row="1" materialDesign:HintAssist.Hint="Cliente" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="9,49,7,7" CaretBrush="#3498DB" BorderBrush="#3498DB" MaxLength="255"/>
-                    <Grid Grid.Row="0">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="250"/>
                         </Grid.ColumnDefinitions>
-                        <ListBox Grid.Column="0">
-                            <ListBoxItem>concepto 1</ListBoxItem>
-                            <ListBoxItem>concepto 2</ListBoxItem>
-                            <ListBoxItem>concepto 3</ListBoxItem>
-                            <ListBoxItem>concepto 4</ListBoxItem>
-                            <ListBoxItem>concepto 5</ListBoxItem>
-                            <ListBoxItem>concepto 6</ListBoxItem>
-                            <ListBoxItem>concepto 7</ListBoxItem>
-                            <ListBoxItem>concepto 8</ListBoxItem>
-                            <ListBoxItem>concepto 9</ListBoxItem>
-                            <ListBoxItem>concepto 10</ListBoxItem>
-                            <ListBoxItem>concepto 11</ListBoxItem>
-                            <ListBoxItem>concepto 12</ListBoxItem>
-                        </ListBox>
-                        <ListBox Grid.Column="1">
-                            <ListBoxItem>concepto 1</ListBoxItem>
-                            <ListBoxItem>concepto 2</ListBoxItem>
-                            <ListBoxItem>concepto 3</ListBoxItem>
-                            <ListBoxItem>concepto 4</ListBoxItem>
-                            <ListBoxItem>concepto 5</ListBoxItem>
-                            <ListBoxItem>concepto 6</ListBoxItem>
-                            <ListBoxItem>concepto 7</ListBoxItem>
-                            <ListBoxItem>concepto 8</ListBoxItem>
-                            <ListBoxItem>concepto 9</ListBoxItem>
-                            <ListBoxItem>concepto 10</ListBoxItem>
-                            <ListBoxItem>concepto 11</ListBoxItem>
-                            <ListBoxItem>concepto 12</ListBoxItem>
-                        </ListBox>
+                        <ListBox Grid.Column="0" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}" Name="ListaConceptosAgregados" Margin="0,0,0,15"/>
+                        <ListBox Grid.Column="1" ItemTemplate="{StaticResource TemplateListaDepresupuesto}" Name="ListaConceptos" Margin="0,0,0,15" />
                     </Grid>
                 </Grid>
             </Grid>
