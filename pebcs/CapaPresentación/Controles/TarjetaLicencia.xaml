@@ -27,7 +27,7 @@
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Licencia De Construcción" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="9" FontWeight="Bold"/>
+                    <Label Grid.Row="0" Content="Titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="9" FontWeight="Bold"/>
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="22"/>

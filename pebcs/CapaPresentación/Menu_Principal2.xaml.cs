@@ -279,7 +279,7 @@ namespace CapaPresentación
 
         private void BtnPresupuesto_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaPresupuestos());
+            AbrirFormHijo(new Pantalla_Presupustos(this));
         }
 
         private void BtnPresupuesto_MouseLeave(object sender, MouseEventArgs e)

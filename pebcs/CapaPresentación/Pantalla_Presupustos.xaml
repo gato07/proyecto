@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CapaPresentación"
-             xmlns:Controles="clr-namespace:CapaPresentación.Controles" x:Class="CapaPresentación.PantallaLicencias"
+             xmlns:Controles="clr-namespace:CapaPresentación.Controles" x:Class="CapaPresentación.Pantalla_Presupustos"
              mc:Ignorable="d" 
              d:DesignHeight="712" d:DesignWidth="882">
     <Grid>
@@ -31,7 +31,7 @@
                     <ToggleButton Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
                                   Margin="0,0,100,0" Name="Activador" IsChecked="False" />
                     <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
-                             CaretBrush="#1ABC9C" BorderBrush="#1ABC9C"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" />
+                             CaretBrush="#3498DB" BorderBrush="#3498DB"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" />
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
                             Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" 
@@ -42,7 +42,7 @@
                         </StackPanel>
                     </Button>
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" IsEnabled="False"
-                            Grid.Column="4" Grid.Row="1" Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Grid.Column="4" Grid.Row="1" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Limpiar" 
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
                         <StackPanel>
@@ -51,8 +51,8 @@
                         </StackPanel>
                     </Button>
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
-                            Grid.Column="4" Grid.Row="2" Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_ElaborarPresupuesto"
+                            Grid.Column="4" Grid.Row="2" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_ElaborarPresupuesto" Click="Btn_ElaborarPresupuesto_Click"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="UserAdd"/>
@@ -60,7 +60,7 @@
                         </StackPanel>
                     </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#1ABC9C" Height="28">
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#3498DB" Height="28">
                         <ComboBoxItem
                             Content="Nombre" />
                         <ComboBoxItem
@@ -70,26 +70,26 @@
                         <ComboBoxItem
                             Content="Usuario" />
                     </ComboBox>
-                    <TextBlock Text="Presupuestos" Name="titulo" Foreground="#1ABC9C" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
+                    <TextBlock Text="Presupuestos" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
                     <Grid Grid.Row="2" Grid.Column="0" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="ACTIVOS:" Name="ACTIVOS" Foreground="#1ABC9C" FontSize="15" FontWeight="Bold" Grid.Row="0"/>
-                        <TextBlock Text="INACTIVOS:" Name="INACTIVOS" Foreground="#1ABC9C" FontSize="15" FontWeight="Bold" Grid.Row="1"/>
+                        <TextBlock Text="ACTIVOS:" Name="ACTIVOS" Foreground="#3498DB" FontSize="15" FontWeight="Bold" Grid.Row="0"/>
+                        <TextBlock Text="INACTIVOS:" Name="INACTIVOS" Foreground="#3498DB" FontSize="15" FontWeight="Bold" Grid.Row="1"/>
                     </Grid>
                 </Grid>
             </StackPanel>
         </materialDesign:Card>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="25,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="315,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="605,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="25,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="315,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="605,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="25,370,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="315,370,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="605,370,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="15,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="235,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="455,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="669,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="16,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="236,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="456,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="670,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
+
     </Grid>
 </UserControl>

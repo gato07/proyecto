@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="CapaPresentación.Controles.Presupuesto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:CapaPresentación.Controles"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="200">
+    <Grid>
+        <materialDesign:Card Height="240" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone Grid.Row="0" Height="40" Background="#3498DB" CornerRadius="0 0 100 0">
+                    <Label Grid.Row="0" Content="Titulo" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="9" FontWeight="Bold"/>
+                </materialDesign:ColorZone>
+                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Nomre Cliente:" Name="NombreCliente" Margin="5,19,0,161" Height="20"/>
+                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Empleado:" Name="Empleado" Margin="5,60,0,120" Height="20"/>
+                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fecha Elaboración:" Name="FechaElaboración" Margin="5,100,0,80" Height="20"/>
+                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Aprobado:" Name="Aprobado" Margin="5,140,0,40" Height="20"/>
+                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Total:" Name="Total" Margin="5,179,0,1" Height="20"/>
+
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

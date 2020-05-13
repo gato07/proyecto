@@ -23,40 +23,43 @@ namespace CapaPresentación
     public partial class PantallaPresupuestos : UserControl
     {
         Concepto ListaConcepto;
+        Cliente TiCliente;
         Concepto[] ListConceptos;
+        Cliente[] TodCliente;
         public PantallaPresupuestos()
         {
             InitializeComponent();
+            LlenarCombo();
         }
 
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(148, 0, 0, 160);
+            Btn_Cerrar.Margin = new Thickness(53, 0, 0, 160);
         }
 
         private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(98, 0, 0, 160);
+            Btn_Cerrar.Margin = new Thickness(0, 0, 0, 160);
         }
 
         private void Btn_Limpiar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Limpiar.Margin = new Thickness(148, 60, 0, 100);
+            Btn_Limpiar.Margin = new Thickness(53, 60, 0, 100);
         }
 
         private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Limpiar.Margin = new Thickness(98, 60, 0, 100);
+            Btn_Limpiar.Margin = new Thickness(0, 60, 0, 100);
         }
 
         private void Btn_GenerarPresupuesto_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_GenerarPresupuesto.Margin = new Thickness(148, 120, 0, 40);
+            Btn_GenerarPresupuesto.Margin = new Thickness(53, 120, 0, 40);
         }
 
         private void Btn_GenerarPresupuesto_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_GenerarPresupuesto.Margin = new Thickness(98, 120, 0, 40);
+            Btn_GenerarPresupuesto.Margin = new Thickness(0, 120, 0, 40);
         }
 
         public void llenar(int x)
@@ -102,6 +105,22 @@ namespace CapaPresentación
             public float TotalA { get; set; }
             public string Tipo { get; set; }
         }
+        public class ClientesInfo
+        {
+            public int ID { get; set; }
+            public string Nombre { get; set; }
+            public string RFC { get; set; }
+        }
+        public void LlenarCombo()
+        {
+            TiCliente = new Cliente();
+            TodCliente=TiCliente.TableToArray(TiCliente.SelActivos());
+            for(int x=0;x<TodCliente.Length;x++)
+            {
+                ClientesInfo clientesInfo = (new ClientesInfo() { ID =  TodCliente[x].Id,Nombre=TodCliente[x].Nombre,RFC=TodCliente[x].Rfc});
+                Clientes.Items.Add(clientesInfo);
+            }
+        }
 
         private void OpcionesTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -117,6 +136,7 @@ namespace CapaPresentación
             {
                 ListaConceptosAgregados.Items.Add(P);
                 ListaConceptos.Items.Remove(P);
+                Total.Text = ((P.CantidadA * P.ImporteA)+Convert.ToInt32(Total.Text)).ToString();
             }
         }
         private void Activador_Click(object sender, RoutedEventArgs e)
@@ -147,6 +167,33 @@ namespace CapaPresentación
                 }
 
             }
+        }
+
+        private void TxtPrecioAgregado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+            Grid grid = (Grid)box.Parent;
+            PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
+            if(P!=null)
+            {
+                Total.Text = ((P.CantidadA * P.ImporteA) + Convert.ToInt32(Total.Text)).ToString();
+            }
+        }
+
+        private void TxtCantidadAgregado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+            Grid grid = (Grid)box.Parent;
+            PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
+            if (P != null)
+            {
+                Total.Text =((P.CantidadA * P.ImporteA)+Convert.ToInt16(Total.Text)).ToString();
+            }
+        }
+
+        private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

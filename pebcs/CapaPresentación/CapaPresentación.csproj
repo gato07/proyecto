@@ -102,6 +102,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controles\Presupuesto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controles\TarjetaLicencia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +123,9 @@
     </Compile>
     <Compile Include="Controles\FlipperUsuarioInactivo.xaml.cs">
       <DependentUpon>FlipperUsuarioInactivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Presupuesto.xaml.cs">
+      <DependentUpon>Presupuesto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controles\TarjetaLicencia.xaml.cs">
       <DependentUpon>TarjetaLicencia.xaml</DependentUpon>
@@ -163,7 +170,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pantalla_InfoLicencia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pantalla_PerfilUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantalla_Presupustos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,8 +211,14 @@
     <Compile Include="PantallaUsuario.xaml.cs">
       <DependentUpon>PantallaUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pantalla_InfoLicencia.xaml.cs">
+      <DependentUpon>Pantalla_InfoLicencia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pantalla_PerfilUsuario.xaml.cs">
       <DependentUpon>Pantalla_PerfilUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantalla_Presupustos.xaml.cs">
+      <DependentUpon>Pantalla_Presupustos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
