@@ -94,6 +94,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Reportes\PresupuestoLicenciaConstrucción.xaml.cs">
+      <DependentUpon>PresupuestoLicenciaConstrucción.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controles\FlipperUsuarioActivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pantalla_Presupustos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reportes\PresupuestoLicenciaConstrucción.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +283,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\logoEmpresa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

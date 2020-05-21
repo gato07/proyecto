@@ -41,9 +41,8 @@
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Name="TxtNombrePresupuestoAgregado" Text="{Binding ConceptoA}" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                        <TextBox Name="TxtPrecioAgregado"  Grid.Column="1" Text="{Binding ImporteA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" LostFocus="TxtPrecioAgregado_LostFocus" />
-                        <TextBox Name="TxtCantidadAgregado"  Grid.Column="2" Text="{Binding CantidadA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" LostFocus="TxtCantidadAgregado_LostFocus"/>
-                        <TextBlock Name="TxtTotalAgregado" Grid.Column="3" Text="{Binding TotalA}" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                        <TextBox Name="TxtPrecioAgregado"  Grid.Column="3" Text="{Binding TotalA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" LostFocus="TxtPrecioAgregado_LostFocus" />
+                        <TextBlock Name="TxtTotalAgregado" Grid.Column="1" Text="{Binding ImporteA}" HorizontalAlignment="Left" VerticalAlignment="Center"  />
                         <Button Name="BtnQuitar" Click="BtnQuitar_Click" Grid.Column="4" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" Background="#3498DB">
                             <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
                         </Button>

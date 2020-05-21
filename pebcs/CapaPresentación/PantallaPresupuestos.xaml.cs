@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
+using CapaPresentación.Reportes;
 
 namespace CapaPresentación
 {
@@ -193,7 +194,16 @@ namespace CapaPresentación
 
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
         {
-
+            string[,] vs = new string[ListaConceptosAgregados.Items.Count,3];
+            for(int x=0; x<ListaConceptosAgregados.Items.Count;x++)
+            {
+                PresupuestoAgregado presupuestoAgregado = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
+                vs[x, 0] = presupuestoAgregado.ConceptoA;
+                vs[x, 1] = presupuestoAgregado.Tipo;
+                vs[x, 2] = presupuestoAgregado.ImporteA.ToString();
+            }
+            PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(vs);
+            construcción.ShowDialog();
         }
     }
 }

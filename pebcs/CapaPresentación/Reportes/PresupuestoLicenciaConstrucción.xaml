@@ -1,0 +1,126 @@
+﻿<Window x:Class="CapaPresentación.Reportes.PresupuestoLicenciaConstrucción"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:CapaPresentación.Reportes"
+        mc:Ignorable="d"
+        Title="PresupuestoLicenciaConstrucción" Height="792" Width="612" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TemplateListaDepresupuestoAgregado">
+                <Grid Width="559">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding ConceptoA}" HorizontalAlignment="Right"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Right">
+                        ..........................................
+                    </TextBlock>
+                    <TextBlock Grid.Column="2" Text="{Binding ImporteA}" HorizontalAlignment="Right"/>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Name="pintar">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="490"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Margin="0,0,187,26" Source="/Imagenes/Image1.png" Stretch="Fill" Width="345" Height="55"/>
+        <TextBlock Grid.Row="0" Margin="373,10,0,56" FontSize="9" FontStyle="Normal" Width="159" Height="15">
+             	Proyectos y construcción en general
+        </TextBlock>
+        <TextBlock Grid.Row="0" Margin="373,25,0,32" FontSize="9" FontStyle="Normal" TextWrapping="Wrap" Width="159" Height="24">
+            Director Responsable de obra (D.R.O.) 
+            <Span>
+                 CERTIFICADO 
+            </Span>
+        </TextBlock>
+        <TextBlock Grid.Row="0" Margin="373,48,0,21" FontSize="9" FontStyle="Normal" Width="159" Height="12">
+            Construimos para tu crédito INFONAVIT
+        </TextBlock>
+        <TextBlock Grid.Row="0" Margin="373,60,0,9" FontSize="9" FontStyle="Normal" Width="159" Height="12">
+            Avalúos
+        </TextBlock>
+        <TextBlock Grid.Row="0" Margin="80,60,192,9" FontSize="9" FontStyle="Normal" Width="260" Height="12">
+            <Bold>
+                Ing. Luis Fernando García Valdez – R.F.C. GAVL- 590120-9V8
+            </Bold>
+        </TextBlock>
+        <Button materialDesign:ButtonAssist.CornerRadius="5 0 0 5" 
+                                     Background="#3498DB" Style="{DynamicResource MaterialDesignRaisedButton}"
+                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                     Name="BtnImprimir" Margin="565,47,0,62" MouseLeave="BtnImprimir_MouseLeave" MouseMove="BtnImprimir_MouseMove" Click="BtnImprimir_Click" Grid.Row="1">
+            <StackPanel Width="150" Margin="-10 0 0 0">
+                <materialDesign:PackIcon Kind="Printer" HorizontalAlignment="Right" Margin="0,0,134,0" />
+                <TextBlock Text="Imprimir" Margin="20 -18 0 0"/>
+            </StackPanel>
+        </Button>
+        <TextBlock Grid.Row="1" Margin="45,34,327,88" FontSize="11" FontStyle="Normal">
+            <Bold>
+                A quien corresponda.-
+            </Bold>
+        </TextBlock>
+        <TextBlock Grid.Row="1" Margin="45,54,46,32" FontSize="11" FontStyle="Normal" TextWrapping="Wrap" TextAlignment="Justify">
+            Por medio de la presente y no sin antes saludarle se atiende su solicitud de presupuesto de firma y gestoría para licencia de construcción para Obra nueva de Casa Habitación sobre 98.32 m2 en base a los siguientes conceptos.
+        </TextBlock>
+        <TextBlock Grid.Row="1" Margin="45,108,46,18" FontSize="11" FontStyle="Normal" >
+            Obra nueva casa Roger y Nancy.-
+        </TextBlock>
+        <TextBlock Grid.Row="1" Margin="45,126,46,0" FontSize="11" FontStyle="Normal" >
+            Arq. Rochin.-
+        </TextBlock>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="215"/>
+                <RowDefinition Height="215"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="45,1,46,198" FontSize="11" FontStyle="Normal" TextAlignment="Right">
+                Pagos de honorarios.-
+            </TextBlock>
+            <ListBox Grid.Row="0" Name="pagosdehonorarios" Margin="320,18,0,17" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"/>
+            <TextBlock Grid.Row="0" Margin="45,199,46,0" FontSize="11" FontStyle="Normal" TextAlignment="Right" Text="Total: $" Name="tolA"/>
+            <TextBlock Grid.Row="1" Margin="45,1,46,198" FontSize="11" FontStyle="Normal" TextAlignment="Right">
+                Pagos ante ayuntamiento.-
+            </TextBlock>
+            <ListBox Grid.Row="1" Name="pagosanteayuntamiento" Margin="320,18,0,0" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"/>
+            <TextBlock Grid.Row="1" Margin="45,199,46,0" FontSize="11" FontStyle="Normal" TextAlignment="Right" Name="TolB" Text="Total: $"/>
+
+            <TextBlock Name="s" Grid.Row="2" Margin="46,1,46,41" FontSize="11" FontStyle="Normal" TextAlignment="Right">
+                <Bold>
+                                Total: $
+                </Bold>
+            </TextBlock>
+            <TextBlock Grid.Row="2" Margin="45,20,46,22" FontSize="12" FontStyle="Normal" TextAlignment="Left">
+                Si requiere de facturación este será más impuestos.
+            </TextBlock>
+            <TextBlock Grid.Row="2" Margin="45,39,46,3" FontSize="10" FontStyle="Normal" TextAlignment="Left">
+                Para el costo de la licencia de construcción se tomó un valor de construcción por $1,9000,000.00.
+            </TextBlock>
+        </Grid>
+        <TextBlock Grid.Row="3" Margin="0,0,0,55" FontSize="10" FontStyle="Normal" TextAlignment="Center" >
+            Cel. 612-183-2332 Email: edificacionesdelnoroeste@hotmail.com
+        </TextBlock>
+        <materialDesign:ColorZone Grid.Row="3" Background="#bfbfbf" Height="5" Margin="0,20,0,0"/>
+        <materialDesign:ColorZone Grid.Row="3" Background="	#203558" Height="5" Margin="0,30,0,0"/>
+        <TextBlock Grid.Row="3" Margin="0,35,0,20" FontSize="10" FontStyle="Normal" TextAlignment="Center" >
+Calle Colima s/n e/ Forjadores y Callejón Galeana, Col. Las Grullas, C.P. 23070, La Paz, B.C.S.
+        </TextBlock>
+        <Button materialDesign:ButtonAssist.CornerRadius="5 0 0 5" 
+            Background="#3498DB" Style="{DynamicResource MaterialDesignRaisedButton}"
+            materialDesign:ShadowAssist.ShadowDepth="Depth3"
+            x:Name="BtnImprimir_Copy" Margin="565,12,0,97" Click="BtnImprimir_Copy_Click" Grid.Row="1">
+            <StackPanel Width="150" Margin="-10 0 0 0">
+                <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Right" Margin="0,0,134,0" />
+                <TextBlock Text="Cerrar" Margin="20 -18 0 0"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
