@@ -305,5 +305,10 @@ namespace CapaPresentación
 
             }
         }
+
+        private void Btn_Cerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

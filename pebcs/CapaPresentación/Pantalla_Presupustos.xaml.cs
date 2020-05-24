@@ -31,5 +31,35 @@ namespace CapaPresentación
         {
             Mn.AbrirFormHijo(new PantallaPresupuestos());
         }
+
+        private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Btn_Cerrar.Width = 47;
+        }
+
+        private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
+        {
+            Btn_Cerrar.Width = 107;
+        }
+
+        private void Btn_Limpiar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Btn_Limpiar.Width = 47;
+        }
+
+        private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
+        {
+            Btn_Limpiar.Width = 107;
+        }
+
+        private void Btn_ElaborarPresupuesto_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Btn_ElaborarPresupuesto.Width = 47;
+        }
+
+        private void Btn_ElaborarPresupuesto_MouseMove(object sender, MouseEventArgs e)
+        {
+            Btn_ElaborarPresupuesto.Width = 107;
+        }
     }
 }

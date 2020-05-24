@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              mc:Ignorable="d" 
-             d:DesignHeight="270" Width="210">
+             d:DesignHeight="270" d:DesignWidth="210">
     <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

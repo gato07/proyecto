@@ -116,7 +116,8 @@ namespace CapaPresentación.Controles
             {
                 Empleado em = new Empleado();
                 em.Eliminar(ID);
-                Win.GridContenedor.Children.Clear();
+                //Win.GridContenedor.Children.Clear();
+                Win.n.Items.Clear();
                 Win.generartarjetas();
                 check.ShowDialog();
             }

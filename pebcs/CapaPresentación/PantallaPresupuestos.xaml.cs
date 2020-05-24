@@ -35,32 +35,32 @@ namespace CapaPresentación
 
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(53, 0, 0, 160);
+            Btn_Cerrar.Width = 47;
         }
 
         private void Btn_Cerrar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Cerrar.Margin = new Thickness(0, 0, 0, 160);
+            Btn_Cerrar.Width = 107;
         }
 
         private void Btn_Limpiar_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_Limpiar.Margin = new Thickness(53, 60, 0, 100);
+            Btn_Limpiar.Width = 47;
         }
 
         private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_Limpiar.Margin = new Thickness(0, 60, 0, 100);
+            Btn_Limpiar.Width = 107;
         }
 
         private void Btn_GenerarPresupuesto_MouseLeave(object sender, MouseEventArgs e)
         {
-            Btn_GenerarPresupuesto.Margin = new Thickness(53, 120, 0, 40);
+            Btn_GenerarPresupuesto.Width = 47;
         }
 
         private void Btn_GenerarPresupuesto_MouseMove(object sender, MouseEventArgs e)
         {
-            Btn_GenerarPresupuesto.Margin = new Thickness(0, 120, 0, 40);
+            Btn_GenerarPresupuesto.Width = 107;
         }
 
         public void llenar(int x)

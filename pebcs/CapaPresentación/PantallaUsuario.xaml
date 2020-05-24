@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CapaPresentación"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Controles="clr-namespace:CapaPresentación.Controles" x:Class="CapaPresentación.PantallaUsuario"
-             mc:Ignorable="d" Height="712" Width="882">
+             mc:Ignorable="d" d:DesignHeight="712" d:DesignWidth="882">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
@@ -94,8 +94,15 @@
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
-            <Grid Name="GridContenedor" Width="870" Height="auto"/>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1" Height="560" VerticalAlignment="Top">
+            <!--<Grid Name="GridContenedor" Width="870" Height="auto"/>-->
+            <ItemsControl Name="n" Height="auto">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </ScrollViewer>
         <materialDesign:Card Grid.Row="0" Height="150">
             <StackPanel Margin="25,0,0,0">
@@ -116,28 +123,28 @@
                                   Margin="0,0,100,0" Name="Activador" IsChecked="False" Click="Activador_Click"/>
                     <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
                              CaretBrush="#F1C40F" BorderBrush="#F1C40F"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" KeyUp="TxtBusqueda_KeyUp"/>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,4" 
                             Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove"  >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove" HorizontalAlignment="Right" Width="47"  >
                         <StackPanel>
                             <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
                             <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" IsEnabled="False"
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,4" IsEnabled="False"
                             Grid.Column="4" Grid.Row="1" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Limpiar" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" Click="Btn_Limpiar_Click" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Click="Btn_Limpiar_Click" HorizontalAlignment="Right" Width="47" >
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Broom"/>
                             <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,4"
                             Grid.Column="4" Grid.Row="2" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_AgregarEmpleado" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseMove="Btn_AgregarEmpleado_MouseMove" MouseLeave="Btn_AgregarEmpleado_MouseLeave" Click="Btn_AgregarEmpleado_Click" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseMove="Btn_AgregarEmpleado_MouseMove" MouseLeave="Btn_AgregarEmpleado_MouseLeave" Click="Btn_AgregarEmpleado_Click" HorizontalAlignment="Right" Width="47" >
                         <StackPanel>
                             <materialDesign:PackIcon Kind="UserAdd"/>
                             <TextBlock Text="Agregar" Margin="20 -17 0 0"/>

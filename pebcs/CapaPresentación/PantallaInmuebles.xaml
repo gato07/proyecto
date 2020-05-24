@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CapaPresentación"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Height="712" Width="882">
+             d:DesignHeight="712" d:DesignWidth="882">
     <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -32,10 +32,10 @@
                             <RowDefinition  Height="50"/>
                             <RowDefinition  Height="50"/>
                         </Grid.RowDefinitions>
-                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,4" 
                             Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" Click="Btn_Cerrar_Click"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove" HorizontalAlignment="Right" Width="47" >
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
                                 <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
@@ -225,7 +225,7 @@
                                      Background="#D35400" Style="{DynamicResource MaterialDesignRaisedButton}"
                                      materialDesign:ShadowAssist.ShadowDepth="Depth3"
                                      Name="BtnRestaurar" MouseMove="BtnRestaurar_MouseMove"
-                                     Margin="81,4,0,4" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click" >
+                                     Margin="0,2" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click" Height="36" HorizontalAlignment="Right" Width="39" >
                                     <StackPanel Width="150" Margin="-10 0 0 0">
                                         <materialDesign:PackIcon Kind="FileRestore" />
                                         <TextBlock Text="RESTAURAR" Margin="20 -18 0 0"/>

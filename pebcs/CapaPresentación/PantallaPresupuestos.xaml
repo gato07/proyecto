@@ -83,10 +83,10 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="107"/>
                     </Grid.ColumnDefinitions>
-                    <materialDesign:Card Grid.Column="0" Margin="0 0 0 5">
+                    <materialDesign:Card Grid.Column="0" Height="195">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="45"/>
@@ -95,7 +95,7 @@
                                 <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Presupuesto" HorizontalAlignment="Center" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" />
-                            <ToggleButton Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Margin="20,0,687,0" Name="Activador" Click="Activador_Click" />
+                            <ToggleButton Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Margin="20,0,0,0" Name="Activador" Click="Activador_Click" HorizontalAlignment="Left" Width="68" />
                             <TextBox materialDesign:HintAssist.Hint="Nombre A Quien Va Dirijido"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
                                                  CaretBrush="#3498DB" BorderBrush="#3498DB" Margin="120,0,42,5" Grid.Row="2" Name="TxtBusquedaCliente" IsEnabled="False" />
                             <ComboBox Name="Clientes" Grid.Row="1" ItemTemplate="{StaticResource ListaClientes}"
@@ -109,25 +109,25 @@
                         </Grid>
                     </materialDesign:Card>
                     <Grid Grid.Column="1">
-                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="53,0,0,160" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,5,0,159" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove"  >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove" HorizontalAlignment="Right" Width="47"  >
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
                                 <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="53,60,0,100" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,62,0,102" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Limpiar"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove" HorizontalAlignment="Right" Width="47" >
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="Broom"/>
                                 <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="53,120,0,40" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,120,0,40" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_GenerarPresupuesto" Click="Btn_GenerarPresupuesto_Click"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" MouseLeave="Btn_GenerarPresupuesto_MouseLeave" MouseMove="Btn_GenerarPresupuesto_MouseMove" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseLeave="Btn_GenerarPresupuesto_MouseLeave" MouseMove="Btn_GenerarPresupuesto_MouseMove" HorizontalAlignment="Right" Width="47" >
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="FileDocument"/>
                                 <TextBlock Text="Generar" Margin="20 -17 0 0"/>

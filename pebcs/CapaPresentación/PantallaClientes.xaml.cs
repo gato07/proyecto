@@ -236,7 +236,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnRestaurar.Margin = new Thickness(81, 4, 0, 4);
+                BtnRestaurar.Width = 39;
             }
             catch(Exception ex)
             {
@@ -247,7 +247,7 @@ namespace CapaPresentación
         {
             try
             {
-                BtnRestaurar.Margin = new Thickness(0, 4, 0, 4);
+                BtnRestaurar.Width = 119;
             }
             catch(Exception ex)
             {
@@ -273,7 +273,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Cerrar.Margin = new Thickness(119, 4, 0, 4);
+                Btn_Cerrar.Width = 47;
             }
             catch(Exception ex)
             {
@@ -284,7 +284,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Cerrar.Margin = new Thickness(69, 4, 0, 4);
+                Btn_Cerrar.Width = 107;
             }
             catch(Exception ex)
             {

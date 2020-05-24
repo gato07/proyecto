@@ -72,7 +72,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Guardar.Margin = new Thickness(820, 51, 0, 270);
+                Btn_Guardar.Width = 47;
             }
             catch(Exception ex)
             {
@@ -84,7 +84,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Guardar.Margin = new Thickness(765, 51, 0, 270);
+                Btn_Guardar.Width = 107;
             }
             catch(Exception ex)
             {
@@ -96,7 +96,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Limpiar.Margin = new Thickness(820, 96, 0, 224);
+                Btn_Limpiar.Width = 47;
             }
             catch(Exception ex)
             {
@@ -108,7 +108,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Limpiar.Margin = new Thickness(765, 96, 0, 224);
+                Btn_Limpiar.Width = 107;
             }
             catch(Exception ex)
             {
@@ -120,7 +120,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Cerrar.Margin = new Thickness(820, 6, 0, 316);
+                Btn_Cerrar.Width = 47;
             }
             catch(Exception ex)
             {
@@ -132,7 +132,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Cerrar.Margin = new Thickness(765, 6, 0, 316);
+                Btn_Cerrar.Width = 107;
             }
             catch(Exception ex)
             {
@@ -222,7 +222,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Eliminar.Margin = new Thickness(820, 143, 0, 177);
+                Btn_Eliminar.Width = 47;
             }
             catch(Exception ex)
             {
@@ -234,7 +234,7 @@ namespace CapaPresentación
         {
             try
             {
-                Btn_Eliminar.Margin = new Thickness(765, 143, 0, 177);
+                Btn_Eliminar.Width = 107;
             }
             catch(Exception ex)
             {

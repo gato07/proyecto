@@ -17,9 +17,9 @@
             <StackPanel Margin="25,0,0,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="180*" />
-                        <ColumnDefinition Width="162*" />
-                        <ColumnDefinition Width="172*" />
+                        <ColumnDefinition Width="195*" />
+                        <ColumnDefinition Width="160*" />
+                        <ColumnDefinition Width="159*" />
                         <ColumnDefinition Width="172*" />
                         <ColumnDefinition Width="171*" />
                     </Grid.ColumnDefinitions>
@@ -28,39 +28,39 @@
                         <RowDefinition  Height="50"/>
                         <RowDefinition  Height="50"/>
                     </Grid.RowDefinitions>
-                    <ToggleButton Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
-                                  Margin="0,0,100,0" Name="Activador" IsChecked="False" />
+                    <ToggleButton Grid.Column="0" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
+                                  Name="Activador" IsChecked="False" HorizontalAlignment="Right" Width="95" />
                     <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
                              CaretBrush="#3498DB" BorderBrush="#3498DB"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" />
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7" 
                             Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto" >
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" MouseLeave="Btn_Cerrar_MouseLeave" MouseMove="Btn_Cerrar_MouseMove" >
                         <StackPanel>
                             <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
                             <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" IsEnabled="False"
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7" IsEnabled="False"
                             Grid.Column="4" Grid.Row="1" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Limpiar" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Broom"/>
                             <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7"
                             Grid.Column="4" Grid.Row="2" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_ElaborarPresupuesto" Click="Btn_ElaborarPresupuesto_Click"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" MouseLeave="Btn_ElaborarPresupuesto_MouseLeave" MouseMove="Btn_ElaborarPresupuesto_MouseMove">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="UserAdd"/>
                             <TextBlock Text="Agregar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#3498DB" Height="28">
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,9,8,13" BorderBrush="#3498DB" Height="28">
                         <ComboBoxItem
                             Content="Nombre" />
                         <ComboBoxItem
