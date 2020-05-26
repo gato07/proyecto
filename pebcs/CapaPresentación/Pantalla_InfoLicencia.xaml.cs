@@ -23,6 +23,30 @@ namespace CapaPresentación
         public Pantalla_InfoLicencia()
         {
             InitializeComponent();
+            llenarArmadoPaquete();
+        }
+        public class Document
+        {
+            public string NombreDocumento { get; set; }
+            public bool ISCHECK { get; set; }
+        }
+        public void llenarArmadoPaquete()
+        {
+            bool F = false;
+            for (int x = 0; x < 12; x++)
+            {
+                if (x%2!=0)
+                {
+                    F = true;
+                }
+                else
+                {
+                    F = false;
+                }
+                Document documento = (new Document() { NombreDocumento = "Documeto "+x.ToString() ,ISCHECK=F});
+                ArmadoPaquete.Items.Add(documento);
+            }
+
         }
     }
 }

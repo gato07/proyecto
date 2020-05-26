@@ -20,9 +20,16 @@ namespace CapaPresentación
     /// </summary>
     public partial class PantallaLicencias : UserControl
     {
-        public PantallaLicencias()
+        Menu_Principal2 Mn;
+        public PantallaLicencias(object A) 
         {
             InitializeComponent();
+            Mn = A as Menu_Principal2;
+        }
+
+        private void Btn_ElaborarPresupuesto_Click(object sender, RoutedEventArgs e)
+        {
+            Mn.AbrirFormHijo(new Pantalla_InfoLicencia());
         }
     }
 }

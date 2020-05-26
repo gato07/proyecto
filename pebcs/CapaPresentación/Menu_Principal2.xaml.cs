@@ -274,7 +274,7 @@ namespace CapaPresentación
 
         private void BtnLicencias_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaLicencias());
+            AbrirFormHijo(new PantallaLicencias(this));
         }
 
         private void BtnPresupuesto_Click(object sender, RoutedEventArgs e)

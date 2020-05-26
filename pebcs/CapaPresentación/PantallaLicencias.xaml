@@ -52,7 +52,7 @@
                     </Button>
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
                             Grid.Column="4" Grid.Row="2" Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_ElaborarPresupuesto"
+                            Name="Btn_ElaborarPresupuesto" Click="Btn_ElaborarPresupuesto_Click"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="UserAdd"/>
