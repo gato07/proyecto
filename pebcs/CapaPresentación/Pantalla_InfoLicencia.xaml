@@ -88,10 +88,7 @@
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="43*"/>
-                            <RowDefinition Height="38*"/>
-                            <RowDefinition Height="45*"/>
-                            <RowDefinition Height="38*"/>
-                            <RowDefinition Height="135*"/>
+                            <RowDefinition Height="256*"/>
                         </Grid.RowDefinitions>
                         <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7,0,0" 
                             Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
@@ -102,48 +99,82 @@
                                 <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                             </StackPanel>
                         </Button>
-                        <ComboBox Name="Clientes" Grid.Row="1"  
-                              materialDesign:HintAssist.Hint="Cliente" BorderBrush="#1ABC9C" Margin="25,5,25,5" VerticalAlignment="Stretch" >
-                            <ComboBoxItem Content="Cliente 1" />
-                            <ComboBoxItem Content="Cliente 2" />
-                        </ComboBox>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="294*"/>
-                                <ColumnDefinition Width="294*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35" />
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Telefono" x:Name="TXT_TelefonoCliente" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
-                        </Grid>
-                        <ComboBox Name="Inmueble"  
-                              materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="3" VerticalAlignment="Stretch" >
-                            <ComboBoxItem Content="Inmueble 1" />
-                            <ComboBoxItem Content="Inmueble 2" />
-                        </ComboBox>
-                        <Grid Grid.Row="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="294*"/>
-                                <ColumnDefinition Width="294*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="45*"/>
-                                <RowDefinition Height="45*"/>
-                                <RowDefinition Height="45*"/>
-                            </Grid.RowDefinitions>
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="0" Height="35"/>
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Calle" x:Name="TXT_Calle" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
-                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Entre Calles" x:Name="TXT_EntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
-                            <Grid Grid.Row="2" Grid.Column="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="174*"/>
-                                    <ColumnDefinition Width="174*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Numero Interior" x:Name="TXT_NumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35"/>
-                                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Numero Exterior" x:Name="TXT_NumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
-                            </Grid>
-                        </Grid>
+                        <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}" Grid.Row="1">
+                            <StackPanel>
+                                <Expander HorizontalAlignment="Stretch" Header="Cliente">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <ComboBox Name="Clientes" Grid.Row="1"  
+                                                  materialDesign:HintAssist.Hint="Cliente" BorderBrush="#1ABC9C" Margin="25,5,25,5" VerticalAlignment="Stretch" >
+                                            <ComboBoxItem Content="Cliente 1" />
+                                            <ComboBoxItem Content="Cliente 2" />
+                                        </ComboBox>
+                                        <Grid Grid.Row="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="294*"/>
+                                                <ColumnDefinition Width="294*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35" />
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Telefono" x:Name="TXT_TelefonoCliente" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+                                <Border  Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                <Expander HorizontalAlignment="Stretch" Header="Inmueble">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <ComboBox Name="Inmueble" materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="3" VerticalAlignment="Stretch" >
+                                            <ComboBoxItem Content="Inmueble 1" />
+                                            <ComboBoxItem Content="Inmueble 2" />
+                                        </ComboBox>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="294*"/>
+                                                <ColumnDefinition Width="294*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="45*"/>
+                                                <RowDefinition Height="45*"/>
+                                                <RowDefinition Height="45*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="0" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Calle" x:Name="TXT_Calle" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Entre Calles" x:Name="TXT_EntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
+                                            <Grid Grid.Row="2" Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="174*"/>
+                                                    <ColumnDefinition Width="174*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Numero Interior" x:Name="TXT_NumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35"/>
+                                                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Numero Exterior" x:Name="TXT_NumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+                                <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                                <Expander HorizontalAlignment="Stretch" Header="Información De Proyecto">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="294*"/>
+                                                <ColumnDefinition Width="294*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="45*"/>
+                                                <RowDefinition Height="45*"/>
+                                                <RowDefinition Height="45*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Tipo Proyecto" x:Name="TXT_Tipo" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="0" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No. Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No. Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="35"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </materialDesign:Card>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
