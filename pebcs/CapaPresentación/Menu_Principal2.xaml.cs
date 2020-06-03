@@ -310,5 +310,16 @@ namespace CapaPresentación
         {
             Application.Current.Shutdown();
         }
+
+        private void BtnCargaDeTrabajo_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AbrirFormHijo(new Pantalla_CargaDeTrabajo(this));
+            }catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

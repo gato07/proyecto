@@ -94,6 +94,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pantalla_CargaDeTrabajo.xaml.cs">
+      <DependentUpon>Pantalla_CargaDeTrabajo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\PresupuestoLicenciaConstrucción.xaml.cs">
       <DependentUpon>PresupuestoLicenciaConstrucción.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PantallaUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantalla_CargaDeTrabajo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
