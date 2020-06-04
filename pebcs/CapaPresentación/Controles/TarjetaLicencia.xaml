@@ -5,7 +5,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CapaPresentación.Controles"
-             mc:Ignorable="d" d:DesignWidth="280" Height="140">
+             mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="200">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,43 +15,41 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5">
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="290*"/>
                 </Grid.ColumnDefinitions>
-                <materialDesign:ColorZone Grid.Column="0" Background="#1ABC9C" Height="140"/>
+                <materialDesign:ColorZone Grid.Column="0" Background="#1ABC9C" Height="180"/>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="160*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="9" FontWeight="Bold"/>
+                    <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="9" FontWeight="Bold"/>
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="22"/>
-                            <RowDefinition Height="22"/>
-                            <RowDefinition Height="22"/>
-                            <RowDefinition Height="44"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="50*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="130"/>
-                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition Width="145*"/>
+                            <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Folio:" Name="TBFolio"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Tipo Obra:" Name="TBTipObra" Margin="5 0 0 0" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Uso:" Name="TBUso" />
-                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="No.Licencia:" Name="TBNoLicencia" Margin="5 0 0 0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Presupuesto:" Name="TBPresupuesto" Margin="5 0 0 0" />
-                        <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,0,5,0">
+                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No.Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
+                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
+                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
+                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
+                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 2" />
+                        <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,14,5,0">
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
                         </materialDesign:ColorZone>
                         <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 0 5 0" CornerRadius="10 0 10 10">
 
                         </materialDesign:ColorZone>
-                        <ProgressBar Value="50" Grid.Row="4" Height="Auto" Grid.ColumnSpan="2"/>
                     </Grid>
                 </Grid>
             </Grid>

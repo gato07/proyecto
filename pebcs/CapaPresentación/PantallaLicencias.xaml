@@ -82,14 +82,12 @@
                 </Grid>
             </StackPanel>
         </materialDesign:Card>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="25,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="315,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="605,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="25,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="315,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="605,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="25,370,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="315,370,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
-        <Controles:TarjetaLicencia HorizontalAlignment="Left" Height="140" Margin="605,370,0,0" Grid.Row="1" VerticalAlignment="Top" Width="270"/>
+        <ItemsControl Name="n" Height="auto" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </UserControl>

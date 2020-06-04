@@ -50,7 +50,7 @@
                     </Button>
                     <Button Margin="0,10,120,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                             Background="#2ECC71" Style="{DynamicResource MaterialDesignRaisedButton}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnCargaDeTrabajo" MouseLeave="BtnCargaDeTrabajo_MouseLeave" MouseMove="BtnCargaDeTrabajo_MouseMove" Height="36">
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnCargaDeTrabajo" MouseLeave="BtnCargaDeTrabajo_MouseLeave" MouseMove="BtnCargaDeTrabajo_MouseMove" Height="36" Click="BtnCargaDeTrabajo_Click">
                         <StackPanel Width="150" Margin="-10 0 0 0">
                             <materialDesign:PackIcon Kind="Workflow" />
                             <TextBlock Text="CARGA DE TRABAJO" Margin="20 -18 0 0"/>

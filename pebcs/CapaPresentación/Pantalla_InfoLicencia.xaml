@@ -9,6 +9,82 @@
              d:DesignHeight="712" d:DesignWidth="882">
     <UserControl.Resources>
         <ResourceDictionary>
+            <DataTemplate x:Key="ListaTiposObra">
+                <Border x:Name="Border"  Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton VerticalAlignment="Center" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding Cabeza}" Background="#2ECC71"/>
+                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                            <TextBlock FontWeight="Bold"  Text="{Binding TipoDeObra}" />
+                            <TextBlock  Text="{Binding Uso}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <DataTemplate x:Key="ListadoClientes">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Nombre}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Apellido}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Telefono}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ListadoInmuebles">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding ClaveCatastral}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Propietario}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Colonia}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="3 0 0 0" Text="{Binding Calle}" />
+                    <TextBlock Grid.Column="2" Text="{Binding EntreCalles}" Margin="12 0 0 0" />
+                    <TextBlock Grid.Column="3"  Margin="3 0 0 0" Text="{Binding NumeroInterior}" />
+                    <TextBlock Grid.Column="4"  Margin="3 0 0 0" Text="{Binding NumeroExterior}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ListaDocumentacion">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="94*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="FileDocument" Grid.Column="0"/>
+                    <TextBlock Text="{Binding NombreDocumento}"  Grid.Column="1"/>
+                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#1ABC9C" Grid.Column="2" IsChecked="{Binding ISCHECK}" >
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon Kind="Close" />
+                        </ToggleButton.Content>
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <materialDesign:PackIcon Kind="Check" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                    </ToggleButton>
+                </Grid>
+            </DataTemplate>
             <Style x:Key="EstiloTab" TargetType="{x:Type TabItem}">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -51,44 +127,15 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="294"/>
-                        <ColumnDefinition Width="588*"/>
+                        <ColumnDefinition Width="330"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Margin="0,24,0,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" Grid.Column="0"
-                            Background="#1ABC9C" Style="{DynamicResource MaterialDesignRaisedButton}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnLicencias" Height="36" HorizontalAlignment="Left" Width="40" VerticalAlignment="Top">
-                        <StackPanel Width="150" Margin="-10 0 0 0">
-                            <materialDesign:PackIcon Kind="FileDocument" />
-                            <TextBlock Text="Importar" Margin="20 -18 0 0"/>
-                        </StackPanel>
-                    </Button>
-                    <ListBox Grid.Column="0" Margin="5,70,5,5" Name="ArmadoPaquete" MaxHeight="300">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="94"/>
-                                        <ColumnDefinition Width="94"/>
-                                        <ColumnDefinition Width="94"/>
-                                    </Grid.ColumnDefinitions>
-                                    <materialDesign:PackIcon Kind="FileDocument" Grid.Column="0"/>
-                                    <TextBlock Text="{Binding NombreDocumento}"  Grid.Column="1"/>
-                                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#1ABC9C" Grid.Column="2" IsChecked="{Binding ISCHECK}" >
-                                        <ToggleButton.Content>
-                                            <materialDesign:PackIcon Kind="Close" />
-                                        </ToggleButton.Content>
-                                        <materialDesign:ToggleButtonAssist.OnContent>
-                                            <materialDesign:PackIcon Kind="Check" />
-                                        </materialDesign:ToggleButtonAssist.OnContent>
-                                    </ToggleButton>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <ListBox Grid.Column="0" Margin="5" Name="ArmadoPaquete" MaxHeight="300" ItemTemplate="{StaticResource ListaDocumentacion}"/>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="43*"/>
-                            <RowDefinition Height="256*"/>
+                            <RowDefinition Height="43*"/>
+                            <RowDefinition Height="119*"/>
                         </Grid.RowDefinitions>
                         <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7,0,0" 
                             Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
@@ -99,14 +146,21 @@
                                 <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                             </StackPanel>
                         </Button>
-                        <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}" Grid.Row="1">
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,1,0,0" Grid.Row="1"
+                            Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_GuardarLicencia"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="CardBulleted"/>
+                                <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}" Grid.Row="2" Height="auto">
                             <StackPanel>
                                 <Expander HorizontalAlignment="Stretch" Header="Cliente">
                                     <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                        <ComboBox Name="Clientes" Grid.Row="1"  
-                                                  materialDesign:HintAssist.Hint="Cliente" BorderBrush="#1ABC9C" Margin="25,5,25,5" VerticalAlignment="Stretch" >
-                                            <ComboBoxItem Content="Cliente 1" />
-                                            <ComboBoxItem Content="Cliente 2" />
+                                        <ComboBox Name="Clientes" Grid.Row="1"  ItemTemplate="{StaticResource ListadoClientes}"
+                                                  materialDesign:HintAssist.Hint="Cliente" BorderBrush="#1ABC9C" Margin="25,5,25,5" VerticalAlignment="Stretch" SelectionChanged="Clientes_SelectionChanged" >
                                         </ComboBox>
                                         <Grid Grid.Row="2">
                                             <Grid.ColumnDefinitions>
@@ -121,9 +175,7 @@
                                 <Border  Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                                 <Expander HorizontalAlignment="Stretch" Header="Inmueble">
                                     <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                        <ComboBox Name="Inmueble" materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="3" VerticalAlignment="Stretch" >
-                                            <ComboBoxItem Content="Inmueble 1" />
-                                            <ComboBoxItem Content="Inmueble 2" />
+                                        <ComboBox Name="Inmuebles" materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="3" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListadoInmuebles}" SelectionChanged="Inmuebles_SelectionChanged">
                                         </ComboBox>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -166,10 +218,9 @@
                                             </Grid.RowDefinitions>
                                             <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
                                             <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
-                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Tipo Proyecto" x:Name="TXT_Tipo" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="0" Height="35"/>
-                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
+                                            <ComboBox Name="tipoProyecto" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
                                             <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No. Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
-                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No. Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="35"/>
+                                            <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No. Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="35"/>
                                         </Grid>
                                     </StackPanel>
                                 </Expander>
@@ -179,8 +230,8 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid>
-                        <TabControl  ItemContainerStyle="{StaticResource EstiloTab}" Margin="0 5 0 0">
-                            <TabItem Header="ALINEAMIENTO            " Background="#F1C40F" >
+                        <TabControl  ItemContainerStyle="{StaticResource EstiloTab}" Margin="0 5 0 0" >
+                            <TabItem Header="ALINEAMIENTO            " Name="ALINEAMIENTOTAB" Background="#F1C40F" >
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="153*"/>
@@ -194,14 +245,14 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="ALINEAMIENTO" Name="ALINEAMIENTO" Foreground="#F1C40F" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="2" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="3" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="USO DE SUELO             " Background="#27AE60" >
+                            <TabItem Header="USO DE SUELO             " Name="USODESUELOTAB" Background="#27AE60">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="153*"/>
@@ -215,14 +266,14 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="USO DE SUELO" Name="UsoDeSuelo" Foreground="#27AE60" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaquetUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaquetUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="2" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="3" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="SUPERVISIÓN TECNICA" Background="#2980B9" >
+                            <TabItem Header="SUPERVISIÓN TECNICA" Name="SUPERVICIONTECNICATAB" Background="#2980B9" >
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="153*"/>
@@ -236,14 +287,14 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="SUPERVISIÓNTECNICA" Name="SupervisiónTecnica" Foreground="#2980B9" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="2" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="3" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="LICENCIA                      " Background="#E74C3C" >
+                            <TabItem Header="LICENCIA                      " Name="LICENCIATAB" Background="#E74C3C" >
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="153*"/>
@@ -257,11 +308,32 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="LICENCIA" Name="Licencia" Foreground="#E74C3C" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="2" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
-                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="3" Grid.Column="1" Height="50" />
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="3" Grid.Column="1" Height="50" />
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="TERMINACION DE OBRA" Name="TOTAB" Background="#884EA0" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="153*"/>
+                                        <ColumnDefinition Width="153*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="147*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="LICENCIA" Name="TO" Foreground="#884EA0" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="1" Grid.Column="1" Height="50" />
+                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="2" Grid.Column="1" Height="50" />
+                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
+                                    <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
                         </TabControl>
