@@ -257,6 +257,24 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelPRES1XCampoEliminado(bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelPRES1XCamEli("
+                    + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         #endregion Metodos
 
     }

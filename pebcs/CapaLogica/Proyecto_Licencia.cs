@@ -180,6 +180,20 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelPRES1XCampoEliminado(bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelPRES1XCampoEliminado(Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia en Presentación"
+                    +" 1 por el campo eliminado";
+                return null;
+            }
+        }
+
         public Proyecto_Licencia[] TableToArray(DataTable Dt)
         {
             try
