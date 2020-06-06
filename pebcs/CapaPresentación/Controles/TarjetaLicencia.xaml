@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="10">
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="10" MouseDoubleClick="Card_MouseDoubleClick">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -24,10 +24,10 @@
                 <materialDesign:ColorZone Grid.Column="0" Background="#1ABC9C" Height="180"/>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30*"/>
                         <RowDefinition Height="160*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="9" FontWeight="Bold"/>
+                    <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="33*"/>
@@ -43,12 +43,15 @@
                         <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
                         <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
                         <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 2" />
+                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
                         <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,14,5,0">
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
                         </materialDesign:ColorZone>
                         <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 0 5 0" CornerRadius="10 0 10 10">
-
+                            <StackPanel>
+                                <Label Content="Estado" Name="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                <Label Content="Fecha" x:Name="Fecha" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold" Margin="0 -30 0 0" Height="28"/>
+                            </StackPanel>
                         </materialDesign:ColorZone>
                     </Grid>
                 </Grid>

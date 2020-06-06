@@ -75,7 +75,7 @@
                     </Grid.ColumnDefinitions>
                     <materialDesign:PackIcon Kind="FileDocument" Grid.Column="0"/>
                     <TextBlock Text="{Binding NombreDocumento}"  Grid.Column="1"/>
-                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#1ABC9C" Grid.Column="2" IsChecked="{Binding ISCHECK}" >
+                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#1ABC9C" Grid.Column="2" IsChecked="{Binding ISCHECK}" Click="ToggleButton_Click">
                         <ToggleButton.Content>
                             <materialDesign:PackIcon Kind="Close" />
                         </ToggleButton.Content>
@@ -148,7 +148,7 @@
                         </Button>
                         <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,1,0,0" Grid.Row="1"
                             Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_GuardarLicencia"
+                            Name="Btn_GuardarLicencia" Click="Btn_GuardarLicencia_Click"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="CardBulleted"/>

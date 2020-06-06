@@ -50,15 +50,6 @@
                             <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4"
-                            Grid.Column="4" Grid.Row="2" Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_ElaborarPresupuesto" Click="Btn_ElaborarPresupuesto_Click"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="UserAdd"/>
-                            <TextBlock Text="Agregar" Margin="20 -17 0 0"/>
-                        </StackPanel>
-                    </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
                           materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#1ABC9C" Height="28">
                         <ComboBoxItem

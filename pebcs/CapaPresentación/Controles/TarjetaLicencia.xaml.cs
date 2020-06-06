@@ -20,26 +20,29 @@ namespace CapaPresentación.Controles
     /// </summary>
     public partial class TarjetaLicencia : UserControl
     {
-        String[] datos = new string[7];
-        public TarjetaLicencia()
+        int ID;
+        Menu_Principal2 Mn;
+        public TarjetaLicencia(Object A)
         {
             InitializeComponent();
+            Mn = A as Menu_Principal2;
         }
-        public void CargaDatosLicencia(int ID,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto)
+        public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto,string Estado, DateTime date)
         {
-            datos[0] = ID.ToString();
-            datos[1] = etiqueta;
-            datos[2] = folio;
-            datos[3] = NoLicencia;
-            datos[4] = tipoobra;
-            datos[5] = uso;
-            datos[6] = presupuesto;
+            ID = ID2;
             titulo.Content =etiqueta;
             TXT_Folio.Text = folio;
             TXT_NoLicencia.Text = NoLicencia;
             TXT_TipoObra.Text = tipoobra;
             TXT_Uso.Text = uso;
             TXT_presupuesto.Text = presupuesto;
+            Status.Content = Estado;
+            Fecha.Content = date;
+        }
+
+        private void Card_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,ID)) ;
         }
     }
 }

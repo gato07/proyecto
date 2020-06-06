@@ -27,7 +27,6 @@ namespace CapaPresentación
         Tipo_Proyecto tipProyecto = new Tipo_Proyecto();
         int IdPreproyecto,IdTipodeproyecto;
         Menu_Principal2 Mn;
-        string[] datos = new string[8];
 
         public Pantalla_CargaDeTrabajo(object A)
         {
@@ -142,14 +141,7 @@ namespace CapaPresentación
             Prepoyecto p=(Prepoyecto)ListaPrePoryectos.SelectedItem;
             if(p!=null)
             {
-                datos[0] = p.ID.ToString();
-                datos[1] = p.Etiqueta.ToString();
-                datos[2] = p.Solicitante.ToString();
-                datos[3] = p.Propietario.ToString();
-                datos[4] = p.fecha.ToString();
-                datos[5] = p.metros.ToString();
-                datos[6] = p.presupuesto.ToString();
-                datos[7] = p.tipoProyecto.ToString();
+                IdPreproyecto = p.ID;
                 TXT_Etiqueta.Text = p.Etiqueta;
                 TXT_Metros.Text = p.metros.ToString();
                 TXT_Propietario.Text = p.Propietario;
@@ -196,7 +188,7 @@ namespace CapaPresentación
 
         private void BtnGenerarPrePlantilla_Click(object sender, RoutedEventArgs e)
         {
-            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(datos)) ;
+            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IdPreproyecto,0)) ;
         }
     }
 }

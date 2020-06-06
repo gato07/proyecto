@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Data;
 
 namespace CapaPresentación
 {
@@ -29,20 +31,16 @@ namespace CapaPresentación
             Mn = A as Menu_Principal2;
             GenerarLicencias();
         }
-
-        private void Btn_ElaborarPresupuesto_Click(object sender, RoutedEventArgs e)
-        {
-            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(null));
-        }
         private void GenerarLicencias()
         {
             Proyecto_Licencia proyecto_ = new Proyecto_Licencia();
-            Proyecto_Licencia[] Licenciasactivas = proyecto_.TableToArray(proyecto_.SelActivos()) ;
-            TarjetaLicencia[] tarjetaLicencias = new TarjetaLicencia[Licenciasactivas.Length];
+            DataTable Licenciasactivas = proyecto_.SelPRES1XCampoEliminado();
+
+            TarjetaLicencia[] tarjetaLicencias = new TarjetaLicencia[Licenciasactivas.Rows.Count];
             for(int x=0;x<tarjetaLicencias.Length;x++)
             {
-                tarjetaLicencias[x] = new TarjetaLicencia();
-                tarjetaLicencias[x].CargaDatosLicencia(Licenciasactivas[x].Numero, "no esta", Licenciasactivas[x].Numero_Licencia, Licenciasactivas[x].Folio, "no esta","no esta", "no esta");
+                tarjetaLicencias[x] = new TarjetaLicencia(Mn);
+                tarjetaLicencias[x].CargaDatosLicencia(Convert.ToInt32(Licenciasactivas.Rows[x]["Numero"]), Licenciasactivas.Rows[x]["Etiqueta"].ToString(), Licenciasactivas.Rows[x]["Numero_Licencia"].ToString(), Licenciasactivas.Rows[x]["Folio"].ToString(), Licenciasactivas.Rows[x]["Tipo_Obra"].ToString(), Licenciasactivas.Rows[x]["Uso"].ToString(), Licenciasactivas.Rows[x]["Total"].ToString(), Licenciasactivas.Rows[x]["Estado"].ToString(), new DateTime(01,01,01));
                 n.Items.Add(tarjetaLicencias[x]);
             }
         }
