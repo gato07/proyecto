@@ -14,14 +14,10 @@ namespace CapaAccesoDatos
         #region Propiedades
 
         public int Numero_Proyecto_Licencia { get; set; }
-        public int Tipo_Documento { get; set; }
+        public int Id_Estado_Licencia { get; set; }
         public string Nombre_Documento { get; set; }
-        public DateTime Fecha_Ingreso { get; set; }
-        public string Nota_Fecha_Ingreso { get; set; }
-        public DateTime Fecha_Pago { get; set; }
-        public string Nota_Fecha_Pago { get; set; }
-        public DateTime Fecha_Recibido { get; set; }
-        public string Nota_Fecha_Recibido { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Nota { get; set; }
         public bool Eliminado { get; set; }
         public bool Existe { get; set; }
 
@@ -34,14 +30,10 @@ namespace CapaAccesoDatos
             try
             {
                 Numero_Proyecto_Licencia = 0;
-                Tipo_Documento = 0;
+                Id_Estado_Licencia = 0;
                 Nombre_Documento = "";
-                Fecha_Ingreso = new DateTime();
-                Nota_Fecha_Ingreso = "";
-                Fecha_Pago = new DateTime();
-                Nota_Fecha_Pago = "";
-                Fecha_Recibido = new DateTime();
-                Nota_Fecha_Recibido = "";
+                Fecha = new DateTime();
+                Nota = "";
                 Eliminado = false;
                 Existe = false;
             }
@@ -51,36 +43,28 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsDocumentacion_Licencia(int Numero_Proyecto_Licencia, int Tipo_Documento)
+        public dtsDocumentacion_Licencia(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
             try
             {
                 this.Numero_Proyecto_Licencia = 0;
-                this.Tipo_Documento = 0;
+                this.Id_Estado_Licencia = 0;
                 Nombre_Documento = "";
-                Fecha_Ingreso = new DateTime();
-                Nota_Fecha_Ingreso = "";
-                Fecha_Pago = new DateTime();
-                Nota_Fecha_Pago = "";
-                Fecha_Recibido = new DateTime();
-                Nota_Fecha_Recibido = "";
+                Fecha = new DateTime();
+                Nota = "";
                 Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                DataTable dt = conexion.Consulta_Seleccion("CALL SP_DocuLice_SelXNumProLicTipDoc(" + 
-                    Numero_Proyecto_Licencia + "," + Tipo_Documento + ");").Tables[0];
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_DocuLice_SelXNumProLicIdEstLic(" + 
+                    Numero_Proyecto_Licencia + "," + Id_Estado_Licencia + ");").Tables[0];
                 if (dt != null)
                 {
                     this.Numero_Proyecto_Licencia = Convert.ToInt16(dt.Rows[0]["Numero_Proyecto_Licencia"]);
-                    this.Tipo_Documento = Convert.ToInt16(dt.Rows[0]["Tipo_Documento"]);
+                    this.Id_Estado_Licencia = Convert.ToInt16(dt.Rows[0]["Id_Estado_Licencia"]);
                     Nombre_Documento = dt.Rows[0]["Nombre_Documento"].ToString();
-                    Fecha_Ingreso = Convert.ToDateTime(dt.Rows[0]["Fecha_Ingreso"]);
-                    Nota_Fecha_Ingreso = dt.Rows[0]["Nota_Fecha_Ingreso"].ToString();
-                    Fecha_Pago = Convert.ToDateTime(dt.Rows[0]["Fecha_Pago"]);
-                    Nota_Fecha_Pago = dt.Rows[0]["Nota_Fecha_Pago"].ToString();
-                    Fecha_Recibido = Convert.ToDateTime(dt.Rows[0]["Fecha_Recibido"]);
-                    Nota_Fecha_Recibido = dt.Rows[0]["Nota_Fecha_Recibido"].ToString();
+                    Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
+                    Nota = dt.Rows[0]["Nota"].ToString();
                     Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
@@ -92,21 +76,16 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsDocumentacion_Licencia(int Numero_Proyecto_Licencia, int Tipo_Documento, string Nombre_Documento, 
-            DateTime Fecha_Ingreso, string Nota_Fecha_Ingreso, DateTime Fecha_Pago, string Nota_Fecha_Pago, 
-            DateTime Fecha_Recibido, string Nota_Fecha_Recibido)
+        public dtsDocumentacion_Licencia(int Numero_Proyecto_Licencia, int Id_Estado_Licencia, 
+            string Nombre_Documento, DateTime Fecha, string Nota)
         {
             try
             {
                 this.Numero_Proyecto_Licencia = Numero_Proyecto_Licencia;
-                this.Tipo_Documento = Tipo_Documento;
+                this.Id_Estado_Licencia = Id_Estado_Licencia;
                 this.Nombre_Documento = Nombre_Documento;
-                this.Fecha_Ingreso = Fecha_Ingreso;
-                this.Nota_Fecha_Ingreso = Nota_Fecha_Ingreso;
-                this.Fecha_Pago = Fecha_Pago;
-                this.Nota_Fecha_Pago = Nota_Fecha_Pago;
-                this.Fecha_Recibido = Fecha_Recibido;
-                this.Nota_Fecha_Recibido = Nota_Fecha_Recibido;
+                this.Fecha = Fecha;
+                this.Nota = Nota;
                 Eliminado = false;
                 Existe = false;
             }
@@ -116,9 +95,8 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(int Numero_Proyecto_Licencia, int Tipo_Documento, string Nombre_Documento,
-            DateTime Fecha_Ingreso, string Nota_Fecha_Ingreso, DateTime Fecha_Pago, string Nota_Fecha_Pago,
-            DateTime Fecha_Recibido, string Nota_Fecha_Recibido)
+        public bool dtsInsertar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia,
+            string Nombre_Documento, DateTime Fecha, string Nota)
         {
             try
             {
@@ -126,10 +104,8 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_DocuLice_Insertar(" + Numero_Proyecto_Licencia 
-                    + "," + Tipo_Documento + ",'" + Nombre_Documento + "','" + Fecha_Ingreso.ToString("yyyy-MM-dd") 
-                    + "','" + Nota_Fecha_Ingreso + "','" + Fecha_Pago.ToString("yyyy-MM-dd") + "','" 
-                    + Nota_Fecha_Pago + "','" + Fecha_Recibido.ToString("yyyy-MM-dd") + "','" 
-                    + Nota_Fecha_Recibido + "');");
+                    + "," + Id_Estado_Licencia + ",'" + Nombre_Documento + "','" + Fecha.ToString("yyyy-MM-dd")
+                    + "','" + Nota + "');");
                 conexion.Desconectar();
                 return res;
             }
@@ -139,9 +115,8 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero_Proyecto_Licencia, int Tipo_Documento, string Nombre_Documento,
-            DateTime Fecha_Ingreso, string Nota_Fecha_Ingreso, DateTime Fecha_Pago, string Nota_Fecha_Pago,
-            DateTime Fecha_Recibido, string Nota_Fecha_Recibido)
+        public bool dtsActualizar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia,
+            string Nombre_Documento, DateTime Fecha, string Nota)
         {
             try
             {
@@ -149,10 +124,8 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_DocuLice_Actualizar(" + Numero_Proyecto_Licencia
-                    + "," + Tipo_Documento + ",'" + Nombre_Documento + "','" + Fecha_Ingreso.ToString("yyyy-MM-dd")
-                    + "','" + Nota_Fecha_Ingreso + "','" + Fecha_Pago.ToString("yyyy-MM-dd") + "','"
-                    + Nota_Fecha_Pago + "','" + Fecha_Recibido.ToString("yyyy-MM-dd") + "','"
-                    + Nota_Fecha_Recibido + "');");
+                    + "," + Id_Estado_Licencia + ",'" + Nombre_Documento + "','" + Fecha.ToString("yyyy-MM-dd")
+                    + "','" + Nota + "');");
                 conexion.Desconectar();
                 return res;
             }
@@ -162,7 +135,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsEliminar(int Numero_Proyecto_Licencia, int Tipo_Documento)
+        public bool dtsEliminar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
             try
             {
@@ -170,7 +143,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_DocuLice_Eliminar(" + Numero_Proyecto_Licencia 
-                    + "," + Tipo_Documento + ");");
+                    + "," + Id_Estado_Licencia + ");");
                 conexion.Desconectar();
                 return res;
             }
@@ -180,7 +153,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActivar(int Numero_Proyecto_Licencia, int Tipo_Documento)
+        public bool dtsActivar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
             try
             {
@@ -188,7 +161,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_DocuLice_Activar(" + Numero_Proyecto_Licencia
-                    + "," + Tipo_Documento + ");");
+                    + "," + Id_Estado_Licencia + ");");
                 conexion.Desconectar();
                 return res;
             }

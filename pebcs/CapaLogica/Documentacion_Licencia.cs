@@ -32,8 +32,8 @@ namespace CapaLogica
             }
         }
 
-        public Documentacion_Licencia(int Numero_Proyecto_Licencia, int Tipo_Documento) : 
-            base(Numero_Proyecto_Licencia, Tipo_Documento)
+        public Documentacion_Licencia(int Numero_Proyecto_Licencia, int Id_Estado_Licencia) : 
+            base(Numero_Proyecto_Licencia, Id_Estado_Licencia)
         {
             try
             {
@@ -45,11 +45,9 @@ namespace CapaLogica
             }
         }
 
-        public Documentacion_Licencia(int Numero_Proyecto_Licencia, int Tipo_Documento, string Nombre_Documento,
-            DateTime Fecha_Ingreso, string Nota_Fecha_Ingreso, DateTime Fecha_Pago, string Nota_Fecha_Pago,
-            DateTime Fecha_Recibido, string Nota_Fecha_Recibido) : base(Numero_Proyecto_Licencia, Tipo_Documento, 
-                Nombre_Documento, Fecha_Ingreso, Nota_Fecha_Ingreso, Fecha_Pago, Nota_Fecha_Pago, Fecha_Recibido, 
-                Nota_Fecha_Recibido)
+        public Documentacion_Licencia(int Numero_Proyecto_Licencia, int Id_Estado_Licencia, 
+            string Nombre_Documento, DateTime Fecha, string Nota) : base(Numero_Proyecto_Licencia, 
+                Id_Estado_Licencia, Nombre_Documento, Fecha, Nota)
         {
             try
             {
@@ -61,9 +59,8 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(int Numero_Proyecto_Licencia, int Tipo_Documento, string Nombre_Documento,
-            DateTime Fecha_Ingreso, string Nota_Fecha_Ingreso, DateTime Fecha_Pago, string Nota_Fecha_Pago,
-            DateTime Fecha_Recibido, string Nota_Fecha_Recibido)
+        public bool Insertar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia, string Nombre_Documento, 
+            DateTime Fecha, string Nota)
         {
             try
             {
@@ -71,8 +68,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta a la Documentacion_Licencia, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Numero_Proyecto_Licencia, Tipo_Documento, Nombre_Documento, Fecha_Ingreso, 
-                    Nota_Fecha_Ingreso, Fecha_Pago, Nota_Fecha_Pago, Fecha_Recibido, Nota_Fecha_Recibido);
+                res = dtsInsertar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
                 if (res)
                     Mensaje = "La Documentacion_Licencia fue registrada satisfactoriamente";
                 return res;
@@ -85,9 +81,8 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero_Proyecto_Licencia, int Tipo_Documento, string Nombre_Documento,
-            DateTime Fecha_Ingreso, string Nota_Fecha_Ingreso, DateTime Fecha_Pago, string Nota_Fecha_Pago,
-            DateTime Fecha_Recibido, string Nota_Fecha_Recibido)
+        public bool Actualizar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia, string Nombre_Documento, 
+            DateTime Fecha, string Nota)
         {
             try
             {
@@ -95,8 +90,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos de la Documentacion_Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero_Proyecto_Licencia, Tipo_Documento, Nombre_Documento, Fecha_Ingreso,
-                    Nota_Fecha_Ingreso, Fecha_Pago, Nota_Fecha_Pago, Fecha_Recibido, Nota_Fecha_Recibido);
+                res = dtsActualizar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
                 if (res)
                     Mensaje = "Los datos de la Documentacion_Licencia fueron actualizados satisfactoriamente";
                 return res;
@@ -109,14 +103,14 @@ namespace CapaLogica
             }
         }
 
-        public bool Eliminar(int Numero_Proyecto_Licencia, int Tipo_Documento)
+        public bool Eliminar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
             try
             {
                 bool res = false;
                 Mensaje = "Ocurrio un error en el proceso de eliminación de la Documentacion_Licencia, es posible que no se haya borrado"
                     + " correctamente";
-                res = dtsEliminar(Numero_Proyecto_Licencia, Tipo_Documento);
+                res = dtsEliminar(Numero_Proyecto_Licencia, Id_Estado_Licencia);
                 if (res)
                     Mensaje = "La Documentacion_Licencia fue eliminada satisfactoriamente";
                 return res;
@@ -129,14 +123,14 @@ namespace CapaLogica
             }
         }
 
-        public bool Activar(int Numero_Proyecto_Licencia, int Tipo_Documento)
+        public bool Activar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
             try
             {
                 bool res = false;
                 Mensaje = "Ocurrio un error en el proceso de activación de la Documentacion_Licencia, es posible que no se haya borrado"
                     + " correctamente";
-                res = dtsActivar(Numero_Proyecto_Licencia, Tipo_Documento);
+                res = dtsActivar(Numero_Proyecto_Licencia, Id_Estado_Licencia);
                 if (res)
                     Mensaje = "La Documentacion_Licencia fue activada satisfactoriamente";
                 return res;
@@ -186,22 +180,14 @@ namespace CapaLogica
                     Documentacion_Licencia documentacion = new Documentacion_Licencia();
                     if (Dt.Columns.Contains("Numero_Proyecto_Licencia"))
                         documentacion.Numero_Proyecto_Licencia = Convert.ToInt16(renglon["Numero_Proyecto_Licencia"]);
-                    if (Dt.Columns.Contains("Tipo_Documento"))
-                        documentacion.Tipo_Documento = Convert.ToInt16(renglon["Tipo_Documento"]);
+                    if (Dt.Columns.Contains("Id_Estado_Licencia"))
+                        documentacion.Id_Estado_Licencia = Convert.ToInt16(renglon["Id_Estado_Licencia"]);
                     if (Dt.Columns.Contains("Nombre_Documento"))
                         documentacion.Nombre_Documento = renglon["Nombre_Documento"].ToString();
-                    if (Dt.Columns.Contains("Fecha_Ingreso"))
-                        documentacion.Fecha_Ingreso = Convert.ToDateTime(renglon["Fecha_Ingreso"]);
-                    if (Dt.Columns.Contains("Nota_Fecha_Ingreso"))
-                        documentacion.Nota_Fecha_Ingreso = renglon["Nota_Fecha_Ingreso"].ToString();
-                    if (Dt.Columns.Contains("Fecha_Pago"))
-                        documentacion.Fecha_Pago = Convert.ToDateTime(renglon["Fecha_Pago"]);
-                    if (Dt.Columns.Contains("Nota_Fecha_Pago"))
-                        documentacion.Nota_Fecha_Pago = renglon["Nota_Fecha_Pago"].ToString();
-                    if (Dt.Columns.Contains("Fecha_Recibido"))
-                        documentacion.Fecha_Recibido = Convert.ToDateTime(renglon["Fecha_Recibido"]);
-                    if (Dt.Columns.Contains("Nota_Fecha_Recibido"))
-                        documentacion.Nota_Fecha_Recibido = renglon["Nota_Fecha_Recibido"].ToString();
+                    if (Dt.Columns.Contains("Fecha"))
+                        documentacion.Fecha = Convert.ToDateTime(renglon["Fecha"]);
+                    if (Dt.Columns.Contains("Nota"))
+                        documentacion.Nota = renglon["Nota"].ToString();
                     if (Dt.Columns.Contains("Eliminado"))
                         documentacion.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     documentacion.Existe = true;
