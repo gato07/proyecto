@@ -17,14 +17,14 @@ namespace CapaAccesoDatos
         public string Folio { get; set; }
         public DateTime Fecha { get; set; }
         public string Numero_Licencia { get; set; }
-        public int Escrituras { get; set; }
-        public int Constancia_Alineamiento { get; set; }
-        public int Pago_Predial { get; set; }
-        public int Recibo_Agua { get; set; }
-        public int Planos_Arquitectonicos { get; set; }
-        public int Planos_Estructurales { get; set; }
-        public int Planos_Instalaciones { get; set; }
-        public int Memoria_Calculo { get; set; }
+        public bool Escrituras { get; set; }
+        public bool Constancia_Alineamiento { get; set; }
+        public bool Pago_Predial { get; set; }
+        public bool Recibo_Agua { get; set; }
+        public bool Planos_Arquitectonicos { get; set; }
+        public bool Planos_Estructurales { get; set; }
+        public bool Planos_Instalaciones { get; set; }
+        public bool Memoria_Calculo { get; set; }
         public int Id_Estado_Licencia { get; set; }
         public int Id_Preproyecto { get; set; }
         public int Id_Cliente { get; set; }
@@ -46,14 +46,14 @@ namespace CapaAccesoDatos
                 Folio = "";
                 Fecha = new DateTime();
                 Numero_Licencia = "";
-                Escrituras = 0;
-                Constancia_Alineamiento = 0;
-                Pago_Predial = 0;
-                Recibo_Agua = 0;
-                Planos_Arquitectonicos = 0;
-                Planos_Estructurales = 0;
-                Planos_Instalaciones = 0;
-                Memoria_Calculo = 0;
+                Escrituras = false;
+                Constancia_Alineamiento = false;
+                Pago_Predial = false;
+                Recibo_Agua = false;
+                Planos_Arquitectonicos = false;
+                Planos_Estructurales = false;
+                Planos_Instalaciones = false;
+                Memoria_Calculo = false;
                 Id_Estado_Licencia = 0;
                 Id_Preproyecto = 0;
                 Id_Cliente = 0;
@@ -76,14 +76,14 @@ namespace CapaAccesoDatos
                 Folio = "";
                 Fecha = new DateTime();
                 Numero_Licencia = "";
-                Escrituras = 0;
-                Constancia_Alineamiento = 0;
-                Pago_Predial = 0;
-                Recibo_Agua = 0;
-                Planos_Arquitectonicos = 0;
-                Planos_Estructurales = 0;
-                Planos_Instalaciones = 0;
-                Memoria_Calculo = 0;
+                Escrituras = false;
+                Constancia_Alineamiento = false;
+                Pago_Predial = false;
+                Recibo_Agua = false;
+                Planos_Arquitectonicos = false;
+                Planos_Estructurales = false;
+                Planos_Instalaciones = false;
+                Memoria_Calculo = false;
                 Id_Estado_Licencia = 0;
                 Id_Preproyecto = 0;
                 Id_Cliente = 0;
@@ -100,14 +100,14 @@ namespace CapaAccesoDatos
                     Folio = dt.Rows[0]["Folio"].ToString();
                     Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
                     Numero_Licencia = dt.Rows[0]["Numero_Licencia"].ToString();
-                    Escrituras = Convert.ToInt16(dt.Rows[0]["Escrituras"]);
-                    Constancia_Alineamiento = Convert.ToInt16(dt.Rows[0]["Constancia_Alineamiento"]);
-                    Pago_Predial = Convert.ToInt16(dt.Rows[0]["Pago_Predial"]);
-                    Recibo_Agua = Convert.ToInt16(dt.Rows[0]["Recibo_Agua"]);
-                    Planos_Arquitectonicos = Convert.ToInt16(dt.Rows[0]["Planos_Arquitectonicos"]);
-                    Planos_Estructurales = Convert.ToInt16(dt.Rows[0]["Planos_Estructurales"]);
-                    Planos_Instalaciones = Convert.ToInt16(dt.Rows[0]["Planos_Instalaciones"]);
-                    Memoria_Calculo = Convert.ToInt16(dt.Rows[0]["Memoria_Calculo"]);
+                    Escrituras = Convert.ToBoolean(dt.Rows[0]["Escrituras"]);
+                    Constancia_Alineamiento = Convert.ToBoolean(dt.Rows[0]["Constancia_Alineamiento"]);
+                    Pago_Predial = Convert.ToBoolean(dt.Rows[0]["Pago_Predial"]);
+                    Recibo_Agua = Convert.ToBoolean(dt.Rows[0]["Recibo_Agua"]);
+                    Planos_Arquitectonicos = Convert.ToBoolean(dt.Rows[0]["Planos_Arquitectonicos"]);
+                    Planos_Estructurales = Convert.ToBoolean(dt.Rows[0]["Planos_Estructurales"]);
+                    Planos_Instalaciones = Convert.ToBoolean(dt.Rows[0]["Planos_Instalaciones"]);
+                    Memoria_Calculo = Convert.ToBoolean(dt.Rows[0]["Memoria_Calculo"]);
                     Id_Estado_Licencia = Convert.ToInt16(dt.Rows[0]["Id_Estado_Licencia"]);
                     Id_Preproyecto = Convert.ToInt16(dt.Rows[0]["Id_Preproyecto"]);
                     Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
@@ -124,9 +124,9 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsProyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, int Escrituras, 
-            int Constancia_Alineamiento, int Pago_Predial, int Recibo_Agua, int Planos_Arquitectonicos, 
-            int Planos_Estructurales, int Planos_Instalaciones, int Memoria_Calculo, int Id_Estado_Licencia, 
+        public dtsProyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, bool Escrituras,
+            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia, 
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
@@ -157,9 +157,9 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(string Folio, string Numero_Licencia, int Escrituras,
-            int Constancia_Alineamiento, int Pago_Predial, int Recibo_Agua, int Planos_Arquitectonicos,
-            int Planos_Estructurales, int Planos_Instalaciones, int Memoria_Calculo, int Id_Estado_Licencia,
+        public bool dtsInsertar(string Folio, string Numero_Licencia, bool Escrituras,
+            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
@@ -181,9 +181,9 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero, string Folio, string Numero_Licencia, int Escrituras,
-            int Constancia_Alineamiento, int Pago_Predial, int Recibo_Agua, int Planos_Arquitectonicos,
-            int Planos_Estructurales, int Planos_Instalaciones, int Memoria_Calculo, int Id_Estado_Licencia,
+        public bool dtsActualizar(int Numero, string Folio, string Numero_Licencia, bool Escrituras,
+            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try

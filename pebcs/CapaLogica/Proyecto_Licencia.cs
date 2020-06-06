@@ -44,9 +44,9 @@ namespace CapaLogica
             }
         }
 
-        public Proyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, int Escrituras,
-            int Constancia_Alineamiento, int Pago_Predial, int Recibo_Agua, int Planos_Arquitectonicos,
-            int Planos_Estructurales, int Planos_Instalaciones, int Memoria_Calculo, int Id_Estado_Licencia,
+        public Proyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, bool Escrituras,
+            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
             base(Numero, Folio, Fecha, Numero_Licencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
                 Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, 
@@ -62,9 +62,9 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Folio, string Numero_Licencia, int Escrituras,
-            int Constancia_Alineamiento, int Pago_Predial, int Recibo_Agua, int Planos_Arquitectonicos,
-            int Planos_Estructurales, int Planos_Instalaciones, int Memoria_Calculo, int Id_Estado_Licencia,
+        public bool Insertar(string Folio, string Numero_Licencia, bool Escrituras,
+            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
@@ -88,9 +88,9 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero, string Folio, string Numero_Licencia, int Escrituras,
-            int Constancia_Alineamiento, int Pago_Predial, int Recibo_Agua, int Planos_Arquitectonicos,
-            int Planos_Estructurales, int Planos_Instalaciones, int Memoria_Calculo, int Id_Estado_Licencia,
+        public bool Actualizar(int Numero, string Folio, string Numero_Licencia, bool Escrituras,
+            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
@@ -212,21 +212,21 @@ namespace CapaLogica
                     if (Dt.Columns.Contains("Numero_Licencia"))
                         proyecto.Numero_Licencia = renglon["Numero_Licencia"].ToString();
                     if (Dt.Columns.Contains("Escrituras"))
-                        proyecto.Escrituras = Convert.ToInt16(renglon["Escrituras"]);
+                        proyecto.Escrituras = Convert.ToBoolean(renglon["Escrituras"]);
                     if (Dt.Columns.Contains("Constancia_Alineamiento"))
-                        proyecto.Constancia_Alineamiento = Convert.ToInt16(renglon["Constancia_Alineamiento"]);
+                        proyecto.Constancia_Alineamiento = Convert.ToBoolean(renglon["Constancia_Alineamiento"]);
                     if (Dt.Columns.Contains("Pago_Predial"))
-                        proyecto.Pago_Predial = Convert.ToInt16(renglon["Pago_Predial"]);
+                        proyecto.Pago_Predial = Convert.ToBoolean(renglon["Pago_Predial"]);
                     if (Dt.Columns.Contains("Recibo_Agua"))
-                        proyecto.Recibo_Agua = Convert.ToInt16(renglon["Recibo_Agua"]);
+                        proyecto.Recibo_Agua = Convert.ToBoolean(renglon["Recibo_Agua"]);
                     if (Dt.Columns.Contains("Planos_Arquitectonicos"))
-                        proyecto.Planos_Arquitectonicos = Convert.ToInt16(renglon["Planos_Arquitectonicos"]);
+                        proyecto.Planos_Arquitectonicos = Convert.ToBoolean(renglon["Planos_Arquitectonicos"]);
                     if (Dt.Columns.Contains("Planos_Estructurales"))
-                        proyecto.Planos_Estructurales = Convert.ToInt16(renglon["Planos_Estructurales"]);
+                        proyecto.Planos_Estructurales = Convert.ToBoolean(renglon["Planos_Estructurales"]);
                     if (Dt.Columns.Contains("Planos_Instalaciones"))
-                        proyecto.Planos_Instalaciones = Convert.ToInt16(renglon["Planos_Instalaciones"]);
+                        proyecto.Planos_Instalaciones = Convert.ToBoolean(renglon["Planos_Instalaciones"]);
                     if (Dt.Columns.Contains("Memoria_Calculo"))
-                        proyecto.Memoria_Calculo = Convert.ToInt16(renglon["Memoria_Calculo"]);
+                        proyecto.Memoria_Calculo = Convert.ToBoolean(renglon["Memoria_Calculo"]);
                     if (Dt.Columns.Contains("Id_Estado_Licencia"))
                         proyecto.Id_Estado_Licencia = Convert.ToInt16(renglon["Id_Estado_Licencia"]);
                     if (Dt.Columns.Contains("Id_Preproyecto"))
