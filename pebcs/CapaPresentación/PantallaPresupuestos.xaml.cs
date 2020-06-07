@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
 using CapaPresentación.Reportes;
+using static CapaPresentación.Pantalla_CargaDeTrabajo;
 
 namespace CapaPresentación
 {
@@ -27,10 +28,11 @@ namespace CapaPresentación
         Cliente TiCliente;
         Concepto[] ListConceptos;
         Cliente[] TodCliente;
-        public PantallaPresupuestos()
+        int idpreproyecto,idpresupuesto;
+        public PantallaPresupuestos(int IDpreproyecto, int IDPresupuesto )
         {
             InitializeComponent();
-            LlenarCombo();
+            LlenarPreporyecto(IDPresupuesto);
         }
 
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
@@ -63,7 +65,7 @@ namespace CapaPresentación
             Btn_GenerarPresupuesto.Width = 107;
         }
 
-        public void llenar(int x)
+        public void llenarConceptos(int x)
         {
             string tipos = null;
             ListaConceptos.Items.Clear();
@@ -75,7 +77,7 @@ namespace CapaPresentación
             }
             else if (x == 1)
             {
-                ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pago Ante Ayuntamiento", false));
+                ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pagos Ante Ayuntamiento", false));
                 tipos = "Pago Ante Ayuntamiento";
             }
             for (int p = 0; p < ListConceptos.Length; p++)
@@ -112,20 +114,17 @@ namespace CapaPresentación
             public string Nombre { get; set; }
             public string RFC { get; set; }
         }
-        public void LlenarCombo()
+        public void LlenarPreporyecto(int IDPre)
         {
-            TiCliente = new Cliente();
-            TodCliente=TiCliente.TableToArray(TiCliente.SelActivos());
-            for(int x=0;x<TodCliente.Length;x++)
-            {
-                ClientesInfo clientesInfo = (new ClientesInfo() { ID =  TodCliente[x].Id,Nombre=TodCliente[x].Nombre,RFC=TodCliente[x].Rfc});
-                Clientes.Items.Add(clientesInfo);
-            }
+            Presupuesto presupuesto = new Presupuesto(IDPre);
+            Preproyecto preproyecto = new Preproyecto(presupuesto.Id_Preproyecto);
+            preproyect preproyect = (new preproyect() {ID=preproyecto.Id,Etiqueta=preproyecto.Etiqueta,Solicitante=preproyecto.Nombre_Solicitante,Propietario=preproyecto.Nombre_Propietario,fecha=preproyecto.Fecha,metros=preproyecto.Mts,presupuesto=preproyecto.Requiere_Presupuesto,tipoProyecto=preproyecto.Id_Tipo_Proyecto });
+            ElPrePoryecto.Items.Add(preproyect);
         }
 
         private void OpcionesTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            llenar(OpcionesTipo.SelectedIndex);
+            llenarConceptos(OpcionesTipo.SelectedIndex);
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
@@ -140,20 +139,6 @@ namespace CapaPresentación
                 Total.Text = ((P.CantidadA * P.ImporteA)+Convert.ToInt32(Total.Text)).ToString();
             }
         }
-        private void Activador_Click(object sender, RoutedEventArgs e)
-        {
-            if (Activador.IsChecked==true)
-            {
-                TxtBusquedaCliente.IsEnabled = true;
-                Clientes.IsEnabled = false;
-            }
-            else
-            {
-                TxtBusquedaCliente.IsEnabled = false;
-                Clientes.IsEnabled = true;
-            }
-        }
-
         private void BtnQuitar_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;

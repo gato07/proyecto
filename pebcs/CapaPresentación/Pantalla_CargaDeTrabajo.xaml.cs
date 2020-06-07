@@ -26,6 +26,7 @@ namespace CapaPresentación
         Preproyecto preproyecto = new Preproyecto();
         Tipo_Proyecto tipProyecto = new Tipo_Proyecto();
         int IdPreproyecto,IdTipodeproyecto;
+        bool RequierePresupuesto = false;
         Menu_Principal2 Mn;
 
         public Pantalla_CargaDeTrabajo(object A)
@@ -89,7 +90,7 @@ namespace CapaPresentación
             Preproyecto[] preproyectos = preproyecto.TableToArray(preproyecto.SelActivos());
             for(int x=0;x<preproyectos.Length;x++)
             {
-                Prepoyecto proyectoinfo =(new Prepoyecto() {ID=preproyectos[x].Id,Etiqueta= preproyectos[x].Etiqueta,Solicitante= preproyectos[x].Nombre_Solicitante,Propietario= preproyectos[x].Nombre_Propietario ,
+                preproyect proyectoinfo =(new preproyect() {ID=preproyectos[x].Id,Etiqueta= preproyectos[x].Etiqueta,Solicitante= preproyectos[x].Nombre_Solicitante,Propietario= preproyectos[x].Nombre_Propietario ,
                                                             fecha= preproyectos[x].Fecha,metros= preproyectos[x].Mts,presupuesto= preproyectos[x] .Requiere_Presupuesto,tipoProyecto= preproyectos[x] .Id_Tipo_Proyecto});
                 ListaPrePoryectos.Items.Add(proyectoinfo);
             }
@@ -112,7 +113,7 @@ namespace CapaPresentación
             public string Uso { get; set; }
             public string Cabeza { get; set; }
         }
-        public class Prepoyecto
+        public class preproyect
         {
             public int ID { get; set; }
             public string Etiqueta { get; set; }
@@ -123,9 +124,16 @@ namespace CapaPresentación
             public bool presupuesto { get; set; }
             public int tipoProyecto { get; set; }
         }
+        public void LimpiarDatos()
+        {
+            IdPreproyecto =0;
+            IdTipodeproyecto = 0;
+            RequierePresupuesto = false;
+        }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
+            LimpiarDatos();
             ToggleButton toggle=(ToggleButton)sender;
             //Button button = (Button)sender;
             Grid grid = (Grid)toggle.Parent;
@@ -138,7 +146,8 @@ namespace CapaPresentación
 
         private void ListaPrePoryectos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Prepoyecto p=(Prepoyecto)ListaPrePoryectos.SelectedItem;
+            LimpiarCampos();
+            preproyect p=(preproyect)ListaPrePoryectos.SelectedItem;
             if(p!=null)
             {
                 IdPreproyecto = p.ID;
@@ -146,6 +155,7 @@ namespace CapaPresentación
                 TXT_Metros.Text = p.metros.ToString();
                 TXT_Propietario.Text = p.Propietario;
                 TXT_Solicitante.Text = p.Solicitante;
+                RequierePresupuesto = p.presupuesto;
                 if(p.presupuesto)
                 {
                     Requiere_Presupuesto.SelectedIndex = 1;
@@ -162,12 +172,14 @@ namespace CapaPresentación
         private void BtnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
             LimpiarCampos();
+            LimpiarCampos();
         }
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             preproyecto.Eliminar(IdPreproyecto);
             CargarPrepoyectos();
+            LimpiarCampos();
         }
 
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
@@ -184,11 +196,40 @@ namespace CapaPresentación
             IdTipodeproyecto = tipoProyecto.SelectedIndex;
             preproyecto.Actualizar(IdPreproyecto, TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text, Convert.ToDecimal(TXT_Metros.Text), r, IdTipodeproyecto + 1);
             CargarPrepoyectos();
+            LimpiarCampos();
         }
 
         private void BtnGenerarPrePlantilla_Click(object sender, RoutedEventArgs e)
         {
-            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IdPreproyecto,0)) ;
+            bool ResultadoVerificarPreproyecto = VerificarPreproyecto(IdPreproyecto);
+            if (ResultadoVerificarPreproyecto == true)
+            {
+                MessageBox.Show("el preproyecto ya esta asignado");
+            }
+            else if (RequierePresupuesto == true)
+            {
+                MessageBox.Show("El Preproyecto Requiere Un Presupuesto");
+            }
+            else if (ResultadoVerificarPreproyecto==false && RequierePresupuesto==false)
+            {
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IdPreproyecto, 0));
+            }
+            LimpiarCampos();
+        }
+        private bool VerificarPreproyecto(int idpre)
+        {
+            Proyecto_Licencia proyecto_ = new Proyecto_Licencia();
+            Proyecto_Licencia[] p = proyecto_.TableToArray(proyecto_.SelActivos());
+            bool resul=false;
+            for(int x=0;x<p.Length;x++)
+            {
+                if(p[x].Id_Preproyecto== idpre)
+                {
+                    resul= true;
+                    break;
+                }
+            }
+            return resul;
         }
     }
 }

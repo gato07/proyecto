@@ -26,6 +26,7 @@ namespace CapaPresentación
         Tipo_Proyecto tipProyecto = new Tipo_Proyecto();
         Preproyecto preproyecto = new Preproyecto();
         Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia();
+        Presupuesto presupuesto = new Presupuesto();
         Cliente cliente = new Cliente();
         Inmueble inmueble = new Inmueble();
         bool F = false;
@@ -202,11 +203,12 @@ namespace CapaPresentación
         {
             if (F == false)
             {
-                ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text, TXT_NoLicencia.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, ProyectoLicencia.Id_Preproyecto, ProyectoLicencia.Id_Cliente, ProyectoLicencia.Clave_Inmueble, ProyectoLicencia.Clave_Empleado);
+                ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text, TXT_NoLicencia.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], ProyectoLicencia.Id_Estado_Licencia, ProyectoLicencia.Id_Preproyecto, ProyectoLicencia.Id_Cliente, ProyectoLicencia.Clave_Inmueble, ProyectoLicencia.Clave_Empleado);
             }
             else if (F == true)
             {
                 ProyectoLicencia.Insertar(TXT_NoFolio.Text, TXT_NoLicencia.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDprep, IDcliente, IDinmueble, 1);
+                presupuesto.Insertar(TXT_NombreCliente.Text,0,0,1,IDprep);
             }
         }
 

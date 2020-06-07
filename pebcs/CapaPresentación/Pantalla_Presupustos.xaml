@@ -50,15 +50,6 @@
                             <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7"
-                            Grid.Column="4" Grid.Row="2" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_ElaborarPresupuesto" Click="Btn_ElaborarPresupuesto_Click"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" MouseLeave="Btn_ElaborarPresupuesto_MouseLeave" MouseMove="Btn_ElaborarPresupuesto_MouseMove">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="UserAdd"/>
-                            <TextBlock Text="Agregar" Margin="20 -17 0 0"/>
-                        </StackPanel>
-                    </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
                           materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,9,8,13" BorderBrush="#3498DB" Height="28">
                         <ComboBoxItem
@@ -82,14 +73,12 @@
                 </Grid>
             </StackPanel>
         </materialDesign:Card>
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="15,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="235,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="455,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="669,25,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="16,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="236,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="456,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
-        <Controles:Presupuesto HorizontalAlignment="Left" Height="250" Width="200" Margin="670,280,0,0" Grid.Row="1" VerticalAlignment="Top" />
-
+        <ItemsControl Name="n" Height="auto" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="6" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </UserControl>

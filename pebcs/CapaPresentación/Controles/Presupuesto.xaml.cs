@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace CapaPresentación.Controles
 {
@@ -20,9 +21,38 @@ namespace CapaPresentación.Controles
     /// </summary>
     public partial class Presupuesto : UserControl
     {
-        public Presupuesto()
+        int IDPRES;
+        Menu_Principal2 Mn;
+        public Presupuesto(object A)
         {
             InitializeComponent();
+            Mn = A as Menu_Principal2;
+        }
+        public void CargarDatos(string titulo,int ID, string NombreCliente,string Empleado ,DateTime Fecha,string Aprobado ,string Total)
+        {
+            IDPRES = ID;
+            lbtitulo.Content = titulo;
+            TXT_NombreCliente.Text = NombreCliente;
+            TXT_Empleado.Text = Empleado;
+            TXT_FechaElaboración.Text = Fecha.ToString();
+            TXT_Aprobado.Text = Aprobado;
+            TXT_Total.Text = Total;
+        }
+
+        private void pres_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+            pres.Margin = new Thickness(0,0,0,0);
+        }
+
+        private void pres_MouseLeave(object sender, MouseEventArgs e)
+        {
+            pres.Margin = new Thickness(10, 10, 10, 10);
+        }
+
+        private void pres_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Mn.AbrirFormHijo(new PantallaPresupuestos(0,IDPRES));
         }
     }
 }

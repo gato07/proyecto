@@ -35,12 +35,13 @@ namespace CapaPresentación
         {
             Proyecto_Licencia proyecto_ = new Proyecto_Licencia();
             DataTable Licenciasactivas = proyecto_.SelPRES1XCampoEliminado();
-
+            Documentacion_Licencia documentacion_Licencia = new Documentacion_Licencia();
             TarjetaLicencia[] tarjetaLicencias = new TarjetaLicencia[Licenciasactivas.Rows.Count];
             for(int x=0;x<tarjetaLicencias.Length;x++)
             {
+                Documentacion_Licencia docLi = new Documentacion_Licencia();
                 tarjetaLicencias[x] = new TarjetaLicencia(Mn);
-                tarjetaLicencias[x].CargaDatosLicencia(Convert.ToInt32(Licenciasactivas.Rows[x]["Numero"]), Licenciasactivas.Rows[x]["Etiqueta"].ToString(), Licenciasactivas.Rows[x]["Numero_Licencia"].ToString(), Licenciasactivas.Rows[x]["Folio"].ToString(), Licenciasactivas.Rows[x]["Tipo_Obra"].ToString(), Licenciasactivas.Rows[x]["Uso"].ToString(), Licenciasactivas.Rows[x]["Total"].ToString(), Licenciasactivas.Rows[x]["Estado"].ToString(), new DateTime(01,01,01));
+                tarjetaLicencias[x].CargaDatosLicencia(Convert.ToInt32(Licenciasactivas.Rows[x]["Numero"]), Licenciasactivas.Rows[x]["Etiqueta"].ToString(), Licenciasactivas.Rows[x]["Numero_Licencia"].ToString(), Licenciasactivas.Rows[x]["Folio"].ToString(), Licenciasactivas.Rows[x]["Tipo_Obra"].ToString(), Licenciasactivas.Rows[x]["Uso"].ToString(), Licenciasactivas.Rows[x]["Total"].ToString(), Licenciasactivas.Rows[x]["Estado"].ToString(), Convert.ToDateTime(Licenciasactivas.Rows[x]["Fecha"]));
                 n.Items.Add(tarjetaLicencias[x]);
             }
         }

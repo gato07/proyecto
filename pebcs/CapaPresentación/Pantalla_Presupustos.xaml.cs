@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaLogica;
+using CapaPresentación.Controles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,16 +24,25 @@ namespace CapaPresentación
     public partial class Pantalla_Presupustos : UserControl
     {
         Menu_Principal2 Mn;
+        CapaLogica.Presupuesto presupuesto = new CapaLogica.Presupuesto();
         public Pantalla_Presupustos(object A)
         {
             InitializeComponent();
             Mn = A as Menu_Principal2;
+            CargarPresupuestos();
         }
-        private void Btn_ElaborarPresupuesto_Click(object sender, RoutedEventArgs e)
+        public void CargarPresupuestos()
         {
-            Mn.AbrirFormHijo(new PantallaPresupuestos());
+            CapaLogica.Presupuesto[] presupuestos = presupuesto.TableToArray(presupuesto.SelActivos()) ;
+            Controles.Presupuesto[] PresCard = new Controles.Presupuesto[presupuestos.Length];
+            for (int x=0;x<PresCard.Length;x++)
+            {
+                Preproyecto preproyecto = new Preproyecto(presupuestos[x].Id_Preproyecto);
+                PresCard[x] = new Controles.Presupuesto(Mn);
+                PresCard[x].CargarDatos(preproyecto.Etiqueta,presupuestos[x].Numero,presupuestos[x].Dirigido,presupuestos[x].Clave_Empleado.ToString(),presupuestos[x].Fecha,presupuestos[x].Aprobado.ToString(),presupuestos[x].Total.ToString());
+                n.Items.Add(PresCard[x]);
+            }
         }
-
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
             Btn_Cerrar.Width = 47;
@@ -50,16 +61,6 @@ namespace CapaPresentación
         private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
         {
             Btn_Limpiar.Width = 107;
-        }
-
-        private void Btn_ElaborarPresupuesto_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Btn_ElaborarPresupuesto.Width = 47;
-        }
-
-        private void Btn_ElaborarPresupuesto_MouseMove(object sender, MouseEventArgs e)
-        {
-            Btn_ElaborarPresupuesto.Width = 107;
         }
     }
 }

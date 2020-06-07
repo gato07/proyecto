@@ -9,6 +9,26 @@
              d:DesignHeight="712" d:DesignWidth="882">
     <Control.Resources>
         <ResourceDictionary>
+            <DataTemplate x:Key="ListaPreproyectos">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Etiqueta}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Solicitante}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Propietario}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="3 0 0 0" Text="{Binding fecha}" />
+                    <TextBlock Grid.Column="2" Text="{Binding metros}" Margin="12 0 0 0" />
+                    <TextBlock Grid.Column="3"  Margin="3 0 0 0" Text="{Binding presupuesto}" />
+                </Grid>
+            </DataTemplate>
             <DataTemplate x:Key="TemplateListaDepresupuesto">
                 <materialDesign:Card>
                     <Grid Height="60" Width="240">
@@ -86,26 +106,15 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="107"/>
                     </Grid.ColumnDefinitions>
-                    <materialDesign:Card Grid.Column="0" Height="195">
+                    <materialDesign:Card Grid.Column="0" Height="195" Margin="40,0,0,0">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="45"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="45"/>
-                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="45*"/>
+                                <RowDefinition Height="75*"/>
+                                <RowDefinition Height="75*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Presupuesto" HorizontalAlignment="Center" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" />
-                            <ToggleButton Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Margin="20,0,0,0" Name="Activador" Click="Activador_Click" HorizontalAlignment="Left" Width="68" />
-                            <TextBox materialDesign:HintAssist.Hint="Nombre A Quien Va Dirijido"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
-                                                 CaretBrush="#3498DB" BorderBrush="#3498DB" Margin="120,0,42,5" Grid.Row="2" Name="TxtBusquedaCliente" IsEnabled="False" />
-                            <ComboBox Name="Clientes" Grid.Row="1" ItemTemplate="{StaticResource ListaClientes}"
-                              materialDesign:HintAssist.Hint="Seleccione Un Cliente" Margin="120,8,42,14" BorderBrush="#3498DB">
-                            </ComboBox>
-                            <ComboBox Name="OpcionesTipo" Grid.Row="3"
-                              materialDesign:HintAssist.Hint="Tipo De Presupuesto" Margin="120,14,42,8" BorderBrush="#3498DB" SelectionChanged="OpcionesTipo_SelectionChanged" >
-                                <ComboBoxItem Content="Pago De Honorarios" />
-                                <ComboBoxItem Content="Pago Ante Ayuntamiento" />
-                            </ComboBox>
+                            <ListBox Grid.Row="1" ItemTemplate="{StaticResource ListaPreproyectos}" Name="ElPrePoryecto" Margin="5"/>
                         </Grid>
                     </materialDesign:Card>
                     <Grid Grid.Column="1">
@@ -146,20 +155,31 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="100"/>
                             </Grid.RowDefinitions>
-                            <materialDesign:Card Grid.Row="0" Height="410">
+                            <materialDesign:Card Grid.Row="0" Height="410" Margin="40,0,0,0">
                                 <ListBox ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"  Name="ListaConceptosAgregados" />
                             </materialDesign:Card>
-                            <materialDesign:Card Grid.Row="1" Height="77" Margin="0,8,0,0">
+                            <materialDesign:Card Grid.Row="1" Height="77" Margin="40,8,0,0">
                                 <StackPanel>
-                                    <TextBlock HorizontalAlignment="Center" Text="SubToal" Name="SubTotal1" Foreground="#3498DB" FontSize="18" FontWeight="Bold" Margin="462,5,102,57" Width="68"/>
-                                    <TextBox HorizontalAlignment="Center" Text="0" Name="SubTotal"  FontSize="18" Margin="535,-90,2,57" Width="95" Height="29" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
-                                    <TextBlock HorizontalAlignment="Center" Text="Total" x:Name="Total1" Foreground="#3498DB" FontSize="18" FontWeight="Bold" Margin="462,-50,102,57" Width="68"/>
-                                    <TextBox HorizontalAlignment="Center" Text="0" x:Name="Total"  FontSize="18" Margin="535,-85,2,57" Width="95" Height="31" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="SubToal" Name="SubTotal1" Foreground="#3498DB" FontSize="18" FontWeight="Bold" Margin="400,5,124,57" Width="68"/>
+                                    <TextBox HorizontalAlignment="Center" Text="0" Name="SubTotal"  FontSize="18" Margin="495,-90,2,57" Width="95" Height="29" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="Total" x:Name="Total1" Foreground="#3498DB" FontSize="18" FontWeight="Bold" Margin="401,-50,123,57" Width="68"/>
+                                    <TextBox HorizontalAlignment="Center" Text="0" x:Name="Total"  FontSize="18" Margin="496,-85,1,57" Width="95" Height="31" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
                                 </StackPanel>
                             </materialDesign:Card>
                         </Grid>
-                        <materialDesign:Card Grid.Column="1" Height="497" Margin="10 0 0 0">
-                            <ListBox ItemTemplate="{StaticResource TemplateListaDepresupuesto}" Name="ListaConceptos" />
+                        <materialDesign:Card Grid.Column="1" Height="497" Margin="10,0,10,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="357*"/>
+                                </Grid.RowDefinitions>
+                                <ComboBox Name="OpcionesTipo" Grid.Row="0"
+                              materialDesign:HintAssist.Hint="Tipo De Presupuesto" Margin="5,5,5,5" BorderBrush="#3498DB" SelectionChanged="OpcionesTipo_SelectionChanged" >
+                                    <ComboBoxItem Content="Pago De Honorarios" />
+                                    <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                                </ComboBox>
+                                <ListBox Grid.Row="1" ItemTemplate="{StaticResource TemplateListaDepresupuesto}" Name="ListaConceptos" />
+                            </Grid>
                         </materialDesign:Card>
                     </Grid>
                 </Grid>

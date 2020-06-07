@@ -6,23 +6,22 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="200">
+             d:DesignHeight="270" d:DesignWidth="210">
     <Grid>
-        <materialDesign:Card Height="240" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="5">
+        <materialDesign:Card Height="250" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10" Name="pres" MouseEnter="pres_MouseEnter" MouseLeave="pres_MouseLeave" MouseDoubleClick="pres_MouseDoubleClick" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="210*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:ColorZone Grid.Row="0" Height="40" Background="#3498DB" CornerRadius="0 0 100 0">
-                    <Label Grid.Row="0" Content="Titulo" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="9" FontWeight="Bold"/>
+                    <Label Grid.Row="0" Content="Titulo" Name="lbtitulo" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="9" FontWeight="Bold"/>
                 </materialDesign:ColorZone>
-                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Nomre Cliente:" Name="NombreCliente" Margin="5,19,0,161" Height="20"/>
-                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Empleado:" Name="Empleado" Margin="5,60,0,120" Height="20"/>
-                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fecha Elaboración:" Name="FechaElaboración" Margin="5,100,0,80" Height="20"/>
-                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Aprobado:" Name="Aprobado" Margin="5,140,0,40" Height="20"/>
-                <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Total:" Name="Total" Margin="5,179,0,1" Height="20"/>
-
+                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre Del Cliente" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,1,5,169" Height="40"/>
+                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre Del Empleado" x:Name="TXT_Empleado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,42,5,128" Height="40" />
+                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Fecha de elaboración" x:Name="TXT_FechaElaboración" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,84,5,86" Height="40"/>
+                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Aprobado" x:Name="TXT_Aprobado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,123,5,42" Height="40" />
+                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Total Del Presupuesto" x:Name="TXT_Total" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,169,5,1" Height="40"/>
             </Grid>
         </materialDesign:Card>
     </Grid>

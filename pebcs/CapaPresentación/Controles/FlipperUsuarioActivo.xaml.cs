@@ -157,6 +157,7 @@ namespace CapaPresentación.Controles
         {
             try
             {
+                this.Cursor = Cursors.Hand;
                 Flip.Margin = new Thickness(0, 0, 0, 0);
             }
             catch (Exception ex)
