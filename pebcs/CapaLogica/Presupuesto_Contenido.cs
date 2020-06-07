@@ -164,6 +164,19 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelXNumPresupuesto(int Numero_Presupuesto)
+        {
+            try
+            {
+                return dtsSelXNumPresupuesto(Numero_Presupuesto);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos_Contenido por Número del presupuesto";
+                return null;
+            }
+        }
+
         public Presupuesto_Contenido[] TableToArray(DataTable Dt)
         {
             try

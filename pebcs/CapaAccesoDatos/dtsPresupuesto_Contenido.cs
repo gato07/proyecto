@@ -178,6 +178,24 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelXNumPresupuesto(int Numero_Presupuesto)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_PresCont_SelXNumPresupuesto("
+                    + Numero_Presupuesto + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         #endregion Metodos
 
     }
