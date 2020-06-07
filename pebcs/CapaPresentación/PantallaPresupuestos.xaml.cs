@@ -120,6 +120,18 @@ namespace CapaPresentación
             Preproyecto preproyecto = new Preproyecto(presupuesto.Id_Preproyecto);
             preproyect preproyect = (new preproyect() {ID=preproyecto.Id,Etiqueta=preproyecto.Etiqueta,Solicitante=preproyecto.Nombre_Solicitante,Propietario=preproyecto.Nombre_Propietario,fecha=preproyecto.Fecha,metros=preproyecto.Mts,presupuesto=preproyecto.Requiere_Presupuesto,tipoProyecto=preproyecto.Id_Tipo_Proyecto });
             ElPrePoryecto.Items.Add(preproyect);
+            CargarConceptos(IDPre);
+        }
+        public void CargarConceptos(int id)
+        {
+            Presupuesto_Contenido presupuesto = new Presupuesto_Contenido();
+            Presupuesto_Contenido[] contenido = presupuesto.TableToArray(presupuesto.SelActivos());
+            for(int x=0;x<contenido.Length;x++)
+            {
+                if(contenido[x].Numero_Presupuesto==id && contenido[x].Numero_Concepto==1)
+                {
+                }
+            }
         }
 
         private void OpcionesTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
