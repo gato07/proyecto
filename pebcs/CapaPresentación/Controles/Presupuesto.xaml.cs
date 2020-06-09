@@ -52,7 +52,7 @@ namespace CapaPresentación.Controles
 
         private void pres_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Mn.AbrirFormHijo(new PantallaPresupuestos(0,IDPRES));
+            Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES));
         }
     }
 }

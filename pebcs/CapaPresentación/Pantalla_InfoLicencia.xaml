@@ -239,11 +239,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="ALINEAMIENTO" Name="ALINEAMIENTO" Foreground="#F1C40F" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosAlineamiento" Click="btn_GuardarProcesosAlineamiento_Click"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Kind="GreasePencil"/>
+                                            <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                                        </StackPanel>
+                                    </Button>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
@@ -260,11 +269,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="USO DE SUELO" Name="UsoDeSuelo" Foreground="#27AE60" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosUsoDeSuelo"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Kind="GreasePencil"/>
+                                            <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                                        </StackPanel>
+                                    </Button>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaquetUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
@@ -281,11 +299,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="SUPERVISIÓNTECNICA" Name="SupervisiónTecnica" Foreground="#2980B9" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosSupervicionTecnica"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Kind="GreasePencil"/>
+                                            <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                                        </StackPanel>
+                                    </Button>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
@@ -302,11 +329,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="LICENCIA" Name="Licencia" Foreground="#E74C3C" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosLicencia"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Kind="GreasePencil"/>
+                                            <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                                        </StackPanel>
+                                    </Button>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
@@ -323,11 +359,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
-                                        <RowDefinition Height="147*"/>
+                                        <RowDefinition Height="50*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
+                                        <RowDefinition Height="80*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="LICENCIA" Name="TO" Foreground="#884EA0" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosTerminacionDeObra"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                                        <StackPanel>
+                                            <materialDesign:PackIcon Kind="GreasePencil"/>
+                                            <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                                        </StackPanel>
+                                    </Button>
                                     <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="1" Grid.Column="1" Height="50" />
                                     <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>

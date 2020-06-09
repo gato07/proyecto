@@ -60,9 +60,10 @@
                             <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Name="TxtNombrePresupuestoAgregado" Text="{Binding ConceptoA}" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                        <TextBox Name="TxtPrecioAgregado"  Grid.Column="3" Text="{Binding TotalA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" LostFocus="TxtPrecioAgregado_LostFocus" />
-                        <TextBlock Name="TxtTotalAgregado" Grid.Column="1" Text="{Binding ImporteA}" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                        <TextBlock x:Name="TxtNombrePresupuestoAgregado" Text="{Binding ConceptoA}" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                        <TextBox Name="TxtPrecioAgregado" Grid.Column="1" Text="{Binding ImporteA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" KeyUp="TxtPrecioAgregado_KeyUp" />
+                        <TextBox Name="TxtCantidad" Grid.Column="2" Text="{Binding CantidadA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" KeyUp="TxtCantidad_KeyUp" />
+                        <TextBox Name="TxtTotalAgregado"  Grid.Column="3" Text="{Binding TotalA}" HorizontalAlignment="Left" VerticalAlignment="Center" CaretBrush="#3498DB" BorderBrush="#3498DB" KeyUp="TxtTotalAgregado_KeyUp" />
                         <Button Name="BtnQuitar" Click="BtnQuitar_Click" Grid.Column="4" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" Background="#3498DB">
                             <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
                         </Button>
@@ -110,8 +111,8 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="45*"/>
-                                <RowDefinition Height="75*"/>
-                                <RowDefinition Height="75*"/>
+                                <RowDefinition Height="150*"/>
+
                             </Grid.RowDefinitions>
                             <TextBlock Text="Presupuesto" HorizontalAlignment="Center" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" />
                             <ListBox Grid.Row="1" ItemTemplate="{StaticResource ListaPreproyectos}" Name="ElPrePoryecto" Margin="5"/>
@@ -163,7 +164,7 @@
                                     <TextBlock HorizontalAlignment="Center" Text="SubToal" Name="SubTotal1" Foreground="#3498DB" FontSize="18" FontWeight="Bold" Margin="400,5,124,57" Width="68"/>
                                     <TextBox HorizontalAlignment="Center" Text="0" Name="SubTotal"  FontSize="18" Margin="495,-90,2,57" Width="95" Height="29" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
                                     <TextBlock HorizontalAlignment="Center" Text="Total" x:Name="Total1" Foreground="#3498DB" FontSize="18" FontWeight="Bold" Margin="401,-50,123,57" Width="68"/>
-                                    <TextBox HorizontalAlignment="Center" Text="0" x:Name="Total"  FontSize="18" Margin="496,-85,1,57" Width="95" Height="31" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
+                                    <TextBox HorizontalAlignment="Center" Text="0" Name="Total"  FontSize="18" Margin="496,-85,1,57" Width="95" Height="31" CaretBrush="#3498DB" BorderBrush="#3498DB"/>
                                 </StackPanel>
                             </materialDesign:Card>
                         </Grid>

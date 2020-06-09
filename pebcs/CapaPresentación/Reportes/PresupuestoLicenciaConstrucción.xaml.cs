@@ -1,4 +1,5 @@
 ﻿
+using CapaLogica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,14 @@ namespace CapaPresentación.Reportes
     public partial class PresupuestoLicenciaConstrucción : Window
     {
         float TotalA, TotalB = 0;
-        public PresupuestoLicenciaConstrucción(string [,] A)
+        string[,] listado;
+        int IDPresupuesto;
+        public PresupuestoLicenciaConstrucción(int NumeroPresupuesto,string [,] A)
         {
             InitializeComponent();
             llenarReporte(A);
+            listado = A;
+            IDPresupuesto = NumeroPresupuesto;
         }
 
         private void BtnImprimir_MouseLeave(object sender, MouseEventArgs e)
@@ -40,13 +45,14 @@ namespace CapaPresentación.Reportes
         private void BtnImprimir_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
-            if(printDialog.ShowDialog()==true)
+            if (printDialog.ShowDialog() == true)
             {
                 BtnImprimir.Visibility = Visibility.Hidden;
                 BtnImprimir.Visibility = Visibility.Hidden;
-                printDialog.PrintVisual(pintar,"reporte");
+                printDialog.PrintVisual(pintar, "reporte");
             }
         }
+
         public class PresupuestoAgregado
         {
             public int ID { get; set; }
@@ -58,15 +64,15 @@ namespace CapaPresentación.Reportes
         }
         public void llenarReporte(string [,] A)
         {
-            for (int x=0;x<(A.Length/3);x++)
+            for (int x=0;x<(A.Length/6);x++)
             {
-                PresupuestoAgregado presupuesto = new PresupuestoAgregado() { Tipo = A[x, 1].ToString(), ConceptoA = A[x, 0].ToString(), ImporteA = Convert.ToSingle(A[x, 2]) };
-                if (A[x,1]== "Pago De Honorarios")
+                PresupuestoAgregado presupuesto = new PresupuestoAgregado() { ID=Convert.ToInt32(A[x,0]),Tipo= A[x, 1],ConceptoA= A[x, 2],ImporteA= Convert.ToInt32(A[x, 3]),CantidadA= Convert.ToInt32(A[x, 4]),TotalA= Convert.ToInt32(A[x, 5]) };
+                if (A[x,1]== "Pago de honorarios")
                 {
                     pagosdehonorarios.Items.Add(presupuesto);
                     TotalA += presupuesto.ImporteA;
                 }
-                else if(A[x, 1] == "Pago Ante Ayuntamiento")
+                else if(A[x, 1] == "Pagos ante ayuntamiento")
                 {
                     pagosanteayuntamiento.Items.Add(presupuesto);
                     TotalB += presupuesto.ImporteA;

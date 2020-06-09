@@ -41,6 +41,7 @@ namespace CapaPresentación
             CargarClientes();
             CargarInmuebles();
             CargarDatos(IDLicencia, IDPreproyecto);
+            IDlicen = IDLicencia;
         }
         public void CargarDatos( int IDLicencia, int IDPreproyecto)
         {
@@ -53,6 +54,7 @@ namespace CapaPresentación
                 tipoProyecto.SelectedIndex = preproyecto.Id_Tipo_Proyecto-1;
                 cargarDocumentacion(null);
                 F = true;
+                CargarProcesos(preproyecto.Id_Tipo_Proyecto,preproyecto.Mts);
             }
             else if (IDLicencia != 0)
             {
@@ -76,6 +78,57 @@ namespace CapaPresentación
                 dockcheck[7] = ProyectoLicencia.Memoria_Calculo;
                 cargarDocumentacion(dockcheck);
                 F = false;
+                CargarProcesos(preproyecto.Id_Tipo_Proyecto,preproyecto.Mts);
+            }
+        }
+        private void CargarProcesos(int tipobra, Decimal metros)
+        {
+            if (tipobra>0 && tipobra<16)//ampliacion
+            {
+                if (tipobra==3||tipobra == 5||tipobra == 6||tipobra == 8||tipobra == 11||tipobra == 12||tipobra == 14||tipobra == 15)//comercial
+                {
+
+                }
+                else if (tipobra == 1 || tipobra == 2 || tipobra == 4 || tipobra == 7 || tipobra == 9 || tipobra == 10 || tipobra == 13)//casa habitacion
+                {
+                    USODESUELOTAB.Visibility = Visibility.Hidden;
+                    USODESUELOTAB.IsEnabled = false;
+                }
+            }
+            else if (tipobra>31 &&tipobra<46)//obra nueva
+            {
+                if (tipobra == 33 || tipobra == 35 || tipobra == 36 || tipobra == 38 || tipobra == 41 || tipobra == 42 || tipobra == 44 || tipobra == 45)//comercial
+                {
+
+                }
+                else if (tipobra == 31 || tipobra == 32 || tipobra == 34 || tipobra == 37 || tipobra == 39 || tipobra == 40 || tipobra == 43)//casa habitacion
+                {
+                    if (metros >= 400)
+                    {
+                        USODESUELOTAB.Visibility = Visibility.Hidden;
+                        USODESUELOTAB.IsEnabled = false;
+                    }
+                    else if (metros < 400)
+                    {
+                        USODESUELOTAB.Visibility = Visibility.Hidden;
+                        USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Visibility = Visibility.Hidden;
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                    }
+                }
+            }
+            else if (tipobra > 61 && tipobra < 76)//regularizacion
+            {
+                if (tipobra == 63 || tipobra == 65 || tipobra == 66 || tipobra == 68 || tipobra == 71 || tipobra == 72 || tipobra == 74 || tipobra == 75)//comercial
+                {
+                    SUPERVICIONTECNICATAB.Visibility = Visibility.Hidden;
+                    SUPERVICIONTECNICATAB.IsEnabled = false;
+                }
+                else if (tipobra == 61 || tipobra == 62 || tipobra == 64 || tipobra == 67 || tipobra == 69 || tipobra == 70 || tipobra == 73)//casa habitacion
+                {
+                    SUPERVICIONTECNICATAB.Visibility = Visibility.Hidden;
+                    SUPERVICIONTECNICATAB.IsEnabled = false;    
+                }
             }
         }
         private void CargarTipoProyectos()
@@ -183,6 +236,10 @@ namespace CapaPresentación
             }
         }
 
+        private void btn_GuardarProcesosAlineamiento_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void Inmuebles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Inmueblea p = (Inmueblea)Inmuebles.SelectedItem;

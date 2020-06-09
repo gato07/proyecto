@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -202,17 +203,15 @@ namespace CapaPresentación
         private void BtnGenerarPrePlantilla_Click(object sender, RoutedEventArgs e)
         {
             bool ResultadoVerificarPreproyecto = VerificarPreproyecto(IdPreproyecto);
-            if (ResultadoVerificarPreproyecto == true)
+            if(ResultadoVerificarPreproyecto!=true)
             {
-                MessageBox.Show("el preproyecto ya esta asignado");
-            }
-            else if (RequierePresupuesto == true)
-            {
-                MessageBox.Show("El Preproyecto Requiere Un Presupuesto");
-            }
-            else if (ResultadoVerificarPreproyecto==false && RequierePresupuesto==false)
-            {
+
                 Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IdPreproyecto, 0));
+
+            }
+            else
+            {
+                MessageBox.Show("El preproyecto ya fue asignado");
             }
             LimpiarCampos();
         }

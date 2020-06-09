@@ -25,14 +25,13 @@ namespace CapaPresentación
     public partial class PantallaPresupuestos : UserControl
     {
         Concepto ListaConcepto;
-        Cliente TiCliente;
         Concepto[] ListConceptos;
-        Cliente[] TodCliente;
-        int idpreproyecto,idpresupuesto;
-        public PantallaPresupuestos(int IDpreproyecto, int IDPresupuesto )
+        int idpreproyecto, idpresupuesto;
+        public PantallaPresupuestos(int IDPresupuesto)
         {
             InitializeComponent();
             LlenarPreporyecto(IDPresupuesto);
+            idpresupuesto = IDPresupuesto;
         }
 
         private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
@@ -73,29 +72,29 @@ namespace CapaPresentación
             if (x == 0)
             {
                 ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pago De Honorarios", false));
-                tipos = "Pago De Honorarios";
+                tipos = "Pago de honorarios";
             }
             else if (x == 1)
             {
                 ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pagos Ante Ayuntamiento", false));
-                tipos = "Pago Ante Ayuntamiento";
+                tipos = "Pagos ante ayuntamiento";
             }
             for (int p = 0; p < ListConceptos.Length; p++)
             {
-                PresupuestoAgregado presupuesto = (new PresupuestoAgregado() { ID = ListConceptos[p].Numero, Tipo = tipos,ConceptoA = ListConceptos[p].Nombre.ToString(), ImporteA = Convert.ToSingle(ListConceptos[p].Costo), CantidadA = 1, TotalA = Convert.ToSingle(ListConceptos[p].Costo) });
+                PresupuestoAgregado presupuesto = (new PresupuestoAgregado() { ID = ListConceptos[p].Numero, Tipo = tipos, ConceptoA = ListConceptos[p].Nombre.ToString(), ImporteA = Convert.ToSingle(ListConceptos[p].Costo), CantidadA = 1, TotalA = Convert.ToSingle(ListConceptos[p].Costo), eliminado = ListConceptos[p].Eliminado });
                 bool esta = false;
-                for (int c=0;c<ListaConceptosAgregados.Items.Count;c++)
+                for (int c = 0; c < ListaConceptosAgregados.Items.Count; c++)
                 {
                     PresupuestoAgregado agregado = (PresupuestoAgregado)ListaConceptosAgregados.Items[c];
-                    if (agregado.ID==presupuesto.ID)
+                    if (agregado.ID == presupuesto.ID)
                     {
                         esta = true;
                         break;
                     }
                 }
-                if (esta==false)
+                if (esta == false)
                 {
-                   ListaConceptos.Items.Add(presupuesto);
+                    ListaConceptos.Items.Add(presupuesto);
                 }
             }
         }
@@ -107,6 +106,7 @@ namespace CapaPresentación
             public int CantidadA { get; set; }
             public float TotalA { get; set; }
             public string Tipo { get; set; }
+            public bool eliminado { get; set; }
         }
         public class ClientesInfo
         {
@@ -116,20 +116,71 @@ namespace CapaPresentación
         }
         public void LlenarPreporyecto(int IDPre)
         {
-            Presupuesto presupuesto = new Presupuesto(IDPre);
-            Preproyecto preproyecto = new Preproyecto(presupuesto.Id_Preproyecto);
-            preproyect preproyect = (new preproyect() {ID=preproyecto.Id,Etiqueta=preproyecto.Etiqueta,Solicitante=preproyecto.Nombre_Solicitante,Propietario=preproyecto.Nombre_Propietario,fecha=preproyecto.Fecha,metros=preproyecto.Mts,presupuesto=preproyecto.Requiere_Presupuesto,tipoProyecto=preproyecto.Id_Tipo_Proyecto });
-            ElPrePoryecto.Items.Add(preproyect);
-            CargarConceptos(IDPre);
+            if (IDPre != 0)
+            {
+                Presupuesto presupuesto = new Presupuesto(IDPre);
+                Preproyecto preproyecto = new Preproyecto(presupuesto.Id_Preproyecto);
+                preproyect preproyect = (new preproyect() { ID = preproyecto.Id, Etiqueta = preproyecto.Etiqueta, Solicitante = preproyecto.Nombre_Solicitante, Propietario = preproyecto.Nombre_Propietario, fecha = preproyecto.Fecha, metros = preproyecto.Mts, presupuesto = preproyecto.Requiere_Presupuesto, tipoProyecto = preproyecto.Id_Tipo_Proyecto });
+                ElPrePoryecto.Items.Add(preproyect);
+                CargarConceptos(IDPre);
+            }
         }
         public void CargarConceptos(int id)
         {
             Presupuesto_Contenido presupuesto = new Presupuesto_Contenido();
-            Presupuesto_Contenido[] contenido = presupuesto.TableToArray(presupuesto.SelActivos());
-            for(int x=0;x<contenido.Length;x++)
+            Presupuesto_Contenido[] contenido = presupuesto.TableToArray(presupuesto.SelXNumPresupuesto(id));
+            for (int x = 0; x < contenido.Length; x++)
             {
-                if(contenido[x].Numero_Presupuesto==id && contenido[x].Numero_Concepto==1)
+                if(contenido[x].Eliminado==false)
                 {
+                    Concepto n = new Concepto(contenido[x].Numero_Concepto);
+                    PresupuestoAgregado pres = (new PresupuestoAgregado() { ID = contenido[x].Numero_Concepto, Tipo = n.Tipo, ConceptoA = n.Nombre, ImporteA = Convert.ToSingle(n.Costo), CantidadA = 1, TotalA = Convert.ToSingle(n.Costo) });
+                    ListaConceptosAgregados.Items.Add(pres);
+                }
+            }
+            Totalpres();
+
+        }
+        public void IngresarDatos(string[,] m)
+        {
+            Presupuesto_Contenido sa = new Presupuesto_Contenido();
+            Presupuesto_Contenido[] l =sa.TableToArray(sa.SelXNumPresupuesto(idpresupuesto));
+            bool esta = false;
+            for(int x=0;x<l.Length;x++)
+            {
+                for(int y=0;y<m.Length/7;y++)
+                {
+                    if (Convert.ToInt32(m[y, 0]) == l[x].Numero_Concepto && l[x].Eliminado==false)
+                    {
+                        esta = true;
+                    }
+                }
+                if(esta==false)
+                {
+                    sa.Eliminar(idpresupuesto,l[x].Numero_Concepto);
+                    esta = false;
+                }
+                esta = false;
+            }
+            for (int x = 0; x < m.Length / 7; x++)
+            {
+                Presupuesto_Contenido agregar = new Presupuesto_Contenido(idpresupuesto, Convert.ToInt32(m[x, 0]));
+                if (agregar.Numero_Concepto != 0)
+                {
+
+                    if (agregar.Eliminado == false)
+                    {
+                        agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToInt32(m[x, 5]));
+                    }
+                    else
+                    {
+                        agregar.Activar(idpresupuesto, agregar.Numero_Concepto);
+                        agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToInt32(m[x, 5]));
+                    }
+                }
+                else if (agregar.Numero_Concepto == 0)
+                {
+                    agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToInt32(m[x, 5]));
                 }
             }
         }
@@ -144,11 +195,11 @@ namespace CapaPresentación
             Button button = (Button)sender;
             Grid grid = (Grid)button.Parent;
             PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
-            if(P!=null)
+            if (P != null)
             {
                 ListaConceptosAgregados.Items.Add(P);
                 ListaConceptos.Items.Remove(P);
-                Total.Text = ((P.CantidadA * P.ImporteA)+Convert.ToInt32(Total.Text)).ToString();
+                Totalpres();
             }
         }
         private void BtnQuitar_Click(object sender, RoutedEventArgs e)
@@ -159,47 +210,91 @@ namespace CapaPresentación
             if (P != null)
             {
                 ListaConceptosAgregados.Items.Remove(P);
-                if (P.Tipo==OpcionesTipo.Text)
+                Totalpres();
+                if (P.Tipo == OpcionesTipo.Text)
                 {
                     ListaConceptos.Items.Add(P);
+
                 }
 
             }
         }
 
-        private void TxtPrecioAgregado_LostFocus(object sender, RoutedEventArgs e)
+        public void Totalpres()
         {
-            TextBox box = (TextBox)sender;
-            Grid grid = (Grid)box.Parent;
-            PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
-            if(P!=null)
+            float tol = 0;
+            Total.Text= SubTotal.Text = "0";
+            for(int x=0;x<ListaConceptosAgregados.Items.Count;x++)
             {
-                Total.Text = ((P.CantidadA * P.ImporteA) + Convert.ToInt32(Total.Text)).ToString();
+                PresupuestoAgregado p = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
+                tol += p.TotalA;
+            }
+            SubTotal.Text =(tol *.86).ToString();
+            Total.Text =tol.ToString();
+        }
+
+        private void TxtTotalAgregado_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                TextBox box = (TextBox)sender;
+                Grid grid = (Grid)box.Parent;
+                PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
+                if (P != null)
+                {
+                    P.TotalA = P.CantidadA * P.ImporteA;
+                    box.Text = P.TotalA.ToString();
+                    Totalpres();
+                }
             }
         }
 
-        private void TxtCantidadAgregado_LostFocus(object sender, RoutedEventArgs e)
+        private void TxtCantidad_KeyUp(object sender, KeyEventArgs e)
         {
-            TextBox box = (TextBox)sender;
-            Grid grid = (Grid)box.Parent;
-            PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
-            if (P != null)
+            if (e.Key == Key.Enter)
             {
-                Total.Text =((P.CantidadA * P.ImporteA)+Convert.ToInt16(Total.Text)).ToString();
+                TextBox box = (TextBox)sender;
+                Grid grid = (Grid)box.Parent;
+                PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
+                if (P != null)
+                {
+                    P.CantidadA = Convert.ToInt32(box.Text);
+                    Totalpres();
+                }
+            }
+        }
+
+        private void TxtPrecioAgregado_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox box = (TextBox)sender;
+                Grid grid = (Grid)box.Parent;
+                PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
+                if (P != null)
+                {
+                    P.ImporteA = Convert.ToInt32(box.Text);
+                    Totalpres();
+                }
             }
         }
 
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
         {
-            string[,] vs = new string[ListaConceptosAgregados.Items.Count,3];
+            string[,] vs = new string[ListaConceptosAgregados.Items.Count,7];
             for(int x=0; x<ListaConceptosAgregados.Items.Count;x++)
             {
                 PresupuestoAgregado presupuestoAgregado = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
-                vs[x, 0] = presupuestoAgregado.ConceptoA;
+                vs[x, 0] = presupuestoAgregado.ID.ToString();
                 vs[x, 1] = presupuestoAgregado.Tipo;
-                vs[x, 2] = presupuestoAgregado.ImporteA.ToString();
+                vs[x, 2] = presupuestoAgregado.ConceptoA.ToString();
+                vs[x, 3] = presupuestoAgregado.ImporteA.ToString();
+                vs[x, 4] = presupuestoAgregado.CantidadA.ToString();
+                vs[x, 5] = presupuestoAgregado.TotalA.ToString();
+                vs[x, 6] = presupuestoAgregado.eliminado.ToString();
             }
-            PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(vs);
+            IngresarDatos(vs);
+            PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(idpresupuesto,vs);
             construcción.ShowDialog();
         }
     }
