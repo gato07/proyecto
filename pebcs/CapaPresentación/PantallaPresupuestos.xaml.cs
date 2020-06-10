@@ -81,7 +81,7 @@ namespace CapaPresentación
             }
             for (int p = 0; p < ListConceptos.Length; p++)
             {
-                PresupuestoAgregado presupuesto = (new PresupuestoAgregado() { ID = ListConceptos[p].Numero, Tipo = tipos, ConceptoA = ListConceptos[p].Nombre.ToString(), ImporteA = Convert.ToSingle(ListConceptos[p].Costo), CantidadA = 1, TotalA = Convert.ToSingle(ListConceptos[p].Costo), eliminado = ListConceptos[p].Eliminado });
+                PresupuestoAgregado presupuesto = (new PresupuestoAgregado() { ID = ListConceptos[p].Numero, Tipo = tipos, ConceptoA = ListConceptos[p].Nombre.ToString(), ImporteA = Convert.ToDecimal(ListConceptos[p].Costo), CantidadA = 1, TotalA = Convert.ToDecimal(ListConceptos[p].Costo), eliminado = ListConceptos[p].Eliminado });
                 bool esta = false;
                 for (int c = 0; c < ListaConceptosAgregados.Items.Count; c++)
                 {
@@ -102,9 +102,9 @@ namespace CapaPresentación
         {
             public int ID { get; set; }
             public string ConceptoA { get; set; }
-            public float ImporteA { get; set; }
+            public decimal ImporteA { get; set; }
             public int CantidadA { get; set; }
-            public float TotalA { get; set; }
+            public decimal TotalA { get; set; }
             public string Tipo { get; set; }
             public bool eliminado { get; set; }
         }
@@ -134,7 +134,7 @@ namespace CapaPresentación
                 if(contenido[x].Eliminado==false)
                 {
                     Concepto n = new Concepto(contenido[x].Numero_Concepto);
-                    PresupuestoAgregado pres = (new PresupuestoAgregado() { ID = contenido[x].Numero_Concepto, Tipo = n.Tipo, ConceptoA = n.Nombre, ImporteA = Convert.ToSingle(n.Costo), CantidadA = 1, TotalA = Convert.ToSingle(n.Costo) });
+                    PresupuestoAgregado pres = (new PresupuestoAgregado() { ID = contenido[x].Numero_Concepto, Tipo = n.Tipo, ConceptoA = n.Nombre, ImporteA = Convert.ToDecimal(n.Costo), CantidadA = 1, TotalA = Convert.ToDecimal(n.Costo) });
                     ListaConceptosAgregados.Items.Add(pres);
                 }
             }
@@ -169,17 +169,17 @@ namespace CapaPresentación
 
                     if (agregar.Eliminado == false)
                     {
-                        agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToInt32(m[x, 5]));
+                        agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
                     }
                     else
                     {
                         agregar.Activar(idpresupuesto, agregar.Numero_Concepto);
-                        agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToInt32(m[x, 5]));
+                        agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
                     }
                 }
                 else if (agregar.Numero_Concepto == 0)
                 {
-                    agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToInt32(m[x, 5]));
+                    agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
                 }
             }
         }
@@ -221,65 +221,41 @@ namespace CapaPresentación
 
         public void Totalpres()
         {
-            decimal tol = 0;
-            Total.Text = SubTotal.Text = "0.00";
-            for (int x = 0; x < ListaConceptosAgregados.Items.Count; x++)
+            decimal subtotal = 0.00m, tol = 0.00m;
+            Total.Text = "0.00";
+            SubTotal.Text = "0.00";
+            for (int x=0;x<ListaConceptosAgregados.Items.Count;x++)
             {
                 PresupuestoAgregado p = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
-                tol += Convert.ToDecimal(p.TotalA);
+                subtotal += Convert.ToDecimal(p.TotalA);
             }
-            SubTotal.Text = tol.ToString();
-            Total.Text = (tol + (tol * .16m)).ToString();
-            /*decimal tol = 0;
-            Total.Text = SubTotal.Text = "0.00";
-            for(int x=0;x<ListaConceptosAgregados.Items.Count;x++)
-            {
-                PresupuestoAgregado p = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
-                tol += Convert.ToDecimal(p.TotalA);
-            }
-            SubTotal.Text = tol.ToString(); 
-            Total.Text = (tol + (tol * .16m)).ToString();*/
+            SubTotal.Text = subtotal.ToString();
+            tol = subtotal + (subtotal * 0.16m);
+            Total.Text = tol.ToString();
         }
 
         private void TxtTotalAgregado_KeyUp(object sender, KeyEventArgs e)
         {
-            Totalpres();
-            /*if(e.Key == Key.Enter)
+            TextBox ttotal = (TextBox)sender;
+            if (decimal.TryParse(ttotal.Text.Trim(), out decimal total))
             {
-                TextBox box = (TextBox)sender;
-                Grid grid = (Grid)box.Parent;
-                PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
-                if (P != null)
-                {
-                    P.TotalA = P.CantidadA * P.ImporteA;
-                    box.Text = P.TotalA.ToString();
-                    Totalpres();
-                }
-            }*/
+                ttotal.Text = total.ToString();
+                Totalpres();
+            }
+            Totalpres();
         }
 
         private void TxtCantidad_KeyUp(object sender, KeyEventArgs e)
         {
             TextBox tcantidad = (TextBox)sender;
             Grid grid = (Grid)tcantidad.Parent;
-            TextBox tprecio = (TextBox)grid.Children[2];
+            TextBox tprecio = (TextBox)grid.Children[1];
             TextBox total = (TextBox)grid.Children[3];
-            if (int.TryParse(tcantidad.Text.Trim(), out int cantidad) && decimal.TryParse(tprecio.Text.Trim(), out decimal precio))
+            if (decimal.TryParse(tprecio.Text.Trim(), out decimal precio) && int.TryParse(tcantidad.Text.Trim(), out int cantidad))
             {
                 total.Text = (cantidad * precio).ToString();
                 Totalpres();
             }
-            /*if (e.Key == Key.Enter)
-            {
-                TextBox box = (TextBox)sender;
-                Grid grid = (Grid)box.Parent;
-                PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
-                if (P != null)
-                {
-                    P.CantidadA = Convert.ToInt32(box.Text);
-                    Totalpres();
-                }
-            }*/
         }
 
         private void TxtPrecioAgregado_KeyUp(object sender, KeyEventArgs e)
@@ -293,17 +269,6 @@ namespace CapaPresentación
                 total.Text = (cantidad * precio).ToString();
                 Totalpres();
             }
-            /*if (e.Key == Key.Enter)
-            {
-                TextBox box = (TextBox)sender;
-                Grid grid = (Grid)box.Parent;
-                PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
-                if (P != null)
-                {
-                    P.ImporteA = Convert.ToInt32(box.Text);
-                    Totalpres();
-                }
-            }*/
         }
 
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)

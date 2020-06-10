@@ -21,7 +21,7 @@ namespace CapaPresentación.Reportes
     /// </summary>
     public partial class PresupuestoLicenciaConstrucción : Window
     {
-        float TotalA, TotalB = 0;
+        decimal TotalA, TotalB = 0;
         string[,] listado;
         int IDPresupuesto;
         public PresupuestoLicenciaConstrucción(int NumeroPresupuesto,string [,] A)
@@ -57,16 +57,16 @@ namespace CapaPresentación.Reportes
         {
             public int ID { get; set; }
             public string ConceptoA { get; set; }
-            public float ImporteA { get; set; }
+            public decimal ImporteA { get; set; }
             public int CantidadA { get; set; }
-            public float TotalA { get; set; }
+            public decimal TotalA { get; set; }
             public string Tipo { get; set; }
         }
         public void llenarReporte(string [,] A)
         {
-            for (int x=0;x<(A.Length/6)-1;x++)
+            for (int x=0;x<(A.Length/7);x++)
             {
-                PresupuestoAgregado presupuesto = new PresupuestoAgregado() { ID=Convert.ToInt32(A[x,0]),Tipo= A[x, 1],ConceptoA= A[x, 2],ImporteA= Convert.ToInt32(A[x, 3]),CantidadA= Convert.ToInt32(A[x, 4]),TotalA= Convert.ToInt32(A[x, 5]) };
+                PresupuestoAgregado presupuesto = new PresupuestoAgregado() { ID=Convert.ToInt32(A[x,0]),Tipo= A[x, 1],ConceptoA= A[x, 2],ImporteA= Convert.ToDecimal(A[x, 3]),CantidadA= Convert.ToInt32(A[x, 4]),TotalA= Convert.ToDecimal(A[x, 5]) };
                 if (A[x,1]== "Pago de honorarios")
                 {
                     pagosdehonorarios.Items.Add(presupuesto);
