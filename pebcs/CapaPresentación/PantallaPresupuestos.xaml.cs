@@ -229,7 +229,7 @@ namespace CapaPresentación
                 PresupuestoAgregado p = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
                 tol += p.TotalA;
             }
-            SubTotal.Text =(tol *.86).ToString();
+            SubTotal.Text =(tol *.84).ToString();
             Total.Text =tol.ToString();
         }
 

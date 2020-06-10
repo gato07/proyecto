@@ -253,11 +253,11 @@
                                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                                         </StackPanel>
                                     </Button>
-                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Name="DTP_FechaDeArmadoPaqueteAlineamiento" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="1" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDePagoDerechosAlineamiento" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="2" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Name="DTP_FechaDeRecogerDocumentacionAlineamiento" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionAlineamiento" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
@@ -276,18 +276,18 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="USO DE SUELO" Name="UsoDeSuelo" Foreground="#27AE60" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
-                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosUsoDeSuelo"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosUsoDeSuelo" Click="btn_GuardarProcesosUsoDeSuelo_Click"
                                          materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                                         <StackPanel>
                                             <materialDesign:PackIcon Kind="GreasePencil"/>
                                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                                         </StackPanel>
                                     </Button>
-                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Name="DTP_FechaDeArmadoPaquetUsoDeSuelo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaquetUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="1" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDePagoDerechosUsoDeSuelo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="2" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Name="DTP_FechaDeRecogerDocumentacionUsoDeSuelo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionUsoDeSuelo" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#27AE60" BorderBrush="#27AE60" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
@@ -306,18 +306,18 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="SUPERVISIÓNTECNICA" Name="SupervisiónTecnica" Foreground="#2980B9" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
-                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosSupervicionTecnica"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosSupervicionTecnica" Click="btn_GuardarProcesosSupervicionTecnica_Click"
                                          materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                                         <StackPanel>
                                             <materialDesign:PackIcon Kind="GreasePencil"/>
                                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                                         </StackPanel>
                                     </Button>
-                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Name="DTP_FechaDeArmadoPaqueteSupervisiónTecnica" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="1" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDePagoDerechosSupervisiónTecnica" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="2" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Name="DTP_FechaDeRecogerDocumentacionSupervisiónTecnica" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#2980B9" BorderBrush="#2980B9" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
@@ -336,18 +336,18 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="LICENCIA" Name="Licencia" Foreground="#E74C3C" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
-                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosLicencia"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosLicencia" Click="btn_GuardarProcesosLicencia_Click"
                                          materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                                         <StackPanel>
                                             <materialDesign:PackIcon Kind="GreasePencil"/>
                                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                                         </StackPanel>
                                     </Button>
-                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Name="DTP_FechaDeArmadoPaqueteLicencia" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="1" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDePagoDerechosLicencia" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="2" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Name="DTP_FechaDeRecogerDocumentacionLicencia" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionLicencia" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#E74C3C" BorderBrush="#E74C3C" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>
@@ -366,18 +366,18 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="LICENCIA" Name="TO" Foreground="#884EA0" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,8,0,0" Grid.Row="1" Grid.Column="1"
-                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosTerminacionDeObra"
+                                         Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" Name="btn_GuardarProcesosTerminacionDeObra" Click="btn_GuardarProcesosTerminacionDeObra_Click"
                                          materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                                         <StackPanel>
                                             <materialDesign:PackIcon Kind="GreasePencil"/>
                                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                                         </StackPanel>
                                     </Button>
-                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Armado De Paquete" Name="DTP_FechaDeArmadoPaqueteTO" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeArmadoPaqueteTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="1" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDePagoDerechosTO" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesPagoDerechosTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="2" Grid.Column="1" Height="50" />
-                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
+                                    <DatePicker materialDesign:HintAssist.Hint="Recoger Documentación" Name="DTP_FechaDeRecogerDocumentacionTO" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="70,20" VerticalAlignment="Stretch" Height="50"  Grid.Row="3" Grid.Column="0"/>
                                     <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesRecogerDocumentacionTO" materialDesign:HintAssist.IsFloating="True" Margin="70,20" CaretBrush="#884EA0" BorderBrush="#884EA0" Grid.Row="3" Grid.Column="1" Height="50" />
                                 </Grid>
                             </TabItem>

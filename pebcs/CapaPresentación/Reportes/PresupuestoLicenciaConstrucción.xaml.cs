@@ -64,7 +64,7 @@ namespace CapaPresentación.Reportes
         }
         public void llenarReporte(string [,] A)
         {
-            for (int x=0;x<(A.Length/6);x++)
+            for (int x=0;x<(A.Length/6)-1;x++)
             {
                 PresupuestoAgregado presupuesto = new PresupuestoAgregado() { ID=Convert.ToInt32(A[x,0]),Tipo= A[x, 1],ConceptoA= A[x, 2],ImporteA= Convert.ToInt32(A[x, 3]),CantidadA= Convert.ToInt32(A[x, 4]),TotalA= Convert.ToInt32(A[x, 5]) };
                 if (A[x,1]== "Pago de honorarios")
