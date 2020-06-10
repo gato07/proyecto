@@ -70,12 +70,12 @@ namespace CapaPresentación.Reportes
                 if (A[x,1]== "Pago de honorarios")
                 {
                     pagosdehonorarios.Items.Add(presupuesto);
-                    TotalA += presupuesto.ImporteA;
+                    TotalA += presupuesto.TotalA;
                 }
                 else if(A[x, 1] == "Pagos ante ayuntamiento")
                 {
                     pagosanteayuntamiento.Items.Add(presupuesto);
-                    TotalB += presupuesto.ImporteA;
+                    TotalB += presupuesto.TotalA;
                 }
             }
             tolA.Text = "$"+TotalA.ToString();

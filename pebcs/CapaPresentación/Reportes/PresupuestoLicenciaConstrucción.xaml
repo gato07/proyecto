@@ -20,7 +20,7 @@
                     <TextBlock Grid.Column="1" HorizontalAlignment="Right">
                         .........................
                     </TextBlock>
-                    <TextBlock Grid.Column="2" Text="{Binding ImporteA}" HorizontalAlignment="Right"/>
+                    <TextBlock Grid.Column="2" Text="{Binding TotalA}" HorizontalAlignment="Right"/>
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
