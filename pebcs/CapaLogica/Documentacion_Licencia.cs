@@ -169,6 +169,20 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelXNumeroProLic(int Numero_Proyecto_Licencia)
+        {
+            try
+            {
+                return dtsSelXNumeroProLic(Numero_Proyecto_Licencia);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones_Licencia X Numero"
+                    + " de proyecto de licencia";
+                return null;
+            }
+        }
+
         public Documentacion_Licencia[] TableToArray(DataTable Dt)
         {
             try

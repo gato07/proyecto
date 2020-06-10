@@ -189,6 +189,24 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelXNumeroProLic(int Numero_Proyecto_Licencia)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_DocuLice_SelXNumeroProLic("
+                    + Numero_Proyecto_Licencia + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         #endregion Metodos
 
     }
