@@ -205,6 +205,24 @@ namespace CapaAccesoDatos
             }
         }
 
+        public bool dtsActualizarIdEstadoLic(int Numero, int Id_Estado_Licencia)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarIdEstadoLic(" + Numero + "," 
+                    + Id_Estado_Licencia + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool dtsEliminar(int Numero)
         {
             try

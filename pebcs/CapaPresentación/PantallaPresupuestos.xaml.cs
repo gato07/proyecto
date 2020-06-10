@@ -139,7 +139,6 @@ namespace CapaPresentación
                 }
             }
             Totalpres();
-
         }
         public void IngresarDatos(string[,] m)
         {
@@ -222,20 +221,30 @@ namespace CapaPresentación
 
         public void Totalpres()
         {
-            float tol = 0;
-            Total.Text= SubTotal.Text = "0";
+            decimal tol = 0;
+            Total.Text = SubTotal.Text = "0.00";
+            for (int x = 0; x < ListaConceptosAgregados.Items.Count; x++)
+            {
+                PresupuestoAgregado p = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
+                tol += Convert.ToDecimal(p.TotalA);
+            }
+            SubTotal.Text = tol.ToString();
+            Total.Text = (tol + (tol * .16m)).ToString();
+            /*decimal tol = 0;
+            Total.Text = SubTotal.Text = "0.00";
             for(int x=0;x<ListaConceptosAgregados.Items.Count;x++)
             {
                 PresupuestoAgregado p = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
-                tol += p.TotalA;
+                tol += Convert.ToDecimal(p.TotalA);
             }
-            SubTotal.Text =(tol *.86).ToString();
-            Total.Text =tol.ToString();
+            SubTotal.Text = tol.ToString(); 
+            Total.Text = (tol + (tol * .16m)).ToString();*/
         }
 
         private void TxtTotalAgregado_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            Totalpres();
+            /*if(e.Key == Key.Enter)
             {
                 TextBox box = (TextBox)sender;
                 Grid grid = (Grid)box.Parent;
@@ -246,12 +255,21 @@ namespace CapaPresentación
                     box.Text = P.TotalA.ToString();
                     Totalpres();
                 }
-            }
+            }*/
         }
 
         private void TxtCantidad_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            TextBox tcantidad = (TextBox)sender;
+            Grid grid = (Grid)tcantidad.Parent;
+            TextBox tprecio = (TextBox)grid.Children[2];
+            TextBox total = (TextBox)grid.Children[3];
+            if (int.TryParse(tcantidad.Text.Trim(), out int cantidad) && decimal.TryParse(tprecio.Text.Trim(), out decimal precio))
+            {
+                total.Text = (cantidad * precio).ToString();
+                Totalpres();
+            }
+            /*if (e.Key == Key.Enter)
             {
                 TextBox box = (TextBox)sender;
                 Grid grid = (Grid)box.Parent;
@@ -261,12 +279,21 @@ namespace CapaPresentación
                     P.CantidadA = Convert.ToInt32(box.Text);
                     Totalpres();
                 }
-            }
+            }*/
         }
 
         private void TxtPrecioAgregado_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            TextBox tprecio = (TextBox)sender;
+            Grid grid = (Grid)tprecio.Parent;
+            TextBox tcantidad = (TextBox)grid.Children[2];
+            TextBox total = (TextBox)grid.Children[3];
+            if (decimal.TryParse(tprecio.Text.Trim(), out decimal precio) && int.TryParse(tcantidad.Text.Trim(), out int cantidad))
+            {
+                total.Text = (cantidad * precio).ToString();
+                Totalpres();
+            }
+            /*if (e.Key == Key.Enter)
             {
                 TextBox box = (TextBox)sender;
                 Grid grid = (Grid)box.Parent;
@@ -276,7 +303,7 @@ namespace CapaPresentación
                     P.ImporteA = Convert.ToInt32(box.Text);
                     Totalpres();
                 }
-            }
+            }*/
         }
 
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
