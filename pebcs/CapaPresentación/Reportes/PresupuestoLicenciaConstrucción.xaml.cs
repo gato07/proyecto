@@ -23,15 +23,27 @@ namespace CapaPresentación.Reportes
     {
         decimal TotalA, TotalB = 0;
         string[,] listado;
+        string[] Info;
         int IDPresupuesto;
-        public PresupuestoLicenciaConstrucción(int NumeroPresupuesto,string [,] A)
+        public PresupuestoLicenciaConstrucción(int NumeroPresupuesto,string [,] A,string[] B)
         {
             InitializeComponent();
             llenarReporte(A);
             listado = A;
             IDPresupuesto = NumeroPresupuesto;
+            Info = B;
+            LLenar(B);
         }
-
+        public void LLenar(string[] vs)
+        {
+            LB_Propietario.Text = "";
+            LB_Solicitante.Text = "";
+            Texto.Text = "";
+            LB_Propietario.Text = vs[0];
+            LB_Solicitante.Text = vs[1];
+            Texto.Text = "Por medio de la presente y no sin antes saludarle se atiende su solicitud de presupuesto de firma y " +
+                "gestoría para licencia de construcción para "+ vs[2] +" sobre "+ vs[3]+" m2 en base a los siguientes conceptos.";
+        }
         private void BtnImprimir_MouseLeave(object sender, MouseEventArgs e)
         {
             BtnImprimir.Margin = new Thickness(565, 47, 0, 62);

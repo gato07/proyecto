@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
 using CapaPresentación.Reportes;
-using static CapaPresentación.Pantalla_CargaDeTrabajo;
 
 namespace CapaPresentación
 {
@@ -26,7 +26,10 @@ namespace CapaPresentación
     {
         Concepto ListaConcepto;
         Concepto[] ListConceptos;
+        string[] datosPresupuesto = new string[4];
         int idpreproyecto, idpresupuesto;
+        bool Aprobado = false;
+        int aproaux;
         public PantallaPresupuestos(int IDPresupuesto)
         {
             InitializeComponent();
@@ -108,20 +111,31 @@ namespace CapaPresentación
             public string Tipo { get; set; }
             public bool eliminado { get; set; }
         }
-        public class ClientesInfo
-        {
-            public int ID { get; set; }
-            public string Nombre { get; set; }
-            public string RFC { get; set; }
-        }
         public void LlenarPreporyecto(int IDPre)
         {
             if (IDPre != 0)
             {
                 Presupuesto presupuesto = new Presupuesto(IDPre);
                 Preproyecto preproyecto = new Preproyecto(presupuesto.Id_Preproyecto);
-                preproyect preproyect = (new preproyect() { ID = preproyecto.Id, Etiqueta = preproyecto.Etiqueta, Solicitante = preproyecto.Nombre_Solicitante, Propietario = preproyecto.Nombre_Propietario, fecha = preproyecto.Fecha, metros = preproyecto.Mts, presupuesto = preproyecto.Requiere_Presupuesto, tipoProyecto = preproyecto.Id_Tipo_Proyecto });
-                ElPrePoryecto.Items.Add(preproyect);
+                Etiqueta.Text =preproyecto.Etiqueta;
+                TXT_Propietario.Text = preproyecto.Nombre_Propietario;
+                TXT_Metros.Text = preproyecto.Mts.ToString();
+                Tipo_Proyecto tipo_ = new Tipo_Proyecto(preproyecto.Id_Tipo_Proyecto);
+                TXT_TipoProyecto.Text = tipo_.Tipo_Obra+" "+tipo_.Uso;
+                if(presupuesto.Aprobado==0)
+                {
+                    Aprobado = false;
+                    aproaux = 0;
+                }
+                else if(presupuesto.Aprobado==1)
+                {
+                    Aprobado = true;
+                    aproaux = 1;
+                }
+                TGL_aprobado.IsChecked = Aprobado;
+                datosPresupuesto[0] = TXT_Propietario.Text;
+                datosPresupuesto[2] = TXT_TipoProyecto.Text;
+                datosPresupuesto[3] = TXT_Metros.Text;
                 CargarConceptos(IDPre);
             }
         }
@@ -184,7 +198,7 @@ namespace CapaPresentación
             }
             Presupuesto presupuesto = new Presupuesto(idpresupuesto);
             if (presupuesto.Existe)
-                presupuesto.Actualizar(idpresupuesto, presupuesto.Dirigido, Convert.ToDecimal(Total.Text.Trim()), presupuesto.Aprobado, presupuesto.Clave_Empleado, presupuesto.Id_Preproyecto);
+                presupuesto.Actualizar(idpresupuesto, presupuesto.Dirigido, Convert.ToDecimal(Total.Text.Trim()), aproaux, presupuesto.Clave_Empleado, presupuesto.Id_Preproyecto);
         }
 
         private void OpcionesTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -288,10 +302,24 @@ namespace CapaPresentación
             }
         }
 
+        private void TGL_aprobado_Click(object sender, RoutedEventArgs e)
+        {
+            Aprobado = Convert.ToBoolean(TGL_aprobado.IsChecked);
+            if (Aprobado == true)
+            {
+                aproaux = 1;
+            }
+            else
+            {
+                aproaux = 0;
+            }
+        }
+
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
         {
             string[,] vs = new string[ListaConceptosAgregados.Items.Count,7];
-            for(int x=0; x<ListaConceptosAgregados.Items.Count;x++)
+            datosPresupuesto[1] = TXT_Dirigido.Text;
+            for (int x=0; x<ListaConceptosAgregados.Items.Count;x++)
             {
                 PresupuestoAgregado presupuestoAgregado = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
                 vs[x, 0] = presupuestoAgregado.ID.ToString();
@@ -303,7 +331,7 @@ namespace CapaPresentación
                 vs[x, 6] = presupuestoAgregado.eliminado.ToString();
             }
             IngresarDatos(vs);
-            PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(idpresupuesto,vs);
+            PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(idpresupuesto ,vs , datosPresupuesto);
             construcción.ShowDialog();
         }
     }

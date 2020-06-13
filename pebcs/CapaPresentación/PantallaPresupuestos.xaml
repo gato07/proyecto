@@ -9,26 +9,6 @@
              d:DesignHeight="712" d:DesignWidth="882">
     <Control.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Key="ListaPreproyectos">
-                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Etiqueta}" />
-                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Solicitante}" />
-                    <TextBlock Grid.Row="1" Text="{Binding Propietario}" />
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="3 0 0 0" Text="{Binding fecha}" />
-                    <TextBlock Grid.Column="2" Text="{Binding metros}" Margin="12 0 0 0" />
-                    <TextBlock Grid.Column="3"  Margin="3 0 0 0" Text="{Binding presupuesto}" />
-                </Grid>
-            </DataTemplate>
             <DataTemplate x:Key="TemplateListaDepresupuesto">
                 <materialDesign:Card>
                     <Grid Height="60" Width="240">
@@ -70,29 +50,6 @@
                     </Grid>
                 </materialDesign:Card>
             </DataTemplate>
-            <DataTemplate x:Key="ListaClientes">
-                <Border x:Name="Border"  Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition SharedSizeGroup="Checkerz" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <ToggleButton VerticalAlignment="Center" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding ID}" Background="#3498DB"/>
-                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                            <TextBlock FontWeight="Bold"  Text="{Binding Nombre}" />
-                            <TextBlock  Text="{Binding RFC}" />
-                        </StackPanel>
-                    </Grid>
-                </Border>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
-            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Control.Resources>
     <Grid>
@@ -112,10 +69,38 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="45*"/>
                                 <RowDefinition Height="150*"/>
-
+                                <RowDefinition Height="90*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Presupuesto" HorizontalAlignment="Center" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" />
-                            <ListBox Grid.Row="1" ItemTemplate="{StaticResource ListaPreproyectos}" Name="ElPrePoryecto" Margin="5"/>
+                            <TextBlock Text="Presupuesto" HorizontalAlignment="Center" Name="Etiqueta" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" />
+                            <Grid  Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="367*"/>
+                                    <ColumnDefinition Width="367*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="51*"/>
+                                    <RowDefinition Height="51*"/>
+                                </Grid.RowDefinitions>
+                                <TextBox materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="1"/>
+                                <TextBox materialDesign:HintAssist.Hint="Tipo De Proyecto" x:Name="TXT_TipoProyecto" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="0"/>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="425*"/>
+                                    <ColumnDefinition Width="300*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox materialDesign:HintAssist.Hint="Dirigido" x:Name="TXT_Dirigido" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="2" Grid.Column="0"/>
+                                <TextBlock Text="Aprobado" HorizontalAlignment="Right" Foreground="#3498DB" FontSize="20" FontWeight="Bold" Grid.Column="1" Margin="0,16,200,16"/>
+                                <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#3498DB" Grid.Column="1" Margin="0,16,80,14" HorizontalAlignment="Right" Name="TGL_aprobado" Click="TGL_aprobado_Click">
+                                    <ToggleButton.Content>
+                                        No
+                                    </ToggleButton.Content>
+                                    <materialDesign:ToggleButtonAssist.OnContent>
+                                        SI
+                                    </materialDesign:ToggleButtonAssist.OnContent>
+                                </ToggleButton>
+                            </Grid>
                         </Grid>
                     </materialDesign:Card>
                     <Grid Grid.Column="1">

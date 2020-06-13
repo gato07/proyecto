@@ -10,17 +10,21 @@
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TemplateListaDepresupuestoAgregado">
-                <Grid Width="559">
+                <Grid Width="465">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding ConceptoA}" HorizontalAlignment="Right"/>
+                    <StackPanel Grid.Column="0" Orientation="Vertical">
+                        <TextBlock Grid.Column="0" Text="{Binding ConceptoA}" HorizontalAlignment="Right" />
+                    </StackPanel>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Right">
-                        .........................
+                        .......................................................................................
                     </TextBlock>
-                    <TextBlock Grid.Column="2" Text="{Binding TotalA}" HorizontalAlignment="Right"/>
+                    <DockPanel Grid.Column="2" VerticalAlignment="Center">
+                        <TextBlock Grid.Column="2" Text="{Binding TotalA}" HorizontalAlignment="Right" />
+                    </DockPanel>
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
@@ -67,13 +71,13 @@
                 A quien corresponda.-
             </Bold>
         </TextBlock>
-        <TextBlock Grid.Row="1" Margin="45,54,46,32" FontSize="11" FontStyle="Normal" TextWrapping="Wrap" TextAlignment="Justify">
+        <TextBlock Grid.Row="1" Margin="45,54,46,32" FontSize="11" Name="Texto" FontStyle="Normal" TextWrapping="Wrap" TextAlignment="Justify">
             Por medio de la presente y no sin antes saludarle se atiende su solicitud de presupuesto de firma y gestoría para licencia de construcción para Obra nueva de Casa Habitación sobre 98.32 m2 en base a los siguientes conceptos.
         </TextBlock>
-        <TextBlock Grid.Row="1" Margin="45,108,46,18" FontSize="11" FontStyle="Normal" >
+        <TextBlock Grid.Row="1" Margin="45,108,46,18" Name="LB_Propietario" FontSize="11" FontStyle="Normal" >
             Obra nueva casa Roger y Nancy.-
         </TextBlock>
-        <TextBlock Grid.Row="1" Margin="45,126,46,0" FontSize="11" FontStyle="Normal" >
+        <TextBlock Grid.Row="1" Margin="45,126,46,0" Name="LB_Solicitante" FontSize="11" FontStyle="Normal" >
             Arq. Rochin.-
         </TextBlock>
         <Grid Grid.Row="2">
@@ -85,12 +89,12 @@
             <TextBlock Grid.Row="0" Margin="45,1,46,198" FontSize="11" FontStyle="Normal" TextAlignment="Right">
                 Pagos de honorarios.-
             </TextBlock>
-            <ListBox Grid.Row="0" Name="pagosdehonorarios" Margin="320,18,0,17" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"/>
+            <ListBox Grid.Row="0" Name="pagosdehonorarios"  Margin="135,18,4,17" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"/>
             <TextBlock Grid.Row="0" Margin="45,199,46,0" FontSize="11" FontStyle="Normal" TextAlignment="Right" Text="Total: $" Name="tolA"/>
             <TextBlock Grid.Row="1" Margin="45,1,46,198" FontSize="11" FontStyle="Normal" TextAlignment="Right">
                 Pagos ante ayuntamiento.-
             </TextBlock>
-            <ListBox Grid.Row="1" Name="pagosanteayuntamiento" Margin="320,18,0,0" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"/>
+            <ListBox Grid.Row="1" Name="pagosanteayuntamiento" Margin="135,18,4,0" ItemTemplate="{StaticResource TemplateListaDepresupuestoAgregado}"/>
             <TextBlock Grid.Row="1" Margin="45,199,46,0" FontSize="11" FontStyle="Normal" TextAlignment="Right" Name="TolB" Text="Total: $"/>
 
             <TextBlock Name="s" Grid.Row="2" Margin="46,1,46,41" FontSize="11" FontStyle="Normal" TextAlignment="Right">
