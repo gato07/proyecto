@@ -21,7 +21,11 @@
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="290*"/>
                 </Grid.ColumnDefinitions>
-                <materialDesign:ColorZone Grid.Column="0" Background="#1ABC9C" Height="180"/>
+                <materialDesign:ColorZone Name="IndicadorAlineamiento" Grid.Column="0" Background="#F1C40F" Height="36" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorUsoDeSuelo" Grid.Column="0" Background="#27AE60" Height="36" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorSupervisionTecnica" Grid.Column="0" Background="#2980B9" Height="36" Margin="0,0,0,72" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorLicencia" Grid.Column="0" Background="#E74C3C" Height="36" Margin="0,0,0,36" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorTerminacionObra" Grid.Column="0" Background="#884EA0" Height="36" VerticalAlignment="Bottom"/>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30*"/>

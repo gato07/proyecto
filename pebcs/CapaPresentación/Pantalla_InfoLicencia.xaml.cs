@@ -610,7 +610,7 @@ namespace CapaPresentación
         {
             if (F == false)
             {
-                ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text.ToString(), TXT_NoLicencia.Text.ToString(), dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], ProyectoLicencia.Id_Estado_Licencia, ProyectoLicencia.Id_Preproyecto, ProyectoLicencia.Id_Cliente, ProyectoLicencia.Clave_Inmueble, ProyectoLicencia.Clave_Empleado);
+                ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text.ToString(), TXT_NoLicencia.Text.ToString(), dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], ProyectoLicencia.Id_Preproyecto, ProyectoLicencia.Id_Cliente, ProyectoLicencia.Clave_Inmueble, ProyectoLicencia.Clave_Empleado);
                 PantallaCheck check = new PantallaCheck();
                 check.Show();
             }
