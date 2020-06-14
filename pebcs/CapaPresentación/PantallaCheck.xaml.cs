@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CapaPresentación
 {
@@ -24,20 +25,14 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                this.Cursor = Cursors.Wait;
-                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
-                this.Cursor = null;
-                this.Close();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(0, 0, 3);
+                timer.Tick += (a, b) =>
+                  {
+                      timer.Stop();
+                      this.Close();
+                  };
+                timer.Start();
             }
             catch(Exception ex)
             {

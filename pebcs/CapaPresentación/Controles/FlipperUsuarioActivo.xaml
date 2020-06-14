@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </Control.Resources>
     <Grid>
-        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10" MouseLeave="Flipper_MouseLeave" MouseMove="Flipper_MouseMove" Name="Flip" >
+        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10" MouseLeave="Flipper_MouseLeave" Name="Flip" MouseEnter="Flip_MouseEnter" >
             <materialDesign:Flipper.FrontContent>
                 <Grid Height="256" Width="200">
                     <Grid.RowDefinitions>

@@ -71,18 +71,6 @@ namespace CapaPresentación.Controles
 
             }
         }
-        private void Flip_MouseMove(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                this.Cursor = Cursors.Hand;
-                Flip.Margin = new Thickness(0, 0, 0, 0);
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
         public void CargarDatosTarjeta(int CALVE, string NombreCompleto, string Domicilio, string Telefono, string Email, string Puesto, string Foto, int Perfil, string Usuario, string Contraseña)
         {
             try
@@ -120,6 +108,19 @@ namespace CapaPresentación.Controles
                 MN.AbrirFormHijo(new PantallaUsuario(MN));
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void Flip_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.Hand;
+                Flip.Margin = new Thickness(0, 0, 0, 0);
+            }
+            catch (Exception ex)
             {
 
             }

@@ -152,8 +152,7 @@ namespace CapaPresentación.Controles
 
             }
         }
-
-        private void Flipper_MouseMove(object sender, MouseEventArgs e)
+        private void Flip_MouseEnter(object sender, MouseEventArgs e)
         {
             try
             {
@@ -161,7 +160,7 @@ namespace CapaPresentación.Controles
                 Flip.Margin = new Thickness(0, 0, 0, 0);
             }
             catch (Exception ex)
-            { 
+            {
 
             }
         }

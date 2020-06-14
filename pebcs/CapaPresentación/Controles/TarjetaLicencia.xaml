@@ -5,7 +5,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CapaPresentación.Controles"
-             mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="200">
+             mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="200" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="10" MouseDoubleClick="Card_MouseDoubleClick">
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="10" Name="CardLicencia" MouseDoubleClick="Card_MouseDoubleClick">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>

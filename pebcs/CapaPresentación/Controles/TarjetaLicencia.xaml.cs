@@ -44,5 +44,30 @@ namespace CapaPresentación.Controles
         {
             Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,ID)) ;
         }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.Hand;
+                CardLicencia.Margin = new Thickness(0, 0, 0, 0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                CardLicencia.Margin = new Thickness(10, 10, 10, 10);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

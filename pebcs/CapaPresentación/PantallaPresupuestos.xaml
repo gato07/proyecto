@@ -91,15 +91,15 @@
                                     <ColumnDefinition Width="300*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox materialDesign:HintAssist.Hint="Dirigido" x:Name="TXT_Dirigido" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="2" Grid.Column="0"/>
-                                <TextBlock Text="Aprobado" HorizontalAlignment="Right" Foreground="#3498DB" FontSize="20" FontWeight="Bold" Grid.Column="1" Margin="0,16,200,16"/>
-                                <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#3498DB" Grid.Column="1" Margin="0,16,80,14" HorizontalAlignment="Right" Name="TGL_aprobado" Click="TGL_aprobado_Click">
-                                    <ToggleButton.Content>
-                                        No
-                                    </ToggleButton.Content>
-                                    <materialDesign:ToggleButtonAssist.OnContent>
-                                        SI
-                                    </materialDesign:ToggleButtonAssist.OnContent>
-                                </ToggleButton>
+                                <ComboBox Name="EstadoPresupuesto" Grid.Column="1"
+                                                  materialDesign:HintAssist.Hint="Estado de Presupuesto"  Margin="0,15,8,5" BorderBrush="#3498DB" VerticalAlignment="Stretch">
+                                    <ComboBoxItem
+                                                Content="No Aprobado" />
+                                    <ComboBoxItem
+                                                Content="Aprobado" />
+                                    <ComboBoxItem
+                                                Content="En Espera" />
+                                </ComboBox>
                             </Grid>
                         </Grid>
                     </materialDesign:Card>

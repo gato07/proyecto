@@ -122,20 +122,10 @@ namespace CapaPresentación
                 TXT_Metros.Text = preproyecto.Mts.ToString();
                 Tipo_Proyecto tipo_ = new Tipo_Proyecto(preproyecto.Id_Tipo_Proyecto);
                 TXT_TipoProyecto.Text = tipo_.Tipo_Obra+" "+tipo_.Uso;
-                if(presupuesto.Aprobado==0)
-                {
-                    Aprobado = false;
-                    aproaux = 0;
-                }
-                else if(presupuesto.Aprobado==1)
-                {
-                    Aprobado = true;
-                    aproaux = 1;
-                }
-                TGL_aprobado.IsChecked = Aprobado;
                 datosPresupuesto[0] = TXT_Propietario.Text;
                 datosPresupuesto[2] = TXT_TipoProyecto.Text;
                 datosPresupuesto[3] = TXT_Metros.Text;
+                EstadoPresupuesto.SelectedIndex = presupuesto.Aprobado;
                 CargarConceptos(IDPre);
             }
         }
@@ -198,7 +188,7 @@ namespace CapaPresentación
             }
             Presupuesto presupuesto = new Presupuesto(idpresupuesto);
             if (presupuesto.Existe)
-                presupuesto.Actualizar(idpresupuesto, presupuesto.Dirigido, Convert.ToDecimal(Total.Text.Trim()), aproaux, presupuesto.Clave_Empleado, presupuesto.Id_Preproyecto);
+                presupuesto.Actualizar(idpresupuesto, presupuesto.Dirigido, Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex, presupuesto.Clave_Empleado, presupuesto.Id_Preproyecto);
         }
 
         private void OpcionesTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -299,19 +289,6 @@ namespace CapaPresentación
                     total.Text = p.TotalA.ToString();
                     Totalpres();
                 }
-            }
-        }
-
-        private void TGL_aprobado_Click(object sender, RoutedEventArgs e)
-        {
-            Aprobado = Convert.ToBoolean(TGL_aprobado.IsChecked);
-            if (Aprobado == true)
-            {
-                aproaux = 1;
-            }
-            else
-            {
-                aproaux = 0;
             }
         }
 
