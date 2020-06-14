@@ -90,7 +90,7 @@ namespace CapaLogica
 
         public bool Actualizar(int Numero, string Folio, string Numero_Licencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
-            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, 
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
@@ -101,7 +101,7 @@ namespace CapaLogica
                    + " que no se hayan modificado los datos correctamente";
                 res = dtsActualizar(Numero, Folio, Numero_Licencia, Escrituras, Constancia_Alineamiento, Pago_Predial,
                     Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones,
-                    Memoria_Calculo, Id_Estado_Licencia, Id_Preproyecto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
+                    Memoria_Calculo, Id_Preproyecto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
                 if (res)
                     Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
                 return res;

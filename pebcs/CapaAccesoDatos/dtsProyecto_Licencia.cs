@@ -183,7 +183,7 @@ namespace CapaAccesoDatos
 
         public bool dtsActualizar(int Numero, string Folio, string Numero_Licencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
-            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
+            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo,
             int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
@@ -194,8 +194,8 @@ namespace CapaAccesoDatos
                 res = conexion.Consulta_Accion("CALL SP_ProyLice_Actualizar(" + Numero + ",'" + Folio + "','" 
                     + Numero_Licencia + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial 
                     + "," + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," 
-                    + Planos_Instalaciones + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," 
-                    + Id_Preproyecto + "," + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");");
+                    + Planos_Instalaciones + "," + Memoria_Calculo + "," + Id_Preproyecto + "," 
+                    + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");");
                 conexion.Desconectar();
                 return res;
             }
