@@ -268,7 +268,7 @@
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Inmueble</TextBlock>
                     </materialDesign:Card>
                     <TextBox  materialDesign:HintAssist.Hint="Clave catastral" Name="TXTClaveCatastralModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
+                    <TextBox materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="60"/>
                     <TextBox materialDesign:HintAssist.Hint="Teléfono del propietario" Name="TXTTelefonoPropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
                     <TextBox materialDesign:HintAssist.Hint="Código Postal" Name="TXTCodigoPostalModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="5" KeyUp="TXTCodigoPostalModificar_KeyUp"/>
                     <ComboBox Name="CMBColoniaModificar" Grid.Row="2" Grid.Column="2"

@@ -43,11 +43,11 @@
                             <ColumnDefinition Width="145*"/>
                             <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="No.Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
+                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="No.Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
+                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
+                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
+                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
+                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
                         <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,14,5,0">
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
                         </materialDesign:ColorZone>

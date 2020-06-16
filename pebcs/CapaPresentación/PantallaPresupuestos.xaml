@@ -81,16 +81,16 @@
                                     <RowDefinition Height="51*"/>
                                     <RowDefinition Height="51*"/>
                                 </Grid.RowDefinitions>
-                                <TextBox materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="0"/>
-                                <TextBox materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="1"/>
-                                <TextBox materialDesign:HintAssist.Hint="Tipo De Proyecto" x:Name="TXT_TipoProyecto" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox IsReadOnly="True" MaxLength="60" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="1"/>
+                                <TextBox IsReadOnly="True" MaxLength="52" materialDesign:HintAssist.Hint="Tipo De Proyecto" x:Name="TXT_TipoProyecto" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="0"/>
                             </Grid>
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="425*"/>
                                     <ColumnDefinition Width="300*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBox materialDesign:HintAssist.Hint="Dirigido" x:Name="TXT_Dirigido" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox MaxLength="60" materialDesign:HintAssist.Hint="Dirigido" x:Name="TXT_Dirigido" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="2" Grid.Column="0"/>
                                 <ComboBox Name="EstadoPresupuesto" Grid.Column="1"
                                                   materialDesign:HintAssist.Hint="Estado de Presupuesto"  Margin="0,15,8,5" BorderBrush="#3498DB" VerticalAlignment="Stretch">
                                     <ComboBoxItem

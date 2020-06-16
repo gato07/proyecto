@@ -27,76 +27,41 @@ namespace CapaPresentación.Reportes
         int IDPresupuesto;
         public PresupuestoLicenciaConstrucción(int NumeroPresupuesto,string [,] A,string[] B)
         {
-            try
-            {
-                InitializeComponent();
-                llenarReporte(A);
-                listado = A;
-                IDPresupuesto = NumeroPresupuesto;
-                Info = B;
-                LLenar(B);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            InitializeComponent();
+            llenarReporte(A);
+            listado = A;
+            IDPresupuesto = NumeroPresupuesto;
+            Info = B;
+            LLenar(B);
         }
         public void LLenar(string[] vs)
         {
-            try
-            {
-                LB_Propietario.Text = "";
-                LB_Solicitante.Text = "";
-                Texto.Text = "";
-                LB_Propietario.Text = vs[0];
-                LB_Solicitante.Text = vs[1];
-                Texto.Text = "Por medio de la presente y no sin antes saludarle se atiende su solicitud de presupuesto de firma y " +
-                    "gestoría para licencia de construcción para " + vs[2] + " sobre " + vs[3] + " m2 en base a los siguientes conceptos.";
-            }
-            catch (Exception ex)
-            {
-
-            }
+            LB_Propietario.Text = "";
+            LB_Solicitante.Text = "";
+            Texto.Text = "";
+            LB_Propietario.Text = vs[0];
+            LB_Solicitante.Text = vs[1];
+            Texto.Text = "Por medio de la presente y no sin antes saludarle se atiende su solicitud de presupuesto de firma y " +
+                "gestoría para licencia de construcción para "+ vs[2] +" sobre "+ vs[3]+" m2 en base a los siguientes conceptos.";
         }
         private void BtnImprimir_MouseLeave(object sender, MouseEventArgs e)
         {
-            try
-            {
-                BtnImprimir.Margin = new Thickness(565, 47, 0, 62);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            BtnImprimir.Margin = new Thickness(565, 47, 0, 62);
         }
 
         private void BtnImprimir_MouseMove(object sender, MouseEventArgs e)
         {
-            try
-            {
-                BtnImprimir.Margin = new Thickness(500, 47, 0, 62);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            BtnImprimir.Margin = new Thickness(500, 47, 0, 62);
         }
 
         private void BtnImprimir_Click(object sender, RoutedEventArgs e)
         {
-            try
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
             {
-                PrintDialog printDialog = new PrintDialog();
-                if (printDialog.ShowDialog() == true)
-                {
-                    BtnImprimir.Visibility = Visibility.Hidden;
-                    BtnImprimir.Visibility = Visibility.Hidden;
-                    printDialog.PrintVisual(pintar, "reporte");
-                }
-            }
-            catch (Exception ex)
-            {
-
+                BtnImprimir.Visibility = Visibility.Hidden;
+                BtnImprimir.Visibility = Visibility.Hidden;
+                printDialog.PrintVisual(pintar, "reporte");
             }
         }
 
@@ -111,42 +76,28 @@ namespace CapaPresentación.Reportes
         }
         public void llenarReporte(string [,] A)
         {
-            try
+            for (int x=0;x<(A.Length/7);x++)
             {
-                for (int x = 0; x < (A.Length / 7); x++)
+                PresupuestoAgregado presupuesto = new PresupuestoAgregado() { ID=Convert.ToInt32(A[x,0]),Tipo= A[x, 1],ConceptoA= A[x, 2],ImporteA= Convert.ToDecimal(A[x, 3]),CantidadA= Convert.ToInt32(A[x, 4]),TotalA= Convert.ToDecimal(A[x, 5]) };
+                if (A[x,1]== "Pago de honorarios")
                 {
-                    PresupuestoAgregado presupuesto = new PresupuestoAgregado() { ID = Convert.ToInt32(A[x, 0]), Tipo = A[x, 1], ConceptoA = A[x, 2], ImporteA = Convert.ToDecimal(A[x, 3]), CantidadA = Convert.ToInt32(A[x, 4]), TotalA = Convert.ToDecimal(A[x, 5]) };
-                    if (A[x, 1] == "Pago de honorarios")
-                    {
-                        pagosdehonorarios.Items.Add(presupuesto);
-                        TotalA += presupuesto.TotalA;
-                    }
-                    else if (A[x, 1] == "Pagos ante ayuntamiento")
-                    {
-                        pagosanteayuntamiento.Items.Add(presupuesto);
-                        TotalB += presupuesto.TotalA;
-                    }
+                    pagosdehonorarios.Items.Add(presupuesto);
+                    TotalA += presupuesto.TotalA;
                 }
-                tolA.Text = "$" + TotalA.ToString();
-                TolB.Text = "$" + TotalB.ToString();
-                s.Text = "Total: $" + (TotalA + TotalB).ToString();
+                else if(A[x, 1] == "Pagos ante ayuntamiento")
+                {
+                    pagosanteayuntamiento.Items.Add(presupuesto);
+                    TotalB += presupuesto.TotalA;
+                }
             }
-            catch (Exception ex)
-            {
-
-            }
+            tolA.Text = "$"+TotalA.ToString();
+            TolB.Text = "$"+TotalB.ToString();
+            s.Text = "Total: $" + (TotalA + TotalB).ToString();
         }
 
         private void BtnImprimir_Copy_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-
-            }
+            this.Close();
         }
     }
 }

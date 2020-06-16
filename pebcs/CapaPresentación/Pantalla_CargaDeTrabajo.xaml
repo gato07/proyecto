@@ -81,10 +81,10 @@
                             <RowDefinition Height="36*"/>
                             <RowDefinition Height="73*"/>
                         </Grid.RowDefinitions>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" />
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre Del Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre Del Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0"/>
-                        <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" />
+                        <TextBox MaxLength="60" materialDesign:HintAssist.Hint="Nombre Del Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1"/>
+                        <TextBox MaxLength="60" materialDesign:HintAssist.Hint="Nombre Del Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0"/>
+                        <TextBox MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"/>
                         <ComboBox Name="Requiere_Presupuesto" materialDesign:HintAssist.Hint="Requiere Presupuesto" BorderBrush="#2ECC71" Margin="5,5,5,5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" >
                             <ComboBoxItem Content="No" />
                             <ComboBoxItem Content="Si" />

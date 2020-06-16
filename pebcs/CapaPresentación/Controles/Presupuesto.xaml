@@ -17,11 +17,11 @@
                 <materialDesign:ColorZone Grid.Row="0" Height="40" Background="#3498DB" CornerRadius="0 0 100 0">
                     <Label Grid.Row="0" Content="Titulo" Name="lbtitulo" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="9" FontWeight="Bold"/>
                 </materialDesign:ColorZone>
-                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre Del Cliente" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,1,5,169" Height="40"/>
-                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Nombre Del Empleado" x:Name="TXT_Empleado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,42,5,128" Height="40" />
-                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Fecha de elaboración" x:Name="TXT_FechaElaboración" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,84,5,86" Height="40"/>
-                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Aprobado" x:Name="TXT_Aprobado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,123,5,42" Height="40" />
-                <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Total Del Presupuesto" x:Name="TXT_Total" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,169,5,1" Height="40"/>
+                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Del Cliente" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,1,5,169" Height="40"/>
+                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Del Empleado" x:Name="TXT_Empleado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,42,5,128" Height="40" />
+                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Fecha de elaboración" x:Name="TXT_FechaElaboración" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,84,5,86" Height="40"/>
+                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Aprobado" x:Name="TXT_Aprobado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,123,5,42" Height="40" />
+                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Total Del Presupuesto" x:Name="TXT_Total" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,169,5,1" Height="40"/>
             </Grid>
         </materialDesign:Card>
     </Grid>
