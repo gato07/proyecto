@@ -274,12 +274,26 @@ namespace CapaPresentación
 
         private void BtnLicencias_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new PantallaLicencias(this));
+            try
+            {
+                AbrirFormHijo(new PantallaLicencias(this));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void BtnPresupuesto_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new Pantalla_Presupustos(this));
+            try
+            {
+                AbrirFormHijo(new Pantalla_Presupustos(this));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void BtnPresupuesto_MouseLeave(object sender, MouseEventArgs e)
@@ -308,7 +322,14 @@ namespace CapaPresentación
 
         private void Btn_Cerrar_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            try
+            {
+                Application.Current.Shutdown();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void BtnCargaDeTrabajo_Click(object sender, RoutedEventArgs e)

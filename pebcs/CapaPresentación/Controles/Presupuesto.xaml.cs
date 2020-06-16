@@ -25,34 +25,69 @@ namespace CapaPresentación.Controles
         Menu_Principal2 Mn;
         public Presupuesto(object A)
         {
-            InitializeComponent();
-            Mn = A as Menu_Principal2;
+            try
+            {
+                InitializeComponent();
+                Mn = A as Menu_Principal2;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public void CargarDatos(string titulo,int ID, string NombreCliente,string Empleado ,DateTime Fecha,string Aprobado ,string Total)
         {
-            IDPRES = ID;
-            lbtitulo.Content = titulo;
-            TXT_NombreCliente.Text = NombreCliente;
-            TXT_Empleado.Text = Empleado;
-            TXT_FechaElaboración.Text = Fecha.ToString();
-            TXT_Aprobado.Text = Aprobado;
-            TXT_Total.Text = Total;
+            try
+            {
+                IDPRES = ID;
+                lbtitulo.Content = titulo;
+                TXT_NombreCliente.Text = NombreCliente;
+                TXT_Empleado.Text = Empleado;
+                TXT_FechaElaboración.Text = Fecha.ToString();
+                TXT_Aprobado.Text = Aprobado;
+                TXT_Total.Text = Total;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void pres_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Cursor = Cursors.Hand;
-            pres.Margin = new Thickness(0,0,0,0);
+            try
+            {
+                this.Cursor = Cursors.Hand;
+                pres.Margin = new Thickness(0, 0, 0, 0);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void pres_MouseLeave(object sender, MouseEventArgs e)
         {
-            pres.Margin = new Thickness(10, 10, 10, 10);
+            try
+            {
+                pres.Margin = new Thickness(10, 10, 10, 10);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void pres_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES));
+            try
+            {
+                Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

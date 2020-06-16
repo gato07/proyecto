@@ -32,85 +32,127 @@ namespace CapaPresentación
 
         public Pantalla_CargaDeTrabajo(object A)
         {
-            InitializeComponent();
-            Mn = A as Menu_Principal2;
-            CargarTipoProyectos();
-            CargarPrepoyectos();
+            try
+            {
+                InitializeComponent();
+                Mn = A as Menu_Principal2;
+                CargarTipoProyectos();
+                CargarPrepoyectos();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            bool r = false;
-            bool n = false;
-            PantallaCheck check = new PantallaCheck();
-            if(Requiere_Presupuesto.SelectedIndex==0)
+            try
             {
-                r = false;
+                bool r = false;
+                bool n = false;
+                PantallaCheck check = new PantallaCheck();
+                if (Requiere_Presupuesto.SelectedIndex == 0)
+                {
+                    r = false;
+                }
+                else if (Requiere_Presupuesto.SelectedIndex == 1)
+                {
+                    r = true;
+                }
+                n = preproyecto.Insertar(TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text, Convert.ToDecimal(TXT_Metros.Text), r, IdTipodeproyecto);
+                if (n == true)
+                {
+                    check.Show();
+                    CargarPrepoyectos();
+                    LimpiarCampos();
+                }
             }
-            else if(Requiere_Presupuesto.SelectedIndex==1)
+            catch (Exception ex)
             {
-                r = true;
-            }
-            n=preproyecto.Insertar(TXT_Etiqueta.Text,TXT_Solicitante.Text,TXT_Propietario.Text,Convert.ToDecimal(TXT_Metros.Text),r, IdTipodeproyecto);
-            if(n==true)
-            {
-                check.Show();
-                CargarPrepoyectos();
-                LimpiarCampos();
+
             }
         }
 
         private void CargarTipoProyectos()
         {
-            Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
-            string n = null;
-            for(int x=0;x<_Proyectos.Length;x++)
+            try
             {
-                if(x+1==1)
+                Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
+                string n = null;
+                for (int x = 0; x < _Proyectos.Length; x++)
                 {
-                    n = "A";
+                    if (x + 1 == 1)
+                    {
+                        n = "A";
+                    }
+                    if (x + 1 == 16)
+                    {
+                        n = "D";
+                    }
+                    if (x + 1 == 31)
+                    {
+                        n = "O";
+                    }
+                    if (x + 1 == 46)
+                    {
+                        n = "P";
+                    }
+                    if (x + 1 == 61)
+                    {
+                        n = "R";
+                    }
+                    TipoProyec ProInfo = (new TipoProyec() { ID = _Proyectos[x].Id, TipoDeObra = _Proyectos[x].Tipo_Obra, Uso = _Proyectos[x].Uso, Cabeza = n });
+                    tipoProyecto.Items.Add(ProInfo);
                 }
-                if (x+1 == 16)
-                {
-                    n = "D";
-                }
-                if (x+1 == 31)
-                {
-                    n = "O";
-                }
-                if (x+1 == 46)
-                {
-                    n = "P";
-                }
-                if (x+1 == 61)
-                {
-                    n = "R";
-                }
-                TipoProyec ProInfo = (new TipoProyec() { ID = _Proyectos[x].Id,TipoDeObra= _Proyectos[x].Tipo_Obra,Uso= _Proyectos[x].Uso, Cabeza=n});
-                tipoProyecto.Items.Add(ProInfo);
             }
+            catch (Exception ex)
+            {
 
+            }
         }
         private void CargarPrepoyectos()
         {
-            ListaPrePoryectos.Items.Clear();
-            Preproyecto[] preproyectos = preproyecto.TableToArray(preproyecto.SelActivos());
-            for(int x=0;x<preproyectos.Length;x++)
+            try
             {
-                preproyect proyectoinfo =(new preproyect() {ID=preproyectos[x].Id,Etiqueta= preproyectos[x].Etiqueta,Solicitante= preproyectos[x].Nombre_Solicitante,Propietario= preproyectos[x].Nombre_Propietario ,
-                                                            fecha= preproyectos[x].Fecha,metros= preproyectos[x].Mts,presupuesto= preproyectos[x] .Requiere_Presupuesto,tipoProyecto= preproyectos[x] .Id_Tipo_Proyecto});
-                ListaPrePoryectos.Items.Add(proyectoinfo);
+                ListaPrePoryectos.Items.Clear();
+                Preproyecto[] preproyectos = preproyecto.TableToArray(preproyecto.SelActivos());
+                for (int x = 0; x < preproyectos.Length; x++)
+                {
+                    preproyect proyectoinfo = (new preproyect()
+                    {
+                        ID = preproyectos[x].Id,
+                        Etiqueta = preproyectos[x].Etiqueta,
+                        Solicitante = preproyectos[x].Nombre_Solicitante,
+                        Propietario = preproyectos[x].Nombre_Propietario,
+                        fecha = preproyectos[x].Fecha,
+                        metros = preproyectos[x].Mts,
+                        presupuesto = preproyectos[x].Requiere_Presupuesto,
+                        tipoProyecto = preproyectos[x].Id_Tipo_Proyecto
+                    });
+                    ListaPrePoryectos.Items.Add(proyectoinfo);
+                }
             }
+            catch (Exception ex)
+            {
 
+            }
         }
         private void LimpiarCampos()
         {
-            TXT_Etiqueta.Clear();
-            TXT_Metros.Clear();
-            TXT_Propietario.Clear();
-            TXT_Solicitante.Clear();
-            Requiere_Presupuesto.SelectedIndex = -1;
-            tipoProyecto.SelectedIndex = -1;
+            try
+            {
+                TXT_Etiqueta.Clear();
+                TXT_Metros.Clear();
+                TXT_Propietario.Clear();
+                TXT_Solicitante.Clear();
+                Requiere_Presupuesto.SelectedIndex = -1;
+                tipoProyecto.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public class TipoProyec
@@ -133,118 +175,174 @@ namespace CapaPresentación
         }
         public void LimpiarDatos()
         {
-            IdPreproyecto =0;
-            IdTipodeproyecto = 0;
-            RequierePresupuesto = false;
+            try
+            {
+                IdPreproyecto = 0;
+                IdTipodeproyecto = 0;
+                RequierePresupuesto = false;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            ToggleButton toggle=(ToggleButton)sender;
-            //Button button = (Button)sender;
-            Grid grid = (Grid)toggle.Parent;
-            TipoProyec P = (TipoProyec)grid.DataContext;
-            if (P != null)
+            try
             {
-                IdTipodeproyecto = P.ID;
+                ToggleButton toggle = (ToggleButton)sender;
+                //Button button = (Button)sender;
+                Grid grid = (Grid)toggle.Parent;
+                TipoProyec P = (TipoProyec)grid.DataContext;
+                if (P != null)
+                {
+                    IdTipodeproyecto = P.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
         private void ListaPrePoryectos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LimpiarCampos();
-            preproyect p=(preproyect)ListaPrePoryectos.SelectedItem;
-            if(p!=null)
+            try
             {
-                IdPreproyecto = p.ID;
-                IdTipodeproyecto = p.tipoProyecto;
-                TXT_Etiqueta.Text = p.Etiqueta;
-                TXT_Metros.Text = p.metros.ToString();
-                TXT_Propietario.Text = p.Propietario;
-                TXT_Solicitante.Text = p.Solicitante;
-                RequierePresupuesto = p.presupuesto;
-                if(p.presupuesto)
+                LimpiarCampos();
+                preproyect p = (preproyect)ListaPrePoryectos.SelectedItem;
+                if (p != null)
                 {
-                    Requiere_Presupuesto.SelectedIndex = 1;
+                    IdPreproyecto = p.ID;
+                    IdTipodeproyecto = p.tipoProyecto;
+                    TXT_Etiqueta.Text = p.Etiqueta;
+                    TXT_Metros.Text = p.metros.ToString();
+                    TXT_Propietario.Text = p.Propietario;
+                    TXT_Solicitante.Text = p.Solicitante;
+                    RequierePresupuesto = p.presupuesto;
+                    if (p.presupuesto)
+                    {
+                        Requiere_Presupuesto.SelectedIndex = 1;
+                    }
+                    else if (p.presupuesto == false)
+                    {
+                        Requiere_Presupuesto.SelectedIndex = 0;
+                    }
+                    tipoProyecto.SelectedIndex = p.tipoProyecto - 1;
                 }
-                else if (p.presupuesto==false)
-                {
-                    Requiere_Presupuesto.SelectedIndex = 0;
-                }
-                tipoProyecto.SelectedIndex = p.tipoProyecto-1;
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
         private void BtnLimpiarCampos_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarCampos();
-            LimpiarCampos();
+            try
+            {
+                LimpiarCampos();
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            PantallaCheck check = new PantallaCheck();
-            bool n = false;
-            n=preproyecto.Eliminar(IdPreproyecto);
-            if (n == true)
+            try
             {
-                check.Show();
-                CargarPrepoyectos();
-                LimpiarCampos();
+                PantallaCheck check = new PantallaCheck();
+                bool n = false;
+                n = preproyecto.Eliminar(IdPreproyecto);
+                if (n == true)
+                {
+                    check.Show();
+                    CargarPrepoyectos();
+                    LimpiarCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-            bool r = false;
-            if (Requiere_Presupuesto.SelectedIndex == 0)
+            try
             {
-                r = false;
+                bool r = false;
+                if (Requiere_Presupuesto.SelectedIndex == 0)
+                {
+                    r = false;
+                }
+                else if (Requiere_Presupuesto.SelectedIndex == 1)
+                {
+                    r = true;
+                }
+                PantallaCheck check = new PantallaCheck();
+                bool n = false;
+                n = preproyecto.Actualizar(IdPreproyecto, TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text, Convert.ToDecimal(TXT_Metros.Text), r, IdTipodeproyecto);
+                if (n == true)
+                {
+                    check.Show();
+                    CargarPrepoyectos();
+                    LimpiarCampos();
+                }
             }
-            else if (Requiere_Presupuesto.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                r = true;
-            }
-            PantallaCheck check = new PantallaCheck();
-            bool n = false;
-            n=preproyecto.Actualizar(IdPreproyecto, TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text, Convert.ToDecimal(TXT_Metros.Text), r, IdTipodeproyecto);
-            if(n==true)
-            {
-                check.Show();
-                CargarPrepoyectos();
-                LimpiarCampos();
+
             }
         }
 
         private void BtnGenerarPrePlantilla_Click(object sender, RoutedEventArgs e)
         {
-            bool ResultadoVerificarPreproyecto = VerificarPreproyecto(IdPreproyecto);
-            if(ResultadoVerificarPreproyecto!=true)
+            try
+            {
+                bool ResultadoVerificarPreproyecto = VerificarPreproyecto(IdPreproyecto);
+                if (ResultadoVerificarPreproyecto != true)
+                {
+
+                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IdPreproyecto, 0));
+
+                }
+                else
+                {
+                    MessageBox.Show("El preproyecto ya fue asignado");
+                }
+                LimpiarCampos();
+            }
+            catch (Exception ex)
             {
 
-                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IdPreproyecto, 0));
-
             }
-            else
-            {
-                MessageBox.Show("El preproyecto ya fue asignado");
-            }
-            LimpiarCampos();
         }
         private bool VerificarPreproyecto(int idpre)
         {
-            Proyecto_Licencia proyecto_ = new Proyecto_Licencia();
-            Proyecto_Licencia[] p = proyecto_.TableToArray(proyecto_.SelActivos());
-            bool resul=false;
-            for(int x=0;x<p.Length;x++)
+            try
             {
-                if(p[x].Id_Preproyecto== idpre)
+                Proyecto_Licencia proyecto_ = new Proyecto_Licencia();
+                Proyecto_Licencia[] p = proyecto_.TableToArray(proyecto_.SelActivos());
+                bool resul = false;
+                for (int x = 0; x < p.Length; x++)
                 {
-                    resul= true;
-                    break;
+                    if (p[x].Id_Preproyecto == idpre)
+                    {
+                        resul = true;
+                        break;
+                    }
                 }
+                return resul;
             }
-            return resul;
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
