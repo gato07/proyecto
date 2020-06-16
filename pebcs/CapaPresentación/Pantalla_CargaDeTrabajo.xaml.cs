@@ -41,6 +41,8 @@ namespace CapaPresentación
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             bool r = false;
+            bool n = false;
+            PantallaCheck check = new PantallaCheck();
             if(Requiere_Presupuesto.SelectedIndex==0)
             {
                 r = false;
@@ -49,9 +51,13 @@ namespace CapaPresentación
             {
                 r = true;
             }
-            preproyecto.Insertar(TXT_Etiqueta.Text,TXT_Solicitante.Text,TXT_Propietario.Text,Convert.ToDecimal(TXT_Metros.Text),r, IdTipodeproyecto);
-            CargarPrepoyectos();
-            LimpiarCampos();
+            n=preproyecto.Insertar(TXT_Etiqueta.Text,TXT_Solicitante.Text,TXT_Propietario.Text,Convert.ToDecimal(TXT_Metros.Text),r, IdTipodeproyecto);
+            if(n==true)
+            {
+                check.Show();
+                CargarPrepoyectos();
+                LimpiarCampos();
+            }
         }
 
         private void CargarTipoProyectos()
@@ -134,7 +140,6 @@ namespace CapaPresentación
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarDatos();
             ToggleButton toggle=(ToggleButton)sender;
             //Button button = (Button)sender;
             Grid grid = (Grid)toggle.Parent;
@@ -152,6 +157,7 @@ namespace CapaPresentación
             if(p!=null)
             {
                 IdPreproyecto = p.ID;
+                IdTipodeproyecto = p.tipoProyecto;
                 TXT_Etiqueta.Text = p.Etiqueta;
                 TXT_Metros.Text = p.metros.ToString();
                 TXT_Propietario.Text = p.Propietario;
@@ -166,7 +172,6 @@ namespace CapaPresentación
                     Requiere_Presupuesto.SelectedIndex = 0;
                 }
                 tipoProyecto.SelectedIndex = p.tipoProyecto-1;
-                IdPreproyecto = p.ID;
             }
         }
 
@@ -178,9 +183,15 @@ namespace CapaPresentación
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            preproyecto.Eliminar(IdPreproyecto);
-            CargarPrepoyectos();
-            LimpiarCampos();
+            PantallaCheck check = new PantallaCheck();
+            bool n = false;
+            n=preproyecto.Eliminar(IdPreproyecto);
+            if (n == true)
+            {
+                check.Show();
+                CargarPrepoyectos();
+                LimpiarCampos();
+            }
         }
 
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
@@ -194,10 +205,15 @@ namespace CapaPresentación
             {
                 r = true;
             }
-            IdTipodeproyecto = tipoProyecto.SelectedIndex;
-            preproyecto.Actualizar(IdPreproyecto, TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text, Convert.ToDecimal(TXT_Metros.Text), r, IdTipodeproyecto + 1);
-            CargarPrepoyectos();
-            LimpiarCampos();
+            PantallaCheck check = new PantallaCheck();
+            bool n = false;
+            n=preproyecto.Actualizar(IdPreproyecto, TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text, Convert.ToDecimal(TXT_Metros.Text), r, IdTipodeproyecto);
+            if(n==true)
+            {
+                check.Show();
+                CargarPrepoyectos();
+                LimpiarCampos();
+            }
         }
 
         private void BtnGenerarPrePlantilla_Click(object sender, RoutedEventArgs e)
