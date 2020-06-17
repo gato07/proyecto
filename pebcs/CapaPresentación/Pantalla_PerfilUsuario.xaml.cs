@@ -25,7 +25,6 @@ namespace CapaPresentación
         Menu_Principal2 Mn;
         Empleado emp;
         int ID;
-        PantallaCheck check = new PantallaCheck();
         bool empleado;
         public Pantalla_PerfilUsuario(string []A,object B)
         {
@@ -157,8 +156,13 @@ namespace CapaPresentación
             try
             {
                 emp = new Empleado();
-                emp.Eliminar(ID);
-                check.ShowDialog();
+                bool n = false;
+                n=emp.Eliminar(ID);
+                if (n == true)
+                {
+                    PantallaCheck check = new PantallaCheck();
+                    check.ShowDialog();
+                }
             }
             catch(Exception ex)
             {
@@ -206,9 +210,13 @@ namespace CapaPresentación
                 {
                     emp = new Empleado();
                     res = emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
+
                 }
-                if (res)
+                if (res==true)
+                {
+                    PantallaCheck check = new PantallaCheck();
                     check.ShowDialog();
+                }
                 else
                     MessageBox.Show(emp.Mensaje);
             }
