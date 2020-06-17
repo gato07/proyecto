@@ -156,7 +156,7 @@ namespace CapaPresentación
             try
             {
                 Empleado emp = new Empleado();
-                if (emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, TXTPuesto.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text) == true)
+                if (emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, imgb.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text) == true)
                 {
                     PantallaCheck check = new PantallaCheck();
                     check.ShowDialog();
