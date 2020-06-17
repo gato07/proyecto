@@ -45,8 +45,8 @@ namespace CapaLogica
         }
 
         public Empleado(int Clave, string Nombre, string Domicilio, string Telefono, string Email,
-            string Puesto, string Foto, int Perfil, string Usuario, string Contrasena) : base(Clave, Nombre, 
-                Domicilio, Telefono, Email, Puesto, Foto, Perfil, Usuario, Contrasena)
+            string Foto, int Perfil, string Usuario, string Contrasena) : base(Clave, Nombre, 
+                Domicilio, Telefono, Email, Foto, Perfil, Usuario, Contrasena)
         {
             try
             {
@@ -58,8 +58,8 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Nombre, string Domicilio, string Telefono, string Email,
-            string Puesto, string Foto, int Perfil, string Usuario, string Contrasena)
+        public bool Insertar(string Nombre, string Domicilio, string Telefono, string Email, 
+            string Foto, int Perfil, string Usuario, string Contrasena)
         {
             try
             {
@@ -75,50 +75,42 @@ namespace CapaLogica
                         {
                             if (validacion.Val_Email(Email))
                             {
-                                if (validacion.Val_Texto1(Puesto, 1, 50))
+                                if (validacion.Val_RutaArchivo(Foto))
                                 {
-                                    if (validacion.Val_RutaArchivo(Foto))
+                                    if (Perfil >= 1 && Perfil <= 4)
                                     {
-                                        if (Perfil >= 1 && Perfil <= 4)
+                                        if (validacion.Val_Usuario(Usuario))
                                         {
-                                            if (validacion.Val_Usuario(Usuario))
+                                            if (validacion.Val_Contrasena(Contrasena))
                                             {
-                                                if (validacion.Val_Contrasena(Contrasena))
+                                                Empleado usuario = new Empleado();
+                                                usuario.SelXUsuario(Usuario);
+                                                if (usuario.Existe == false)
                                                 {
-                                                    Empleado usuario = new Empleado();
-                                                    usuario.SelXUsuario(Usuario);
-                                                    if (usuario.Existe == false)
-                                                    {
-                                                        res = dtsInsertar(Nombre, Domicilio, Telefono, Email, Puesto, Foto, Perfil, Usuario, Contrasena);
-                                                        if (res)
-                                                            Mensaje = "El Empleado fue registrado satisfactoriamente";
-                                                    }
-                                                    else
-                                                        Mensaje = "No es posible dar de alta al Empleado con ese nombre de Usuario ya que hay otro Empleado que"
-                                                        + " lo esta usando, escriba otro diferente.";
+                                                    res = dtsInsertar(Nombre, Domicilio, Telefono, Email, Foto, Perfil, Usuario, Contrasena);
+                                                    if (res)
+                                                        Mensaje = "El Empleado fue registrado satisfactoriamente";
                                                 }
                                                 else
-                                                    Mensaje = "El campo de Contraseña debe cumplir:\n\n- No puede quedar vacío."
-                                                    + "\n- Debe contener al menos una letra mayúscula, una minúscula, un simbolo"
-                                                    + " -,.+*#$%&/¡!¿? y un número. \n- El tamaño valido del campo es de 8 hasta 16 caracteres.";
+                                                    Mensaje = "No es posible dar de alta al Empleado con ese nombre de Usuario ya que hay otro Empleado que"
+                                                    + " lo esta usando, escriba otro diferente.";
                                             }
                                             else
-                                                Mensaje = "El campo de Usuario debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
-                                                    + " puede contener caracteres alfabéticos en minúscula y numéricos.\n- El"
-                                                    + " tamaño valido del campo es de 4 hasta 15 caracteres.";
+                                                Mensaje = "El campo de Contraseña debe cumplir:\n\n- No puede quedar vacío."
+                                                + "\n- Debe contener al menos una letra mayúscula, una minúscula, un simbolo"
+                                                + " -,.+*#$%&/¡!¿? y un número. \n- El tamaño valido del campo es de 8 hasta 16 caracteres.";
                                         }
                                         else
-                                            Mensaje = "El campo de Perfil solo puede tener los valores de 1, 2, 3 o 4.";
+                                            Mensaje = "El campo de Usuario debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                                + " puede contener caracteres alfabéticos en minúscula y numéricos.\n- El"
+                                                + " tamaño valido del campo es de 4 hasta 15 caracteres.";
                                     }
                                     else
-                                        Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío."
-                                            + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                        Mensaje = "El campo de Perfil solo puede tener los valores de 1, 2, 3 o 4.";
                                 }
                                 else
-                                    Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
-                                        + " contener caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un"
-                                        + " espacio en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta"
-                                        + " 50 caracteres.";
+                                    Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío."
+                                        + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                             }
                             else
                                 Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
@@ -148,8 +140,8 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Clave, string Nombre, string Domicilio, string Telefono, string Email,
-             string Puesto, string Foto, int Perfil, string Usuario, string Contrasena)
+        public bool Actualizar(int Clave, string Nombre, string Domicilio, string Telefono, string Email, 
+            string Foto, int Perfil, string Usuario, string Contrasena)
         {
             try
             {
@@ -165,57 +157,49 @@ namespace CapaLogica
                         {
                             if (validacion.Val_Email(Email))
                             {
-                                if (validacion.Val_Texto1(Puesto, 1, 50))
+                                if (validacion.Val_RutaArchivo(Foto))
                                 {
-                                    if (validacion.Val_RutaArchivo(Foto))
+                                    if (Perfil >= 1 && Perfil <= 4)
                                     {
-                                        if (Perfil >= 1 && Perfil <= 4)
+                                        if (validacion.Val_Usuario(Usuario))
                                         {
-                                            if (validacion.Val_Usuario(Usuario))
+                                            if (validacion.Val_Contrasena(Contrasena))
                                             {
-                                                if (validacion.Val_Contrasena(Contrasena))
+                                                Empleado usuario = new Empleado();
+                                                usuario.SelXUsuario(Usuario);
+                                                if (usuario.Existe == false || (usuario.Existe && usuario.Clave == Clave))
                                                 {
-                                                    Empleado usuario = new Empleado();
-                                                    usuario.SelXUsuario(Usuario);
-                                                    if (usuario.Existe == false || (usuario.Existe && usuario.Clave == Clave))
+                                                    Empleado empleado = new Empleado(Clave);
+                                                    if (empleado.Existe)
                                                     {
-                                                        Empleado empleado = new Empleado(Clave);
-                                                        if (empleado.Existe)
-                                                        {
-                                                            res = dtsActualizar(Clave, Nombre, Domicilio, Telefono, Email, Puesto, Foto, Perfil, Usuario, Contrasena);
-                                                            if (res)
-                                                                Mensaje = "Los datos del Empleado fueron actualizados satisfactoriamente";
-                                                        }
-                                                        else
-                                                            Mensaje = "No existe algún Empleado con esa Clave, escoja un Empleado"
-                                                                + " existente para que sus datos sean actualizados";
+                                                        res = dtsActualizar(Clave, Nombre, Domicilio, Telefono, Email, Foto, Perfil, Usuario, Contrasena);
+                                                        if (res)
+                                                            Mensaje = "Los datos del Empleado fueron actualizados satisfactoriamente";
                                                     }
                                                     else
-                                                        Mensaje = "No es posible actualizar el nombre de Usuario del Empleado al valor"
-                                                            + " que introdujo ya que hay otro Empleado que lo esta usando, escriba otro diferente.";
+                                                        Mensaje = "No existe algún Empleado con esa Clave, escoja un Empleado"
+                                                            + " existente para que sus datos sean actualizados";
                                                 }
                                                 else
-                                                    Mensaje = "El campo de Contraseña debe cumplir:\n\n- No puede quedar vacío."
-                                                    + "\n- Debe contener al menos una letra mayúscula, una minúscula, un simbolo"
-                                                    + " -,.+*#$%&/¡!¿? y un número. \n- El tamaño valido del campo es de 8 hasta 16 caracteres.";
+                                                    Mensaje = "No es posible actualizar el nombre de Usuario del Empleado al valor"
+                                                        + " que introdujo ya que hay otro Empleado que lo esta usando, escriba otro diferente.";
                                             }
                                             else
-                                                Mensaje = "El campo de Usuario debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
-                                                    + " puede contener caracteres alfabéticos en minúscula y numéricos.\n- El"
-                                                    + " tamaño valido del campo es de 4 hasta 15 caracteres.";
+                                                Mensaje = "El campo de Contraseña debe cumplir:\n\n- No puede quedar vacío."
+                                                + "\n- Debe contener al menos una letra mayúscula, una minúscula, un simbolo"
+                                                + " -,.+*#$%&/¡!¿? y un número. \n- El tamaño valido del campo es de 8 hasta 16 caracteres.";
                                         }
                                         else
-                                            Mensaje = "El campo de Perfil solo puede tener los valores de 1, 2, 3 o 4.";
+                                            Mensaje = "El campo de Usuario debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                                + " puede contener caracteres alfabéticos en minúscula y numéricos.\n- El"
+                                                + " tamaño valido del campo es de 4 hasta 15 caracteres.";
                                     }
                                     else
-                                        Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío."
-                                             + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                        Mensaje = "El campo de Perfil solo puede tener los valores de 1, 2, 3 o 4.";
                                 }
                                 else
-                                    Mensaje = "El campo de Puesto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
-                                        + " contener caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un"
-                                        + " espacio en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta"
-                                        + " 50 caracteres.";
+                                    Mensaje = "El campo de Foto debe cumplir:\n\n- No puede quedar vacío."
+                                            + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                             }
                             else
                                 Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
@@ -363,19 +347,6 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikePuesto(string Puesto, bool Eliminado = false)
-        {
-            try
-            {
-                return dtsSelLikePuesto(Puesto, Eliminado);
-            }
-            catch (Exception ex)
-            {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Empleados por Puesto";
-                return null;
-            }
-        }
-
         public DataTable SelLikeEmail(string Email, bool Eliminado = false)
         {
             try
@@ -408,8 +379,6 @@ namespace CapaLogica
                         empleado.Telefono = renglon["Telefono"].ToString();
                     if(Dt.Columns.Contains("Email"))
                         empleado.Email = renglon["Email"].ToString();
-                    if(Dt.Columns.Contains("Puesto"))
-                        empleado.Puesto = renglon["Puesto"].ToString();
                     if(Dt.Columns.Contains("Foto"))
                         empleado.Foto = renglon["Foto"].ToString();
                     if (Dt.Columns.Contains("Perfil"))

@@ -18,7 +18,6 @@ namespace CapaAccesoDatos
         public string Domicilio { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
-        public string Puesto { get; set; }
         public string Foto { get; set; }
         public int Perfil { get; set; }
         public string Usuario { get; set; }
@@ -53,7 +52,6 @@ namespace CapaAccesoDatos
                 Domicilio = "";
                 Telefono = "";
                 Email = "";
-                Puesto = "";
                 Foto = "";
                 Perfil = 0;
                 Usuario = "";
@@ -76,7 +74,6 @@ namespace CapaAccesoDatos
                 Domicilio = "";
                 Telefono = "";
                 Email = "";
-                Puesto = "";
                 Foto = "";
                 Perfil = 0;
                 Usuario = "";
@@ -93,7 +90,6 @@ namespace CapaAccesoDatos
                     Domicilio = dt.Rows[0]["Domicilio"].ToString();
                     Telefono = dt.Rows[0]["Telefono"].ToString();
                     Email = dt.Rows[0]["Email"].ToString();
-                    Puesto = dt.Rows[0]["Puesto"].ToString();
                     Foto = dt.Rows[0]["Foto"].ToString();
                     Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"]);
                     Usuario = dt.Rows[0]["Usuario"].ToString();
@@ -109,8 +105,8 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsEmpleado(int Clave, string Nombre, string Domicilio, string Telefono, string Email, 
-            string Puesto, string Foto, int Perfil, string Usuario, string Contrasena)
+        public dtsEmpleado(int Clave, string Nombre, string Domicilio, string Telefono, string Email,
+            string Foto, int Perfil, string Usuario, string Contrasena)
         {
             try
             {
@@ -119,7 +115,6 @@ namespace CapaAccesoDatos
                 this.Domicilio = Domicilio;
                 this.Telefono = Telefono;
                 this.Email = Email;
-                this.Puesto = Puesto;
                 this.Foto = Foto;
                 this.Perfil = Perfil;
                 this.Usuario = Usuario;
@@ -134,7 +129,7 @@ namespace CapaAccesoDatos
         }
 
         public bool dtsInsertar(string Nombre, string Domicilio, string Telefono, string Email, 
-            string Puesto, string Foto, int Perfil, string Usuario, string Contrasena)
+            string Foto, int Perfil, string Usuario, string Contrasena)
         {
             try
             {
@@ -142,7 +137,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_Empleado_Insertar('" + Nombre + "','" 
-                    + Domicilio + "','" + Telefono + "','" + Email + "','" + Puesto + "','" + Foto + "'," 
+                    + Domicilio + "','" + Telefono + "','" + Email + "','"  + Foto + "'," 
                     + Perfil + ",'" + Usuario + "','" + Contrasena + "');");
                 conexion.Desconectar();
                 return res;
@@ -153,8 +148,8 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Clave, string Nombre, string Domicilio, string Telefono, string Email,
-            string Puesto, string Foto, int Perfil, string Usuario, string Contrasena)
+        public bool dtsActualizar(int Clave, string Nombre, string Domicilio, string Telefono, string Email, 
+            string Foto, int Perfil, string Usuario, string Contrasena)
         {
             try
             {
@@ -162,7 +157,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_Empleado_Actualizar(" + Clave + ",'" + Nombre + "','"
-                    + Domicilio + "','" + Telefono + "','" + Email + "','" + Puesto + "','" + Foto + "',"
+                    + Domicilio + "','" + Telefono + "','" + Email + "','" + Foto + "',"
                     + Perfil + ",'" + Usuario + "','" + Contrasena + "');");
                 conexion.Desconectar();
                 return res;
@@ -233,7 +228,6 @@ namespace CapaAccesoDatos
                 Domicilio = "";
                 Telefono = "";
                 Email = "";
-                Puesto = "";
                 Foto = "";
                 Perfil = 0;
                 this.Usuario = "";
@@ -250,7 +244,6 @@ namespace CapaAccesoDatos
                     Domicilio = dt.Rows[0]["Domicilio"].ToString();
                     Telefono = dt.Rows[0]["Telefono"].ToString();
                     Email = dt.Rows[0]["Email"].ToString();
-                    Puesto = dt.Rows[0]["Puesto"].ToString();
                     Foto = dt.Rows[0]["Foto"].ToString();
                     Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"].ToString());
                     this.Usuario = dt.Rows[0]["Usuario"].ToString();
@@ -292,24 +285,6 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikeNombre('" + Nombre + "',"
-                    + Eliminado + ");").Tables[0];
-                conexion.Desconectar();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
-        public DataTable dtsSelLikePuesto(string Puesto, bool Eliminado = false)
-        {
-            try
-            {
-                DataTable dt = null;
-                Conexion conexion = new Conexion();
-                conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelLikePuesto('" + Puesto + "',"
                     + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
