@@ -36,7 +36,6 @@
                         <TextBox MaxLength="255" materialDesign:HintAssist.Hint="Email" x:Name="TXTEmail" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
                     </StackPanel>
                     <StackPanel Width="300">
-                        <TextBox MaxLength="50" materialDesign:HintAssist.Hint="Puesto" x:Name="TXTPuesto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
                         <ComboBox Margin="8 17 8 8" x:Name="listPerfil" materialDesign:HintAssist.Hint="Perfil" BorderBrush="#F1C40F">
                             <ComboBoxItem Content="Administrador"  BorderBrush="#F1C40F"/>
                             <ComboBoxItem Content="Aquitecto"  BorderBrush="#F1C40F" />

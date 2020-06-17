@@ -38,6 +38,19 @@ namespace CapaPresentación
                 return null;
             }
         }
+        public void LimpiarCampos()
+        {
+            TXTRfc.Clear();
+            TXTNombre.Clear();
+            TXTApellido.Clear();
+            TXTTelefono.Clear();
+            TXTEmail.Clear();
+            TXTRfcModificar.Clear();
+            TXTNombreModificar.Clear();
+            TXTApellidoModificar.Clear();
+            TXTTelefonoModificar.Clear();
+            TXTEmailModificar.Clear();
+        }
         public void LlenarData()
         {
             try
@@ -155,6 +168,7 @@ namespace CapaPresentación
                     PantallaCheck check = new PantallaCheck();
                     LlenarData();
                     check.ShowDialog();
+                    LimpiarCampos();
                 }
                 else
                     MessageBox.Show(cliente.Mensaje);
@@ -223,6 +237,7 @@ namespace CapaPresentación
                     LlenarData();
                     PantallaCheck check = new PantallaCheck();
                     check.ShowDialog();
+                    LimpiarCampos();
                 }
                 else
                     MessageBox.Show(cliente.Mensaje);

@@ -53,6 +53,32 @@ namespace CapaPresentación
                 return null;
             }
         }
+        private void LimpiarCampos()
+        {
+            try
+            {
+                TXTClaveCatastral.Clear();
+                TXTNombrePropietario.Clear();
+                TXTTelefonoPropietario.Clear();
+                TXTColonia.Clear();
+                TXTCalle.Clear();
+                TXTEntreCalles.Clear();
+                TXTNumeroExterior.Clear();
+                TXTNumeroInterior.Clear();
+                TXTClaveCatastralModificar.Clear();
+                TXTNombrePropietarioModificar.Clear();
+                TXTTelefonoPropietarioModificar.Clear();
+                TXTColoniaModificar.Clear();
+                TXTCalleModificar.Clear();
+                TXTEntreCallesModificar.Clear();
+                TXTNumeroExteriorModificar.Clear();
+                TXTNumeroInteriorModificar.Clear();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
         public void LlenarData()
         {
             try
@@ -165,12 +191,13 @@ namespace CapaPresentación
             {
                 bool res = false;
                 DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
-                res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, CMBColoniaModificar.Text.Trim(), TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
+                res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, TXTColoniaModificar.Text, TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
                 if (res)
                 {
                     LlenarData();
                     PantallaCheck check = new PantallaCheck();
                     check.ShowDialog();
+                    LimpiarCampos();
                 }
                 else
                     MessageBox.Show(inmueble.Mensaje);
@@ -185,12 +212,13 @@ namespace CapaPresentación
             try
             {
                 bool re = false;
-                re = inmueble.Insertar(TXTClaveCatastral.Text, TXTNombrePropietario.Text, TXTTelefonoPropietario.Text, CMBColonia.Text.Trim(), TXTCalle.Text, TXTEntreCalles.Text, TXTNumeroInterior.Text, TXTNumeroExterior.Text);
+                re = inmueble.Insertar(TXTClaveCatastral.Text, TXTNombrePropietario.Text, TXTTelefonoPropietario.Text, TXTColonia.Text, TXTCalle.Text, TXTEntreCalles.Text, TXTNumeroInterior.Text, TXTNumeroExterior.Text);
                 if (re)
                 {
                     PantallaCheck check = new PantallaCheck();
                     LlenarData();
                     check.ShowDialog();
+                    LimpiarCampos();
                 }
                 else
                     MessageBox.Show(inmueble.Mensaje);
@@ -260,8 +288,9 @@ namespace CapaPresentación
                 TXTClaveCatastralModificar.Text = data.Row.ItemArray[1].ToString();
                 TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
                 TXTTelefonoPropietarioModificar.Text = data.Row.ItemArray[3].ToString();
-                CMBColoniaModificar.ItemsSource = new string[]{data.Row.ItemArray[4].ToString()};
-                CMBColoniaModificar.SelectedIndex = 0;
+                //CMBColoniaModificar.ItemsSource = new string[]{data.Row.ItemArray[4].ToString()};
+                //CMBColoniaModificar.SelectedIndex = 0;
+                TXTColoniaModificar.Text= data.Row.ItemArray[4].ToString();
                 TXTCalleModificar.Text = data.Row.ItemArray[5].ToString();
                 TXTEntreCallesModificar.Text = data.Row.ItemArray[6].ToString();
                 TXTNumeroInteriorModificar.Text = data.Row.ItemArray[7].ToString();
@@ -425,38 +454,38 @@ namespace CapaPresentación
             }
         }
 
-        private void TXTCodigoPostal_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                string codpos = TXTCodigoPostal.Text.Trim();
-                if (codpos.Length == 5)
-                {
-                    Sepomex sepomex = new Sepomex();
-                    CMBColonia.ItemsSource = sepomex.BuscarColoniaXCodigoPostal(codpos);
-                }
-            }
-            catch (Exception ex)
-            {
+        //private void TXTCodigoPostal_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    try
+        //    {
+        //        string codpos = TXTCodigoPostal.Text.Trim();
+        //        if (codpos.Length == 5)
+        //        {
+        //            Sepomex sepomex = new Sepomex();
+        //            CMBColonia.ItemsSource = sepomex.BuscarColoniaXCodigoPostal(codpos);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void TXTCodigoPostalModificar_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                string codpos = TXTCodigoPostalModificar.Text.Trim();
-                if (codpos.Length == 5)
-                {
-                    Sepomex sepomex = new Sepomex();
-                    CMBColoniaModificar.ItemsSource = sepomex.BuscarColoniaXCodigoPostal(codpos);
-                }
-            }
-            catch (Exception ex)
-            {
+        //private void TXTCodigoPostalModificar_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    try
+        //    {
+        //        string codpos = TXTCodigoPostalModificar.Text.Trim();
+        //        if (codpos.Length == 5)
+        //        {
+        //            Sepomex sepomex = new Sepomex();
+        //            CMBColoniaModificar.ItemsSource = sepomex.BuscarColoniaXCodigoPostal(codpos);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }

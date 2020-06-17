@@ -51,11 +51,11 @@ namespace CapaPresentación
                     TXTDomicilio.Text = vs[2];
                     TXTTelefono.Text = vs[3];
                     TXTEmail.Text = vs[4];
-                    TXTPuesto.Text = vs[5];
-                    img.ImageSource = new BitmapImage(new Uri(vs[6].ToString()));
-                    listPerfil.SelectedIndex = Convert.ToInt16(vs[7]);
-                    TXTUsuario.Text = vs[8];
-                    TXTConstraseña.Text = vs[9];
+                    //TXTPuesto.Text = vs[5];
+                    img.ImageSource = new BitmapImage(new Uri(vs[5].ToString()));
+                    listPerfil.SelectedIndex = Convert.ToInt16(vs[6]);
+                    TXTUsuario.Text = vs[7];
+                    TXTConstraseña.Text = vs[8];
                     Btn_Eliminar.IsEnabled = true;
                     empleado = true;
                 }
@@ -175,11 +175,10 @@ namespace CapaPresentación
                 }
                 else if (empleado == false)
                 {
-                    TXTNombreCompleto.Text = null;
-                    TXTDomicilio.Text = null;
-                    TXTTelefono.Text = null;
-                    TXTEmail.Text = null;
-                    TXTPuesto.Text = null;
+                    TXTNombreCompleto.Clear();
+                    TXTDomicilio.Clear();
+                    TXTTelefono.Clear();
+                    TXTEmail.Clear();
                     string i = "Imagenes/Microsoft_Account.svg.png";
                     img.ImageSource = new BitmapImage(new Uri(i));
                     listPerfil.SelectedIndex = -1;

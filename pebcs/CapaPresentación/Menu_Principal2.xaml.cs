@@ -342,5 +342,16 @@ namespace CapaPresentación
 
             }
         }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+               
+            }catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

@@ -89,9 +89,10 @@ namespace CapaPresentación.Reportes
                 PrintDialog printDialog = new PrintDialog();
                 if (printDialog.ShowDialog() == true)
                 {
-                    BtnImprimir.Visibility = Visibility.Hidden;
+                    BtnImprimir_Copy.Visibility = Visibility.Hidden;
                     BtnImprimir.Visibility = Visibility.Hidden;
                     printDialog.PrintVisual(pintar, "reporte");
+                    this.Close();
                 }
             }
             catch (Exception ex)

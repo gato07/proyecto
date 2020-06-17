@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:CapaPresentación"
         mc:Ignorable="d"
-        Title="Menu_Principal2" Height="720" Width="1080" WindowStyle="None"  WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Menu_Principal2" Height="720" Width="1080"   WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid >
         <materialDesign:Card Background="DarkGray" HorizontalAlignment="Left" Width="160" Margin="0,0,0,0" VerticalAlignment="Stretch">
             <Grid>
@@ -94,7 +94,7 @@
                     </Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <materialDesign:Chip Content="Usuario Prueba" Margin="5 60 5 8">
+                    <materialDesign:Chip Content="Usuario Prueba" Margin="5 60 5 8" Click="Chip_Click">
                         <materialDesign:Chip.Icon>
                             <Image Source="Imagenes/pexels-photo-247885.jpeg"  Stretch="UniformToFill"/>
                         </materialDesign:Chip.Icon>
