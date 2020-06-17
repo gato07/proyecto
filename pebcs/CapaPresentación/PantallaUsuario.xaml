@@ -155,8 +155,6 @@
                         <ComboBoxItem
                             Content="Nombre" />
                         <ComboBoxItem
-                            Content="Puesto" />
-                        <ComboBoxItem
                             Content="Correo" />
                         <ComboBoxItem
                             Content="Usuario" />
