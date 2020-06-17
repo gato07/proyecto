@@ -72,17 +72,17 @@ namespace CapaLogica
                 {
                     if (validacion.Val_Texto2(Nombre_Propietario, 1, 60))
                     {
-                        if (validacion.Val_Numero(Telefono_Propietario, 1, 10))
+                        if (validacion.Val_Numero(Telefono_Propietario, 1, 10) || Telefono_Propietario == "")
                         {
-                            if (validacion.Val_Domicilio(Colonia,1,50))
+                            if (validacion.Val_Domicilio(Colonia,1,50) || Colonia == "")
                             {
-                                if (validacion.Val_Domicilio(Calle, 1, 50))
+                                if (validacion.Val_Domicilio(Calle, 1, 50) || Calle == "")
                                 {
-                                    if (validacion.Val_Domicilio(Entre_Calles, 0, 100))
+                                    if (validacion.Val_Domicilio(Entre_Calles, 0, 100) || Entre_Calles == "")
                                     {
-                                        if (validacion.Val_Domicilio(Numero_Interior, 0, 10))
+                                        if (validacion.Val_Domicilio(Numero_Interior, 0, 10) || Numero_Interior == "")
                                         {
-                                            if (validacion.Val_Domicilio(Numero_Exterior, 1, 10))
+                                            if (validacion.Val_Domicilio(Numero_Exterior, 1, 10) || Numero_Exterior == "")
                                             {
                                                 Inmueble inmueble = new Inmueble();
                                                 inmueble.dtsSelXClaveCatastral(Clave_Catastral);
@@ -98,50 +98,39 @@ namespace CapaLogica
                                                         +" hay otro Inmueble que la tiene asignada, escriba otra diferente.";
                                             }
                                             else
-                                                Mensaje = "El campo de Número exterior debe cumplir:\n\n- No puede"
-                                                    + " quedar vacío.\n- Solo puede contener caracteres alfabeticos,"
-                                                    + " numericos, los simbolos .:,;-/# y espacios en blanco.\n- Debe"
-                                                    + " tener solo un espacio en blanco entre palabras.\n- El tamaño"
-                                                    + " valido del campo es de 1 hasta 10 caracteres.";
+                                                Mensaje = "El campo de Número exterior debe cumplir:\n\n- Solo puede"
+                                                    + " contener caracteres alfabeticos, numericos, los simbolos .:,;-/#"
+                                                    + " y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
+                                                    + " 10 caracteres.";
                                         }
                                         else
-                                            Mensaje = "El campo de Número interior debe cumplir:\n\n- Puede quedar"
-                                            + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                            + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                            + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                            + " campo es de 0 hasta 10 caracteres.";
+                                            Mensaje = "El campo de Número interior debe cumplir:\n\n- Solo puede contener"
+                                            + " caracteres alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco."
+                                            + "\n- El tamaño valido del campo es de 0 hasta 10 caracteres.";
                                     }
                                     else
-                                        Mensaje = "El campo de Entre calles debe cumplir:\n\n- Puede quedar"
-                                    + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                    + " campo es de 0 hasta 100 caracteres.";
+                                        Mensaje = "El campo de Entre calles debe cumplir:\n\n- Solo puede contener"
+                                    + " caracteres alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco."
+                                    + " \n- El tamaño valido del campo es de 0 hasta 100 caracteres.";
                                 }
                                 else
-                                    Mensaje = "El campo de Calle debe cumplir:\n\n- No puede quedar"
-                                    + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                    + " campo es de 1 hasta 50 caracteres.";
+                                    Mensaje = "El campo de Calle debe cumplir:\n\n- Solo puede contener caracteres"
+                                    + " alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco.\n- El tamaño"
+                                    + " valido del campo es de 1 hasta 50 caracteres.";
                             }
                             else
-                                Mensaje = "El campo de Colonia debe cumplir:\n\n- No puede quedar"
-                                    + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                    + " campo es de 1 hasta 50 caracteres.";
+                                Mensaje = "El campo de Colonia debe cumplir:\n\n- Solo puede contener caracteres"
+                                    + " alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco.\n- El"
+                                    + " tamaño valido del campo es de 1 hasta 50 caracteres.";
                         }
                         else
-                            Mensaje = "El campo de Teléfono del propietario debe cumplir:\n\n- No puede quedar"
-                                + " vacío.\n- Solo puede contener caracteres numéricos.\n- El tamaño valido del"
-                                + " campo es de 1 hasta 10 caracteres.";
+                            Mensaje = "El campo de Teléfono del propietario debe cumplir:\n\n- Solo puede contener"
+                                + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
                     }
                     else
                         Mensaje = "El campo de Nombre del propietario debe cumplir:\n\n- No puede quedar vacío."
                             + "\n- Solo puede contener caracteres alfabéticos, los simbolos .,- y espacios"
-                            + " en blanco.\n- Debe tener solo un espacio en blanco entre palabras."
-                            + "\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
+                            + " en blanco.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 }
                 else
                     Mensaje = "El campo de Clave catastral debe cumplir:\n\n- No puede quedar vacío."
@@ -170,17 +159,17 @@ namespace CapaLogica
                 {
                     if (validacion.Val_Texto2(Nombre_Propietario, 1, 60))
                     {
-                        if (validacion.Val_Numero(Telefono_Propietario, 1, 10))
+                        if (validacion.Val_Numero(Telefono_Propietario, 1, 10) || Telefono_Propietario == "")
                         {
-                            if (validacion.Val_Domicilio(Colonia, 1, 50))
+                            if (validacion.Val_Domicilio(Colonia, 1, 50) || Colonia == "")
                             {
-                                if (validacion.Val_Domicilio(Calle, 1, 50))
+                                if (validacion.Val_Domicilio(Calle, 1, 50) || Calle == "")
                                 {
-                                    if (validacion.Val_Domicilio(Entre_Calles, 0, 100))
+                                    if (validacion.Val_Domicilio(Entre_Calles, 0, 100) || Entre_Calles == "")
                                     {
-                                        if (validacion.Val_Domicilio(Numero_Interior, 0, 10))
+                                        if (validacion.Val_Domicilio(Numero_Interior, 0, 10) || Numero_Interior == "")
                                         {
-                                            if (validacion.Val_Domicilio(Numero_Exterior, 1, 10))
+                                            if (validacion.Val_Domicilio(Numero_Exterior, 1, 10) || Numero_Exterior == "")
                                             {
                                                 Inmueble inmcatastral = new Inmueble();
                                                 inmcatastral.SelXClaveCatastral(Clave_Catastral);
@@ -202,57 +191,48 @@ namespace CapaLogica
                                                 }
                                                 else
                                                     Mensaje = "No es posible actualizar la Clave catastral del Inmueble al valor"
-                                                        + " que introdujo ya que hay otro Inmueble la tiene asiganada, escriba otro diferente.";
+                                                        + " que introdujo ya que hay otro Inmueble la tiene asiganada, escriba"
+                                                        + " otro diferente.";
                                             }
                                             else
-                                                Mensaje = "El campo de Número exterior debe cumplir:\n\n- No puede"
-                                                    + " quedar vacío.\n- Solo puede contener caracteres alfabeticos,"
-                                                    + " numericos, los simbolos .:,;-/# y espacios en blanco.\n- Debe"
-                                                    + " tener solo un espacio en blanco entre palabras.\n- El tamaño"
-                                                    + " valido del campo es de 1 hasta 10 caracteres.";
+                                                Mensaje = "El campo de Número exterior debe cumplir:\n\n- Solo puede"
+                                                    + " contener caracteres alfabeticos, numericos, los simbolos .:,;-/#"
+                                                    + " y espacios en blanco.\n- El tamaño valido del campo es de 1 hasta"
+                                                    + " 10 caracteres.";
                                         }
                                         else
-                                            Mensaje = "El campo de Número interior debe cumplir:\n\n- Puede quedar"
-                                            + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                            + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                            + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                            + " campo es de 0 hasta 10 caracteres.";
+                                            Mensaje = "El campo de Número interior debe cumplir:\n\n- Solo puede contener"
+                                            + " caracteres alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco."
+                                            + "\n- El tamaño valido del campo es de 0 hasta 10 caracteres.";
                                     }
                                     else
-                                        Mensaje = "El campo de Entre calles debe cumplir:\n\n- Puede quedar"
-                                    + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                    + " campo es de 0 hasta 100 caracteres.";
+                                        Mensaje = "El campo de Entre calles debe cumplir:\n\n- Solo puede contener"
+                                    + " caracteres alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco."
+                                    + " \n- El tamaño valido del campo es de 0 hasta 100 caracteres.";
                                 }
                                 else
-                                    Mensaje = "El campo de Calle debe cumplir:\n\n- No puede quedar"
-                                    + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                    + " campo es de 1 hasta 50 caracteres.";
+                                    Mensaje = "El campo de Calle debe cumplir:\n\n- Solo puede contener caracteres"
+                                    + " alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco.\n- El tamaño"
+                                    + " valido del campo es de 1 hasta 50 caracteres.";
                             }
                             else
-                                Mensaje = "El campo de Colonia debe cumplir:\n\n- No puede quedar"
-                                    + " vacío.\n- Solo puede contener caracteres alfabeticos, numericos,"
-                                    + " los simbolos .:,;-/# y espacios en blanco.\n- Debe tener solo un"
-                                    + " espacio en blanco entre palabras.\n- El tamaño valido del"
-                                    + " campo es de 1 hasta 50 caracteres.";
+                                Mensaje = "El campo de Colonia debe cumplir:\n\n- Solo puede contener caracteres"
+                                    + " alfabeticos, numericos, los simbolos .:,;-/# y espacios en blanco.\n- El"
+                                    + " tamaño valido del campo es de 1 hasta 50 caracteres.";
                         }
                         else
-                            Mensaje = "El campo de Teléfono del propietario debe cumplir:\n\n- No puede quedar"
-                                + " vacío.\n- Solo puede contener caracteres numéricos.\n- El tamaño valido del"
-                                + " campo es de 1 hasta 10 caracteres.";
+                            Mensaje = "El campo de Teléfono del propietario debe cumplir:\n\n- Solo puede contener"
+                                + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
                     }
                     else
                         Mensaje = "El campo de Nombre del propietario debe cumplir:\n\n- No puede quedar vacío."
                             + "\n- Solo puede contener caracteres alfabéticos, los simbolos .,- y espacios"
-                            + " en blanco.\n- Debe tener solo un espacio en blanco entre palabras."
-                            + "\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
+                            + " en blanco.\n- El tamaño valido del campo es de 1 hasta 60 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de Clave catastral debe cumplir:\n\n- Su formato es el siguiente ###-###-###-###."
-                        + "\n- El tamaño valido del campo es de 13 hasta 15 caracteres.";
+                    Mensaje = "El campo de Clave catastral debe cumplir:\n\n- No puede quedar vacío."
+                        + "\n- Su formato correcto es ###-###-###-### ó #-##-###-####.\n- El tamaño valido del campo"
+                        + " es de 13 hasta 15 caracteres.";
                 return res;
             }
             catch (Exception ex)

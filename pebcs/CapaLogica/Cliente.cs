@@ -65,21 +65,21 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Cliente, es posible que no se haya insertado"
                     + " correctamente";
-                if (validacion.Val_Rfc(Rfc))
+                if (validacion.Val_Rfc(Rfc) || Rfc == "")
                 {
-                    if (validacion.Val_Texto1(Nombre, 1, 30))
+                    if (validacion.Val_Texto2(Nombre, 1, 30))
                     {
-                        if (validacion.Val_Texto1(Apellido, 1, 30))
+                        if (validacion.Val_Texto2(Apellido, 1, 30))
                         {
-                            if (validacion.Val_Numero(Telefono, 1, 10))
+                            if (validacion.Val_Numero(Telefono, 1, 10) || Telefono == "")
                             {
-                                if (validacion.Val_Email(Email))
+                                if (validacion.Val_Email(Email) || Email == "")
                                 {
+                                    Rfc = Rfc.ToUpper();
                                     Cliente cliente = new Cliente();
                                     cliente.SelXRfc(Rfc);
-                                    if (cliente.Existe == false)
+                                    if (cliente.Existe == false || Rfc == "")
                                     {
-                                        Rfc = Rfc.ToUpper();
                                         res = dtsInsertar(Rfc, Nombre, Apellido, Telefono, Email);
                                         if (res)
                                             Mensaje = "El Cliente fue registrado satisfactoriamente";
@@ -89,27 +89,26 @@ namespace CapaLogica
                                         + " lo tiene asignado, escriba otro diferente.";
                                 }
                                 else
-                                    Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
-                                    + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                    Mensaje = "El campo de Email debe cumplir:\n\n- Debe ser una dirección de correo valida."
+                                        + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                             }
                             else
-                                Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                                    + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
+                                Mensaje = "El campo de Teléfono debe cumplir:\n\n- Solo puede contener caracteres numéricos."
+                                    + "\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
                         }
                         else
                             Mensaje = "El campo de Apellido debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
-                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                            + " caracteres alfabéticos, los simbolos .,- y espacios en blanco.\n- Debe tener solo un espacio"
+                            + " en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                     }
                     else
                         Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
-                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                            + " caracteres alfabéticos, los simbolos .,- y espacios en blanco.\n- Debe tener solo un espacio"
+                            + " en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de RFC debe cumplir:\n\n- No puede quedar vacío."
-                        + "\n- Su formato correcto es AAA000000### ó AAAA000000###.\n- El tamaño valido del campo"
-                        + " es de 12 hasta 13 caracteres.";
+                    Mensaje = "El campo de RFC debe cumplir:\n\n- - Su formato correcto es AAA000000### ó AAAA000000###.\n- El"
+                        + " tamaño valido del campo es de 12 hasta 13 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -128,24 +127,24 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Cliente, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                if (validacion.Val_Rfc(Rfc))
+                if (validacion.Val_Rfc(Rfc) || Rfc == "")
                 {
-                    if (validacion.Val_Texto1(Nombre, 1, 30))
+                    if (validacion.Val_Texto2(Nombre, 1, 30))
                     {
-                        if (validacion.Val_Texto1(Apellido, 1, 30))
+                        if (validacion.Val_Texto2(Apellido, 1, 30))
                         {
-                            if (validacion.Val_Numero(Telefono, 1, 10))
+                            if (validacion.Val_Numero(Telefono, 1, 10) || Telefono == "")
                             {
-                                if (validacion.Val_Email(Email))
+                                if (validacion.Val_Email(Email) || Email == "")
                                 {
+                                    Rfc = Rfc.ToUpper();
                                     Cliente rfc = new Cliente();
                                     rfc.SelXRfc(Rfc);
-                                    if (rfc.Existe == false || (rfc.Existe && rfc.Id == Id))
+                                    if (rfc.Existe == false || (rfc.Existe && rfc.Id == Id) || Rfc == "")
                                     {
                                         Cliente cliente = new Cliente(Id);
                                         if (cliente.Existe)
                                         {
-                                            Rfc = Rfc.ToUpper();
                                             res = dtsActualizar(Id, Rfc, Nombre, Apellido, Telefono, Email);
                                             if (res)
                                                 Mensaje = "Los datos del Cliente fueron actualizados satisfactoriamente.";
@@ -159,27 +158,26 @@ namespace CapaLogica
                                             + " que introdujo ya que hay otro Cliente que lo tiene, escriba otro diferente.";
                                 }
                                 else
-                                    Mensaje = "El campo de Email debe cumplir:\n\n- No puede quedar vacío.\n- Debe ser una"
-                                    + " dirección de correo valida.\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
+                                    Mensaje = "El campo de Email debe cumplir:\n\n- Debe ser una dirección de correo valida."
+                                        + "\n- El tamaño valido del campo es de 1 hasta 255 caracteres.";
                             }
                             else
-                                Mensaje = "El campo de Teléfono debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                                    + " caracteres numéricos.\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
+                                Mensaje = "El campo de Teléfono debe cumplir:\n\n- Solo puede contener caracteres numéricos."
+                                    + "\n- El tamaño valido del campo es de 1 hasta 10 caracteres.";
                         }
                         else
                             Mensaje = "El campo de Apellido debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
-                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                            + " caracteres alfabéticos, los simbolos .,- y espacios en blanco.\n- Debe tener solo un espacio"
+                            + " en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                     }
                     else
                         Mensaje = "El campo de Nombre debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
-                            + " caracteres alfabéticos y espacios en blanco.\n- Debe tener solo un espacio en blanco entre"
-                            + " palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                            + " caracteres alfabéticos, los simbolos .,- y espacios en blanco.\n- Debe tener solo un espacio"
+                            + " en blanco entre palabras.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                 }
                 else
-                    Mensaje = "El campo de RFC debe cumplir:\n\n- No puede quedar vacío."
-                        + "\n- Su formato correcto es AAA000000### ó AAAA000000###.\n- El tamaño valido del campo"
-                        + " es de 12 hasta 13 caracteres.";
+                    Mensaje = "El campo de RFC debe cumplir:\n\n- - Su formato correcto es AAA000000### ó AAAA000000###.\n- El"
+                        + " tamaño valido del campo es de 12 hasta 13 caracteres.";
                 return res;
             }
             catch (Exception ex)
