@@ -744,6 +744,8 @@ namespace CapaPresentación
                         presupuesto.Insertar(TXT_NombreCliente.Text, 0, 0, 1, IDprep);
                         PantallaCheck check = new PantallaCheck();
                         check.Show();
+                        F = false;
+                        ActivarCampos();
                     }
                 }
             }
