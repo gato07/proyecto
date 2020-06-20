@@ -140,23 +140,24 @@ namespace CapaPresentación.Controles
             }
         }
 
-        private void Flipper_MouseLeave(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                Flip.Margin = new Thickness(10, 10, 10, 10);
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
-        private void Flip_MouseEnter(object sender, MouseEventArgs e)
+        private void Card_MouseEnter(object sender, MouseEventArgs e)
         {
             try
             {
                 this.Cursor = Cursors.Hand;
-                Flip.Margin = new Thickness(0, 0, 0, 0);
+                Card.Margin = new Thickness(0, 0, 0, 0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Card_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Card.Margin = new Thickness(10, 10, 10, 10);
             }
             catch (Exception ex)
             {

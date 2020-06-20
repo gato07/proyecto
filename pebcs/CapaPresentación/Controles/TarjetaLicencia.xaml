@@ -9,57 +9,72 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- you only need bring this resource in if you want to specify the circular style statically -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="10" Name="CardLicencia" MouseDoubleClick="Card_MouseDoubleClick">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="290*"/>
-                </Grid.ColumnDefinitions>
-                <materialDesign:ColorZone Name="IndicadorAlineamiento" Grid.Column="0" Background="#F1C40F" Height="36" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
-                <materialDesign:ColorZone Name="IndicadorUsoDeSuelo" Grid.Column="0" Background="#27AE60" Height="36" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
-                <materialDesign:ColorZone Name="IndicadorSupervisionTecnica" Grid.Column="0" Background="#2980B9" Height="36" Margin="0,0,0,72" VerticalAlignment="Bottom"/>
-                <materialDesign:ColorZone Name="IndicadorLicencia" Grid.Column="0" Background="#E74C3C" Height="36" Margin="0,0,0,36" VerticalAlignment="Bottom"/>
-                <materialDesign:ColorZone Name="IndicadorTerminacionObra" Grid.Column="0" Background="#884EA0" Height="36" VerticalAlignment="Bottom"/>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30*"/>
-                        <RowDefinition Height="160*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="33*"/>
-                            <RowDefinition Height="33*"/>
-                            <RowDefinition Height="33*"/>
-                            <RowDefinition Height="50*"/>
-                        </Grid.RowDefinitions>
+        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10" Name="CardLicencia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <materialDesign:Flipper.FrontContent>
+                <materialDesign:Card MouseDoubleClick="CardFront_MouseDoubleClick" Width="auto" Height="auto">
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="145*"/>
-                            <ColumnDefinition Width="145*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="290*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="No.Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
-                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
-                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
-                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
-                        <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
-                        <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,14,5,0">
-                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
-                        </materialDesign:ColorZone>
-                        <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 0 5 0" CornerRadius="10 0 10 10">
-                            <StackPanel>
-                                <Label Content="Estado" Name="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold"/>
-                                <Label Content="Fecha" x:Name="Fecha" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold" Margin="0 -30 0 0" Height="28"/>
-                            </StackPanel>
-                        </materialDesign:ColorZone>
+                        <materialDesign:ColorZone Name="IndicadorAlineamiento" Grid.Column="0" Background="#F1C40F" Height="36" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorUsoDeSuelo" Grid.Column="0" Background="#27AE60" Height="36" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorSupervisionTecnica" Grid.Column="0" Background="#2980B9" Height="36" Margin="0,0,0,72" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorLicencia" Grid.Column="0" Background="#E74C3C" Height="36" Margin="0,0,0,36" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorTerminacionObra" Grid.Column="0" Background="#884EA0" Height="36" VerticalAlignment="Bottom"/>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30*"/>
+                                <RowDefinition Height="160*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
+                            </Button>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="50*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="145*"/>
+                                    <ColumnDefinition Width="145*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="No.Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
+                                <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,14,5,0">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
+                                </materialDesign:ColorZone>
+                                <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 0 5 0" CornerRadius="10 0 10 10">
+                                    <StackPanel>
+                                        <Label Content="Estado" Name="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                        <Label Content="Fecha" x:Name="Fecha" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold" Margin="0 -30 0 0" Height="28"/>
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
-        </materialDesign:Card>
+                </materialDesign:Card>
+            </materialDesign:Flipper.FrontContent>
+            <materialDesign:Flipper.BackContent>
+                <materialDesign:Card MouseDoubleClick="CardBack_MouseDoubleClick">
+                    <Grid>
+                        <Button Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" HorizontalAlignment="Left">
+                            <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+            </materialDesign:Flipper.BackContent>
+        </materialDesign:Flipper>
     </Grid>
 </UserControl>

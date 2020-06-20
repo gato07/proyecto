@@ -37,6 +37,23 @@ namespace CapaPresentación.Controles
 
             }
         }
+
+        private void CardFront_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,ID));
+            }catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void CardBack_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Encotruccion");
+        }
+
         public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto,string Estado, DateTime date)
         {
             try
@@ -147,19 +164,6 @@ namespace CapaPresentación.Controles
 
             }
         }
-
-        private void Card_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0, ID));
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)
         {
             try

@@ -15,42 +15,39 @@
         </ResourceDictionary>
     </Control.Resources>
     <Grid>
-        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10" Name="Flip" MouseLeave="Flip_MouseLeave" MouseEnter="Flip_MouseEnter" >
-            <materialDesign:Flipper.FrontContent>
-                <Grid Height="256" Width="200">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="160" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <materialDesign:ColorZone Background="#F1C40F" VerticalAlignment="Stretch">
-                        <Button x:Name="buttonimg" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5">
-                            <Button.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Button.RenderTransform>
-                            <Button.Background>
-                                <ImageBrush x:Name="imgb" ImageSource="/Imagenes/Microsoft_Account.svg.png"/>
-                            </Button.Background>
-                        </Button>
-                    </materialDesign:ColorZone>
-                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Name="Etiqueta">
-                        </TextBlock>
-                        <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}" 
-                                Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0"
-                                Name="Btn_Restaurar" Click="Btn_Restaurar_Click">
-                            <StackPanel>
-                                <materialDesign:PackIcon Kind="Upload"/>
-                                <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-                </Grid>
-            </materialDesign:Flipper.FrontContent>
-        </materialDesign:Flipper>
+        <materialDesign:Card Margin="10" Width="190" Height="250" Name="Card" MouseEnter="Card_MouseEnter" MouseLeave="Card_MouseLeave">
+            <Grid Height="256" Width="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="160" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone Background="#F1C40F" VerticalAlignment="Stretch">
+                    <Button x:Name="buttonimg" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="100" Height="100" Margin="10" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Background>
+                            <ImageBrush x:Name="imgb" ImageSource="/Imagenes/Microsoft_Account.svg.png"/>
+                        </Button.Background>
+                    </Button>
+                </materialDesign:ColorZone>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Name="Etiqueta">
+                    </TextBlock>
+                    <Button Background="#F1C40F" Style="{StaticResource MaterialDesignFlatButton}" 
+                                Margin="0 4 0 0" Name="Btn_Restaurar" Click="Btn_Restaurar_Click">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Upload"/>
+                            <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </UserControl>
