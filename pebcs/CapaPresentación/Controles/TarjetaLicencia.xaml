@@ -69,9 +69,47 @@
             <materialDesign:Flipper.BackContent>
                 <materialDesign:Card MouseDoubleClick="CardBack_MouseDoubleClick">
                     <Grid>
-                        <Button Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" HorizontalAlignment="Left">
-                            <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
-                        </Button>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="290*"/>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:ColorZone Name="IndicadorAlineamientoBack" Grid.Column="0" Background="#F1C40F" Height="36" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorUsoDeSueloBack" Grid.Column="0" Background="#27AE60" Height="36" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorSupervisionTecnicaBack" Grid.Column="0" Background="#2980B9" Height="36" Margin="0,0,0,72" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorLicenciaBack" Grid.Column="0" Background="#E74C3C" Height="36" Margin="0,0,0,36" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorTerminacionObraBack" Grid.Column="0" Background="#884EA0" Height="36" VerticalAlignment="Bottom"/>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="160*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
+                            </Button>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="50*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="145*"/>
+                                    <ColumnDefinition Width="145*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Cliente" x:Name="TXT_Cliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="pENDIENTE" x:Name="TXT_" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Estado Documentación" x:Name="TXT_Doc" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
+                                <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 5 5 0" CornerRadius="10 10 10 10">
+                                    <StackPanel>
+                                        <Label Content="pENDIENTE" Name="txtStatus" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold"/>
+                                        <Label Content="pENDIENTE" x:Name="txtFecha" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold" Margin="0 -30 0 0" Height="28"/>
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </materialDesign:Card>
             </materialDesign:Flipper.BackContent>

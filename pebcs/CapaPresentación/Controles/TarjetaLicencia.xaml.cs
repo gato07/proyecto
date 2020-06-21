@@ -42,16 +42,18 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,ID));
+                Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia());
             }catch(Exception ex)
             {
 
             }
         }
 
+
+
         private void CardBack_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Encotruccion");
+            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0, ID));
         }
 
         public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto,string Estado, DateTime date)
@@ -94,6 +96,7 @@ namespace CapaPresentación.Controles
                     n += 1;
                 }
                 IndicadorAlineamiento.Height = 12 * n;
+                IndicadorAlineamientoBack.Height = 12 * n;
                 Documentacion_Licencia documentacion21 = new Documentacion_Licencia(ID, 5);
                 if (documentacion21.Existe == true)
                 {
@@ -110,6 +113,7 @@ namespace CapaPresentación.Controles
                     n2 += 1;
                 }
                 IndicadorUsoDeSuelo.Height = n2 * 12;
+                IndicadorUsoDeSueloBack.Height = n2 * 12;
                 Documentacion_Licencia documentacion31 = new Documentacion_Licencia(ID, 8);
                 if (documentacion31.Existe == true)
                 {
@@ -126,6 +130,7 @@ namespace CapaPresentación.Controles
                     n3 += 1;
                 }
                 IndicadorSupervisionTecnica.Height = n3 * 12;
+                IndicadorSupervisionTecnicaBack.Height = n3 * 12;
                 Documentacion_Licencia documentacion41 = new Documentacion_Licencia(ID, 11);
                 if (documentacion41.Existe == true)
                 {
@@ -142,6 +147,7 @@ namespace CapaPresentación.Controles
                     n4 += 1;
                 }
                 IndicadorLicencia.Height = n4 * 12;
+                IndicadorLicenciaBack.Height = n4 * 12;
                 Documentacion_Licencia documentacion51 = new Documentacion_Licencia(ID, 14);
                 if (documentacion51.Existe == true)
                 {
@@ -158,6 +164,7 @@ namespace CapaPresentación.Controles
                     n5 += 1;
                 }
                 IndicadorTerminacionObra.Height = n5 * 12;
+                IndicadorTerminacionObraBack.Height = n5 * 12;
             }
             catch (Exception ex)
             {
