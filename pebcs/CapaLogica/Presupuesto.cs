@@ -44,7 +44,10 @@ namespace CapaLogica
             }
         }
 
-        public Presupuesto(int Numero, string Dirigido, decimal Total, int Aprobado, int Clave_Empleado, int Id_Preproyecto)
+        public Presupuesto(int Numero, string Etiqueta, DateTime Fecha, string Nombre_Solicitante,
+            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto,
+            int Clave_Empleado):base(Numero, Etiqueta, Fecha, Nombre_Solicitante, Nombre_Propietario, Mts, Total, 
+        Aprobado, Id_Tipo_Proyecto, Clave_Empleado)
         {
             try
             {
@@ -56,7 +59,8 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Dirigido, decimal Total, int Aprobado, int Clave_Empleado, int Id_Preproyecto)
+        public bool Insertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario,
+            decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, int Clave_Empleado)
         {
             try
             {
@@ -64,7 +68,8 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Dirigido, Total, Aprobado, Clave_Empleado, Id_Preproyecto);
+                res = dtsInsertar(Etiqueta, Nombre_Solicitante, Nombre_Propietario, Mts, Total, Aprobado,
+                    Id_Tipo_Proyecto, Clave_Empleado);
                 if (res)
                     Mensaje = "El Presupuesto fue registrado satisfactoriamente";
                 return res;
@@ -77,8 +82,8 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero, string Dirigido, decimal Total, int Aprobado, int Clave_Empleado,
-            int Id_Preproyecto)
+        public bool Actualizar(int Numero, string Etiqueta, string Nombre_Solicitante,
+            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto)
         {
             try
             {
@@ -86,7 +91,8 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Presupuesto, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Dirigido, Total, Aprobado, Clave_Empleado, Id_Preproyecto);
+                res = dtsActualizar(Numero, Etiqueta, Nombre_Solicitante, Nombre_Propietario, Mts, Total, 
+                    Aprobado, Id_Tipo_Proyecto);
                 if (res)
                     Mensaje = "Los datos del Presupuesto fueron actualizados satisfactoriamente";
                 return res;
@@ -176,18 +182,24 @@ namespace CapaLogica
                     Presupuesto presupuesto = new Presupuesto();
                     if (Dt.Columns.Contains("Numero"))
                         presupuesto.Numero = Convert.ToInt16(renglon["Numero"]);
-                    if (Dt.Columns.Contains("Dirigido"))
-                        presupuesto.Dirigido = renglon["Dirigido"].ToString();
+                    if (Dt.Columns.Contains("Etiqueta"))
+                        presupuesto.Etiqueta = renglon["Etiqueta"].ToString();
                     if (Dt.Columns.Contains("Fecha"))
                         presupuesto.Fecha = Convert.ToDateTime(renglon["Fecha"]);
+                    if (Dt.Columns.Contains("Nombre_Solicitante"))
+                        presupuesto.Nombre_Solicitante = renglon["Nombre_Solicitante"].ToString();
+                    if (Dt.Columns.Contains("Nombre_Propietario"))
+                        presupuesto.Nombre_Propietario = renglon["Nombre_Propietario"].ToString();
+                    if (Dt.Columns.Contains("Mts"))
+                        presupuesto.Mts = Convert.ToDecimal(renglon["Mts"]);
                     if (Dt.Columns.Contains("Total"))
                         presupuesto.Total = Convert.ToDecimal(renglon["Total"]);
                     if (Dt.Columns.Contains("Aprobado"))
                         presupuesto.Aprobado = Convert.ToInt16(renglon["Aprobado"]);
+                    if (Dt.Columns.Contains("Id_Tipo_Proyecto"))
+                        presupuesto.Id_Tipo_Proyecto = Convert.ToInt16(renglon["Id_Tipo_Proyecto"]);
                     if (Dt.Columns.Contains("Clave_Empleado"))
                         presupuesto.Clave_Empleado = Convert.ToInt16(renglon["Clave_Empleado"]);
-                    if (Dt.Columns.Contains("Id_Preproyecto"))
-                        presupuesto.Id_Preproyecto = Convert.ToInt16(renglon["Id_Preproyecto"]);
                     if (Dt.Columns.Contains("Eliminado"))
                         presupuesto.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     presupuesto.Existe = true;

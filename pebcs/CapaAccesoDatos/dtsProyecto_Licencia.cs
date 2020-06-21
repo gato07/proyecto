@@ -17,6 +17,7 @@ namespace CapaAccesoDatos
         public string Folio { get; set; }
         public DateTime Fecha { get; set; }
         public string Numero_Licencia { get; set; }
+        public DateTime Vigencia { get; set; }
         public bool Escrituras { get; set; }
         public bool Constancia_Alineamiento { get; set; }
         public bool Pago_Predial { get; set; }
@@ -26,7 +27,7 @@ namespace CapaAccesoDatos
         public bool Planos_Instalaciones { get; set; }
         public bool Memoria_Calculo { get; set; }
         public int Id_Estado_Licencia { get; set; }
-        public int Id_Preproyecto { get; set; }
+        public int Numero_Presupuesto { get; set; }
         public int Id_Cliente { get; set; }
         public int Clave_Inmueble { get; set; }
         public int Clave_Empleado { get; set; }
@@ -46,6 +47,7 @@ namespace CapaAccesoDatos
                 Folio = "";
                 Fecha = new DateTime();
                 Numero_Licencia = "";
+                Vigencia = new DateTime();
                 Escrituras = false;
                 Constancia_Alineamiento = false;
                 Pago_Predial = false;
@@ -55,7 +57,7 @@ namespace CapaAccesoDatos
                 Planos_Instalaciones = false;
                 Memoria_Calculo = false;
                 Id_Estado_Licencia = 0;
-                Id_Preproyecto = 0;
+                Numero_Presupuesto = 0;
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
                 Clave_Empleado = 0;
@@ -76,6 +78,7 @@ namespace CapaAccesoDatos
                 Folio = "";
                 Fecha = new DateTime();
                 Numero_Licencia = "";
+                Vigencia = new DateTime();
                 Escrituras = false;
                 Constancia_Alineamiento = false;
                 Pago_Predial = false;
@@ -85,7 +88,7 @@ namespace CapaAccesoDatos
                 Planos_Instalaciones = false;
                 Memoria_Calculo = false;
                 Id_Estado_Licencia = 0;
-                Id_Preproyecto = 0;
+                Numero_Presupuesto = 0;
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
                 Clave_Empleado = 0;
@@ -100,6 +103,7 @@ namespace CapaAccesoDatos
                     Folio = dt.Rows[0]["Folio"].ToString();
                     Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
                     Numero_Licencia = dt.Rows[0]["Numero_Licencia"].ToString();
+                    Vigencia = Convert.ToDateTime(dt.Rows[0]["Vigencia"]);
                     Escrituras = Convert.ToBoolean(dt.Rows[0]["Escrituras"]);
                     Constancia_Alineamiento = Convert.ToBoolean(dt.Rows[0]["Constancia_Alineamiento"]);
                     Pago_Predial = Convert.ToBoolean(dt.Rows[0]["Pago_Predial"]);
@@ -109,7 +113,7 @@ namespace CapaAccesoDatos
                     Planos_Instalaciones = Convert.ToBoolean(dt.Rows[0]["Planos_Instalaciones"]);
                     Memoria_Calculo = Convert.ToBoolean(dt.Rows[0]["Memoria_Calculo"]);
                     Id_Estado_Licencia = Convert.ToInt16(dt.Rows[0]["Id_Estado_Licencia"]);
-                    Id_Preproyecto = Convert.ToInt16(dt.Rows[0]["Id_Preproyecto"]);
+                    Numero_Presupuesto = Convert.ToInt16(dt.Rows[0]["Numero_Presupuesto"]);
                     Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
                     Clave_Inmueble = Convert.ToInt16(dt.Rows[0]["Clave_Inmueble"]);
                     Clave_Empleado = Convert.ToInt16(dt.Rows[0]["Clave_Empleado"]);
@@ -124,10 +128,10 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsProyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, bool Escrituras,
-            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+        public dtsProyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, DateTime Vigencia, 
+            bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia, 
-            int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
@@ -135,6 +139,7 @@ namespace CapaAccesoDatos
                 this.Folio =Folio;
                 this.Fecha = Fecha;
                 this.Numero_Licencia = Numero_Licencia;
+                this.Vigencia = Vigencia;
                 this.Escrituras = Escrituras;
                 this.Constancia_Alineamiento = Constancia_Alineamiento;
                 this.Pago_Predial = Pago_Predial;
@@ -144,7 +149,7 @@ namespace CapaAccesoDatos
                 this.Planos_Instalaciones = Planos_Instalaciones;
                 this.Memoria_Calculo = Memoria_Calculo;
                 this.Id_Estado_Licencia = Id_Estado_Licencia;
-                this.Id_Preproyecto = Id_Preproyecto;
+                this.Numero_Presupuesto = Numero_Presupuesto;
                 this.Id_Cliente = Id_Cliente;
                 this.Clave_Inmueble = Clave_Inmueble;
                 this.Clave_Empleado = Clave_Empleado;
@@ -157,20 +162,20 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(string Folio, string Numero_Licencia, bool Escrituras,
+        public bool dtsInsertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_Insertar('" + Folio + "','" + Numero_Licencia
-                    + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," + Recibo_Agua 
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_Insertar('" + Folio + "','" + Numero_Licencia + "','" 
+                    + Vigencia + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," + Recibo_Agua 
                     + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," + Planos_Instalaciones 
-                    + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," + Id_Preproyecto + "," 
+                    + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," + Numero_Presupuesto + "," 
                     + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");");
                 conexion.Desconectar();
                 return res;
@@ -181,7 +186,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero, string Folio, string Numero_Licencia, bool Escrituras,
+        public bool dtsActualizar(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo)
         {
@@ -190,8 +195,8 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_Actualizar(" + Numero + ",'" + Folio + "','" 
-                    + Numero_Licencia + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial 
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_Actualizar(" + Numero + ",'" + Folio + "','" + Numero_Licencia
+                    + "','" + Vigencia +  "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial 
                     + "," + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," 
                     + Planos_Instalaciones + "," + Memoria_Calculo + ");");
                 conexion.Desconectar();

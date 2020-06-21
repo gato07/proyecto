@@ -12,13 +12,17 @@ namespace CapaAccesoDatos
         #endregion Atributos
 
         #region Propiedades
+	
         public int Numero { get; set; }
-        public string Dirigido { get; set; }
+        public string Etiqueta { get; set; }
         public DateTime Fecha { get; set; }
+        public string Nombre_Solicitante { get; set; }
+        public string Nombre_Propietario { get; set; }
+        public decimal Mts { get; set; }
         public decimal Total { get; set; }
         public int Aprobado { get; set; }
+        public int Id_Tipo_Proyecto { get; set; }
         public int Clave_Empleado { get; set; }
-        public int Id_Preproyecto { get; set; }
         public bool Eliminado { get; set; }
         public bool Existe { get; set; }
 
@@ -31,12 +35,15 @@ namespace CapaAccesoDatos
             try
             {
                 Numero = 0;
-                Dirigido = "";
+                Etiqueta = "";
                 Fecha = new DateTime();
+                Nombre_Solicitante = "";
+                Nombre_Propietario = "";
+                Mts = 0.00m;
                 Total = 0.00m;
                 Aprobado = 0;
+                Id_Tipo_Proyecto = 0;
                 Clave_Empleado = 0;
-                Id_Preproyecto = 0;
                 Eliminado = false;
                 Existe = false;
             }
@@ -51,26 +58,33 @@ namespace CapaAccesoDatos
             try
             {
                 this.Numero = 0;
-                Dirigido = "";
+                Etiqueta = "";
                 Fecha = new DateTime();
+                Nombre_Solicitante = "";
+                Nombre_Propietario = "";
+                Mts = 0.00m;
                 Total = 0.00m;
                 Aprobado = 0;
+                Id_Tipo_Proyecto = 0;
                 Clave_Empleado = 0;
-                Id_Preproyecto = 0;
                 Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelXNumero(" + Numero + ");").Tables[0];
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelXNumero(" 
+                    + Numero + ");").Tables[0];
                 if (dt != null)
                 {
                     this.Numero = Convert.ToInt16(dt.Rows[0]["Numero"]);
-                    Dirigido = dt.Rows[0]["Dirigido"].ToString();
+                    Etiqueta = dt.Rows[0]["Etiqueta"].ToString();
                     Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
+                    Nombre_Solicitante = dt.Rows[0]["Nombre_Solicitante"].ToString();
+                    Nombre_Propietario = dt.Rows[0]["Nombre_Propietario"].ToString();
+                    Mts = Convert.ToDecimal(dt.Rows[0]["Mts"]);
                     Total = Convert.ToDecimal(dt.Rows[0]["Total"]);
                     Aprobado = Convert.ToInt16(dt.Rows[0]["Aprobado"]);
+                    Id_Tipo_Proyecto = Convert.ToInt16(dt.Rows[0]["Id_Tipo_Proyecto"]);
                     Clave_Empleado = Convert.ToInt16(dt.Rows[0]["Clave_Empleado"]);
-                    Id_Preproyecto = Convert.ToInt16(dt.Rows[0]["Id_Preproyecto"]);
                     Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
@@ -82,16 +96,22 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsPresupuesto(int Numero, string Dirigido, decimal Total, int Aprobado, int Clave_Empleado, int Id_Preproyecto)
+        public dtsPresupuesto(int Numero, string Etiqueta, DateTime Fecha, string Nombre_Solicitante, 
+            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, 
+            int Clave_Empleado)
         {
             try
             {
                 this.Numero = Numero;
-                this.Dirigido = Dirigido;
+                this.Etiqueta = Etiqueta;
+                this.Fecha = Fecha;
+                this.Nombre_Solicitante = Nombre_Solicitante;
+                this.Nombre_Propietario = Nombre_Propietario;
+                this.Mts = Mts;
                 this.Total = Total;
                 this.Aprobado = Aprobado;
+                this.Id_Tipo_Proyecto = Id_Tipo_Proyecto;
                 this.Clave_Empleado = Clave_Empleado;
-                this.Id_Preproyecto = Id_Preproyecto;
                 Eliminado = false;
                 Existe = false;
             }
@@ -101,15 +121,17 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(string Dirigido, decimal Total, int Aprobado, int Clave_Empleado, int Id_Preproyecto)
+        public bool dtsInsertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario, 
+            decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, int Clave_Empleado)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Presupuesto_Insertar('" + Dirigido + "',"
-                    + Total + "," + Aprobado + "," + Clave_Empleado + "," + Id_Preproyecto + ");");
+                res = conexion.Consulta_Accion("CALL SP_Presupuesto_Insertar('" + Etiqueta + "','"
+                    + Nombre_Solicitante + "','" + Nombre_Propietario + "'," + Mts + "," + Total + "," + Aprobado
+                    + "," + Id_Tipo_Proyecto + "," + Clave_Empleado + ");");
                 conexion.Desconectar();
                 return res;
             }
@@ -119,16 +141,17 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero, string Dirigido, decimal Total, int Aprobado, int Clave_Empleado, 
-            int Id_Preproyecto)
+        public bool dtsActualizar(int Numero, string Etiqueta, string Nombre_Solicitante,
+            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Presupuesto_Actualizar(" + Numero + ",'" + Dirigido + "',"
-                    + Total + "," + Aprobado + "," + Clave_Empleado + "," + Id_Preproyecto + ");");
+                res = conexion.Consulta_Accion("CALL SP_Presupuesto_Actualizar(" + Numero + ",'" + Etiqueta + "','"
+                    + Nombre_Solicitante + "','" + Nombre_Propietario + "'," + Mts + "," + Total + "," + Aprobado
+                    + "," + Id_Tipo_Proyecto + ");");
                 conexion.Desconectar();
                 return res;
             }

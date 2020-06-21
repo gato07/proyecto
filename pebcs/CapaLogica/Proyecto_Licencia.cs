@@ -44,13 +44,13 @@ namespace CapaLogica
             }
         }
 
-        public Proyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, bool Escrituras,
-            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
+        public Proyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, DateTime Vigencia,
+            bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
-            base(Numero, Folio, Fecha, Numero_Licencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
-                Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, 
-                Memoria_Calculo, Id_Estado_Licencia, Id_Preproyecto, Id_Cliente, Clave_Inmueble, Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
+            base(Numero, Folio, Fecha, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
+                Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo,
+                Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado)
         {
             try
             {
@@ -62,10 +62,10 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Folio, string Numero_Licencia, bool Escrituras,
+        public bool Insertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Id_Preproyecto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
@@ -73,9 +73,9 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Folio, Numero_Licencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
-                    Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, 
-                    Memoria_Calculo, Id_Estado_Licencia, Id_Preproyecto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
+                res = dtsInsertar(Folio, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
+                    Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, 
+                    Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
                 if (res)
                     Mensaje = "El Proyecto_Licencia fue registrado satisfactoriamente";
                 return res;
@@ -88,7 +88,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero, string Folio, string Numero_Licencia, bool Escrituras,
+        public bool Actualizar(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo)
         {
@@ -98,8 +98,8 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto_Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Folio, Numero_Licencia, Escrituras, Constancia_Alineamiento, Pago_Predial,
-                    Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones,
+                res = dtsActualizar(Numero, Folio, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, 
+                    Pago_Predial, Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, 
                     Memoria_Calculo);
                 if (res)
                     Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
@@ -231,6 +231,8 @@ namespace CapaLogica
                         proyecto.Fecha = Convert.ToDateTime(renglon["Fecha"]);
                     if (Dt.Columns.Contains("Numero_Licencia"))
                         proyecto.Numero_Licencia = renglon["Numero_Licencia"].ToString();
+                    if (Dt.Columns.Contains("Vigencia"))
+                        proyecto.Vigencia = Convert.ToDateTime(renglon["Vigencia"]);
                     if (Dt.Columns.Contains("Escrituras"))
                         proyecto.Escrituras = Convert.ToBoolean(renglon["Escrituras"]);
                     if (Dt.Columns.Contains("Constancia_Alineamiento"))
@@ -249,8 +251,8 @@ namespace CapaLogica
                         proyecto.Memoria_Calculo = Convert.ToBoolean(renglon["Memoria_Calculo"]);
                     if (Dt.Columns.Contains("Id_Estado_Licencia"))
                         proyecto.Id_Estado_Licencia = Convert.ToInt16(renglon["Id_Estado_Licencia"]);
-                    if (Dt.Columns.Contains("Id_Preproyecto"))
-                        proyecto.Id_Preproyecto = Convert.ToInt16(renglon["Id_Preproyecto"]);
+                    if (Dt.Columns.Contains("Numero_Presupuesto"))
+                        proyecto.Numero_Presupuesto = Convert.ToInt16(renglon["Numero_Presupuesto"]);
                     if (Dt.Columns.Contains("Id_Cliente"))
                         proyecto.Id_Cliente = Convert.ToInt16(renglon["Id_Cliente"]);
                     if (Dt.Columns.Contains("Clave_Inmueble"))
