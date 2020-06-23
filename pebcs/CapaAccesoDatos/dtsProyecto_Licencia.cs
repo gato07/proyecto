@@ -173,7 +173,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_ProyLice_Insertar('" + Folio + "','" + Numero_Licencia + "','" 
-                    + Vigencia + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," + Recibo_Agua 
+                    + Vigencia.ToString("yyyy-MM-dd") + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," + Recibo_Agua 
                     + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," + Planos_Instalaciones 
                     + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," + Numero_Presupuesto + "," 
                     + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");");
@@ -196,7 +196,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_ProyLice_Actualizar(" + Numero + ",'" + Folio + "','" + Numero_Licencia
-                    + "','" + Vigencia +  "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial 
+                    + "','" + Vigencia.ToString("yyyy-MM-dd") +  "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial 
                     + "," + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," 
                     + Planos_Instalaciones + "," + Memoria_Calculo + ");");
                 conexion.Desconectar();
