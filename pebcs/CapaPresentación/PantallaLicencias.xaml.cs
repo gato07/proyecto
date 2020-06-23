@@ -59,5 +59,16 @@ namespace CapaPresentación
 
             }
         }
+
+        private void Btn_AgregarPantalla_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0));
+            }catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

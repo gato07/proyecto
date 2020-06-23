@@ -53,7 +53,7 @@ namespace CapaPresentación.Controles
 
         private void CardBack_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0, ID));
+            Mn.AbrirFormHijo(new Pantalla_InfoLicencia( ID));
         }
 
         public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto,string Estado, DateTime date)

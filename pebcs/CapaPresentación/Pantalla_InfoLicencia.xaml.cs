@@ -24,44 +24,36 @@ namespace CapaPresentación
     public partial class Pantalla_InfoLicencia : UserControl
     {
         Tipo_Proyecto tipProyecto = new Tipo_Proyecto();
-        Preproyecto preproyecto = new Preproyecto();
         Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia();
         Presupuesto presupuesto = new Presupuesto();
         Cliente cliente = new Cliente();
         Inmueble inmueble = new Inmueble();
         bool F = false;
-        int IDinmueble, IDcliente,IDprep,IDlicen;
+        int IDinmueble, IDcliente,IDpresupuesto,IDlicen;
         string[] Documentacion = new string[] {"Escrituras Del Terreno","Constacia De Alineamiento y No Oficial","Cosntacia De Pago Del Impuesto Predial",
                                                "Contrato o Recibo De Agua Potable","Planos Arquitectonicos De La Obra","Planos Estructurales De La Obra","Planos De Instalación De La Obra","Memoria De Calculo" };
         bool[] dockcheck = new bool[8];
-        public Pantalla_InfoLicencia( int IDPreproyecto, int IDLicencia)
+        public Pantalla_InfoLicencia( int IDLicencia)
         {
             try
             {
                 InitializeComponent();
-                CargarTipoProyectos();
                 CargarClientes();
                 CargarInmuebles();
-                CargarDatos(IDLicencia, IDPreproyecto);
+                CargarDatos(IDLicencia);
                 IDlicen = IDLicencia;            }
             catch (Exception ex)
             {
 
             }
         }
-        public void CargarDatos( int IDLicencia, int IDPreproyecto)
+        public void CargarDatos( int IDLicencia)
         {
             try
             {
-                if (IDPreproyecto != 0)
+                if(IDLicencia==0)
                 {
-                    preproyecto = new Preproyecto(IDPreproyecto);
-                    IDprep = IDPreproyecto;
-                    TXT_Etiqueta.Text = preproyecto.Etiqueta;
-                    TXT_Metros.Text = preproyecto.Mts.ToString();
-                    tipoProyecto.SelectedIndex = preproyecto.Id_Tipo_Proyecto - 1;
                     cargarDocumentacion(null);
-                    F = true;
                 }
                 else if (IDLicencia != 0)
                 {
@@ -69,10 +61,6 @@ namespace CapaPresentación
                     IDlicen = IDLicencia;
                     Clientes.SelectedIndex = ProyectoLicencia.Id_Cliente - 1;
                     Inmuebles.SelectedIndex = ProyectoLicencia.Clave_Inmueble - 1;
-                    preproyecto = new Preproyecto(ProyectoLicencia.Id_Preproyecto);
-                    Etiqueta.Text=TXT_Etiqueta.Text = preproyecto.Etiqueta;
-                    TXT_Metros.Text = preproyecto.Mts.ToString();
-                    tipoProyecto.SelectedIndex = preproyecto.Id_Tipo_Proyecto;
                     TXT_NoFolio.Text = ProyectoLicencia.Folio;
                     TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
                     dockcheck[0] = ProyectoLicencia.Escrituras;
@@ -86,41 +74,6 @@ namespace CapaPresentación
                     cargarDocumentacion(dockcheck);
                     F = false;
                     ActivarCampos();
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        private void CargarTipoProyectos()
-        {
-            try
-            {
-                Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
-                string n = null;
-                for (int x = 0; x < _Proyectos.Length; x++)
-                {
-                    if (x + 1 == 1)
-                    {
-                        n = "A";
-                    }
-                    if (x + 1 == 16)
-                    {
-                        n = "D";
-                    }
-                    if (x + 1 == 31)
-                    {
-                        n = "O";
-                    }
-                    if (x + 1 == 46)
-                    {
-                        n = "P";
-                    }
-                    if (x + 1 == 61)
-                    {
-                        n = "R";
-                    }
                 }
             }
             catch (Exception ex)
@@ -284,17 +237,21 @@ namespace CapaPresentación
             {
                 if (F == false)
                 {
-                    ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text.ToString(), TXT_NoLicencia.Text.ToString(), dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7]);
-                    PantallaCheck check = new PantallaCheck();
-                    check.Show();
+                    bool n = false;
+                    n=ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text.ToString(), TXT_NoLicencia.Text.ToString(), Convert.ToDateTime(DTP_Vigencia.SelectedDate),dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7]);
+                    if(n==true)
+                    {
+                        PantallaCheck check = new PantallaCheck();
+                        check.Show();
+                    }
                 }
                 else if (F == true)
                 {
                     bool n = false;
-                    n=ProyectoLicencia.Insertar(TXT_NoFolio.Text, TXT_NoLicencia.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDprep, IDcliente, IDinmueble, 1);
+                    n=ProyectoLicencia.Insertar(TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate),dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 0, IDpresupuesto, IDcliente, IDinmueble, 1);
                     if(n==true)
                     {
-                        presupuesto.Insertar(TXT_NombreCliente.Text, 0, 0, 1, IDprep);
+                        presupuesto.Insertar(TXT_Etiqueta.Text,"","",Convert.ToDecimal(TXT_Metros.Text),0,0,0,1);
                         PantallaCheck check = new PantallaCheck();
                         check.Show();
                         F = false;

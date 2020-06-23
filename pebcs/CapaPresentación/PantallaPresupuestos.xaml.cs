@@ -171,21 +171,7 @@ namespace CapaPresentación
         {
             try
             {
-                if (IDPre != 0)
-                {
-                    Presupuesto presupuesto = new Presupuesto(IDPre);
-                    Preproyecto preproyecto = new Preproyecto(presupuesto.Id_Preproyecto);
-                    Etiqueta.Text = preproyecto.Etiqueta;
-                    TXT_Propietario.Text = preproyecto.Nombre_Propietario;
-                    TXT_Metros.Text = preproyecto.Mts.ToString();
-                    Tipo_Proyecto tipo_ = new Tipo_Proyecto(preproyecto.Id_Tipo_Proyecto);
-                    TXT_TipoProyecto.Text = tipo_.Tipo_Obra + " " + tipo_.Uso;
-                    datosPresupuesto[0] = TXT_Propietario.Text;
-                    datosPresupuesto[2] = TXT_TipoProyecto.Text;
-                    datosPresupuesto[3] = TXT_Metros.Text;
-                    EstadoPresupuesto.SelectedIndex = presupuesto.Aprobado;
-                    CargarConceptos(IDPre);
-                }
+
             }
             catch (Exception ex)
             {
@@ -260,7 +246,7 @@ namespace CapaPresentación
                 }
                 Presupuesto presupuesto = new Presupuesto(idpresupuesto);
                 if (presupuesto.Existe)
-                    presupuesto.Actualizar(idpresupuesto, presupuesto.Dirigido, Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex, presupuesto.Clave_Empleado, presupuesto.Id_Preproyecto);
+                    presupuesto.Actualizar(idpresupuesto,presupuesto.Etiqueta, presupuesto.Nombre_Solicitante,presupuesto.Nombre_Propietario, presupuesto.Mts,Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex,0);
             }
             catch (Exception ex)
             {

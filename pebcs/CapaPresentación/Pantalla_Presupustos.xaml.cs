@@ -46,9 +46,8 @@ namespace CapaPresentación
                 Controles.Presupuesto[] PresCard = new Controles.Presupuesto[presupuestos.Length];
                 for (int x = 0; x < PresCard.Length; x++)
                 {
-                    Preproyecto preproyecto = new Preproyecto(presupuestos[x].Id_Preproyecto);
                     PresCard[x] = new Controles.Presupuesto(Mn);
-                    PresCard[x].CargarDatos(preproyecto.Etiqueta, presupuestos[x].Numero, presupuestos[x].Dirigido, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
+                    PresCard[x].CargarDatos(presupuestos[x].Etiqueta, presupuestos[x].Numero, presupuestos[x].Nombre_Solicitante, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
                     n.Items.Add(PresCard[x]);
                 }
             }
