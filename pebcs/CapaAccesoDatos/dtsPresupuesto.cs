@@ -121,23 +121,25 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario, 
+        public int dtsInsertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario, 
             decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, int Clave_Empleado)
         {
             try
             {
-                bool res = false;
+                int res = 0;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_Presupuesto_Insertar('" + Etiqueta + "','"
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_Insertar('" + Etiqueta + "','"
                     + Nombre_Solicitante + "','" + Nombre_Propietario + "'," + Mts + "," + Total + "," + Aprobado
-                    + "," + Id_Tipo_Proyecto + "," + Clave_Empleado + ");");
+                    + "," + Id_Tipo_Proyecto + "," + Clave_Empleado + ");").Tables[0];
+                if (dt != null)
+                    res = Convert.ToInt16(dt.Rows[0]["Ultimo_Id"]);
                 conexion.Desconectar();
                 return res;
             }
             catch (Exception ex)
             {
-                return false;
+                return 0;
             }
         }
 
