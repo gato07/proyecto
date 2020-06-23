@@ -180,6 +180,23 @@ namespace CapaAccesoDatos
             }
         }
 
+        public bool dtsDepurar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_Presupuesto_Depurar(" + Numero + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool dtsActivar(int Numero)
         {
             try

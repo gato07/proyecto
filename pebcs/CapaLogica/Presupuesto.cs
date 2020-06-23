@@ -125,6 +125,26 @@ namespace CapaLogica
             }
         }
 
+        public bool Depurar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de depuración del Presupuesto, es posible que no se haya depurado"
+                    + " correctamente";
+                res = dtsDepurar(Numero);
+                if (res)
+                    Mensaje = "El Presupuesto fue depurado satisfactoriamente";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de depuración del Presupuesto, es posible que no se haya depurado"
+                    + " correctamente";
+                return false;
+            }
+        }
+
         public bool Activar(int Numero)
         {
             try
