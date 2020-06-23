@@ -44,8 +44,8 @@ namespace CapaLogica
             }
         }
 
-        public Tipo_Proyecto(int Id, int Id_Tipo_Obra, string Tipo_Obra, int Id_Uso, string Uso) : 
-            base(Id, Id_Tipo_Obra, Tipo_Obra, Id_Uso, Uso)
+        public Tipo_Proyecto(int Id, string Tipo_Obra, string Uso) : 
+            base(Id, Tipo_Obra, Uso)
         {
             try
             {
@@ -54,18 +54,6 @@ namespace CapaLogica
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en el constructor del Tipo_Proyecto";
-            }
-        }
-
-        public bool Insertar(int Id_Tipo_Obra, string Tipo_Obra, int Id_Uso, string Uso)
-        {
-            try
-            {
-               return dtsInsertar(Id_Tipo_Obra, Tipo_Obra, Id_Uso, Uso);
-            }
-            catch (Exception ex)
-            {
-                return false;
             }
         }
 
@@ -93,12 +81,8 @@ namespace CapaLogica
                     Tipo_Proyecto tipo_proyecto = new Tipo_Proyecto();
                     if (Dt.Columns.Contains("Id"))
                         tipo_proyecto.Id = Convert.ToInt16(renglon["Id"]);
-                    if (Dt.Columns.Contains("Id_Tipo_Obra"))
-                        tipo_proyecto.Id_Tipo_Obra = Convert.ToInt16(renglon["Id_Tipo_Obra"]);
                     if (Dt.Columns.Contains("Tipo_Obra"))
                         tipo_proyecto.Tipo_Obra = renglon["Tipo_Obra"].ToString();
-                    if (Dt.Columns.Contains("Id_Uso"))
-                        tipo_proyecto.Id_Uso = Convert.ToInt16(renglon["Id_Uso"]);
                     if (Dt.Columns.Contains("Uso"))
                         tipo_proyecto.Uso = renglon["Uso"].ToString();
                     tipo_proyecto.Existe = true;

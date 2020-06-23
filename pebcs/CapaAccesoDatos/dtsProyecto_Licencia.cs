@@ -162,27 +162,29 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsInsertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
+        public int dtsInsertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
-                bool res = false;
+                int res = 0;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_Insertar('" + Folio + "','" + Numero_Licencia + "','" 
-                    + Vigencia.ToString("yyyy-MM-dd") + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," + Recibo_Agua 
-                    + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," + Planos_Instalaciones 
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_Insertar('" + Folio + "','" + Numero_Licencia + "','" 
+                    + Vigencia.ToString("yyyy-MM-dd") + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," 
+                    + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," + Planos_Instalaciones 
                     + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," + Numero_Presupuesto + "," 
-                    + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");");
+                    + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");").Tables[0];
+                if (dt != null)
+                    res = Convert.ToInt16(dt.Rows[0]["Ultimo_Id"]);
                 conexion.Desconectar();
                 return res;
             }
             catch (Exception ex)
             {
-                return false;
+                return 0;
             }
         }
 

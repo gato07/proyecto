@@ -62,29 +62,29 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
+        public int Insertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
             int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
-                bool res = false;
+                int res = 0;
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
                     + " correctamente";
                 res = dtsInsertar(Folio, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
                     Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, 
                     Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
-                if (res)
-                    Mensaje = "El Proyecto_Licencia fue registrado satisfactoriamente";
+                if (res > 0)
+                    Mensaje = "El Presupuesto fue registrado satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
                     + " correctamente";
-                return false;
+                return 0;
             }
         }
 
