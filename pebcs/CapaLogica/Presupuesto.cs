@@ -59,18 +59,18 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario,
+        public int Insertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario,
             decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, int Clave_Empleado)
         {
             try
             {
-                bool res = false;
+                int res = 0;
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
                 res = dtsInsertar(Etiqueta, Nombre_Solicitante, Nombre_Propietario, Mts, Total, Aprobado,
                     Id_Tipo_Proyecto, Clave_Empleado);
-                if (res)
+                if (res > 0)
                     Mensaje = "El Presupuesto fue registrado satisfactoriamente";
                 return res;
             }
@@ -78,7 +78,7 @@ namespace CapaLogica
             {
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
-                return false;
+                return 0;
             }
         }
 
