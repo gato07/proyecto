@@ -45,8 +45,8 @@ namespace CapaLogica
         }
 
         public Presupuesto(int Numero, string Etiqueta, DateTime Fecha, string Nombre_Solicitante,
-            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto,
-            int Clave_Empleado):base(Numero, Etiqueta, Fecha, Nombre_Solicitante, Nombre_Propietario, Mts, Total, 
+            string Nombre_Propietario, string Genero, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto,
+            int Clave_Empleado):base(Numero, Etiqueta, Fecha, Nombre_Solicitante, Nombre_Propietario, Genero, Mts, Total, 
         Aprobado, Id_Tipo_Proyecto, Clave_Empleado)
         {
             try
@@ -59,7 +59,7 @@ namespace CapaLogica
             }
         }
 
-        public int Insertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario,
+        public int Insertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario, string Genero,
             decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, int Clave_Empleado)
         {
             try
@@ -68,7 +68,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Etiqueta, Nombre_Solicitante, Nombre_Propietario, Mts, Total, Aprobado,
+                res = dtsInsertar(Etiqueta, Nombre_Solicitante, Nombre_Propietario, Genero, Mts, Total, Aprobado,
                     Id_Tipo_Proyecto, Clave_Empleado);
                 if (res > 0)
                     Mensaje = "El Presupuesto fue registrado satisfactoriamente";
@@ -83,7 +83,7 @@ namespace CapaLogica
         }
 
         public bool Actualizar(int Numero, string Etiqueta, string Nombre_Solicitante,
-            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto)
+            string Nombre_Propietario, string Genero, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Presupuesto, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Etiqueta, Nombre_Solicitante, Nombre_Propietario, Mts, Total, 
+                res = dtsActualizar(Numero, Etiqueta, Nombre_Solicitante, Nombre_Propietario, Genero, Mts, Total, 
                     Aprobado, Id_Tipo_Proyecto);
                 if (res)
                     Mensaje = "Los datos del Presupuesto fueron actualizados satisfactoriamente";
@@ -210,6 +210,8 @@ namespace CapaLogica
                         presupuesto.Nombre_Solicitante = renglon["Nombre_Solicitante"].ToString();
                     if (Dt.Columns.Contains("Nombre_Propietario"))
                         presupuesto.Nombre_Propietario = renglon["Nombre_Propietario"].ToString();
+                    if (Dt.Columns.Contains("Genero"))
+                        presupuesto.Genero = renglon["Genero"].ToString();
                     if (Dt.Columns.Contains("Mts"))
                         presupuesto.Mts = Convert.ToDecimal(renglon["Mts"]);
                     if (Dt.Columns.Contains("Total"))

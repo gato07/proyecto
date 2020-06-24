@@ -31,6 +31,7 @@ namespace CapaAccesoDatos
         public int Id_Cliente { get; set; }
         public int Clave_Inmueble { get; set; }
         public int Clave_Empleado { get; set; }
+        public int Numero_Proyecto_Original { get; set; }
         public bool Eliminado { get; set; }
         public bool Existe { get; set; }
 
@@ -61,6 +62,7 @@ namespace CapaAccesoDatos
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
                 Clave_Empleado = 0;
+                Numero_Proyecto_Original = 0;
                 Eliminado = false;
                 Existe = false;
             }
@@ -92,6 +94,7 @@ namespace CapaAccesoDatos
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
                 Clave_Empleado = 0;
+                Numero_Proyecto_Original = 0;
                 Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
@@ -117,6 +120,7 @@ namespace CapaAccesoDatos
                     Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
                     Clave_Inmueble = Convert.ToInt16(dt.Rows[0]["Clave_Inmueble"]);
                     Clave_Empleado = Convert.ToInt16(dt.Rows[0]["Clave_Empleado"]);
+                    Numero_Proyecto_Original = Convert.ToInt16(dt.Rows[0]["Numero_Proyecto_Original"]);
                     Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
@@ -131,7 +135,7 @@ namespace CapaAccesoDatos
         public dtsProyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, DateTime Vigencia, 
             bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia, 
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original)
         {
             try
             {
@@ -153,6 +157,7 @@ namespace CapaAccesoDatos
                 this.Id_Cliente = Id_Cliente;
                 this.Clave_Inmueble = Clave_Inmueble;
                 this.Clave_Empleado = Clave_Empleado;
+                this.Numero_Proyecto_Original = Numero_Proyecto_Original;
                 Eliminado = false;
                 Existe = false;
             }
@@ -165,7 +170,7 @@ namespace CapaAccesoDatos
         public int dtsInsertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original)
         {
             try
             {
@@ -173,10 +178,11 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 DataTable dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_Insertar('" + Folio + "','" + Numero_Licencia + "','" 
-                    + Vigencia.ToString("yyyy-MM-dd") + "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial + "," 
-                    + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," + Planos_Instalaciones 
-                    + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," + Numero_Presupuesto + "," 
-                    + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + ");").Tables[0];
+                    + Vigencia.ToString("yyyy-MM-dd") + "'," + Escrituras + "," + Constancia_Alineamiento + "," 
+                    + Pago_Predial + "," + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," 
+                    + Planos_Instalaciones + "," + Memoria_Calculo + "," + Id_Estado_Licencia + "," + Numero_Presupuesto 
+                    + "," + Id_Cliente + "," + Clave_Inmueble + "," + Clave_Empleado + "," + Numero_Proyecto_Original 
+                    + ");").Tables[0];
                 if (dt != null)
                     res = Convert.ToInt16(dt.Rows[0]["Ultimo_Id"]);
                 conexion.Desconectar();
@@ -188,19 +194,18 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
-            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
-            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo)
+        public bool dtsActualizar(int Numero, bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, 
+            bool Recibo_Agua, bool Planos_Arquitectonicos, bool Planos_Estructurales, bool Planos_Instalaciones, 
+            bool Memoria_Calculo)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_Actualizar(" + Numero + ",'" + Folio + "','" + Numero_Licencia
-                    + "','" + Vigencia.ToString("yyyy-MM-dd") +  "'," + Escrituras + "," + Constancia_Alineamiento + "," + Pago_Predial 
-                    + "," + Recibo_Agua + "," + Planos_Arquitectonicos + "," + Planos_Estructurales + "," 
-                    + Planos_Instalaciones + "," + Memoria_Calculo + ");");
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_Actualizar(" + Numero +  "," + Escrituras + "," 
+                    + Constancia_Alineamiento + "," + Pago_Predial + "," + Recibo_Agua + "," + Planos_Arquitectonicos 
+                    + "," + Planos_Estructurales + "," + Planos_Instalaciones + "," + Memoria_Calculo + ");");
                 conexion.Desconectar();
                 return res;
             }
@@ -210,15 +215,16 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizarIdEstadoLic(int Numero, int Id_Estado_Licencia)
+        public bool dtsActualizarIdEstadoLic(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia, 
+            int Id_Estado_Licencia)
         {
             try
             {
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarIdEstadoLic(" + Numero + "," 
-                    + Id_Estado_Licencia + ");");
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarIdEstadoLic(" + Numero + ",'" + Folio + "','"
+                    + Numero_Licencia + "','" + Vigencia.ToString("yyyy-MM-dd") + "'," + Id_Estado_Licencia + ");");
                 conexion.Desconectar();
                 return res;
             }

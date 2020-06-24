@@ -47,10 +47,10 @@ namespace CapaLogica
         public Proyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, DateTime Vigencia,
             bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original) :
             base(Numero, Folio, Fecha, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
                 Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo,
-                Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado)
+                Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado, Numero_Proyecto_Original)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace CapaLogica
         public int Insertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
             bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original)
         {
             try
             {
@@ -75,7 +75,8 @@ namespace CapaLogica
                     + " correctamente";
                 res = dtsInsertar(Folio, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
                     Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, 
-                    Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
+                    Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado, 
+                    Numero_Proyecto_Original);
                 if (res > 0)
                     Mensaje = "El Presupuesto fue registrado satisfactoriamente";
                 return res;
@@ -88,9 +89,9 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
-            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
-            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo)
+        public bool Actualizar(int Numero, bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial,
+            bool Recibo_Agua, bool Planos_Arquitectonicos, bool Planos_Estructurales, bool Planos_Instalaciones,
+            bool Memoria_Calculo)
         {
             try
             {
@@ -98,9 +99,8 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto_Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Folio, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, 
-                    Pago_Predial, Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, 
-                    Memoria_Calculo);
+                res = dtsActualizar(Numero, Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, 
+                    Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo);
                 if (res)
                     Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
                 return res;
@@ -113,7 +113,8 @@ namespace CapaLogica
             }
         }
 
-        public bool ActualizarIdEstadoLic(int Numero, int Id_Estado_Licencia)
+        public bool ActualizarIdEstadoLic(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia,
+            int Id_Estado_Licencia)
         {
             try
             {
@@ -121,7 +122,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
                     +" es posible que no se hayan modificado los datos correctamente";
-                res = dtsActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
+                res = dtsActualizarIdEstadoLic(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
                 if (res)
                     Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
                 return res;
@@ -259,6 +260,8 @@ namespace CapaLogica
                         proyecto.Clave_Inmueble = Convert.ToInt16(renglon["Clave_Inmueble"]);
                     if (Dt.Columns.Contains("Clave_Empleado"))
                         proyecto.Clave_Empleado = Convert.ToInt16(renglon["Clave_Empleado"]);
+                    if (Dt.Columns.Contains("Numero_Proyecto_Original"))
+                        proyecto.Numero_Proyecto_Original = Convert.ToInt16(renglon["Numero_Proyecto_Original"]);
                     if (Dt.Columns.Contains("Eliminado"))
                         proyecto.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     proyecto.Existe = true;

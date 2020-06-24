@@ -18,6 +18,7 @@ namespace CapaAccesoDatos
         public DateTime Fecha { get; set; }
         public string Nombre_Solicitante { get; set; }
         public string Nombre_Propietario { get; set; }
+        public string Genero { get; set; }
         public decimal Mts { get; set; }
         public decimal Total { get; set; }
         public int Aprobado { get; set; }
@@ -39,6 +40,7 @@ namespace CapaAccesoDatos
                 Fecha = new DateTime();
                 Nombre_Solicitante = "";
                 Nombre_Propietario = "";
+                Genero = "";
                 Mts = 0.00m;
                 Total = 0.00m;
                 Aprobado = 0;
@@ -62,6 +64,7 @@ namespace CapaAccesoDatos
                 Fecha = new DateTime();
                 Nombre_Solicitante = "";
                 Nombre_Propietario = "";
+                Genero = "";
                 Mts = 0.00m;
                 Total = 0.00m;
                 Aprobado = 0;
@@ -80,6 +83,7 @@ namespace CapaAccesoDatos
                     Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
                     Nombre_Solicitante = dt.Rows[0]["Nombre_Solicitante"].ToString();
                     Nombre_Propietario = dt.Rows[0]["Nombre_Propietario"].ToString();
+                    Genero = dt.Rows[0]["Genero"].ToString();
                     Mts = Convert.ToDecimal(dt.Rows[0]["Mts"]);
                     Total = Convert.ToDecimal(dt.Rows[0]["Total"]);
                     Aprobado = Convert.ToInt16(dt.Rows[0]["Aprobado"]);
@@ -97,7 +101,7 @@ namespace CapaAccesoDatos
         }
 
         public dtsPresupuesto(int Numero, string Etiqueta, DateTime Fecha, string Nombre_Solicitante, 
-            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, 
+            string Nombre_Propietario, string Genero, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, 
             int Clave_Empleado)
         {
             try
@@ -107,6 +111,7 @@ namespace CapaAccesoDatos
                 this.Fecha = Fecha;
                 this.Nombre_Solicitante = Nombre_Solicitante;
                 this.Nombre_Propietario = Nombre_Propietario;
+                this.Genero = Genero;
                 this.Mts = Mts;
                 this.Total = Total;
                 this.Aprobado = Aprobado;
@@ -121,7 +126,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public int dtsInsertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario, 
+        public int dtsInsertar(string Etiqueta, string Nombre_Solicitante, string Nombre_Propietario, string Genero,
             decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto, int Clave_Empleado)
         {
             try
@@ -130,8 +135,8 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 DataTable dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_Insertar('" + Etiqueta + "','"
-                    + Nombre_Solicitante + "','" + Nombre_Propietario + "'," + Mts + "," + Total + "," + Aprobado
-                    + "," + Id_Tipo_Proyecto + "," + Clave_Empleado + ");").Tables[0];
+                    + Nombre_Solicitante + "','" + Nombre_Propietario + "','" + Genero + "'," + Mts + "," + Total
+                    + "," + Aprobado + "," + Id_Tipo_Proyecto + "," + Clave_Empleado + ");").Tables[0];
                 if (dt != null)
                     res = Convert.ToInt16(dt.Rows[0]["Ultimo_Id"]);
                 conexion.Desconectar();
@@ -144,7 +149,7 @@ namespace CapaAccesoDatos
         }
 
         public bool dtsActualizar(int Numero, string Etiqueta, string Nombre_Solicitante,
-            string Nombre_Propietario, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto)
+            string Nombre_Propietario, string Genero, decimal Mts, decimal Total, int Aprobado, int Id_Tipo_Proyecto)
         {
             try
             {
@@ -152,8 +157,8 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_Presupuesto_Actualizar(" + Numero + ",'" + Etiqueta + "','"
-                    + Nombre_Solicitante + "','" + Nombre_Propietario + "'," + Mts + "," + Total + "," + Aprobado
-                    + "," + Id_Tipo_Proyecto + ");");
+                    + Nombre_Solicitante + "','" + Nombre_Propietario + "','" + Genero + "'," + Mts + "," + Total 
+                    + "," + Aprobado + "," + Id_Tipo_Proyecto + ");");
                 conexion.Desconectar();
                 return res;
             }
