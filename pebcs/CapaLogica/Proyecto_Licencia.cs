@@ -62,10 +62,9 @@ namespace CapaLogica
             }
         }
 
-        public int Insertar(string Folio, string Numero_Licencia, DateTime Vigencia, bool Escrituras,
-            bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
-            bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original)
+        public int Insertar(bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua,
+            bool Planos_Arquitectonicos, bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo,
+            int Id_Estado_Licencia, int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
@@ -73,10 +72,9 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Folio, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
-                    Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, 
-                    Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado, 
-                    Numero_Proyecto_Original);
+                res = dtsInsertar(Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, Planos_Arquitectonicos, 
+                    Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, Id_Estado_Licencia, 
+                    Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
                 if (res > 0)
                     Mensaje = "El Presupuesto fue registrado satisfactoriamente";
                 return res;
@@ -131,6 +129,27 @@ namespace CapaLogica
             {
                 Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
+                return false;
+            }
+        }
+
+        public bool ActualizarNumProOriginal(int Numero, int Numero_Proyecto_Original)
+        {
+            try
+            {
+                bool res = false;
+                Validacion validacion = new Validacion();
+                Mensaje = "Ocurrio un error en el proceso de actualización del Numero_Proyecto_Original de la licencia  del Proyecto_Licencia,"
+                    + " es posible que no se haya modificado correctamente";
+                res = dtsActualizarNumProOriginal(Numero, Numero_Proyecto_Original);
+                if (res)
+                    Mensaje = "El campo Numero_Proyecto_Original del Proyecto_Licencia fue actualizado satisfactoriamente";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de actualización del Numero_Proyecto_Original de la licencia  del Proyecto_Licencia,"
+                    + " es posible que no se haya modificado correctamente";
                 return false;
             }
         }
