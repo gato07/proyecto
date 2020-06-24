@@ -87,7 +87,8 @@ namespace CapaLogica
                                                 usuario.SelXUsuario(Usuario);
                                                 if (usuario.Existe == false)
                                                 {
-                                                    res = dtsInsertar(Nombre, Domicilio, Telefono, Email, Foto, Perfil, Usuario, Contrasena);
+                                                    string passencrypt = Seguridad.Encriptar(Contrasena);
+                                                    res = dtsInsertar(Nombre, Domicilio, Telefono, Email, Foto, Perfil, Usuario, passencrypt);
                                                     if (res)
                                                         Mensaje = "El Empleado fue registrado satisfactoriamente";
                                                 }
@@ -172,7 +173,8 @@ namespace CapaLogica
                                                     Empleado empleado = new Empleado(Clave);
                                                     if (empleado.Existe)
                                                     {
-                                                        res = dtsActualizar(Clave, Nombre, Domicilio, Telefono, Email, Foto, Perfil, Usuario, Contrasena);
+                                                        string passencrypt = Seguridad.Encriptar(Contrasena);
+                                                        res = dtsActualizar(Clave, Nombre, Domicilio, Telefono, Email, Foto, Perfil, Usuario, passencrypt);
                                                         if (res)
                                                             Mensaje = "Los datos del Empleado fueron actualizados satisfactoriamente";
                                                     }

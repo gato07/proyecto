@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CapaLogica;
 
 namespace CapaPresentación
 {
@@ -48,8 +49,21 @@ namespace CapaPresentación
         {
             try
             {
-                Menu_Principal Ventana = new Menu_Principal();
-                Ventana.ShowDialog();
+                Empleado empleado = new Empleado();
+                empleado.dtsSelXUsuario(txt_Usuario.Text.Trim());
+                if (empleado.Existe)
+                {
+                    string contrasena = txt_Password.Password.Trim();
+                    if (Seguridad.Desencriptar(empleado.Contrasena) == contrasena)
+                    {
+                        Menu_Principal2 Ventana = new Menu_Principal2();
+                        Ventana.ShowDialog();
+                    }
+                    else
+                        MessageBox.Show("Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo");
+                }
+                else
+                    MessageBox.Show("Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo");
             }
             catch(Exception ex)
             {
