@@ -41,12 +41,12 @@
                             <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7" IsEnabled="False"
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7" 
                             Grid.Column="4" Grid.Row="1" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_Limpiar" 
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" MouseLeave="Btn_Limpiar_MouseLeave" MouseMove="Btn_Limpiar_MouseMove">
+                            Name="Btn_AgregarPantalla" Click="Btn_AgregarPantalla_Click" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" >
                         <StackPanel>
-                            <materialDesign:PackIcon Kind="Broom"/>
+                            <materialDesign:PackIcon Kind="Paper"/>
                             <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>

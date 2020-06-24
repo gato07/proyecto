@@ -33,36 +33,52 @@ namespace CapaPresentación
         string[] Documentacion = new string[] {"Escrituras Del Terreno","Constacia De Alineamiento y No Oficial","Cosntacia De Pago Del Impuesto Predial",
                                                "Contrato o Recibo De Agua Potable","Planos Arquitectonicos De La Obra","Planos Estructurales De La Obra","Planos De Instalación De La Obra","Memoria De Calculo" };
         bool[] dockcheck = new bool[8];
-        public Pantalla_InfoLicencia( int IDLicencia)
+        Menu_Principal2 Mn;
+        public Pantalla_InfoLicencia( int IDLicencia,Object A,int IDpresu)
         {
             try
             {
                 InitializeComponent();
+                Mn = A as Menu_Principal2;
                 CargarClientes();
                 CargarInmuebles();
-                CargarDatos(IDLicencia);
-                IDlicen = IDLicencia;            }
+                CargarDatos(IDLicencia, IDpresu);
+                IDlicen = IDLicencia;
+                IDpresupuesto = IDpresu;
+            }
             catch (Exception ex)
             {
 
             }
         }
-        public void CargarDatos( int IDLicencia)
+
+        public void CargarDatos( int IDLicencia ,int iDpRESU)
         {
             try
             {
-                if(IDLicencia==0)
+                if(iDpRESU!=0)
+                {
+                    Presupuesto prec = new Presupuesto(iDpRESU);
+                    Etiqueta.Text = TXT_Etiqueta.Text = prec.Etiqueta;
+                    TXT_Metros.Text = prec.Mts.ToString();
+                    TXT_Genero.Text = prec.Genero;
+                }
+                else if(IDLicencia==0)
                 {
                     cargarDocumentacion(null);
+                    ActivarCampos();
+                    F = true;
                 }
                 else if (IDLicencia != 0)
                 {
                     ProyectoLicencia = new Proyecto_Licencia(IDLicencia);
                     IDlicen = IDLicencia;
+                    presupuesto = new Presupuesto(ProyectoLicencia.Numero_Presupuesto);
+                    TXT_Genero.Text = presupuesto.Genero;
+                    TXT_Etiqueta.Text = presupuesto.Etiqueta;
+                    TXT_Metros.Text = presupuesto.Mts.ToString();
                     Clientes.SelectedIndex = ProyectoLicencia.Id_Cliente - 1;
                     Inmuebles.SelectedIndex = ProyectoLicencia.Clave_Inmueble - 1;
-                    TXT_NoFolio.Text = ProyectoLicencia.Folio;
-                    TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
                     dockcheck[0] = ProyectoLicencia.Escrituras;
                     dockcheck[1] = ProyectoLicencia.Constancia_Alineamiento;
                     dockcheck[2] = ProyectoLicencia.Pago_Predial;
@@ -73,7 +89,7 @@ namespace CapaPresentación
                     dockcheck[7] = ProyectoLicencia.Memoria_Calculo;
                     cargarDocumentacion(dockcheck);
                     F = false;
-                    ActivarCampos();
+                    DesactivarCampos();
                 }
             }
             catch (Exception ex)
@@ -144,11 +160,30 @@ namespace CapaPresentación
         {
             try
             {
+                Clientes.IsEnabled = true;
+                Inmuebles.IsEnabled = true;
+                tipoProyecto.IsEnabled = true;
+                TXT_Etiqueta.IsReadOnly = false;
+                TXT_Metros.IsReadOnly = false;
+                TXT_Genero.IsReadOnly = false;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void DesactivarCampos()
+        {
+            try
+            {
                 Clientes.IsEnabled = false;
                 Inmuebles.IsEnabled = false;
                 tipoProyecto.IsEnabled = false;
+                TXT_Etiqueta.IsReadOnly = true;
+                TXT_Metros.IsReadOnly = true;
+                TXT_Genero.IsReadOnly = true;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
 
             }
@@ -208,6 +243,20 @@ namespace CapaPresentación
             }
         }
 
+        private void Btn_Cambio_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(IDlicen!=0)
+                {
+                    Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia(IDlicen, Mn));
+                }
+            }
+            catch(Exception ex)
+            {
+            }
+        }
+
         private void Inmuebles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -238,7 +287,7 @@ namespace CapaPresentación
                 if (F == false)
                 {
                     bool n = false;
-                    n=ProyectoLicencia.Actualizar(ProyectoLicencia.Numero, TXT_NoFolio.Text.ToString(), TXT_NoLicencia.Text.ToString(), Convert.ToDateTime(DTP_Vigencia.SelectedDate),dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7]);
+                    n=ProyectoLicencia.Actualizar(IDlicen,dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7]);
                     if(n==true)
                     {
                         PantallaCheck check = new PantallaCheck();
@@ -247,15 +296,35 @@ namespace CapaPresentación
                 }
                 else if (F == true)
                 {
-                    bool n = false;
-                    n=ProyectoLicencia.Insertar(TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate),dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 0, IDpresupuesto, IDcliente, IDinmueble, 1);
-                    if(n==true)
+                    if(IDpresupuesto==0)
                     {
-                        presupuesto.Insertar(TXT_Etiqueta.Text,"","",Convert.ToDecimal(TXT_Metros.Text),0,0,0,1);
-                        PantallaCheck check = new PantallaCheck();
-                        check.Show();
-                        F = false;
-                        ActivarCampos();
+                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 0, 1, 1);
+                        if (IDpresupuesto != 0)
+                        {
+                            IDlicen = ProyectoLicencia.Insertar( dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
+                            if (IDlicen != 0)
+                            {
+                                PantallaCheck check = new PantallaCheck();
+                                check.Show();
+                                F = false;
+                                DesactivarCampos();
+                            }
+                            else if (IDlicen == 0)
+                            {//elimina el prosupuesto si la licencia no se registro corretamente
+                                presupuesto.Depurar(IDpresupuesto);
+                            }
+                        }
+                    }
+                    else if (IDpresupuesto!=0)
+                    {
+                            IDlicen = ProyectoLicencia.Insertar( dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
+                            if (IDlicen != 0)
+                            {
+                                PantallaCheck check = new PantallaCheck();
+                                check.Show();
+                                F = false;
+                                DesactivarCampos();
+                            }
                     }
                 }
             }

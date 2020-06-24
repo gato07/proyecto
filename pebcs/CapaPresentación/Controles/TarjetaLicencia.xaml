@@ -41,7 +41,7 @@
                                     <RowDefinition Height="33*"/>
                                     <RowDefinition Height="33*"/>
                                     <RowDefinition Height="33*"/>
-                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="33*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="145*"/>
@@ -52,15 +52,9 @@
                                 <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
                                 <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
                                 <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
-                                <materialDesign:ColorZone Grid.Row="2" Grid.Column="1"  Background="#1ABC9C" Height="24" Grid.RowSpan="2" CornerRadius="10 10 0 0" Margin="15,14,5,0">
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="Fechas Proximas" />
-                                </materialDesign:ColorZone>
-                                <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 0 5 0" CornerRadius="10 0 10 10">
-                                    <StackPanel>
-                                        <Label Content="Estado" Name="Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold"/>
-                                        <Label Content="Fecha" x:Name="Fecha" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold" Margin="0 -30 0 0" Height="28"/>
-                                    </StackPanel>
-                                </materialDesign:ColorZone>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Cliente" x:Name="TXT_Cliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0 5 0"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="0" Margin="5 0 5 5"/>
+                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="1"  Margin="5 0 5 5"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -83,6 +77,7 @@
                                 <RowDefinition Height="10*"/>
                                 <RowDefinition Height="160*"/>
                             </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Titulo" Name="tituloBack" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
                             <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
                             </Button>
@@ -91,23 +86,16 @@
                                     <RowDefinition Height="33*"/>
                                     <RowDefinition Height="33*"/>
                                     <RowDefinition Height="33*"/>
-                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="145*"/>
-                                    <ColumnDefinition Width="145*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Cliente" x:Name="TXT_Cliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
-                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="pENDIENTE" x:Name="TXT_" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
-                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
-                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
-                                <TextBox IsReadOnly="True" materialDesign:HintAssist.Hint="Estado Documentación" x:Name="TXT_Doc" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
-                                <materialDesign:ColorZone Background="#1ABC9C" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="45" Margin="5 5 5 0" CornerRadius="10 10 10 10">
-                                    <StackPanel>
-                                        <Label Content="pENDIENTE" Name="txtStatus" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold"/>
-                                        <Label Content="pENDIENTE" x:Name="txtFecha" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="13" FontWeight="Bold" Margin="0 -30 0 0" Height="28"/>
-                                    </StackPanel>
-                                </materialDesign:ColorZone>
+                                <Label Grid.Row="0" Content="Alineamiento" Name="Alineamiento" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="1" Content="UsoDeSuelo" Name="UsoDeSuelo" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="2" Content="SupervisionTecnica" Name="SupervisionTecnica" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="3" Content="Licencia" Name="Licencia" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="4" Content="Proroga" Name="Proroga" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="5" Content="TO" Name="TO" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
                             </Grid>
                         </Grid>
                     </Grid>

@@ -104,6 +104,7 @@
                         <RowDefinition Height="55"/>
                         <RowDefinition Height="43*"/>
                         <RowDefinition Height="43*"/>
+                        <RowDefinition Height="43*"/>
                         <RowDefinition Height="200*"/>
                      </Grid.RowDefinitions>
                     <TextBlock Name="Etiqueta" Foreground="#1ABC9C" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" />
@@ -121,11 +122,20 @@
                             Name="Btn_GuardarLicencia" Click="Btn_GuardarLicencia_Click"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                             <StackPanel>
-                                <materialDesign:PackIcon Kind="CardBulleted"/>
+                                <materialDesign:PackIcon Kind="ContentSave"/>
                                 <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                             </StackPanel>
                      </Button>
-                    <Grid Grid.Row="3">
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,1,0,0" Grid.Row="3"
+                            Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Cambio" Click="Btn_Cambio_Click"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Refresh"/>
+                            <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="310"/>
                             <ColumnDefinition Width="*"/>
@@ -200,15 +210,11 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="45*"/>
                                                 <RowDefinition Height="45*"/>
-                                                <RowDefinition Height="45*"/>
-                                                <RowDefinition Height="45*"/>
                                             </Grid.RowDefinitions>
                                             <TextBox IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
                                             <TextBox IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
-                                            <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
-                                            <TextBox MaxLength="7" materialDesign:HintAssist.Hint="No. Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
-                                            <TextBox MaxLength="7" materialDesign:HintAssist.Hint="No. Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="1" Height="35"/>
-                                            <DatePicker materialDesign:HintAssist.Hint="Vigencia" Name="DTP_Vigencia" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="25,20,5,20" VerticalAlignment="Stretch" Height="50" Grid.Row="3" Grid.Column="0"/>
+                                            <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
+                                            <TextBox IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
                                         </Grid>
                                     </StackPanel>
                                 </Expander>

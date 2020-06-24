@@ -64,7 +64,7 @@ namespace CapaPresentación
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0));
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,Mn,0));
             }catch(Exception ex)
             {
 

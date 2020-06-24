@@ -26,17 +26,21 @@ namespace CapaPresentación
     {
         Concepto ListaConcepto;
         Concepto[] ListConceptos;
+        Presupuesto presupuesto = new Presupuesto();
+        Proyecto_Licencia licencia = new Proyecto_Licencia();
         string[] datosPresupuesto = new string[4];
         int idpreproyecto, idpresupuesto;
         bool Aprobado = false;
         int aproaux;
-        public PantallaPresupuestos(int IDPresupuesto)
+        Menu_Principal2 Mn;
+        public PantallaPresupuestos(int IDPresupuesto,Object A)
         {
             try
             {
                 InitializeComponent();
-                LlenarPreporyecto(IDPresupuesto);
                 idpresupuesto = IDPresupuesto;
+                Mn = A as Menu_Principal2;
+                CargarInfo(idpresupuesto);
             }
             catch(Exception ex)
             {
@@ -61,30 +65,6 @@ namespace CapaPresentación
             try
             {
                 Btn_Cerrar.Width = 107;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void Btn_Limpiar_MouseLeave(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                Btn_Limpiar.Width = 47;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                Btn_Limpiar.Width = 107;
             }
             catch (Exception ex)
             {
@@ -167,17 +147,27 @@ namespace CapaPresentación
             public string Tipo { get; set; }
             public bool eliminado { get; set; }
         }
-        public void LlenarPreporyecto(int IDPre)
+        public void CargarInfo(int idp)
         {
             try
             {
-
+                if(idp!=0)
+                {
+                    Presupuesto sd = new Presupuesto(idpresupuesto);
+                    TXT_Etiqueta.Text = sd.Etiqueta;
+                    TXT_Propietario.Text = sd.Nombre_Propietario;
+                    TXT_Solicitante.Text = sd.Nombre_Solicitante;
+                    TXT_Metros.Text = sd.Mts.ToString();
+                    EstadoPresupuesto.SelectedIndex = sd.Aprobado;
+                    CargarConceptos(idp);
+                }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
 
             }
         }
+
         public void CargarConceptos(int id)
         {
             try
@@ -204,49 +194,52 @@ namespace CapaPresentación
         {
             try
             {
-                Presupuesto_Contenido sa = new Presupuesto_Contenido();
-                Presupuesto_Contenido[] l = sa.TableToArray(sa.SelXNumPresupuesto(idpresupuesto));
-                bool esta = false;
-                for (int x = 0; x < l.Length; x++)
+                if(m!=null)
                 {
-                    for (int y = 0; y < m.Length / 7; y++)
+                    Presupuesto_Contenido sa = new Presupuesto_Contenido();
+                    Presupuesto_Contenido[] l = sa.TableToArray(sa.SelXNumPresupuesto(idpresupuesto));
+                    bool esta = false;
+                    for (int x = 0; x < l.Length; x++)
                     {
-                        if (Convert.ToInt32(m[y, 0]) == l[x].Numero_Concepto && l[x].Eliminado == false)
+                        for (int y = 0; y < m.Length / 7; y++)
                         {
-                            esta = true;
+                            if (Convert.ToInt32(m[y, 0]) == l[x].Numero_Concepto && l[x].Eliminado == false)
+                            {
+                                esta = true;
+                            }
                         }
-                    }
-                    if (esta == false)
-                    {
-                        sa.Eliminar(idpresupuesto, l[x].Numero_Concepto);
+                        if (esta == false)
+                        {
+                            sa.Eliminar(idpresupuesto, l[x].Numero_Concepto);
+                            esta = false;
+                        }
                         esta = false;
                     }
-                    esta = false;
-                }
-                for (int x = 0; x < m.Length / 7; x++)
-                {
-                    Presupuesto_Contenido agregar = new Presupuesto_Contenido(idpresupuesto, Convert.ToInt32(m[x, 0]));
-                    if (agregar.Numero_Concepto != 0)
+                    for (int x = 0; x < m.Length / 7; x++)
                     {
+                        Presupuesto_Contenido agregar = new Presupuesto_Contenido(idpresupuesto, Convert.ToInt32(m[x, 0]));
+                        if (agregar.Numero_Concepto != 0)
+                        {
 
-                        if (agregar.Eliminado == false)
-                        {
-                            agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                            if (agregar.Eliminado == false)
+                            {
+                                agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                            }
+                            else
+                            {
+                                agregar.Activar(idpresupuesto, agregar.Numero_Concepto);
+                                agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                            }
                         }
-                        else
+                        else if (agregar.Numero_Concepto == 0)
                         {
-                            agregar.Activar(idpresupuesto, agregar.Numero_Concepto);
-                            agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                            agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
                         }
                     }
-                    else if (agregar.Numero_Concepto == 0)
-                    {
-                        agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
-                    }
+                    Presupuesto presupuesto = new Presupuesto(idpresupuesto);
+                    if (presupuesto.Existe)
+                        presupuesto.Actualizar(idpresupuesto, presupuesto.Etiqueta, presupuesto.Nombre_Solicitante, presupuesto.Nombre_Propietario,TXT_Genero.Text, presupuesto.Mts, Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex, 1);
                 }
-                Presupuesto presupuesto = new Presupuesto(idpresupuesto);
-                if (presupuesto.Existe)
-                    presupuesto.Actualizar(idpresupuesto,presupuesto.Etiqueta, presupuesto.Nombre_Solicitante,presupuesto.Nombre_Propietario, presupuesto.Mts,Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex,0);
             }
             catch (Exception ex)
             {
@@ -404,12 +397,20 @@ namespace CapaPresentación
             }
         }
 
+        private void Btn_GenerarLicencia_Click(object sender, RoutedEventArgs e)
+        {
+            if(idpresupuesto!=0 && EstadoPresupuesto.SelectedIndex==1)
+            {
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,Mn, idpresupuesto));
+            }
+        }
+
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 string[,] vs = new string[ListaConceptosAgregados.Items.Count, 7];
-                datosPresupuesto[1] = TXT_Dirigido.Text;
+                datosPresupuesto[1] = TXT_Solicitante.Text;
                 for (int x = 0; x < ListaConceptosAgregados.Items.Count; x++)
                 {
                     PresupuestoAgregado presupuestoAgregado = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
@@ -421,9 +422,16 @@ namespace CapaPresentación
                     vs[x, 5] = presupuestoAgregado.TotalA.ToString();
                     vs[x, 6] = presupuestoAgregado.eliminado.ToString();
                 }
-                IngresarDatos(vs);
-                PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(idpresupuesto, vs, datosPresupuesto);
-                construcción.ShowDialog();
+                if(idpresupuesto==0)
+                {
+                    idpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), Convert.ToDecimal(Total.Text), EstadoPresupuesto.SelectedIndex, 1, 1);
+                }
+                if (idpresupuesto!=0)
+                {
+                    IngresarDatos(vs);
+                    PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(idpresupuesto, vs, datosPresupuesto);
+                    construcción.ShowDialog();
+                }
             }
             catch (Exception ex)
             {

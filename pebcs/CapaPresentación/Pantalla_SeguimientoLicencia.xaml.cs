@@ -23,9 +23,13 @@ namespace CapaPresentación
     {
         int IDlicen;
         Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia();
-        public Pantalla_SeguimientoLicencia()
+        Menu_Principal2 Mn;
+        public Pantalla_SeguimientoLicencia(int IDlicencia,Object A)
         {
             InitializeComponent();
+            Mn = A as Menu_Principal2;
+            IDlicen = IDlicencia;
+            CargarIfoProcesos(IDlicen);
         }
         private void CargarIfoProcesos(int IDeLicencia)
         {
@@ -200,39 +204,39 @@ namespace CapaPresentación
                 if (_Licencia.Existe == true && DTP_FechaDeArmadoPaqueteAlineamiento.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteAlineamiento.Text.ToString() != "")
                 {
                     _Licencia.Actualizar(IDlicen, 2, "Alineamiento", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteAlineamiento.SelectedDate), TXT_ObservacionesDeArmadoPaqueteAlineamiento.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 2);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen,TXT_NoFolio.Text,TXT_NoLicencia.Text,Convert.ToDateTime(DTP_Vigencia.SelectedDate), 2);
                     cambio = true;
                 }
                 else if (DTP_FechaDeArmadoPaqueteAlineamiento.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteAlineamiento.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 2, "Alineamiento", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteAlineamiento.SelectedDate), TXT_ObservacionesDeArmadoPaqueteAlineamiento.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 2);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 2);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 3);
                 if (_Licencia.Existe == true && DTP_FechaDePagoDerechosAlineamiento.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosAlineamiento.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 3, "Alineamiento", Convert.ToDateTime(DTP_FechaDePagoDerechosAlineamiento.SelectedDate), TXT_ObservacinesPagoDerechosAlineamiento.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 3);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 3);
                     cambio = true;
                 }
                 else if (DTP_FechaDePagoDerechosAlineamiento.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosAlineamiento.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 3, "Alineamiento", Convert.ToDateTime(DTP_FechaDePagoDerechosAlineamiento.SelectedDate), TXT_ObservacinesPagoDerechosAlineamiento.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 3);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 3);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 4);
                 if (_Licencia.Existe == true && DTP_FechaDeRecogerDocumentacionAlineamiento.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionAlineamiento.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 4, "Alineamiento", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionAlineamiento.SelectedDate), TXT_ObservacionesRecogerDocumentacionAlineamiento.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 4);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 4);
                     cambio = true;
                 }
                 else if (DTP_FechaDeRecogerDocumentacionAlineamiento.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionAlineamiento.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 4, "Alineamiento", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionAlineamiento.SelectedDate), TXT_ObservacionesRecogerDocumentacionAlineamiento.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 4);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 4);
                     cambio = true;
                 }
                 if (cambio == true)
@@ -258,39 +262,39 @@ namespace CapaPresentación
                 if (_Licencia.Existe == true && DTP_FechaDeArmadoPaquetUsoDeSuelo.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaquetUsoDeSuelo.Text.ToString() != "")
                 {
                     _Licencia.Actualizar(IDlicen, 5, "Uso De Suelo", Convert.ToDateTime(DTP_FechaDeArmadoPaquetUsoDeSuelo.SelectedDate), TXT_ObservacionesDeArmadoPaquetUsoDeSuelo.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 5);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 5);
                     cambio = true;
                 }
                 else if (DTP_FechaDeArmadoPaquetUsoDeSuelo.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaquetUsoDeSuelo.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 5, "Uso De Suelo", Convert.ToDateTime(DTP_FechaDeArmadoPaquetUsoDeSuelo.SelectedDate), TXT_ObservacionesDeArmadoPaquetUsoDeSuelo.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 5);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 5);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 6);
                 if (_Licencia.Existe == true && DTP_FechaDePagoDerechosUsoDeSuelo.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosUsoDeSuelo.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 6, "Uso De Suelo", Convert.ToDateTime(DTP_FechaDePagoDerechosUsoDeSuelo.SelectedDate), TXT_ObservacinesPagoDerechosUsoDeSuelo.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 6);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 6);
                     cambio = true;
                 }
                 else if (DTP_FechaDePagoDerechosUsoDeSuelo.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosUsoDeSuelo.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 6, "Uso De Suelo", Convert.ToDateTime(DTP_FechaDePagoDerechosUsoDeSuelo.SelectedDate), TXT_ObservacinesPagoDerechosUsoDeSuelo.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 6);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 6);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 7);
                 if (_Licencia.Existe == true && DTP_FechaDeRecogerDocumentacionUsoDeSuelo.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionUsoDeSuelo.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 7, "Uso De Suelo", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionUsoDeSuelo.SelectedDate), TXT_ObservacionesRecogerDocumentacionUsoDeSuelo.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 7);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 7);
                     cambio = true;
                 }
                 else if (DTP_FechaDeRecogerDocumentacionUsoDeSuelo.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionUsoDeSuelo.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 7, "Uso De Suelo", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionUsoDeSuelo.SelectedDate), TXT_ObservacionesRecogerDocumentacionUsoDeSuelo.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 7);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 7);
                     cambio = true;
                 }
                 if (cambio == true)
@@ -316,39 +320,39 @@ namespace CapaPresentación
                 if (_Licencia.Existe == true && DTP_FechaDeArmadoPaqueteSupervisiónTecnica.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica.Text.ToString() != "")
                 {
                     _Licencia.Actualizar(IDlicen, 8, "Supervisión técnica", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteSupervisiónTecnica.SelectedDate), TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 8);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 8);
                     cambio = true;
                 }
                 else if (DTP_FechaDeArmadoPaqueteSupervisiónTecnica.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 8, "Supervisión técnica", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteSupervisiónTecnica.SelectedDate), TXT_ObservacionesDeArmadoPaqueteSupervisiónTecnica.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 8);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 8);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 9);
                 if (_Licencia.Existe == true && DTP_FechaDePagoDerechosSupervisiónTecnica.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosSupervisiónTecnica.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 9, "Supervisión técnica", Convert.ToDateTime(DTP_FechaDePagoDerechosSupervisiónTecnica.SelectedDate), TXT_ObservacinesPagoDerechosSupervisiónTecnica.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 9);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 9);
                     cambio = true;
                 }
                 else if (DTP_FechaDePagoDerechosSupervisiónTecnica.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosSupervisiónTecnica.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 9, "Supervisión técnica", Convert.ToDateTime(DTP_FechaDePagoDerechosSupervisiónTecnica.SelectedDate), TXT_ObservacinesPagoDerechosSupervisiónTecnica.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 9);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 9);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 10);
                 if (_Licencia.Existe == true && DTP_FechaDeRecogerDocumentacionSupervisiónTecnica.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 10, "Supervisión técnica", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionSupervisiónTecnica.SelectedDate), TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 10);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 10);
                     cambio = true;
                 }
                 else if (DTP_FechaDeRecogerDocumentacionSupervisiónTecnica.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 10, "Supervisión técnica", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionSupervisiónTecnica.SelectedDate), TXT_ObservacionesRecogerDocumentacionSupervisiónTecnica.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 10);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 10);
                     cambio = true;
                 }
                 if (cambio == true)
@@ -374,39 +378,39 @@ namespace CapaPresentación
                 if (_Licencia.Existe == true && DTP_FechaDeArmadoPaqueteLicencia.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteLicencia.Text.ToString() != "")
                 {
                     _Licencia.Actualizar(IDlicen, 11, "Licencia", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteLicencia.SelectedDate), TXT_ObservacionesDeArmadoPaqueteLicencia.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 11);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 11);
                     cambio = true;
                 }
                 else if (DTP_FechaDeArmadoPaqueteLicencia.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteLicencia.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 11, "Licencia", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteLicencia.SelectedDate), TXT_ObservacionesDeArmadoPaqueteLicencia.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 11);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 11);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 12);
                 if (_Licencia.Existe == true && DTP_FechaDePagoDerechosLicencia.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosLicencia.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 12, "Licencia", Convert.ToDateTime(DTP_FechaDePagoDerechosLicencia.SelectedDate), TXT_ObservacinesPagoDerechosLicencia.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 12);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 12);
                     cambio = true;
                 }
                 else if (DTP_FechaDePagoDerechosLicencia.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosLicencia.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 12, "Licencia", Convert.ToDateTime(DTP_FechaDePagoDerechosLicencia.SelectedDate), TXT_ObservacinesPagoDerechosLicencia.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 12);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 12);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 13);
                 if (_Licencia.Existe == true && DTP_FechaDeRecogerDocumentacionLicencia.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionLicencia.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 13, "Licencia", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionLicencia.SelectedDate), TXT_ObservacionesRecogerDocumentacionLicencia.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 13);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 13);
                     cambio = true;
                 }
                 else if (DTP_FechaDeRecogerDocumentacionLicencia.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionLicencia.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 13, "Licencia", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionLicencia.SelectedDate), TXT_ObservacionesRecogerDocumentacionLicencia.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 13);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 13);
                     cambio = true;
                 }
                 if (cambio == true)
@@ -432,39 +436,39 @@ namespace CapaPresentación
                 if (_Licencia.Existe == true && DTP_FechaDeArmadoPaqueteTO.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteTO.Text.ToString() != "")
                 {
                     _Licencia.Actualizar(IDlicen, 14, "Terminación de obra", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteTO.SelectedDate), TXT_ObservacionesDeArmadoPaqueteTO.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 14);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 14);
                     cambio = true;
                 }
                 else if (DTP_FechaDeArmadoPaqueteTO.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteTO.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 14, "Terminación de obra", Convert.ToDateTime(DTP_FechaDeArmadoPaqueteTO.SelectedDate), TXT_ObservacionesDeArmadoPaqueteTO.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 14);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 14);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 15);
                 if (_Licencia.Existe == true && DTP_FechaDePagoDerechosTO.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosTO.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 15, "Terminación de obra", Convert.ToDateTime(DTP_FechaDePagoDerechosTO.SelectedDate), TXT_ObservacinesPagoDerechosTO.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 15);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 15);
                     cambio = true;
                 }
                 else if (DTP_FechaDePagoDerechosTO.SelectedDate.ToString() != "" && TXT_ObservacinesPagoDerechosTO.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 15, "Terminación de obra", Convert.ToDateTime(DTP_FechaDePagoDerechosTO.SelectedDate), TXT_ObservacinesPagoDerechosTO.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 15);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 15);
                     cambio = true;
                 }
                 _Licencia = new Documentacion_Licencia(IDlicen, 16);
                 if (_Licencia.Existe == true && DTP_FechaDeRecogerDocumentacionTO.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionTO.Text != "")
                 {
                     _Licencia.Actualizar(IDlicen, 16, "Terminación de obra", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionTO.SelectedDate), TXT_ObservacionesRecogerDocumentacionTO.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 16);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 16);
                     cambio = true;
                 }
                 else if (DTP_FechaDeRecogerDocumentacionTO.SelectedDate.ToString() != "" && TXT_ObservacionesRecogerDocumentacionTO.Text != "")
                 {
                     _Licencia.Insertar(IDlicen, 16, "Terminación de obra", Convert.ToDateTime(DTP_FechaDeRecogerDocumentacionTO.SelectedDate), TXT_ObservacionesRecogerDocumentacionTO.Text.ToString());
-                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, 16);
+                    ProyectoLicencia.ActualizarIdEstadoLic(IDlicen, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), 16);
                     cambio = true;
                 }
                 if (cambio == true)
@@ -475,6 +479,31 @@ namespace CapaPresentación
                 }
             }
             catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Btn_Cambio_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if(IDlicen!=0)
+                {
+                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IDlicen, Mn,0));
+                }
+            }catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void btn_GuardarProcesosLicenciaPrprroga_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }catch(Exception ex)
             {
 
             }

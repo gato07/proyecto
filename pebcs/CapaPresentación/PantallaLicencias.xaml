@@ -75,8 +75,8 @@
                         x:Name="Btn_AgregarPantalla" Click="Btn_AgregarPantalla_Click"
                         materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="Auto">
                         <StackPanel>
-                            <materialDesign:PackIcon Kind="Add"/>
-                            <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
+                            <materialDesign:PackIcon Kind="CreditCardAdd"/>
+                            <TextBlock Text="Crear" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
                 </Grid>

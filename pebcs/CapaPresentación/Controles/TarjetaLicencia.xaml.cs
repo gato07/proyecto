@@ -42,33 +42,34 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia());
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(ID,Mn,0));
             }catch(Exception ex)
             {
 
             }
         }
-
-
-
         private void CardBack_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Mn.AbrirFormHijo(new Pantalla_InfoLicencia( ID));
-        }
+            try
+            {
+                Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia(ID,Mn));
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto,string Estado, DateTime date)
         {
             try
             {
                 ID = ID2;
-                titulo.Content = etiqueta;
+                tituloBack.Content= titulo.Content = etiqueta;
                 TXT_Folio.Text = folio;
                 TXT_NoLicencia.Text = NoLicencia;
                 TXT_TipoObra.Text = tipoobra;
                 TXT_Uso.Text = uso;
                 TXT_presupuesto.Text = presupuesto;
-                Status.Content = Estado;
-                Fecha.Content = date;
                 IndicadorProceso();
             }
             catch (Exception ex)

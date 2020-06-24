@@ -82,7 +82,7 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES));
+                Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES,Mn));
             }
             catch (Exception ex)
             {

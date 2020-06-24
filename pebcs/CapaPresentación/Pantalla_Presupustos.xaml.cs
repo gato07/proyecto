@@ -80,25 +80,12 @@ namespace CapaPresentación
             }
         }
 
-        private void Btn_Limpiar_MouseLeave(object sender, MouseEventArgs e)
+        private void Btn_AgregarPantalla_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Btn_Limpiar.Width = 47;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void Btn_Limpiar_MouseMove(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                Btn_Limpiar.Width = 107;
-            }
-            catch (Exception ex)
+                Mn.AbrirFormHijo(new PantallaPresupuestos(0,Mn)) ;
+            }catch(Exception ex)
             {
 
             }
