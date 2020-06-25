@@ -239,7 +239,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarIdEstadoLic(" + Numero + "," 
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarNumProOriginal(" + Numero + "," 
                     + Numero_Proyecto_Original + ");");
                 conexion.Desconectar();
                 return res;
