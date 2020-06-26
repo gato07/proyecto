@@ -64,6 +64,8 @@ namespace CapaPresentación
                     TXT_Metros.Text = prec.Mts.ToString();
                     TXT_Genero.Text = prec.Genero;
                     tipoProyecto.SelectedIndex = prec.Id_Tipo_Proyecto - 1;
+                    cargarDocumentacion(null);
+                    F = true;
                 }
                 else if(IDLicencia==0)
                 {
@@ -228,7 +230,7 @@ namespace CapaPresentación
             {
                 Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
                 string n = null;
-                for (int x = 0; x < _Proyectos.Length; x++)
+                for (int x = 0; x < _Proyectos.Length-5; x++)
                 {
                     if (x + 1 == 1)
                     {

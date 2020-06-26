@@ -157,17 +157,17 @@ namespace CapaPresentación.Controles
                 IndicadorLicencia.Height = n4 * 10;
                 IndicadorLicenciaBack.Height = n4 * 10;
                 Proyecto_Licencia licencia = new Proyecto_Licencia(ID);
-                Documentacion_Licencia documentacion51 = new Documentacion_Licencia(licencia.Numero_Proyecto_Original, 14);
+                Documentacion_Licencia documentacion51 = new Documentacion_Licencia((int)(licencia.Numero_Proyecto_Original ?? 0), 14);
                 if (documentacion51.Existe == true)
                 {
                     n5 += 1;
                 }
-                Documentacion_Licencia documentacion52 = new Documentacion_Licencia(licencia.Numero_Proyecto_Original, 15);
+                Documentacion_Licencia documentacion52 = new Documentacion_Licencia((int)(licencia.Numero_Proyecto_Original ?? 0), 15);
                 if (documentacion52.Existe == true)
                 {
                     n5 += 1;
                 }
-                Documentacion_Licencia documentacion53 = new Documentacion_Licencia(licencia.Numero_Proyecto_Original, 16);
+                Documentacion_Licencia documentacion53 = new Documentacion_Licencia((int)(licencia.Numero_Proyecto_Original ?? 0), 16);
                 if (documentacion53.Existe == true)
                 {
                     n5 += 1;
@@ -203,7 +203,7 @@ namespace CapaPresentación.Controles
             {
                 Documentacion_Licencia documentacion_Licencia = new Documentacion_Licencia();
                 Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
-                Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic(ProyectoLicencia.Numero_Proyecto_Original));
+                Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0)));
                 Documentacion_Licencia[] info = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic(IDeLicencia));
                 for (int x = 0; x < infoProrroga.Length; x++)
                 {

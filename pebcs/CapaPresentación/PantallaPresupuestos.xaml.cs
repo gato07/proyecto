@@ -163,7 +163,7 @@ namespace CapaPresentación
             {
                 Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
                 string n = null;
-                for (int x = 0; x < _Proyectos.Length; x++)
+                for (int x = 0; x < _Proyectos.Length-5; x++)
                 {
                     if (x + 1 == 1)
                     {

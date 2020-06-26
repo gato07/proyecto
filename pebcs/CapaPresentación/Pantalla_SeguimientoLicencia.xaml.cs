@@ -45,7 +45,7 @@ namespace CapaPresentación
             TXT_NoFolio.Text = ProyectoLicencia.Folio;
             TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
             DTP_Vigencia.SelectedDate = ProyectoLicencia.Vigencia;
-            ProyectoLicenciaProrroga = new Proyecto_Licencia(ProyectoLicencia.Numero_Proyecto_Original);
+            ProyectoLicenciaProrroga = new Proyecto_Licencia((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0));
             if(ProyectoLicenciaProrroga.Existe)
             {
                 TXT_NoFolioProrroga.Text = ProyectoLicenciaProrroga.Folio;
@@ -60,7 +60,7 @@ namespace CapaPresentación
             {
                 Documentacion_Licencia documentacion_Licencia = new Documentacion_Licencia();
                 ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
-                Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic(ProyectoLicencia.Numero_Proyecto_Original));
+                Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0)));
                 Documentacion_Licencia[] info = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic(IDeLicencia));
                 for(int x=0;x<infoProrroga.Length;x++)
                 {
@@ -204,10 +204,12 @@ namespace CapaPresentación
                         }
                         break;
                     case 2://Ampliacion Comercial
-                        //todo
+                           //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 3://Ampliacion Industrial
-                        //todo
+                           //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 4://Hampliacion Obra Complementaria
                         SUPERVICIONTECNICATAB.IsEnabled = false;
@@ -215,7 +217,8 @@ namespace CapaPresentación
                         USODESUELOTAB.IsEnabled = false;
                         break;
                     case 5://Ampliacion Otros
-                        //todo
+                           //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 6://Regularizacion Habitacional
                         SUPERVICIONTECNICATAB.IsEnabled = false;
@@ -236,7 +239,8 @@ namespace CapaPresentación
                         USODESUELOTAB.IsEnabled = false;
                         break;
                     case 10://Regularizacion Otros
-                        //todo
+                            //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 11://Obra Nueva Habitacional
                         if (metros > 300)
@@ -252,10 +256,12 @@ namespace CapaPresentación
                         }
                         break;
                     case 12://Obra Nueva Comercial
-                        //todo
+                            //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 13://Obra Nueva Industrial
-                        //todo
+                            //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 14://Obra Nueva Complementaria
                         SUPERVICIONTECNICATAB.IsEnabled = false;
@@ -263,7 +269,8 @@ namespace CapaPresentación
                         USODESUELOTAB.IsEnabled = false;
                         break;
                     case 15://Obra Nueva Otros
-                        //todo
+                            //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 16://Remodelacion Habitacional
                         SUPERVICIONTECNICATAB.IsEnabled = false;
@@ -284,22 +291,23 @@ namespace CapaPresentación
                         USODESUELOTAB.IsEnabled = false;
                         break;
                     case 20://Remodelacion Otros
-                        //todo
+                            //todo
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 21://Demolicion Habitacional
-
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 22://Demolicion Comercial
-
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 23://Demolicion Industrial
-
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 24://Demolicion Obra Complementaria
-
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 25://Demolicion Otros
-
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                 }
             }
@@ -648,7 +656,7 @@ namespace CapaPresentación
             {
                 bool cambio = false;
                 Proyecto_Licencia proyecto_Licencia = new Proyecto_Licencia(IDlicen);
-                Proyecto_Licencia prorroga = new Proyecto_Licencia(proyecto_Licencia.Numero_Proyecto_Original);
+                Proyecto_Licencia prorroga = new Proyecto_Licencia((int)(proyecto_Licencia.Numero_Proyecto_Original ?? 0));
                 Documentacion_Licencia _Licencia = new Documentacion_Licencia(prorroga.Numero, 14);
                 if (_Licencia.Existe == true && DTP_FechaDeArmadoPaqueteLicenciaProrroga.SelectedDate.ToString() != "" && TXT_ObservacionesDeArmadoPaqueteLicenciaProrroga.Text.ToString() != "" )
                 {
