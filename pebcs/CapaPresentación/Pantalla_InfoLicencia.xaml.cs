@@ -29,7 +29,7 @@ namespace CapaPresentación
         Cliente cliente = new Cliente();
         Inmueble inmueble = new Inmueble();
         bool F = false;
-        int IDinmueble, IDcliente,IDpresupuesto,IDlicen;
+        int IDinmueble, IDcliente, IDpresupuesto, IDlicen, IdTipodeproyecto;
         string[] Documentacion = new string[] {"Escrituras Del Terreno","Constacia De Alineamiento y No Oficial","Cosntacia De Pago Del Impuesto Predial",
                                                "Contrato o Recibo De Agua Potable","Planos Arquitectonicos De La Obra","Planos Estructurales De La Obra","Planos De Instalación De La Obra","Memoria De Calculo" };
         bool[] dockcheck = new bool[8];
@@ -42,6 +42,7 @@ namespace CapaPresentación
                 Mn = A as Menu_Principal2;
                 CargarClientes();
                 CargarInmuebles();
+                CargarTipoProyectos();
                 CargarDatos(IDLicencia, IDpresu);
                 IDlicen = IDLicencia;
                 IDpresupuesto = IDpresu;
@@ -62,6 +63,7 @@ namespace CapaPresentación
                     Etiqueta.Text = TXT_Etiqueta.Text = prec.Etiqueta;
                     TXT_Metros.Text = prec.Mts.ToString();
                     TXT_Genero.Text = prec.Genero;
+                    tipoProyecto.SelectedIndex = prec.Id_Tipo_Proyecto - 1;
                 }
                 else if(IDLicencia==0)
                 {
@@ -79,6 +81,7 @@ namespace CapaPresentación
                     TXT_Metros.Text = presupuesto.Mts.ToString();
                     Clientes.SelectedIndex = ProyectoLicencia.Id_Cliente - 1;
                     Inmuebles.SelectedIndex = ProyectoLicencia.Clave_Inmueble - 1;
+                    tipoProyecto.SelectedIndex = presupuesto.Id_Tipo_Proyecto - 1;
                     dockcheck[0] = ProyectoLicencia.Escrituras;
                     dockcheck[1] = ProyectoLicencia.Constancia_Alineamiento;
                     dockcheck[2] = ProyectoLicencia.Pago_Predial;
@@ -212,6 +215,50 @@ namespace CapaPresentación
             public string NumeroInterior { get; set; }
             public string NumeroExterior { get; set; }
         }
+        public class TipoProyec
+        {
+            public int ID { get; set; }
+            public string TipoDeObra { get; set; }
+            public string Uso { get; set; }
+            public string Cabeza { get; set; }
+        }
+        private void CargarTipoProyectos()
+        {
+            try
+            {
+                Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
+                string n = null;
+                for (int x = 0; x < _Proyectos.Length; x++)
+                {
+                    if (x + 1 == 1)
+                    {
+                        n = "A";
+                    }
+                    if (x + 1 == 5)
+                    {
+                        n = "R";
+                    }
+                    if (x + 1 == 9)
+                    {
+                        n = "O";
+                    }
+                    if (x + 1 == 13)
+                    {
+                        n = "R";
+                    }
+                    if (x + 1 == 17)
+                    {
+                        n = "P";
+                    }
+                    TipoProyec ProInfo = (new TipoProyec() { ID = _Proyectos[x].Id, TipoDeObra = _Proyectos[x].Tipo_Obra, Uso = _Proyectos[x].Uso, Cabeza = n });
+                    tipoProyecto.Items.Add(ProInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 
         private void Clientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -280,6 +327,25 @@ namespace CapaPresentación
             }
         }
 
+        private void tip_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ToggleButton toggle = (ToggleButton)sender;
+                //Button button = (Button)sender;
+                Grid grid = (Grid)toggle.Parent;
+                TipoProyec P = (TipoProyec)grid.DataContext;
+                if (P != null)
+                {
+                    IdTipodeproyecto = P.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void Btn_GuardarLicencia_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -298,7 +364,7 @@ namespace CapaPresentación
                 {
                     if(IDpresupuesto==0)
                     {
-                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 0, 1, 1);
+                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 0, IdTipodeproyecto, 1);
                         if (IDpresupuesto != 0)
                         {
                             IDlicen = ProyectoLicencia.Insertar( dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);

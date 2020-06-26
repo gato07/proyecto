@@ -24,7 +24,7 @@ namespace CapaPresentación.Controles
     {
         int ID;
         Menu_Principal2 Mn;
-        int n, n2, n3, n4, n5 = 0;
+        int n, n2, n3, n4, n5,n6 = 0;
         public TarjetaLicencia(Object A)
         {
             try
@@ -64,6 +64,12 @@ namespace CapaPresentación.Controles
             try
             {
                 ID = ID2;
+                Proyecto_Licencia proyecto = new Proyecto_Licencia(ID);
+                Cliente cliente = new Cliente(proyecto.Id_Cliente);
+                Inmueble inmueble = new Inmueble(proyecto.Clave_Inmueble);
+                TXT_Cliente.Text = cliente.Nombre;
+                TXT_ClaveCatastral.Text = inmueble.Clave_Catastral;
+                TXT_Colonia.Text = inmueble.Colonia;
                 tituloBack.Content= titulo.Content = etiqueta;
                 TXT_Folio.Text = folio;
                 TXT_NoLicencia.Text = NoLicencia;
@@ -71,6 +77,7 @@ namespace CapaPresentación.Controles
                 TXT_Uso.Text = uso;
                 TXT_presupuesto.Text = presupuesto;
                 IndicadorProceso();
+                CargarIfoProcesos(ID);
             }
             catch (Exception ex)
             {
@@ -96,8 +103,8 @@ namespace CapaPresentación.Controles
                 {
                     n += 1;
                 }
-                IndicadorAlineamiento.Height = 12 * n;
-                IndicadorAlineamientoBack.Height = 12 * n;
+                IndicadorAlineamiento.Height = 10 * n;
+                IndicadorAlineamientoBack.Height = 10 * n;
                 Documentacion_Licencia documentacion21 = new Documentacion_Licencia(ID, 5);
                 if (documentacion21.Existe == true)
                 {
@@ -113,8 +120,8 @@ namespace CapaPresentación.Controles
                 {
                     n2 += 1;
                 }
-                IndicadorUsoDeSuelo.Height = n2 * 12;
-                IndicadorUsoDeSueloBack.Height = n2 * 12;
+                IndicadorUsoDeSuelo.Height = n2 * 10;
+                IndicadorUsoDeSueloBack.Height = n2 * 10;
                 Documentacion_Licencia documentacion31 = new Documentacion_Licencia(ID, 8);
                 if (documentacion31.Existe == true)
                 {
@@ -130,8 +137,8 @@ namespace CapaPresentación.Controles
                 {
                     n3 += 1;
                 }
-                IndicadorSupervisionTecnica.Height = n3 * 12;
-                IndicadorSupervisionTecnicaBack.Height = n3 * 12;
+                IndicadorSupervisionTecnica.Height = n3 * 10;
+                IndicadorSupervisionTecnicaBack.Height = n3 * 10;
                 Documentacion_Licencia documentacion41 = new Documentacion_Licencia(ID, 11);
                 if (documentacion41.Existe == true)
                 {
@@ -147,25 +154,155 @@ namespace CapaPresentación.Controles
                 {
                     n4 += 1;
                 }
-                IndicadorLicencia.Height = n4 * 12;
-                IndicadorLicenciaBack.Height = n4 * 12;
-                Documentacion_Licencia documentacion51 = new Documentacion_Licencia(ID, 14);
+                IndicadorLicencia.Height = n4 * 10;
+                IndicadorLicenciaBack.Height = n4 * 10;
+                Proyecto_Licencia licencia = new Proyecto_Licencia(ID);
+                Documentacion_Licencia documentacion51 = new Documentacion_Licencia(licencia.Numero_Proyecto_Original, 14);
                 if (documentacion51.Existe == true)
                 {
                     n5 += 1;
                 }
-                Documentacion_Licencia documentacion52 = new Documentacion_Licencia(ID, 15);
+                Documentacion_Licencia documentacion52 = new Documentacion_Licencia(licencia.Numero_Proyecto_Original, 15);
                 if (documentacion52.Existe == true)
                 {
                     n5 += 1;
                 }
-                Documentacion_Licencia documentacion53 = new Documentacion_Licencia(ID, 16);
+                Documentacion_Licencia documentacion53 = new Documentacion_Licencia(licencia.Numero_Proyecto_Original, 16);
                 if (documentacion53.Existe == true)
                 {
                     n5 += 1;
                 }
-                IndicadorTerminacionObra.Height = n5 * 12;
-                IndicadorTerminacionObraBack.Height = n5 * 12;
+                IndicadorLicenciaProrroga.Height = n5 * 10;
+                IndicadorLicenciaProrrogaBack.Height = n5 * 10;
+                Documentacion_Licencia documentacion61 = new Documentacion_Licencia(ID, 17);
+                if (documentacion61.Existe == true)
+                {
+                    n6 += 1;
+                }
+                Documentacion_Licencia documentacion62 = new Documentacion_Licencia(ID, 18);
+                if (documentacion62.Existe == true)
+                {
+                    n6 += 1;
+                }
+                Documentacion_Licencia documentacion63 = new Documentacion_Licencia(ID, 19);
+                if (documentacion63.Existe == true)
+                {
+                    n6 += 1;
+                }
+                IndicadorTerminacionObra.Height = n6 * 10;
+                IndicadorTerminacionObraBack.Height = n6 * 10;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void CargarIfoProcesos(int IDeLicencia)
+        {
+            try
+            {
+                Documentacion_Licencia documentacion_Licencia = new Documentacion_Licencia();
+                Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
+                Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic(ProyectoLicencia.Numero_Proyecto_Original));
+                Documentacion_Licencia[] info = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic(IDeLicencia));
+                for (int x = 0; x < infoProrroga.Length; x++)
+                {
+                    Estado_Licencia estado = new Estado_Licencia(infoProrroga[x].Id_Estado_Licencia);
+                    if (estado.Proceso == 5)//Licencia Prorroga
+                    {
+                        if (estado.Subproceso == 1)
+                        {
+                            ArmadoPaquete5.Content = infoProrroga[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 2)
+                        {
+                            PagoDeDerechos5.Content = infoProrroga[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 3)
+                        {
+                            RecogerDocumentacion5.Content = infoProrroga[x].Fecha;
+                        }
+                    }
+                }
+                for (int x = 0; x < info.Length; x++)
+                {
+                    Estado_Licencia estado = new Estado_Licencia(info[x].Id_Estado_Licencia);
+                    if (estado.Proceso == 1)//ALINEAMIENTO
+                    {
+                        if (estado.Subproceso == 1)
+                        {
+                            ArmadoPaquete1.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 2)
+                        {
+                            PagoDeDerechos1.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 3)
+                        {
+                            RecogerDocumentacion1.Content = info[x].Fecha;
+                        }
+                    }
+                    else if (estado.Proceso == 2)//USODESUELO
+                    {
+                        if (estado.Subproceso == 1)
+                        {
+                            ArmadoPaquete2.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 2)
+                        {
+                            PagoDeDerechos2.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 3)
+                        {
+                            RecogerDocumentacion2.Content = info[x].Fecha;
+                        }
+                    }
+                    else if (estado.Proceso == 3)//SUPERVISIONTECNICA
+                    {
+                        if (estado.Subproceso == 1)
+                        {
+                            ArmadoPaquete3.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 2)
+                        {
+                            PagoDeDerechos3.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 3)
+                        {
+                            RecogerDocumentacion3.Content = info[x].Fecha;
+                        }
+                    }
+                    else if (estado.Proceso == 4)//LICENCIA
+                    {
+                        if (estado.Subproceso == 1)
+                        {
+                            ArmadoPaquete4.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 2)
+                        {
+                            PagoDeDerechos4.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 3)
+                        {
+                            RecogerDocumentacion4.Content = info[x].Fecha;
+                        }
+                    }
+                    else if (estado.Proceso == 6)//TERMINACIÓNDEOBRA
+                    {
+                        if (estado.Subproceso == 1)
+                        {
+                            ArmadoPaquete6.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 2)
+                        {
+                            PagoDeDerechos6.Content = info[x].Fecha;
+                        }
+                        else if (estado.Subproceso == 3)
+                        {
+                            RecogerDocumentacion6 .Content = info[x].Fecha;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

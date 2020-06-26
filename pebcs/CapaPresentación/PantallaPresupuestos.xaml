@@ -30,6 +30,26 @@
                     </Grid>
                 </materialDesign:Card>
             </DataTemplate>
+            <DataTemplate x:Key="ListaTiposObra">
+                <Border x:Name="Border"  Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton VerticalAlignment="Center" Name="tip" Click="tip_Click" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding Cabeza}" Background="#2ECC71"/>
+                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                            <TextBlock FontWeight="Bold"  Text="{Binding TipoDeObra}" />
+                            <TextBlock  Text="{Binding Uso}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
             <DataTemplate x:Key="TemplateListaDepresupuestoAgregado">
                 <materialDesign:Card>
                     <Grid>
@@ -86,7 +106,7 @@
                                 <TextBox MaxLength="60" materialDesign:HintAssist.Hint="Nombre Del Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="2"/>
                                 <TextBox MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="0,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="125" />
                                 <TextBox MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,0,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="90" />
-                                <TextBox MaxLength="52" materialDesign:HintAssist.Hint="Tipo De Proyecto" x:Name="TXT_TipoProyecto" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="0"/>
+                                <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#3498DB" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
                                 <ComboBox Name="EstadoPresupuesto" Grid.Column="2" Grid.Row="1"
                                                   materialDesign:HintAssist.Hint="Estado de Presupuesto"  Margin="0,15,8,5" BorderBrush="#3498DB" VerticalAlignment="Stretch">
                                     <ComboBoxItem

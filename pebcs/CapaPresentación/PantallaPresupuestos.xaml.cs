@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -28,10 +29,11 @@ namespace CapaPresentación
         Concepto[] ListConceptos;
         Presupuesto presupuesto = new Presupuesto();
         Proyecto_Licencia licencia = new Proyecto_Licencia();
+        Tipo_Proyecto tipProyecto = new Tipo_Proyecto();
         string[] datosPresupuesto = new string[4];
         int idpreproyecto, idpresupuesto;
         bool Aprobado = false;
-        int aproaux;
+        int aproaux, IdTipodeproyecto;
         Menu_Principal2 Mn;
         public PantallaPresupuestos(int IDPresupuesto,Object A)
         {
@@ -41,6 +43,7 @@ namespace CapaPresentación
                 idpresupuesto = IDPresupuesto;
                 Mn = A as Menu_Principal2;
                 CargarInfo(idpresupuesto);
+                CargarTipoProyectos();
             }
             catch(Exception ex)
             {
@@ -147,6 +150,50 @@ namespace CapaPresentación
             public string Tipo { get; set; }
             public bool eliminado { get; set; }
         }
+        public class TipoProyec
+        {
+            public int ID { get; set; }
+            public string TipoDeObra { get; set; }
+            public string Uso { get; set; }
+            public string Cabeza { get; set; }
+        }
+        private void CargarTipoProyectos()
+        {
+            try
+            {
+                Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
+                string n = null;
+                for (int x = 0; x < _Proyectos.Length; x++)
+                {
+                    if (x + 1 == 1)
+                    {
+                        n = "A";
+                    }
+                    if (x + 1 == 5)
+                    {
+                        n = "R";
+                    }
+                    if (x + 1 == 9)
+                    {
+                        n = "O";
+                    }
+                    if (x + 1 == 13)
+                    {
+                        n = "R";
+                    }
+                    if (x + 1 == 17)
+                    {
+                        n = "P";
+                    }
+                    TipoProyec ProInfo = (new TipoProyec() { ID = _Proyectos[x].Id, TipoDeObra = _Proyectos[x].Tipo_Obra, Uso = _Proyectos[x].Uso, Cabeza = n });
+                    tipoProyecto.Items.Add(ProInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public void CargarInfo(int idp)
         {
             try
@@ -158,7 +205,10 @@ namespace CapaPresentación
                     TXT_Propietario.Text = sd.Nombre_Propietario;
                     TXT_Solicitante.Text = sd.Nombre_Solicitante;
                     TXT_Metros.Text = sd.Mts.ToString();
+                    TXT_Genero.Text = sd.Genero;
                     EstadoPresupuesto.SelectedIndex = sd.Aprobado;
+                    tipoProyecto.SelectedIndex = sd.Id_Tipo_Proyecto-1;
+                    IdTipodeproyecto = sd.Id_Tipo_Proyecto;
                     CargarConceptos(idp);
                 }
             }
@@ -238,7 +288,7 @@ namespace CapaPresentación
                     }
                     Presupuesto presupuesto = new Presupuesto(idpresupuesto);
                     if (presupuesto.Existe)
-                        presupuesto.Actualizar(idpresupuesto, presupuesto.Etiqueta, presupuesto.Nombre_Solicitante, presupuesto.Nombre_Propietario,TXT_Genero.Text, presupuesto.Mts, Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex, 1);
+                        presupuesto.Actualizar(idpresupuesto, presupuesto.Etiqueta, presupuesto.Nombre_Solicitante, presupuesto.Nombre_Propietario,TXT_Genero.Text, presupuesto.Mts, Convert.ToDecimal(Total.Text.Trim()), EstadoPresupuesto.SelectedIndex, IdTipodeproyecto);
                 }
             }
             catch (Exception ex)
@@ -405,6 +455,25 @@ namespace CapaPresentación
             }
         }
 
+        private void tip_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ToggleButton toggle = (ToggleButton)sender;
+                //Button button = (Button)sender;
+                Grid grid = (Grid)toggle.Parent;
+                TipoProyec P = (TipoProyec)grid.DataContext;
+                if (P != null)
+                {
+                    IdTipodeproyecto = P.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void Btn_GenerarPresupuesto_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -424,7 +493,7 @@ namespace CapaPresentación
                 }
                 if(idpresupuesto==0)
                 {
-                    idpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), Convert.ToDecimal(Total.Text), EstadoPresupuesto.SelectedIndex, 1, 1);
+                    idpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_Solicitante.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), Convert.ToDecimal(Total.Text), EstadoPresupuesto.SelectedIndex, IdTipodeproyecto, 1);
                 }
                 if (idpresupuesto!=0)
                 {

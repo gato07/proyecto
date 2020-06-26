@@ -22,11 +22,12 @@
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition Width="290*"/>
                         </Grid.ColumnDefinitions>
-                        <materialDesign:ColorZone Name="IndicadorAlineamiento" Grid.Column="0" Background="#F1C40F" Height="36" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorUsoDeSuelo" Grid.Column="0" Background="#27AE60" Height="36" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorSupervisionTecnica" Grid.Column="0" Background="#2980B9" Height="36" Margin="0,0,0,72" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorLicencia" Grid.Column="0" Background="#E74C3C" Height="36" Margin="0,0,0,36" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorTerminacionObra" Grid.Column="0" Background="#884EA0" Height="36" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorAlineamiento" Grid.Column="0" Background="#F1C40F" Height="30" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorUsoDeSuelo" Grid.Column="0" Background="#27AE60" Height="30" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorSupervisionTecnica" Grid.Column="0" Background="#2980B9" Height="30" Margin="0,0,0,78" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorLicencia" Grid.Column="0" Background="#E74C3C" Height="30" Margin="0,0,0,48" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorLicenciaProrroga" Grid.Column="0" Background="#EC7063 " Height="30" Margin="0,0,0,30" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorTerminacionObra" Grid.Column="0" Background="#884EA0" Height="30" VerticalAlignment="Bottom"/>
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30*"/>
@@ -67,11 +68,12 @@
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition Width="290*"/>
                         </Grid.ColumnDefinitions>
-                        <materialDesign:ColorZone Name="IndicadorAlineamientoBack" Grid.Column="0" Background="#F1C40F" Height="36" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorUsoDeSueloBack" Grid.Column="0" Background="#27AE60" Height="36" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorSupervisionTecnicaBack" Grid.Column="0" Background="#2980B9" Height="36" Margin="0,0,0,72" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorLicenciaBack" Grid.Column="0" Background="#E74C3C" Height="36" Margin="0,0,0,36" VerticalAlignment="Bottom"/>
-                        <materialDesign:ColorZone Name="IndicadorTerminacionObraBack" Grid.Column="0" Background="#884EA0" Height="36" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorAlineamientoBack" Grid.Column="0" Background="#F1C40F" Height="30" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorUsoDeSueloBack" Grid.Column="0" Background="#27AE60" Height="30" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorSupervisionTecnicaBack" Grid.Column="0" Background="#2980B9" Height="30" Margin="0,0,0,78" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorLicenciaBack" Grid.Column="0" Background="#E74C3C" Height="30" Margin="0,0,0,48" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorLicenciaProrrogaBack" Grid.Column="0" Background="#EC7063 " Height="30" Margin="0,0,0,30" VerticalAlignment="Bottom"/>
+                        <materialDesign:ColorZone Name="IndicadorTerminacionObraBack" Grid.Column="0" Background="#884EA0" Height="30" VerticalAlignment="Bottom"/>
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10*"/>
@@ -89,13 +91,41 @@
                                     <RowDefinition Height="33*"/>
                                     <RowDefinition Height="33*"/>
                                     <RowDefinition Height="33*"/>
+                                    <RowDefinition Height="33*"/>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Content="Alineamiento" Name="Alineamiento" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                                <Label Grid.Row="1" Content="UsoDeSuelo" Name="UsoDeSuelo" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                                <Label Grid.Row="2" Content="SupervisionTecnica" Name="SupervisionTecnica" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                                <Label Grid.Row="3" Content="Licencia" Name="Licencia" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                                <Label Grid.Row="4" Content="Proroga" Name="Proroga" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                                <Label Grid.Row="5" Content="TO" Name="TO" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60*"/>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="30*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="1" Content="Ingreso" Name="ArmadoPaquete" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="0" Grid.Column="2" Content="Pago" Name="PagoDeDerechos" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="0" Grid.Column="3" Content="Recoger" Name="RecogerDocumentacion" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="1" Grid.Column="1" Name="ArmadoPaquete1" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="1" Grid.Column="2" Name="PagoDeDerechos1" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="1" Grid.Column="3" Name="RecogerDocumentacion1" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="2" Grid.Column="1" Name="ArmadoPaquete2" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="2" Grid.Column="2" Name="PagoDeDerechos2" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="2" Grid.Column="3" Name="RecogerDocumentacion2" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="3" Grid.Column="1" Name="ArmadoPaquete3" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="3" Grid.Column="2" Name="PagoDeDerechos3" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="3" Grid.Column="3" Name="RecogerDocumentacion3" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="4" Grid.Column="1" Name="ArmadoPaquete4" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="4" Grid.Column="2" Name="PagoDeDerechos4" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="4" Grid.Column="3" Name="RecogerDocumentacion4" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="5" Grid.Column="1" Name="ArmadoPaquete5" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="5" Grid.Column="2" Name="PagoDeDerechos5" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="5" Grid.Column="3" Name="RecogerDocumentacion5" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="6" Grid.Column="1" Name="ArmadoPaquete6" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="6" Grid.Column="2" Name="PagoDeDerechos6" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="6" Grid.Column="3" Name="RecogerDocumentacion6" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="1" Content="Alineamiento" Name="Alineamiento" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="2" Content="UsoDeSuelo" Name="UsoDeSuelo" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="3" Content="SupervisionTecnica" Name="SupervisionTecnica" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="4" Content="Licencia" Name="Licencia" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="5" Content="Proroga" Name="Proroga" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                                <Label Grid.Row="6" Content="TO" Name="TO" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
                             </Grid>
                         </Grid>
                     </Grid>

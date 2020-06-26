@@ -16,7 +16,7 @@
                             <ColumnDefinition SharedSizeGroup="Checkerz" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <ToggleButton VerticalAlignment="Center" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding Cabeza}" Background="#2ECC71"/>
+                        <ToggleButton VerticalAlignment="Center" Name="tip" Click="tip_Click" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding Cabeza}" Background="#2ECC71"/>
                         <StackPanel Margin="8 0 0 0" Grid.Column="1">
                             <TextBlock FontWeight="Bold"  Text="{Binding TipoDeObra}" />
                             <TextBlock  Text="{Binding Uso}" />
@@ -131,7 +131,7 @@
                             Name="Btn_Cambio" Click="Btn_Cambio_Click"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" VerticalAlignment="Top">
                         <StackPanel>
-                            <materialDesign:PackIcon Kind="Refresh"/>
+                            <materialDesign:PackIcon Kind="ArrowLeftRight"/>
                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
