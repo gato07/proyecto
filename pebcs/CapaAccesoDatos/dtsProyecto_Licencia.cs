@@ -31,7 +31,7 @@ namespace CapaAccesoDatos
         public int Id_Cliente { get; set; }
         public int Clave_Inmueble { get; set; }
         public int Clave_Empleado { get; set; }
-        public int Numero_Proyecto_Original { get; set; }
+        public int? Numero_Proyecto_Original { get; set; }
         public bool Eliminado { get; set; }
         public bool Existe { get; set; }
 
@@ -62,7 +62,7 @@ namespace CapaAccesoDatos
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
                 Clave_Empleado = 0;
-                Numero_Proyecto_Original = 0;
+                Numero_Proyecto_Original = null;
                 Eliminado = false;
                 Existe = false;
             }
@@ -94,7 +94,7 @@ namespace CapaAccesoDatos
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
                 Clave_Empleado = 0;
-                Numero_Proyecto_Original = 0;
+                Numero_Proyecto_Original = null;
                 Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
@@ -120,7 +120,10 @@ namespace CapaAccesoDatos
                     Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
                     Clave_Inmueble = Convert.ToInt16(dt.Rows[0]["Clave_Inmueble"]);
                     Clave_Empleado = Convert.ToInt16(dt.Rows[0]["Clave_Empleado"]);
-                    Numero_Proyecto_Original = Convert.ToInt16(dt.Rows[0]["Numero_Proyecto_Original"]);
+                    if(dt.Rows[0]["Numero_Proyecto_Original"] == DBNull.Value)
+                        Numero_Proyecto_Original = null;
+                    else
+                        Numero_Proyecto_Original = Convert.ToInt16(dt.Rows[0]["Numero_Proyecto_Original"]);
                     Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
@@ -135,7 +138,7 @@ namespace CapaAccesoDatos
         public dtsProyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, DateTime Vigencia, 
             bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia, 
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original)
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int? Numero_Proyecto_Original)
         {
             try
             {
@@ -232,7 +235,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizarNumProOriginal(int Numero, int Numero_Proyecto_Original)
+        public bool dtsActualizarNumProOriginal(int Numero, int? Numero_Proyecto_Original)
         {
             try
             {

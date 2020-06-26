@@ -47,7 +47,7 @@ namespace CapaLogica
         public Proyecto_Licencia(int Numero, string Folio, DateTime Fecha, string Numero_Licencia, DateTime Vigencia,
             bool Escrituras, bool Constancia_Alineamiento, bool Pago_Predial, bool Recibo_Agua, bool Planos_Arquitectonicos,
             bool Planos_Estructurales, bool Planos_Instalaciones, bool Memoria_Calculo, int Id_Estado_Licencia,
-            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int Numero_Proyecto_Original) :
+            int Numero_Presupuesto, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado, int? Numero_Proyecto_Original) :
             base(Numero, Folio, Fecha, Numero_Licencia, Vigencia, Escrituras, Constancia_Alineamiento, Pago_Predial, 
                 Recibo_Agua, Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo,
                 Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado, Numero_Proyecto_Original)
@@ -133,7 +133,7 @@ namespace CapaLogica
             }
         }
 
-        public bool ActualizarNumProOriginal(int Numero, int Numero_Proyecto_Original)
+        public bool ActualizarNumProOriginal(int Numero, int? Numero_Proyecto_Original)
         {
             try
             {
@@ -280,7 +280,12 @@ namespace CapaLogica
                     if (Dt.Columns.Contains("Clave_Empleado"))
                         proyecto.Clave_Empleado = Convert.ToInt16(renglon["Clave_Empleado"]);
                     if (Dt.Columns.Contains("Numero_Proyecto_Original"))
-                        proyecto.Numero_Proyecto_Original = Convert.ToInt16(renglon["Numero_Proyecto_Original"]);
+                    {
+                        if (renglon["Numero_Proyecto_Original"] == DBNull.Value)
+                            proyecto.Numero_Proyecto_Original = null;
+                        else
+                            proyecto.Numero_Proyecto_Original = Convert.ToInt16(renglon["Numero_Proyecto_Original"]);
+                    }
                     if (Dt.Columns.Contains("Eliminado"))
                         proyecto.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     proyecto.Existe = true;
