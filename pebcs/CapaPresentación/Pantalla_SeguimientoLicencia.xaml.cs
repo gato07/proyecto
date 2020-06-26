@@ -32,6 +32,9 @@ namespace CapaPresentación
             InitializeComponent();
             Mn = A as Menu_Principal2;
             IDlicen = IDlicencia;
+            ProyectoLicencia = new Proyecto_Licencia(IDlicencia);
+            pre = new  CapaLogica.Presupuesto(ProyectoLicencia.Numero_Presupuesto);
+            CargarProcesos(pre.Id_Tipo_Proyecto, pre.Mts);
             CargarIfoProcesos(IDlicen);
             CargarDatos(IDlicen);
         }
@@ -43,10 +46,13 @@ namespace CapaPresentación
             TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
             DTP_Vigencia.SelectedDate = ProyectoLicencia.Vigencia;
             ProyectoLicenciaProrroga = new Proyecto_Licencia(ProyectoLicencia.Numero_Proyecto_Original);
-            TXT_NoFolioProrroga.Text = ProyectoLicenciaProrroga.Folio;
-            TXT_NoLicenciaProrroga.Text = ProyectoLicenciaProrroga.Numero_Licencia;
-            DTP_VigenciaProrroga.SelectedDate = ProyectoLicenciaProrroga.Vigencia;
-            CargarProcesos(pre.Id_Tipo_Proyecto, pre.Mts);
+            if(ProyectoLicenciaProrroga.Existe)
+            {
+                TXT_NoFolioProrroga.Text = ProyectoLicenciaProrroga.Folio;
+                TXT_NoLicenciaProrroga.Text = ProyectoLicenciaProrroga.Numero_Licencia;
+                DTP_VigenciaProrroga.SelectedDate = ProyectoLicenciaProrroga.Vigencia;
+                LICENCIAPRORROGATAB.IsEnabled = true;
+            }
         }
         private void CargarIfoProcesos(int IDeLicencia)
         {
@@ -185,64 +191,100 @@ namespace CapaPresentación
                 switch (tipobra)
                 {
                     case 1://Ampliacion Habitacional
-
+                        if(metros>300)
+                        {
+                            SUPERVICIONTECNICATAB.IsEnabled = false;
+                            LICENCIAPRORROGATAB.IsEnabled = false;
+                        }
+                        else
+                        {
+                            SUPERVICIONTECNICATAB.IsEnabled = false;
+                            LICENCIAPRORROGATAB.IsEnabled = false;
+                            USODESUELOTAB.IsEnabled = false;
+                        }
                         break;
                     case 2://Ampliacion Comercial
-
+                        //todo
                         break;
                     case 3://Ampliacion Industrial
-
+                        //todo
                         break;
                     case 4://Hampliacion Obra Complementaria
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
                         break;
                     case 5://Ampliacion Otros
-
+                        //todo
                         break;
                     case 6://Regularizacion Habitacional
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
                         break;
                     case 7://Regularizacion Comercial
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 8://Regularizacion Industrial
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 9://Regularizacion Obra Complementaria
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
                         break;
                     case 10://Regularizacion Otros
-
+                        //todo
                         break;
                     case 11://Obra Nueva Habitacional
-
+                        if (metros > 300)
+                        {
+                            SUPERVICIONTECNICATAB.IsEnabled = false;
+                            LICENCIAPRORROGATAB.IsEnabled = false;
+                        }
+                        else
+                        {
+                            SUPERVICIONTECNICATAB.IsEnabled = false;
+                            LICENCIAPRORROGATAB.IsEnabled = false;
+                            USODESUELOTAB.IsEnabled = false;
+                        }
                         break;
                     case 12://Obra Nueva Comercial
-
+                        //todo
                         break;
                     case 13://Obra Nueva Industrial
-
+                        //todo
                         break;
                     case 14://Obra Nueva Complementaria
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
                         break;
                     case 15://Obra Nueva Otros
-
+                        //todo
                         break;
                     case 16://Remodelacion Habitacional
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
                         break;
                     case 17://Remodelacion Comercial
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 18://Remodelacion Industrial
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
                         break;
                     case 19://Remodelacion Obra Complementaria
-
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
                         break;
                     case 20://Remodelacion Otros
-
+                        //todo
                         break;
                     case 21://Demolicion Habitacional
 
@@ -649,7 +691,7 @@ namespace CapaPresentación
                 if (TXT_NoFolioProrroga.Text != ""||TXT_NoLicenciaProrroga.Text!=""||DTP_VigenciaProrroga.SelectedDate.ToString()!="")
                 {
                     ProyectoLicencia = new Proyecto_Licencia(prorroga.Numero);
-                    ProyectoLicencia.ActualizarIdEstadoLic(prorroga.Numero, TXT_NoFolio.Text, TXT_NoLicencia.Text, Convert.ToDateTime(DTP_Vigencia.SelectedDate), ProyectoLicencia.Id_Estado_Licencia);
+                    ProyectoLicencia.ActualizarIdEstadoLic(prorroga.Numero, TXT_NoFolioProrroga.Text, TXT_NoLicenciaProrroga.Text, Convert.ToDateTime(DTP_VigenciaProrroga.SelectedDate), ProyectoLicencia.Id_Estado_Licencia);
                     cambio = true;
                 }
                 if (cambio == true)
@@ -672,23 +714,23 @@ namespace CapaPresentación
                 int idtipopro =0;
                 ProyectoLicencia = new Proyecto_Licencia (IDlicen);
                 CapaLogica.Presupuesto pres = new CapaLogica.Presupuesto(ProyectoLicencia.Numero_Presupuesto);
-                if(pres.Id_Tipo_Proyecto==1&& pres.Id_Tipo_Proyecto == 6&& pres.Id_Tipo_Proyecto == 11&& pres.Id_Tipo_Proyecto == 16 && pres.Id_Tipo_Proyecto == 21)
+                if(pres.Id_Tipo_Proyecto==1|| pres.Id_Tipo_Proyecto == 6|| pres.Id_Tipo_Proyecto == 11|| pres.Id_Tipo_Proyecto == 16 || pres.Id_Tipo_Proyecto == 21)
                 {
                     idtipopro = 26;
                 }
-                else if (pres.Id_Tipo_Proyecto == 2 && pres.Id_Tipo_Proyecto == 7 && pres.Id_Tipo_Proyecto == 12 && pres.Id_Tipo_Proyecto == 17 && pres.Id_Tipo_Proyecto == 22)
+                else if (pres.Id_Tipo_Proyecto == 2 || pres.Id_Tipo_Proyecto == 7 | pres.Id_Tipo_Proyecto == 12 || pres.Id_Tipo_Proyecto == 17 || pres.Id_Tipo_Proyecto == 22)
                 {
                     idtipopro = 27;
                 }
-                else if (pres.Id_Tipo_Proyecto == 3 && pres.Id_Tipo_Proyecto == 8 && pres.Id_Tipo_Proyecto == 13 && pres.Id_Tipo_Proyecto == 18 && pres.Id_Tipo_Proyecto == 23)
+                else if (pres.Id_Tipo_Proyecto == 3 || pres.Id_Tipo_Proyecto == 8 || pres.Id_Tipo_Proyecto == 13 || pres.Id_Tipo_Proyecto == 18 || pres.Id_Tipo_Proyecto == 23)
                 {
                     idtipopro = 28;
                 }
-                else if (pres.Id_Tipo_Proyecto == 4 && pres.Id_Tipo_Proyecto == 9 && pres.Id_Tipo_Proyecto == 14 && pres.Id_Tipo_Proyecto == 19 && pres.Id_Tipo_Proyecto == 24)
+                else if (pres.Id_Tipo_Proyecto == 4 || pres.Id_Tipo_Proyecto == 9 || pres.Id_Tipo_Proyecto == 14 || pres.Id_Tipo_Proyecto == 19 || pres.Id_Tipo_Proyecto == 24)
                 {
                     idtipopro = 29;
                 }
-                else if (pres.Id_Tipo_Proyecto == 5 && pres.Id_Tipo_Proyecto == 10 && pres.Id_Tipo_Proyecto == 15 && pres.Id_Tipo_Proyecto == 20 && pres.Id_Tipo_Proyecto == 25)
+                else if (pres.Id_Tipo_Proyecto == 5 || pres.Id_Tipo_Proyecto == 10 || pres.Id_Tipo_Proyecto == 15 || pres.Id_Tipo_Proyecto == 20 | pres.Id_Tipo_Proyecto == 25)
                 {
                     idtipopro = 30;
                 }
@@ -696,7 +738,7 @@ namespace CapaPresentación
                 int n= ProyectoLicenciaProrroga.Insertar(ProyectoLicencia.Escrituras, ProyectoLicencia.Constancia_Alineamiento, ProyectoLicencia.Pago_Predial, ProyectoLicencia.Recibo_Agua, ProyectoLicencia.Planos_Arquitectonicos, ProyectoLicencia.Planos_Estructurales, ProyectoLicencia.Planos_Instalaciones, ProyectoLicencia.Memoria_Calculo,1,m, ProyectoLicencia.Id_Cliente, ProyectoLicencia.Clave_Inmueble, ProyectoLicencia.Clave_Empleado);
                     if(n!=0)
                 {
-                    if(ProyectoLicencia.ActualizarNumProOriginal(IDlicen, n))
+                    if(ProyectoLicencia.ActualizarNumProOriginal(IDlicen, n)&& ProyectoLicenciaProrroga.ActualizarNumProOriginal(n, IDlicen))
                     {
                         LICENCIAPRORROGATAB.IsEnabled = true;
                         PantallaCheck check = new PantallaCheck();

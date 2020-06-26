@@ -61,7 +61,7 @@
                         <ComboBoxItem
                             Content="Usuario" />
                     </ComboBox>
-                    <TextBlock Text="lICENCIAS" Name="titulo" Foreground="#1ABC9C" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
+                    <TextBlock Text="Licencias" Name="titulo" Foreground="#1ABC9C" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
                     <Grid Grid.Row="2" Grid.Column="0" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
