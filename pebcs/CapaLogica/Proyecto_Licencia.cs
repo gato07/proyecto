@@ -141,7 +141,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
                     +" es posible que no se hayan modificado los datos correctamente";
-                res = ActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
+                res = dtsActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
                 if (res)
                     Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
                 return res;
