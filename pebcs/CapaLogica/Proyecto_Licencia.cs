@@ -111,7 +111,7 @@ namespace CapaLogica
             }
         }
 
-        public bool ActualizarIdEstadoLic(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia,
+        public bool ActualizarSeguimiento(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia,
             int Id_Estado_Licencia)
         {
             try
@@ -119,8 +119,29 @@ namespace CapaLogica
                 bool res = false;
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
+                    + " es posible que no se hayan modificado los datos correctamente";
+                res = dtsActualizarSeguimiento(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
+                if (res)
+                    Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
+                    + " es posible que no se hayan modificado los datos correctamente";
+                return false;
+            }
+        }
+
+        public bool ActualizarIdEstadoLic(int Numero, int Id_Estado_Licencia)
+        {
+            try
+            {
+                bool res = false;
+                Validacion validacion = new Validacion();
+                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
                     +" es posible que no se hayan modificado los datos correctamente";
-                res = dtsActualizarIdEstadoLic(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
+                res = ActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
                 if (res)
                     Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
                 return res;

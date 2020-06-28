@@ -216,7 +216,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizarIdEstadoLic(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia, 
+        public bool dtsActualizarSeguimiento(int Numero, string Folio, string Numero_Licencia, DateTime Vigencia,
             int Id_Estado_Licencia)
         {
             try
@@ -224,8 +224,26 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarIdEstadoLic(" + Numero + ",'" + Folio + "','"
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarSeguimiento(" + Numero + ",'" + Folio + "','"
                     + Numero_Licencia + "','" + Vigencia.ToString("yyyy-MM-dd") + "'," + Id_Estado_Licencia + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool dtsActualizarIdEstadoLic(int Numero, int Id_Estado_Licencia)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarIdEstadoLic(" + Numero + "," 
+                    + Id_Estado_Licencia + ");");
                 conexion.Desconectar();
                 return res;
             }
