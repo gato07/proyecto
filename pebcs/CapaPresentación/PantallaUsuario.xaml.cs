@@ -58,7 +58,7 @@ namespace CapaPresentación
                 for (int x = 0; x < flippers.Length; x++)
                 {
                     flippers[x] = new Flipper(this, Mn);
-                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
                     //GridContenedor.Children.Add(flippers[x]);
@@ -76,7 +76,7 @@ namespace CapaPresentación
                 for (int x = 0; x < flipperInactivos.Length; x++)
                 {
                     flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
-                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                    flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                     //Grid.SetColumn(flipperInactivos[x], columna - 1);
                     //Grid.SetRow(flipperInactivos[x], fila - 1);
                     //GridContenedor.Children.Add(flipperInactivos[x]);
@@ -125,7 +125,7 @@ namespace CapaPresentación
                 for (int x = 0; x < flippers.Length; x++)
                 {
                     flippers[x] = new Flipper(this, Mn);
-                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
                     //GridContenedor.Children.Add(flippers[x]);
@@ -145,7 +145,7 @@ namespace CapaPresentación
                     for (int x = 0; x < flipperInactivos.Length; x++)
                     {
                         flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
-                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                         //Grid.SetColumn(flipperInactivos[x], columna - 1);
                         //Grid.SetRow(flipperInactivos[x], fila - 1);
                         //GridContenedor.Children.Add(flipperInactivos[x]);
@@ -183,7 +183,7 @@ namespace CapaPresentación
                 for (int x = 0; x < flippers.Length; x++)
                 {
                     flippers[x] = new Flipper(this, Mn);
-                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
                     //GridContenedor.Children.Add(flippers[x]);
@@ -203,7 +203,7 @@ namespace CapaPresentación
                     for (int x = 0; x < flipperInactivos.Length; x++)
                     {
                         flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
-                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                         //Grid.SetColumn(flipperInactivos[x], columna - 1);
                         //Grid.SetRow(flipperInactivos[x], fila - 1);
                         //GridContenedor.Children.Add(flipperInactivos[x]);
@@ -241,7 +241,7 @@ namespace CapaPresentación
                 for (int x = 0; x < flippers.Length; x++)
                 {
                     flippers[x] = new Flipper(this, Mn);
-                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario, empleadosActivos[x].Contrasena);
+                    flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
                     //GridContenedor.Children.Add(flippers[x]);
@@ -261,7 +261,7 @@ namespace CapaPresentación
                     for (int x = 0; x < flipperInactivos.Length; x++)
                     {
                         flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
-                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario, empleadosInactivos[x].Contrasena);
+                        flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                         //Grid.SetColumn(flipperInactivos[x], columna - 1);
                         //Grid.SetRow(flipperInactivos[x], fila - 1);
                         //GridContenedor.Children.Add(flipperInactivos[x]);

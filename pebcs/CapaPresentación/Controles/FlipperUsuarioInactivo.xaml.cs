@@ -60,7 +60,7 @@ namespace CapaPresentación.Controles
 
             }
         }
-        public void CargarDatosTarjeta(int CALVE, string NombreCompleto, string Domicilio, string Telefono, string Email, string Foto, int Perfil, string Usuario, string Contraseña)
+        public void CargarDatosTarjeta(int CALVE, string NombreCompleto, string Domicilio, string Telefono, string Email, string Foto, int Perfil, string Usuario)
         {
             try
             {
@@ -72,7 +72,6 @@ namespace CapaPresentación.Controles
                 Datos[5] = Foto;
                 Datos[6] = Perfil.ToString();
                 Datos[7] = Usuario;
-                Datos[8] = Contraseña;
                 ID = CALVE;
                 imgb.ImageSource = new BitmapImage(new Uri(Foto));
                 imgb.Stretch = Stretch.UniformToFill;
