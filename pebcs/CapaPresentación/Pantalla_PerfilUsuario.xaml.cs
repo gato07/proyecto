@@ -54,7 +54,7 @@ namespace CapaPresentación
                     img.ImageSource = new BitmapImage(new Uri(vs[5].ToString()));
                     listPerfil.SelectedIndex = Convert.ToInt16(vs[6]);
                     TXTUsuario.Text = vs[7];
-                    TXTConstraseña.Text = vs[8];
+                    TXTConstraseña.Password ="******";
                     Btn_Eliminar.IsEnabled = true;
                     empleado = true;
                 }
@@ -187,7 +187,7 @@ namespace CapaPresentación
                     img.ImageSource = new BitmapImage(new Uri(i));
                     listPerfil.SelectedIndex = -1;
                     TXTUsuario.Text = null;
-                    TXTConstraseña.Text = null;
+                    TXTConstraseña.Password = null;
                 }
             }
             catch(Exception ex)
@@ -204,12 +204,12 @@ namespace CapaPresentación
                 if (empleado)
                 {
                     emp = new Empleado();
-                    res = emp.Actualizar(ID, TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
+                    res = emp.Actualizar(ID, TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Password);
                 }
                 else if (empleado == false)
                 {
                     emp = new Empleado();
-                    res = emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Text);
+                    res = emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Password);
 
                 }
                 if (res==true)

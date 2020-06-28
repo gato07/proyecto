@@ -135,6 +135,15 @@
                             <TextBlock Text="Guardar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,1,0,0" Grid.Row="3"
+                            Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="0 5 5 0"
+                            Name="Btn_CambioPresupuesto" Click="Btn_CambioPresupuesto_Click"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Left" Width="47" VerticalAlignment="Top">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Paper"/>
+                            <TextBlock Text="Presupuesto" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="310"/>

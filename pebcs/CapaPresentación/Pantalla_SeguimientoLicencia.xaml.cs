@@ -46,12 +46,13 @@ namespace CapaPresentación
             TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
             DTP_Vigencia.SelectedDate = ProyectoLicencia.Vigencia;
             ProyectoLicenciaProrroga = new Proyecto_Licencia((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0));
-            if(ProyectoLicenciaProrroga.Existe)
+            if (ProyectoLicenciaProrroga.Existe)
             {
                 TXT_NoFolioProrroga.Text = ProyectoLicenciaProrroga.Folio;
                 TXT_NoLicenciaProrroga.Text = ProyectoLicenciaProrroga.Numero_Licencia;
                 DTP_VigenciaProrroga.SelectedDate = ProyectoLicenciaProrroga.Vigencia;
                 LICENCIAPRORROGATAB.IsEnabled = true;
+                LICENCIAPRORROGATAB.Opacity = 1;
             }
         }
         private void CargarIfoProcesos(int IDeLicencia)
@@ -195,119 +196,198 @@ namespace CapaPresentación
                         {
                             SUPERVICIONTECNICATAB.IsEnabled = false;
                             LICENCIAPRORROGATAB.IsEnabled = false;
+                            SUPERVICIONTECNICATAB.Opacity = 0.2;
+                            LICENCIAPRORROGATAB.Opacity = 0.2;
                         }
                         else
                         {
                             SUPERVICIONTECNICATAB.IsEnabled = false;
                             LICENCIAPRORROGATAB.IsEnabled = false;
                             USODESUELOTAB.IsEnabled = false;
+                            SUPERVICIONTECNICATAB.Opacity = 0.2;
+                            LICENCIAPRORROGATAB.Opacity = 0.2;
+                            USODESUELOTAB.Opacity = 0.2;
                         }
                         break;
                     case 2://Ampliacion Comercial
                            //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 3://Ampliacion Industrial
                            //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 4://Hampliacion Obra Complementaria
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
                         USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
                         break;
                     case 5://Ampliacion Otros
                            //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 6://Regularizacion Habitacional
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
                         USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
                         break;
                     case 7://Regularizacion Comercial
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 8://Regularizacion Industrial
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 9://Regularizacion Obra Complementaria
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
                         USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
                         break;
                     case 10://Regularizacion Otros
                             //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 11://Obra Nueva Habitacional
                         if (metros > 300)
                         {
                             SUPERVICIONTECNICATAB.IsEnabled = false;
                             LICENCIAPRORROGATAB.IsEnabled = false;
+                            SUPERVICIONTECNICATAB.Opacity = 0.2;
+                            LICENCIAPRORROGATAB.Opacity = 0.2;
                         }
                         else
                         {
                             SUPERVICIONTECNICATAB.IsEnabled = false;
                             LICENCIAPRORROGATAB.IsEnabled = false;
                             USODESUELOTAB.IsEnabled = false;
+                            SUPERVICIONTECNICATAB.Opacity = 0.2;
+                            LICENCIAPRORROGATAB.Opacity = 0.2;
+                            USODESUELOTAB.Opacity = 0.2;
                         }
                         break;
                     case 12://Obra Nueva Comercial
                             //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 13://Obra Nueva Industrial
                             //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 14://Obra Nueva Complementaria
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
                         USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
                         break;
                     case 15://Obra Nueva Otros
                             //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 16://Remodelacion Habitacional
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
                         USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
                         break;
                     case 17://Remodelacion Comercial
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 18://Remodelacion Industrial
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 19://Remodelacion Obra Complementaria
                         SUPERVICIONTECNICATAB.IsEnabled = false;
                         LICENCIAPRORROGATAB.IsEnabled = false;
                         USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
                         break;
                     case 20://Remodelacion Otros
                             //todo
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
                         break;
                     case 21://Demolicion Habitacional
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        ALINEAMIENTOTAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
+                        ALINEAMIENTOTAB.Opacity = 0.2;
                         break;
                     case 22://Demolicion Comercial
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        ALINEAMIENTOTAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
+                        ALINEAMIENTOTAB.Opacity = 0.2;
                         break;
                     case 23://Demolicion Industrial
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        ALINEAMIENTOTAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
+                        ALINEAMIENTOTAB.Opacity = 0.2;
                         break;
                     case 24://Demolicion Obra Complementaria
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        ALINEAMIENTOTAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
+                        ALINEAMIENTOTAB.Opacity = 0.2;
                         break;
                     case 25://Demolicion Otros
                         LICENCIAPRORROGATAB.IsEnabled = false;
+                        ALINEAMIENTOTAB.IsEnabled = false;
+                        USODESUELOTAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.IsEnabled = false;
+                        SUPERVICIONTECNICATAB.Opacity = 0.2;
+                        LICENCIAPRORROGATAB.Opacity = 0.2;
+                        USODESUELOTAB.Opacity = 0.2;
+                        ALINEAMIENTOTAB.Opacity = 0.2;
                         break;
                 }
             }
@@ -759,6 +839,17 @@ namespace CapaPresentación
                 }
             }
             catch(Exception)
+            {
+
+            }
+        }
+
+        private void Btn_CancelarLicencia_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            }
+            catch(Exception ex)
             {
 
             }

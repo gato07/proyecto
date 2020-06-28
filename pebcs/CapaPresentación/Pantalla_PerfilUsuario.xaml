@@ -43,7 +43,7 @@
                             <ComboBoxItem Content="Recepcionista"  BorderBrush="#F1C40F"/>
                         </ComboBox>
                         <TextBox MaxLength="15" materialDesign:HintAssist.Hint="Usuario" x:Name="TXTUsuario" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
-                        <TextBox MaxLength="255" materialDesign:HintAssist.Hint="Contraseña" x:Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
+                        <PasswordBox MaxLength="255" materialDesign:HintAssist.Hint="Contraseña" x:Name="TXTConstraseña" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#F1C40F" BorderBrush="#F1C40F"/>
                     </StackPanel>
                 </DockPanel>
                 <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,51,0,270" Background="#F1C40F" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"

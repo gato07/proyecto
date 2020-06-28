@@ -306,6 +306,20 @@ namespace CapaPresentación
             }
         }
 
+        private void Btn_CambioPresupuesto_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ProyectoLicencia = new Proyecto_Licencia(IDlicen);
+                if(ProyectoLicencia.Existe)
+                    Mn.AbrirFormHijo(new PantallaPresupuestos(ProyectoLicencia.Numero_Presupuesto, Mn));
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
         private void Inmuebles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
