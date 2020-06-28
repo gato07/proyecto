@@ -21,7 +21,7 @@ namespace CapaAccesoDatos
         public string Foto { get; set; }
         public int Perfil { get; set; }
         public string Usuario { get; set; }
-        public string Contrasena { get; set; }
+        /*public string Contrasena { get; set; }*/
         public bool Eliminado { get; set; }
         public bool Existe { get; set; }
         public string Perfil_Texto
@@ -30,11 +30,11 @@ namespace CapaAccesoDatos
             {
                 switch(Perfil)
                 {
-                    default: return "";  break;
-                    case 1: return "Administrador"; break;
-                    case 2: return "Arquitecto"; break;
-                    case 3: return "Ingeniero"; break;
-                    case 4: return "Recepcionista"; break;
+                    default: return "";
+                    case 1: return "Administrador";
+                    case 2: return "Arquitecto";
+                    case 3: return "Ingeniero";
+                    case 4: return "Recepcionista";
                 }
             }
         }
@@ -55,7 +55,6 @@ namespace CapaAccesoDatos
                 Foto = "";
                 Perfil = 0;
                 Usuario = "";
-                Contrasena = "";
                 Eliminado = false;
                 Existe = false;
             }
@@ -77,7 +76,6 @@ namespace CapaAccesoDatos
                 Foto = "";
                 Perfil = 0;
                 Usuario = "";
-                Contrasena = "";
                 Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
@@ -93,7 +91,6 @@ namespace CapaAccesoDatos
                     Foto = dt.Rows[0]["Foto"].ToString();
                     Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"]);
                     Usuario = dt.Rows[0]["Usuario"].ToString();
-                    Contrasena = dt.Rows[0]["Contrasena"].ToString();
                     Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }
@@ -106,7 +103,7 @@ namespace CapaAccesoDatos
         }
 
         public dtsEmpleado(int Clave, string Nombre, string Domicilio, string Telefono, string Email,
-            string Foto, int Perfil, string Usuario, string Contrasena)
+            string Foto, int Perfil, string Usuario)
         {
             try
             {
@@ -118,7 +115,6 @@ namespace CapaAccesoDatos
                 this.Foto = Foto;
                 this.Perfil = Perfil;
                 this.Usuario = Usuario;
-                this.Contrasena = Contrasena;
                 Eliminado = false;
                 Existe = false;
             }
@@ -219,6 +215,26 @@ namespace CapaAccesoDatos
             }
         }
 
+        public string dtsSelContrasenaXClave(int Clave)
+        {
+            try
+            {
+                string contrasena = "";
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_Empleado_SelConXClave(" 
+                    + Clave + ");").Tables[0];
+                if (dt != null)
+                    contrasena = dt.Rows[0]["Contrasena"].ToString();
+                conexion.Desconectar();
+                return contrasena;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
         public void dtsSelXUsuario(string Usuario)
         {
             try
@@ -231,7 +247,6 @@ namespace CapaAccesoDatos
                 Foto = "";
                 Perfil = 0;
                 this.Usuario = "";
-                Contrasena = "";
                 Eliminado = false;
                 Existe = false;
                 Conexion conexion = new Conexion();
@@ -247,7 +262,6 @@ namespace CapaAccesoDatos
                     Foto = dt.Rows[0]["Foto"].ToString();
                     Perfil = Convert.ToInt16(dt.Rows[0]["Perfil"].ToString());
                     this.Usuario = dt.Rows[0]["Usuario"].ToString();
-                    Contrasena = dt.Rows[0]["Contrasena"].ToString();
                     Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
                     Existe = true;
                 }

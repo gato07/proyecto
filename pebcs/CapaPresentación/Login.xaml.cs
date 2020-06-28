@@ -50,20 +50,13 @@ namespace CapaPresentación
             try
             {
                 Empleado empleado = new Empleado();
-                empleado.dtsSelXUsuario(txt_Usuario.Text.Trim());
-                if (empleado.Existe)
+                if (empleado.Loguear(txt_Usuario.Text, txt_Password.Password))
                 {
-                    string contrasena = txt_Password.Password.Trim();
-                    if (Seguridad.Desencriptar(empleado.Contrasena) == contrasena)
-                    {
-                        Menu_Principal2 Ventana = new Menu_Principal2();
-                        Ventana.ShowDialog();
-                    }
-                    else
-                        MessageBox.Show("Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo");
+                    Menu_Principal2 Ventana = new Menu_Principal2();
+                    Ventana.ShowDialog();
                 }
                 else
-                    MessageBox.Show("Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo");
+                    MessageBox.Show(empleado.Mensaje);
             }
             catch(Exception ex)
             {

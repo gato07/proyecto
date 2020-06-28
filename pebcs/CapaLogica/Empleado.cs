@@ -45,8 +45,8 @@ namespace CapaLogica
         }
 
         public Empleado(int Clave, string Nombre, string Domicilio, string Telefono, string Email,
-            string Foto, int Perfil, string Usuario, string Contrasena) : base(Clave, Nombre, 
-                Domicilio, Telefono, Email, Foto, Perfil, Usuario, Contrasena)
+            string Foto, int Perfil, string Usuario) : base(Clave, Nombre, 
+                Domicilio, Telefono, Email, Foto, Perfil, Usuario)
         {
             try
             {
@@ -311,6 +311,19 @@ namespace CapaLogica
             }
         }
 
+        public string SelContrasenaXClave(int Clave)
+        {
+            try
+            {
+                return dtsSelContrasenaXClave(Clave);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar la contraseña del Empleado por Clave";
+                return "";
+            }
+        }
+
         public void SelXUsuario(string Usuario)
         {
             try
@@ -387,8 +400,6 @@ namespace CapaLogica
                         empleado.Perfil = Convert.ToInt16(renglon["Perfil"]);
                     if (Dt.Columns.Contains("Usuario"))
                         empleado.Usuario = renglon["Usuario"].ToString();
-                    if (Dt.Columns.Contains("Contrasena"))
-                        empleado.Contrasena = renglon["Contrasena"].ToString();
                     if (Dt.Columns.Contains("Eliminado"))
                         empleado.Eliminado = Convert.ToBoolean(renglon["Eliminado"]);
                     empleado.Existe = true;
@@ -401,6 +412,30 @@ namespace CapaLogica
             {
                 Mensaje = "Ocurrio un error en la construcción del arreglo de Empleados";
                 return new Empleado[0];
+            }
+        }
+
+        public bool Loguear(string Usuario, string Contrasena)
+        {
+            try
+            {
+                Empleado empleado = new Empleado();
+                empleado.SelXUsuario(Usuario);
+                if (empleado.Existe)
+                {
+                    if (Seguridad.Desencriptar(empleado.SelContrasenaXClave(empleado.Clave)) == Contrasena)
+                        return true;
+                    else
+                        Mensaje = "Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo";
+                }
+                else
+                    Mensaje = "Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo";
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo";
+                return false;
             }
         }
 
