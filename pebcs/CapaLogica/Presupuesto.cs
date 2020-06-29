@@ -68,10 +68,71 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Etiqueta, Nombre_Solicitante, Nombre_Propietario, Genero, Mts, Total, Aprobado,
-                    Id_Tipo_Proyecto, Clave_Empleado);
-                if (res > 0)
-                    Mensaje = "El Presupuesto fue registrado satisfactoriamente";
+                if (validacion.Val_Texto4(Etiqueta, 1, 30))
+                {
+                    if (validacion.Val_Texto1(Nombre_Solicitante, 1, 60))
+                    {
+                        if (validacion.Val_Texto1(Nombre_Propietario, 1, 60))
+                        {
+                            if (validacion.Val_Texto2(Genero, 1, 30))
+                            {
+                                if(Mts >= 0m && Mts <= 999999.99m)
+                                {
+                                    if (Total >= 0.00m && Total <= 9999999.99m)
+                                    {
+                                        if (Aprobado >= 0 && Aprobado <= 2)
+                                        {
+                                            Tipo_Proyecto tipopro = new Tipo_Proyecto(Id_Tipo_Proyecto);
+                                            if(tipopro.Existe)
+                                            {
+                                                Empleado empleado = new Empleado(Clave_Empleado);
+                                                if(empleado.Existe)
+                                                {
+                                                    res = dtsInsertar(Etiqueta, Nombre_Solicitante, Nombre_Propietario, 
+                                                        Genero, Mts, Total, Aprobado, Id_Tipo_Proyecto, Clave_Empleado);
+                                                    if (res > 0)
+                                                        Mensaje = "El Presupuesto fue registrado satisfactoriamente";
+                                                }
+                                                else
+                                                    Mensaje = "No existe algún Empleado con la Clave indicada, ingrese una real";
+                                            }
+                                            else
+                                                Mensaje = "No existe algún Tipo de proyecto con el Id indicado, ingrese uno real";
+                                        }
+                                        else
+                                            Mensaje = "El campo Aprobado:\n\n- No puede quedar vacío.\n- Solo puede"
+                                                + " contener valores númericos.\n- El intervalo de valores permitidos en el"
+                                                + " campo va desde 0 hasta 2";
+                                    }
+                                    else
+                                        Mensaje = "El campo Total del Presupuesto:\n\n- No puede quedar vacío.\n- Solo puede"
+                                            + " contener valores númericos con dos puntos decimales.\n- El intervalo de"
+                                            + " valores permitidos en el campo va desde $0.00 hasta $9,999,999.99";
+                                }
+                                else
+                                    Mensaje = "El campo de Mts debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                + " contener valores númericos con dos puntos decimales.\n- El intervalo de valores"
+                                + " permitidos en el campo va desde 0.00 hasta 999,999.99";
+                            }
+                            else
+                                Mensaje = "El campo de Género debe cumplir:\n\n- No puede quedar vacío."
+                                + "\n- Solo puede contener caracteres alfabéticos, los símbolos ,.- y espacios"
+                                + " en blanco.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                        }
+                        else
+                            Mensaje = "El campo de Nombre del propietario debe cumplir:\n\n- No puede quedar vacío."
+                            + "\n- Solo puede contener caracteres alfabéticos y espacios en blanco.\n- El tamaño valido"
+                            + " del campo es de 1 hasta 60 caracteres.";
+                    }
+                    else
+                        Mensaje = "El campo de Nombre del solicitante debe cumplir:\n\n- No puede quedar vacío."
+                        + "\n- Solo puede contener caracteres alfabéticos y espacios en blanco.\n- El tamaño valido"
+                        + " del campo es de 1 hasta 60 caracteres.";
+                }
+                else
+                    Mensaje = "El campo de Etiqueta debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                            + " caracteres alfabéticos, numéricos, los símbolos ,.- y espacios en blanco."
+                            + "\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
                 return res;
             }
             catch (Exception ex)
@@ -91,10 +152,71 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Presupuesto, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Etiqueta, Nombre_Solicitante, Nombre_Propietario, Genero, Mts, Total, 
-                    Aprobado, Id_Tipo_Proyecto);
-                if (res)
-                    Mensaje = "Los datos del Presupuesto fueron actualizados satisfactoriamente";
+                Presupuesto presupuesto = new Presupuesto(Numero);
+                if (presupuesto.Existe)
+                {
+                    if (validacion.Val_Texto4(Etiqueta, 1, 30))
+                    {
+                        if (validacion.Val_Texto1(Nombre_Solicitante, 1, 60))
+                        {
+                            if (validacion.Val_Texto1(Nombre_Propietario, 1, 60))
+                            {
+                                if (validacion.Val_Texto2(Genero, 1, 30))
+                                {
+                                    if (Mts >= 0m && Mts <= 999999.99m)
+                                    {
+                                        if (Total >= 0.00m && Total <= 9999999.99m)
+                                        {
+                                            if (Aprobado >= 0 && Aprobado <= 2)
+                                            {
+                                                Tipo_Proyecto tipopro = new Tipo_Proyecto(Id_Tipo_Proyecto);
+                                                if (tipopro.Existe)
+                                                {
+                                                    res = dtsActualizar(Numero, Etiqueta, Nombre_Solicitante,
+                                                            Nombre_Propietario, Genero, Mts, Total, Aprobado, Id_Tipo_Proyecto);
+                                                    if (res)
+                                                        Mensaje = "Los datos del Presupuesto fueron actualizados satisfactoriamente";
+                                                }
+                                                else
+                                                    Mensaje = "No existe algún Tipo de proyecto con el Id indicado, ingrese uno real";
+                                            }
+                                            else
+                                                Mensaje = "El campo Aprobado:\n\n- No puede quedar vacío.\n- Solo puede"
+                                                    + " contener valores númericos.\n- El intervalo de valores permitidos en el"
+                                                    + " campo va desde 0 hasta 2";
+                                        }
+                                        else
+                                            Mensaje = "El campo Total del Presupuesto:\n\n- No puede quedar vacío.\n- Solo puede"
+                                                + " contener valores númericos con dos puntos decimales.\n- El intervalo de"
+                                                + " valores permitidos en el campo va desde $0.00 hasta $9,999,999.99";
+                                    }
+                                    else
+                                        Mensaje = "El campo de Mts debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                    + " contener valores númericos con dos puntos decimales.\n- El intervalo de valores"
+                                    + " permitidos en el campo va desde 0.00 hasta 999,999.99";
+                                }
+                                else
+                                    Mensaje = "El campo de Género debe cumplir:\n\n- No puede quedar vacío."
+                                    + "\n- Solo puede contener caracteres alfabéticos, los símbolos ,.- y espacios"
+                                    + " en blanco.\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                            }
+                            else
+                                Mensaje = "El campo de Nombre del propietario debe cumplir:\n\n- No puede quedar vacío."
+                                + "\n- Solo puede contener caracteres alfabéticos y espacios en blanco.\n- El tamaño valido"
+                                + " del campo es de 1 hasta 60 caracteres.";
+                        }
+                        else
+                            Mensaje = "El campo de Nombre del solicitante debe cumplir:\n\n- No puede quedar vacío."
+                            + "\n- Solo puede contener caracteres alfabéticos y espacios en blanco.\n- El tamaño valido"
+                            + " del campo es de 1 hasta 60 caracteres.";
+                    }
+                    else
+                        Mensaje = "El campo de Etiqueta debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                                + " caracteres alfabéticos, numéricos, los símbolos ,.- y espacios en blanco."
+                                + "\n- El tamaño valido del campo es de 1 hasta 30 caracteres.";
+                }
+                else
+                    Mensaje = "No existe algún Presupuesto con el Número indicado, por lo cual no se puede actualizar";
                 return res;
             }
             catch (Exception ex)

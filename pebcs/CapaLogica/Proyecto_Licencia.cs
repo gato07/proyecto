@@ -118,7 +118,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto_Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
                 res = dtsActualizarSeguimiento(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
                 if (res)
@@ -127,7 +127,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto_Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
                 return false;
             }
@@ -139,7 +139,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto_Licencia,"
                     +" es posible que no se hayan modificado los datos correctamente";
                 res = dtsActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
                 if (res)
@@ -148,7 +148,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia  del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto_Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
                 return false;
             }

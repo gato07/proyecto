@@ -73,6 +73,21 @@ namespace CapaLogica
             }
         }
 
+        public bool Val_Texto4(string Valor, int Min, int Max)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^([0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\.\,\-]+(\s[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü\.\,\-]+)*)?$");
+                if (expreg.IsMatch(Valor))
+                    return (Valor.Length >= Min && Valor.Length <= Max);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool Val_RutaArchivo(string Valor)
         {
             try

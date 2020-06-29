@@ -44,7 +44,8 @@ namespace CapaLogica
             }
         }
 
-        public Presupuesto_Contenido(int Numero_Presupuesto, int Numero_Concepto, int Cantidad, decimal Total)
+        public Presupuesto_Contenido(int Numero_Presupuesto, int Numero_Concepto, decimal Costo, int Cantidad,
+            decimal Total):base(Numero_Presupuesto, Numero_Concepto, Costo, Cantidad, Total)
         {
             try
             {
@@ -56,7 +57,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Insertar(int Numero_Presupuesto, int Numero_Concepto, int Cantidad, decimal Total)
+        public bool Insertar(int Numero_Presupuesto, int Numero_Concepto, decimal Costo, int Cantidad, decimal Total)
         {
             try
             {
@@ -64,9 +65,49 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto_Contenido, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Numero_Presupuesto, Numero_Concepto, Cantidad, Total);
-                if (res)
-                    Mensaje = "El Presupuesto_Contenido fue registrado satisfactoriamente";
+                Presupuesto presupuesto = new Presupuesto(Numero_Presupuesto);
+                if(presupuesto.Existe)
+                {
+                    Concepto concepto = new Concepto(Numero_Concepto);
+                    if(concepto.Existe)
+                    {
+                        Presupuesto_Contenido precont = new Presupuesto_Contenido(Numero_Presupuesto,Numero_Concepto);
+                        if (precont.Existe == false)
+                        {
+                            if (Costo >= 0.00m && Costo <= 9999999.99m)
+                            {
+                                if (Cantidad >= 1 && Cantidad <= 99)
+                                {
+                                    if (Total >= 0.00m && Total <= 9999999.99m)
+                                    {
+                                        res = dtsInsertar(Numero_Presupuesto, Numero_Concepto, Costo, Cantidad, Total);
+                                        if (res)
+                                            Mensaje = "El Contenido del Presupuesto fue registrado satisfactoriamente";
+                                    }
+                                    else
+                                        Mensaje = "El campo de Total del Concepto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                            + " contener valores númericos con dos puntos decimales.\n- El intervalo de valores permitidos"
+                                            + " en el campo va desde $0.00 hasta $9,999,999.99";
+                                }
+                                else
+                                    Mensaje = "El campo de Cantidad del Concepto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                    + " contener valores númericos.\n- El intervalo de valores permitidos"
+                                    + " en el campo va desde 1 hasta 99";
+                            }
+                            else
+                                Mensaje = "El campo de Costo del Concepto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                    + " contener valores númericos con dos puntos decimales.\n- El intervalo de valores permitidos"
+                                    + " en el campo va desde $0.00 hasta $9,999,999.99";
+                        }
+                        else
+                            Mensaje = "Este Concepto ya se encuentra almacenado en dicho Presupuesto, por lo cual no se"
+                                + " puede dar de alta de nuevo";
+                    }
+                    else
+                        Mensaje = "No existe algún Concepto con el Numero indicado, ingrese uno real";
+                }
+                else
+                    Mensaje = "El número de Presupuesto indicado para ingresar el concepto no existe, ingrese uno real";
                 return res;
             }
             catch (Exception ex)
@@ -77,7 +118,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero_Presupuesto, int Numero_Concepto, int Cantidad, decimal Total)
+        public bool Actualizar(int Numero_Presupuesto, int Numero_Concepto, decimal Costo, int Cantidad, decimal Total)
         {
             try
             {
@@ -85,9 +126,37 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Presupuesto_Contenido, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero_Presupuesto, Numero_Concepto, Cantidad, Total);
-                if (res)
-                    Mensaje = "Los datos del Presupuesto_Contenido fueron actualizados satisfactoriamente";
+                Presupuesto_Contenido precont = new Presupuesto_Contenido(Numero_Presupuesto, Numero_Concepto);
+                if (precont.Existe)
+                {
+                    if (Costo >= 0.00m && Costo <= 9999999.99m)
+                    {
+                        if (Cantidad >= 1 && Cantidad <= 99)
+                        {
+                            if (Total >= 0.00m && Total <= 9999999.99m)
+                            {
+                                res = dtsActualizar(Numero_Presupuesto, Numero_Concepto, Costo, Cantidad, Total);
+                                if (res)
+                                    Mensaje = "Los datos del Contenido del Presupuesto fueron actualizados satisfactoriamente";
+                            }
+                            else
+                                Mensaje = "El campo de Total del Concepto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                    + " contener valores númericos con dos puntos decimales.\n- El intervalo de valores permitidos"
+                                    + " en el campo va desde $0.00 hasta $9,999,999.99";
+                        }
+                        else
+                            Mensaje = "El campo de Cantidad del Concepto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                            + " contener valores númericos.\n- El intervalo de valores permitidos"
+                            + " en el campo va desde 1 hasta 99";
+                    }
+                    else
+                        Mensaje = "El campo de Costo del Concepto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                            + " contener valores númericos con dos puntos decimales.\n- El intervalo de valores permitidos"
+                            + " en el campo va desde $0.00 hasta $9,999,999.99";
+                }
+                else
+                    Mensaje = "El Concepto indicado no esta registrado como contenido del Presupuesto, por lo cual no se"
+                        + " puede actualizar";
                 return res;
             }
             catch (Exception ex)
@@ -190,6 +259,8 @@ namespace CapaLogica
                         pre_cont.Numero_Presupuesto = Convert.ToInt16(renglon["Numero_Presupuesto"]);
                     if (Dt.Columns.Contains("Numero_Concepto"))
                         pre_cont.Numero_Concepto = Convert.ToInt16(renglon["Numero_Concepto"]);
+                    if (Dt.Columns.Contains("Costo"))
+                        pre_cont.Costo = Convert.ToDecimal(renglon["Costo"]);
                     if (Dt.Columns.Contains("Cantidad"))
                         pre_cont.Cantidad = Convert.ToInt16(renglon["Cantidad"]);
                     if (Dt.Columns.Contains("Total"))

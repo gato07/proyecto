@@ -21,7 +21,6 @@ namespace CapaAccesoDatos
         public string Foto { get; set; }
         public int Perfil { get; set; }
         public string Usuario { get; set; }
-        /*public string Contrasena { get; set; }*/
         public bool Eliminado { get; set; }
         public bool Existe { get; set; }
         public string Perfil_Texto
