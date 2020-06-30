@@ -72,11 +72,41 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, Planos_Arquitectonicos, 
-                    Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, Id_Estado_Licencia, 
-                    Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
-                if (res > 0)
-                    Mensaje = "El Presupuesto fue registrado satisfactoriamente";
+                Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
+                if(estlic.Existe)
+                {
+                    Presupuesto presupuesto = new Presupuesto(Numero_Presupuesto);
+                    if(presupuesto.Existe)
+                    {
+                        Cliente cliente = new Cliente(Id_Cliente);
+                        if(cliente.Existe)
+                        {
+                            Inmueble inmueble = new Inmueble(Clave_Inmueble);
+                            if(inmueble.Existe)
+                            {
+                                Empleado empleado = new Empleado(Clave_Empleado);
+                                if(empleado.Existe)
+                                {
+                                    res = dtsInsertar(Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, 
+                                        Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, 
+                                        Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
+                                    if (res > 0)
+                                        Mensaje = "El Proyecto Licencia fue registrado satisfactoriamente";
+                                }
+                                else
+                                    Mensaje = "No existe algún Empleado con la Clave indicada, ingrese una Clave real";
+                            }
+                            else
+                                Mensaje = "No existe algún Inmueble con la Clave indicada, ingrese una Clave real";
+                        }
+                        else
+                            Mensaje = "No existe algún Cliente con el Id indicado, ingrese un Id real";
+                    }
+                    else
+                        Mensaje = "No existe algún Presupuesto con el Numero indicado, ingrese un Número real";
+                }
+                else
+                    Mensaje = "No existe algún Estado de Proyecto_Licencia con el Id indicado, ingrese un Id real";
                 return res;
             }
             catch (Exception ex)
@@ -97,10 +127,16 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto_Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, 
-                    Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo);
-                if (res)
-                    Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
+                if (prolic.Existe)
+                {
+                    res = dtsActualizar(Numero, Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, 
+                        Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo);
+                    if (res)
+                        Mensaje = "Los datos de la documentación del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                }
+                else
+                    Mensaje = "No existe algún Proyecto_Licencia con el Número indicado, por lo cual no se actualizara";
                 return res;
             }
             catch (Exception ex)
@@ -120,9 +156,34 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto_Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
-                res = dtsActualizarSeguimiento(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
-                if (res)
-                    Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
+                if (prolic.Existe)
+                {
+                    if(validacion.Val_FolioLicencia(Folio) || Folio == "")
+                    {
+                        if (validacion.Val_NoLicencia(Numero_Licencia) || Numero_Licencia == "")
+                        {
+                            /*Falta validar Vigencia*/
+                            Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
+                            if(estlic.Existe)
+                            {
+                                res = dtsActualizarSeguimiento(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
+                                if (res)
+                                    Mensaje = "Los datos del Seguimiento del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                            }
+                            else
+                                Mensaje = "No existe algún Estado de Proyecto_Licencia con el Id indicado, ingrese un Id real";
+                        }
+                        else
+                            Mensaje = "El campo de Número de licencia debe cumplir:\n- El formato del campo es ####/##."
+                            + "\n- El unico tamaño permitido del campo es de 7 caracteres.";
+                    }
+                    else
+                        Mensaje = "El campo de Folio debe cumplir:\n- El formato del campo es (###)#/##."
+                        + "\n- El tamaño permitido del campo es de 4 hasta 7 caracteres.";
+                }
+                else
+                    Mensaje = "No existe algún Proyecto_Licencia con el Número indicado, por lo cual no se actualizara";
                 return res;
             }
             catch (Exception ex)
@@ -141,9 +202,21 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto_Licencia,"
                     +" es posible que no se hayan modificado los datos correctamente";
-                res = dtsActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
-                if (res)
-                    Mensaje = "Los datos del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
+                if (prolic.Existe)
+                {
+                    Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
+                    if (estlic.Existe)
+                    {
+                        res = dtsActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
+                        if (res)
+                            Mensaje = "El Estado de Proyecto_Licencia fue actualizado satisfactoriamente";
+                    }
+                    else
+                        Mensaje = "No existe algún Estado de Proyecto_Licencia con el Id indicado, ingrese un Id real";
+                }
+                else
+                    Mensaje = "No existe algún Proyecto_Licencia con el Número indicado, por lo cual no se actualizara";
                 return res;
             }
             catch (Exception ex)
@@ -162,9 +235,21 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización del Numero_Proyecto_Original de la licencia  del Proyecto_Licencia,"
                     + " es posible que no se haya modificado correctamente";
-                res = dtsActualizarNumProOriginal(Numero, Numero_Proyecto_Original);
-                if (res)
-                    Mensaje = "El campo Numero_Proyecto_Original del Proyecto_Licencia fue actualizado satisfactoriamente";
+                Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
+                if (prolic.Existe)
+                {
+                    Proyecto_Licencia prolicori = new Proyecto_Licencia((int)(Numero_Proyecto_Original ?? 0));
+                    if (prolicori.Existe || Numero_Proyecto_Original == null)
+                    {
+                        res = dtsActualizarNumProOriginal(Numero, Numero_Proyecto_Original);
+                        if (res)
+                            Mensaje = "Se ha agregado la prórroga al Proyecto_Licencia satisfactoriamente";
+                    }
+                    else
+                        Mensaje = "El Proyecto Licencia que sera la prórroga no existe";
+                }
+                else
+                    Mensaje = "El Proyecto Licencia al que se le quiere agregar la prórroga no existe";
                 return res;
             }
             catch (Exception ex)

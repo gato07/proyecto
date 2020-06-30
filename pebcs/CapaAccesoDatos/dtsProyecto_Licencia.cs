@@ -260,8 +260,11 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarNumProOriginal(" + Numero + "," 
-                    + Numero_Proyecto_Original + ");");
+                if(Numero_Proyecto_Original == null)
+                    res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarNumProOriginal(" + Numero + ",NULL);");
+                else
+                    res = conexion.Consulta_Accion("CALL SP_ProyLice_ActualizarNumProOriginal(" + Numero + "," 
+                           + Numero_Proyecto_Original + ");");
                 conexion.Desconectar();
                 return res;
             }

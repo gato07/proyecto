@@ -215,6 +215,32 @@ namespace CapaLogica
             }
         }
 
+        public bool Val_FolioLicencia(string Valor)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^[0-9]{1,4}\/[0-9]{2}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool Val_NoLicencia(string Valor)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^[0-9]{4}\/[0-9]{2}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         #endregion Metodos
 
     }
