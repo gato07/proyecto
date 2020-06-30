@@ -173,9 +173,9 @@
                         <ComboBoxItem Content="Pago De Honorarios" />
                         <ComboBoxItem Content="Pago Ante Ayuntamiento" />
                     </ComboBox>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
-                    <TextBox materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
-                    <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="11"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Costo" Name="TXTCosto" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="11"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarConcepto" Content="Agregar" Margin="4" Click="btnAgregarConcepto_Click" Background="#E67E22"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}" Background="#E67E22"/>
                 </StackPanel>
@@ -192,9 +192,9 @@
                         <ComboBoxItem Content="Pago De Honorarios" />
                         <ComboBoxItem Content="Pago Ante Ayuntamiento" />
                     </ComboBox>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
-                    <TextBox materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
-                    <TextBox materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="11"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Costo" Name="TXTCostoModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="11"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnConceptoModificar" Content="Modificar" Margin="4" Click="btnConceptoModificar_Click" Background="#E67E22"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConceptosModificar}" Background="#E67E22"/>
                 </StackPanel>

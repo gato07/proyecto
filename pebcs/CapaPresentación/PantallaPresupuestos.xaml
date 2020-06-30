@@ -5,6 +5,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CapaPresentación"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"        
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d" 
              d:DesignHeight="712" d:DesignWidth="882">
     <Control.Resources>
@@ -101,11 +108,11 @@
                                     <RowDefinition Height="97*"/>
                                     <RowDefinition Height="97*"/>
                                 </Grid.RowDefinitions>
-                                <TextBox MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="0"/>
-                                <TextBox MaxLength="60" materialDesign:HintAssist.Hint="Nombre Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="1"/>
-                                <TextBox MaxLength="60" materialDesign:HintAssist.Hint="Nombre Del Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="2"/>
-                                <TextBox MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="0,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="125" />
-                                <TextBox MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,0,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="90" />
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="5,28,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="60" materialDesign:HintAssist.Hint="Nombre Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="1"/>
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="60" materialDesign:HintAssist.Hint="Nombre Del Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="0" Grid.Column="2"/>
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="0,5,5,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="125" />
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,0,5" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="90" />
                                 <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#3498DB" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
                                 <ComboBox Name="EstadoPresupuesto" Grid.Column="2" Grid.Row="1"
                                                   materialDesign:HintAssist.Hint="Estado de Presupuesto"  Margin="0,15,8,5" BorderBrush="#3498DB" VerticalAlignment="Stretch">

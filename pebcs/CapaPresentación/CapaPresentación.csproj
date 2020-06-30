@@ -94,8 +94,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controles\AvaluoPericial.xaml.cs">
+      <DependentUpon>AvaluoPericial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantalla_AvaluosPericial.xaml.cs">
+      <DependentUpon>Pantalla_AvaluosPericial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pantalla_CargaDeTrabajo.xaml.cs">
       <DependentUpon>Pantalla_CargaDeTrabajo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantalla_InfoAvaluo.xaml.cs">
+      <DependentUpon>Pantalla_InfoAvaluo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pantalla_SeguimientoLicencia.xaml.cs">
       <DependentUpon>Pantalla_SeguimientoLicencia.xaml</DependentUpon>
@@ -103,6 +112,10 @@
     <Compile Include="Reportes\PresupuestoLicenciaConstrucción.xaml.cs">
       <DependentUpon>PresupuestoLicenciaConstrucción.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controles\AvaluoPericial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controles\FlipperUsuarioActivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,7 +192,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pantalla_AvaluosPericial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pantalla_CargaDeTrabajo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantalla_InfoAvaluo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

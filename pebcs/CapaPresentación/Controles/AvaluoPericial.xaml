@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="CapaPresentación.Controles.AvaluoPericial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación.Controles"
+             mc:Ignorable="d" Height="180" Width="240">
+    <Grid>
+        <materialDesign:Card Height="160" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="140"/>
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone Name="IndicadorAlineamiento" CornerRadius="0 0 15 15" Grid.Row="0" Background="#52BE80 " Height="20" VerticalAlignment="Bottom">
+                    <TextBlock Text="Titulo" Name="titulo" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                </materialDesign:ColorZone>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120*"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="No.Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0"/>
+                    <DatePicker IsTodayHighlighted="True" materialDesign:HintAssist.Hint="Fecha Avaluo" Name="DTP_FechaAvaluo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5 0" BorderBrush="#2ECC71"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Uso De Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0" />
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Propietario" x:Name="TXT_NombrePropietario" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="0" Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="1"  Margin="5 0"/>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

@@ -172,8 +172,8 @@
                                                 <ColumnDefinition Width="294*"/>
                                                 <ColumnDefinition Width="294*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Nombre" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35" />
-                                            <TextBox IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Telefono" x:Name="TXT_TelefonoCliente" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Nombre" x:Name="TXT_NombreCliente" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35" />
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Telefono" x:Name="TXT_TelefonoCliente" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
                                         </Grid>
                                     </StackPanel>
                                 </Expander>
@@ -192,18 +192,18 @@
                                                 <RowDefinition Height="45*"/>
                                                 <RowDefinition Height="45*"/>
                                             </Grid.RowDefinitions>
-                                            <TextBox IsReadOnly="True" MaxLength="15" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
-                                            <TextBox IsReadOnly="True" MaxLength="60" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
-                                            <TextBox IsReadOnly="True" MaxLength="50" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="0" Height="35"/>
-                                            <TextBox IsReadOnly="True" MaxLength="50" materialDesign:HintAssist.Hint="Calle" x:Name="TXT_Calle" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
-                                            <TextBox IsReadOnly="True" MaxLength="100" materialDesign:HintAssist.Hint="Entre Calles" x:Name="TXT_EntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="15" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="60" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="50" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="0" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="50" materialDesign:HintAssist.Hint="Calle" x:Name="TXT_Calle" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="100" materialDesign:HintAssist.Hint="Entre Calles" x:Name="TXT_EntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="2" Grid.Column="0" Height="35"/>
                                             <Grid Grid.Row="2" Grid.Column="1">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="174*"/>
                                                     <ColumnDefinition Width="174*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBox IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Numero Interior" x:Name="TXT_NumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35"/>
-                                                <TextBox IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Numero Exterior" x:Name="TXT_NumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
+                                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Numero Interior" x:Name="TXT_NumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="0" Height="35"/>
+                                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Numero Exterior" x:Name="TXT_NumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Column="1" Height="35"/>
                                             </Grid>
                                         </Grid>
                                     </StackPanel>
@@ -220,10 +220,10 @@
                                                 <RowDefinition Height="45*"/>
                                                 <RowDefinition Height="45*"/>
                                             </Grid.RowDefinitions>
-                                            <TextBox IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
-                                            <TextBox IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
                                             <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
-                                            <TextBox IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
+                                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
                                         </Grid>
                                     </StackPanel>
                                 </Expander>

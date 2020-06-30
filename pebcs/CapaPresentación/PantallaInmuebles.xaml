@@ -245,18 +245,18 @@
                     <materialDesign:Card>
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Agregar  Inmueble</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="Clave catastral" Name="TXTClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietario" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="60"/>
-                    <TextBox materialDesign:HintAssist.Hint="Teléfono del propietario" Name="TXTTelefonoPropietario" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
-                    <TextBox materialDesign:HintAssist.Hint="Colonia" Name="TXTColonia" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Clave catastral" Name="TXTClaveCatastral" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietario" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="60"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Teléfono del propietario" Name="TXTTelefonoPropietario" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Colonia" Name="TXTColonia" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
                     <!--<TextBox materialDesign:HintAssist.Hint="Código Postal" Name="TXTCodigoPostal" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="5" KeyUp="TXTCodigoPostal_KeyUp"/>
                     <ComboBox Name="CMBColonia" Grid.Row="2" Grid.Column="2"
                               materialDesign:HintAssist.Hint="Colonia" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22" >
                     </ComboBox>-->
-                    <TextBox materialDesign:HintAssist.Hint="Calle" Name="TXTCalle" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
-                    <TextBox materialDesign:HintAssist.Hint="Entre calles" Name="TXTEntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="100"/>
-                    <TextBox materialDesign:HintAssist.Hint="Número interior" Name="TXTNumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
-                    <TextBox materialDesign:HintAssist.Hint="Número exterior" Name="TXTNumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Calle" Name="TXTCalle" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Entre calles" Name="TXTEntreCalles" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="100"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Número interior" Name="TXTNumeroInterior" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Número exterior" Name="TXTNumeroExterior" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnAgregarInmueble" Content="Agregar" Margin="4" Click="btnAgregarInmueble_Click" Background="#D35400"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioInmuebles}" Background="#D35400"/>
                 </StackPanel>
@@ -268,18 +268,18 @@
                     <materialDesign:Card>
                         <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Inmueble</TextBlock>
                     </materialDesign:Card>
-                    <TextBox  materialDesign:HintAssist.Hint="Clave catastral" Name="TXTClaveCatastralModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
-                    <TextBox materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="60"/>
-                    <TextBox materialDesign:HintAssist.Hint="Teléfono del propietario" Name="TXTTelefonoPropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
-                    <TextBox materialDesign:HintAssist.Hint="Colonia" Name="TXTColoniaModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Clave catastral" Name="TXTClaveCatastralModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="60"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Teléfono del propietario" Name="TXTTelefonoPropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Colonia" Name="TXTColoniaModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
                     <!--<TextBox materialDesign:HintAssist.Hint="Código Postal" Name="TXTCodigoPostalModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="5" KeyUp="TXTCodigoPostalModificar_KeyUp"/>
                     <ComboBox Name="CMBColoniaModificar" Grid.Row="2" Grid.Column="2"
                               materialDesign:HintAssist.Hint="Colonia" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22">
                     </ComboBox>-->
-                    <TextBox materialDesign:HintAssist.Hint="Calle" Name="TXTCalleModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
-                    <TextBox materialDesign:HintAssist.Hint="Entre calles" Name="TXTEntreCallesModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="100"/>
-                    <TextBox materialDesign:HintAssist.Hint="Número interior" Name="TXTNumeroInteriorModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
-                    <TextBox materialDesign:HintAssist.Hint="Número exterior" Name="TXTNumeroExteriorModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Calle" Name="TXTCalleModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="50"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Entre calles" Name="TXTEntreCallesModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="100"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Número interior" Name="TXTNumeroInteriorModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Número exterior" Name="TXTNumeroExteriorModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="10"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="btnModificarInmueble" Content="Modificar" Margin="4" Click="btnModificarInmuebles_Click" Background="#D35400"/>
                     <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioInmueblesModificar}" Background="#D35400"/>
                 </StackPanel>

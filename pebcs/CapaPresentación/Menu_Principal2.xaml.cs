@@ -352,5 +352,34 @@ namespace CapaPresentación
 
             }
         }
+
+        private void BtnAvaluosPericiales_MouseEnter(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                BtnAvaluosPericiales.Margin = new Thickness(0, 10, 0, 0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void BtnAvaluosPericiales_MouseLeave(object sender, MouseEventArgs e)
+        {
+            try 
+            {
+                BtnAvaluosPericiales.Margin = new Thickness(0, 10, 120, 0);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void BtnAvaluosPericiales_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirFormHijo(new Pantalla_AvaluosPericial(this));
+        }
     }
 }

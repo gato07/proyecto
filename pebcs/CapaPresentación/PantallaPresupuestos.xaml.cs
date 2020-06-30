@@ -273,17 +273,17 @@ namespace CapaPresentación
 
                             if (agregar.Eliminado == false)
                             {
-                                agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                                agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToDecimal(m[x, 3]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
                             }
                             else
                             {
                                 agregar.Activar(idpresupuesto, agregar.Numero_Concepto);
-                                agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                                agregar.Actualizar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToDecimal(m[x, 3]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5])); ;
                             }
                         }
                         else if (agregar.Numero_Concepto == 0)
                         {
-                            agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
+                            agregar.Insertar(idpresupuesto, Convert.ToInt32(m[x, 0]), Convert.ToDecimal(m[x, 3]), Convert.ToInt32(m[x, 4]), Convert.ToDecimal(m[x, 5]));
                         }
                     }
                     Presupuesto presupuesto = new Presupuesto(idpresupuesto);

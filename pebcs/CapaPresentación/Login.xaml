@@ -35,7 +35,7 @@
         <Grid  HorizontalAlignment="Left" Height="38" Margin="20,158,0,0" VerticalAlignment="Top" Width="290">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="39" Margin="-1.333,0,0,0" VerticalAlignment="Top" Width="234.5"/>
             <materialDesign:PackIcon Kind="Account" Width="20" Height="20" Foreground="{Binding ElementName=txt_Usuario,Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0" ></materialDesign:PackIcon>
-            <TextBox x:Name="txt_Usuario" materialDesign:HintAssist.Hint="Correo Electronico"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="25,0,0,0" CaretBrush="#FF2B5BEB" BorderBrush="#FF696FD0" />
+            <TextBox x:Name="txt_Usuario" materialDesign:HintAssist.Hint="Nombre De Usuario"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="25,0,0,0" CaretBrush="#FF2B5BEB" BorderBrush="#FF696FD0" />
         </Grid>
         <Grid  HorizontalAlignment="Left" Height="39" Margin="20,212,0,0" VerticalAlignment="Top" Width="290">
             <Grid.ColumnDefinitions>

@@ -32,6 +32,15 @@
                             <TextBlock Text="LICENCIAS" Margin="20 -18 0 0"/>
                         </StackPanel>
                     </Button>
+                    <Button Margin="0,10,120,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" MouseEnter="BtnAvaluosPericiales_MouseEnter" MouseLeave="BtnAvaluosPericiales_MouseLeave"
+                            Background="#1ABC9C" Style="{DynamicResource MaterialDesignRaisedButton}"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnAvaluosPericiales" 
+                            Click="BtnAvaluosPericiales_Click" Height="36">
+                        <StackPanel Width="150" Margin="-10 0 0 0">
+                            <materialDesign:PackIcon Kind="FileDocument" />
+                            <TextBlock Text="AVALUOS" Margin="20 -18 0 0"/>
+                        </StackPanel>
+                    </Button>
                     <Button Margin="0,10,120,0" materialDesign:ButtonAssist.CornerRadius="0 5 5 0" 
                             Background="#16A085" Style="{DynamicResource MaterialDesignRaisedButton}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Name="BtnDictamenes" MouseLeave="BtnDictamenes_MouseLeave" MouseMove="BtnDictamenes_MouseMove" Height="36">
