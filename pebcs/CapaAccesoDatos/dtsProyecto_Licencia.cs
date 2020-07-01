@@ -308,15 +308,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXCampoEliminado(bool Eliminado = false)
+        public DataTable dtsSelNoTerminados()
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelXCampoEliminado("
-                    + Eliminado + ");").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerminados();").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -326,15 +325,122 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelPRES1XCampoEliminado(bool Eliminado = false)
+        public DataTable dtsSelTerminados()
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelPRES1XCampoEliminado("
-                    + Eliminado + ");").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerminados();").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelNoTerLikeEtiqueta(string Etiqueta)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerLikeEtiqueta('"
+                    + Etiqueta + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelTerLikeEtiqueta(string Etiqueta)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerLikeEtiqueta('"
+                    + Etiqueta + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelNoTerLikeCatastral(string Clave_Catastral)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerLikeCatastral('"
+                    + Clave_Catastral + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelTerLikeCatastral(string Clave_Catastral)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerLikeCatastral('"
+                    + Clave_Catastral + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelNoTerLikePropietario(string Nombre_Propietario)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerLikePropietario('"
+                    + Nombre_Propietario + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelTerLikePropietario(string Nombre_Propietario)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerLikePropietario('"
+                    + Nombre_Propietario + "');").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

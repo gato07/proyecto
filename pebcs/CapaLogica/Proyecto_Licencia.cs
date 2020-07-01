@@ -163,7 +163,6 @@ namespace CapaLogica
                     {
                         if (validacion.Val_NoLicencia(Numero_Licencia) || Numero_Licencia == "")
                         {
-                            /*Falta validar Vigencia*/
                             Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
                             if(estlic.Existe)
                             {
@@ -300,42 +299,106 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelActivos()
+        public DataTable SelNoTerminados()
         {
             try
             {
-                return dtsSelXCampoEliminado();
+                return dtsSelNoTerminados();
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia activos";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados";
                 return null;
             }
         }
 
-        public DataTable SelEliminados()
+        public DataTable SelTerminados()
         {
             try
             {
-                return dtsSelXCampoEliminado(true);
+                return dtsSelTerminados();
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia eliminados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados";
                 return null;
             }
         }
 
-        public DataTable SelPRES1XCampoEliminado(bool Eliminado = false)
+        public DataTable SelNoTerLikeEtiqueta(string Etiqueta)
         {
             try
             {
-                return dtsSelPRES1XCampoEliminado(Eliminado);
+                return dtsSelNoTerLikeEtiqueta(Etiqueta);
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia en Presentación"
-                    +" 1 por el campo eliminado";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados X Etiqueta";
+                return null;
+            }
+        }
+
+        public DataTable SelTerLikeEtiqueta(string Etiqueta)
+        {
+            try
+            {
+                return dtsSelTerLikeEtiqueta(Etiqueta);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados X Etiqueta";
+                return null;
+            }
+        }
+
+        public DataTable SelNoTerLikeCatastral(string Clave_Catastral)
+        {
+            try
+            {
+                return dtsSelNoTerLikeCatastral(Clave_Catastral);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados X Clave Catastral";
+                return null;
+            }
+        }
+
+        public DataTable SelTerLikeCatastral(string Clave_Catastral)
+        {
+            try
+            {
+                return dtsSelTerLikeCatastral(Clave_Catastral);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados X Clave Catastral";
+                return null;
+            }
+        }
+
+        public DataTable SelNoTerLikePropietario(string Nombre_Propietario)
+        {
+            try
+            {
+                return dtsSelNoTerLikePropietario(Nombre_Propietario);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados X Nombre del Propietario";
+                return null;
+            }
+        }
+
+        public DataTable SelTerLikePropietario(string Nombre_Propietario)
+        {
+            try
+            {
+                return dtsSelTerLikePropietario(Nombre_Propietario);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados X Nombre del Propietario";
                 return null;
             }
         }
