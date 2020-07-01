@@ -68,9 +68,52 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta a la Documentacion_Licencia, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
-                if (res)
-                    Mensaje = "La Documentacion_Licencia fue registrada satisfactoriamente";
+                Proyecto_Licencia prolic = new Proyecto_Licencia(Numero_Proyecto_Licencia);
+                if(prolic.Existe)
+                {
+                    Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
+                    if(estlic.Existe)
+                    {
+                        Documentacion_Licencia doclic = new Documentacion_Licencia(Numero_Proyecto_Licencia, 
+                            Id_Estado_Licencia);
+                        if (doclic.Existe == false)
+                        {
+                            if (validacion.Val_Texto1(Nombre_Documento, 1, 50))
+                            {
+                                if (Fecha.Date >= prolic.Fecha.Date && Fecha.Date <= DateTime.Now.Date)
+                                {
+                                    if (validacion.Val_Texto3(Nota, 0, 255))
+                                    {
+                                        res = dtsInsertar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
+                                        if (res)
+                                            Mensaje = "La Documentacion_Licencia fue registrada satisfactoriamente";
+                                    }
+                                    else
+                                        Mensaje = "El campo de Nota debe cumplir:\n\n- Solo puede contener caracteres"
+                                            + " alfabéticos, númericos, los simbolos °¡!#$%&/=¿?,;.:- y espacios en"
+                                            + " blanco.\n- El tamaño valido del campo es de 0 hasta 255 caracteres.";
+                                }
+                                else
+                                    Mensaje = "El campo de Fecha debe cumplir:\n\n- No puede quedar vacío."
+                                        + "\n- El valor mínimo permitido es la Fecha en que fue creado el Proyecto"
+                                        + " Licencia(" + prolic.Fecha.Date.ToString("dd/MM/yyyy") + ") y el valor máximo es la fecha de hoy.";
+                            }
+                            else
+                                Mensaje = "El campo de Nombre del Documento debe cumplir:\n\n- No puede quedar vacío."
+                                    + "\n- Solo puede contener caracteres alfabéticos y espacios en blanco.\n- El tamaño"
+                                    + " valido del campo es de 1 hasta 50 caracteres.";
+                        }
+                        else
+                            Mensaje = "Ya existe esta documentación del Proyecto Licencia en la base de datos, por lo tanto no se puede volver"
+                                + " a reingresar, intente con otra documentación diferente";
+                    }
+                    else
+                        Mensaje = "El Id indicado no corresponde al de un Estado de Proyecto Licencia existente,"
+                            + " intente con el número de uno real";
+                }
+                else
+                    Mensaje = "El Numero indicado no corresponde al de un Proyecto Licencia existente, intente con"
+                        + " el numero de uno real";
                 return res;
             }
             catch (Exception ex)
@@ -90,9 +133,39 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos de la Documentacion_Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
-                if (res)
-                    Mensaje = "Los datos de la Documentacion_Licencia fueron actualizados satisfactoriamente";
+                Documentacion_Licencia doclic = new Documentacion_Licencia(Numero_Proyecto_Licencia,
+                            Id_Estado_Licencia);
+                if (doclic.Existe)
+                {
+                    if (validacion.Val_Texto1(Nombre_Documento, 1, 50))
+                    {
+                        Proyecto_Licencia prolic = new Proyecto_Licencia(Numero_Proyecto_Licencia);
+                        if (Fecha.Date >= prolic.Fecha.Date && Fecha.Date <= DateTime.Now.Date)
+                        {
+                            if (validacion.Val_Texto3(Nota, 0, 255))
+                            {
+                                res = dtsActualizar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
+                                if (res)
+                                    Mensaje = "Los datos de la Documentacion_Licencia fueron actualizados satisfactoriamente";
+                            }
+                            else
+                                Mensaje = "El campo de Nota debe cumplir:\n\n- Solo puede contener caracteres"
+                                    + " alfabéticos, númericos, los simbolos °¡!#$%&/=¿?,;.:- y espacios en"
+                                    + " blanco.\n- El tamaño valido del campo es de 0 hasta 255 caracteres.";
+                        }
+                        else
+                            Mensaje = "El campo de Fecha debe cumplir:\n\n- No puede quedar vacío."
+                                + "\n- El valor mínimo permitido es la Fecha en que fue creado el Proyecto"
+                                + " Licencia(" + prolic.Fecha.Date.ToString("dd/MM/yyyy") + ") y el valor máximo es la fecha de hoy.";
+                    }
+                    else
+                        Mensaje = "El campo de Nombre del Documento debe cumplir:\n\n- No puede quedar vacío."
+                            + "\n- Solo puede contener caracteres alfabéticos y espacios en blanco.\n- El tamaño"
+                            + " valido del campo es de 1 hasta 50 caracteres.";
+                }
+                else
+                    Mensaje = "No existe una documentación del Proyecto Licencia con ese Id, por lo cual no se actualizara,"
+                        + " ingrese un Id real";
                 return res;
             }
             catch (Exception ex)
