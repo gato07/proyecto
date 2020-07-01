@@ -80,8 +80,8 @@ namespace CapaLogica
                         {
                             if (validacion.Val_Texto1(Nombre_Documento, 1, 50))
                             {
-                                if (Fecha.Date >= prolic.Fecha.Date && Fecha.Date <= DateTime.Now.Date)
-                                {
+                                /*if (Fecha.Date >= prolic.Fecha.Date && Fecha.Date <= DateTime.Now.Date)
+                                {*/
                                     if (validacion.Val_Texto3(Nota, 0, 255))
                                     {
                                         res = dtsInsertar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
@@ -92,11 +92,11 @@ namespace CapaLogica
                                         Mensaje = "El campo de Nota debe cumplir:\n\n- Solo puede contener caracteres"
                                             + " alfabéticos, númericos, los simbolos °¡!#$%&/=¿?,;.:- y espacios en"
                                             + " blanco.\n- El tamaño valido del campo es de 0 hasta 255 caracteres.";
-                                }
+                                /*}
                                 else
                                     Mensaje = "El campo de Fecha debe cumplir:\n\n- No puede quedar vacío."
                                         + "\n- El valor mínimo permitido es la Fecha en que fue creado el Proyecto"
-                                        + " Licencia(" + prolic.Fecha.Date.ToString("dd/MM/yyyy") + ") y el valor máximo es la fecha de hoy.";
+                                        + " Licencia(" + prolic.Fecha.Date.ToString("dd/MM/yyyy") + ") y el valor máximo es la fecha de hoy.";*/
                             }
                             else
                                 Mensaje = "El campo de Nombre del Documento debe cumplir:\n\n- No puede quedar vacío."
@@ -139,9 +139,9 @@ namespace CapaLogica
                 {
                     if (validacion.Val_Texto1(Nombre_Documento, 1, 50))
                     {
-                        Proyecto_Licencia prolic = new Proyecto_Licencia(Numero_Proyecto_Licencia);
+                        /*Proyecto_Licencia prolic = new Proyecto_Licencia(Numero_Proyecto_Licencia);
                         if (Fecha.Date >= prolic.Fecha.Date && Fecha.Date <= DateTime.Now.Date)
-                        {
+                        {*/
                             if (validacion.Val_Texto3(Nota, 0, 255))
                             {
                                 res = dtsActualizar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
@@ -152,11 +152,11 @@ namespace CapaLogica
                                 Mensaje = "El campo de Nota debe cumplir:\n\n- Solo puede contener caracteres"
                                     + " alfabéticos, númericos, los simbolos °¡!#$%&/=¿?,;.:- y espacios en"
                                     + " blanco.\n- El tamaño valido del campo es de 0 hasta 255 caracteres.";
-                        }
+                        /*}
                         else
                             Mensaje = "El campo de Fecha debe cumplir:\n\n- No puede quedar vacío."
                                 + "\n- El valor mínimo permitido es la Fecha en que fue creado el Proyecto"
-                                + " Licencia(" + prolic.Fecha.Date.ToString("dd/MM/yyyy") + ") y el valor máximo es la fecha de hoy.";
+                                + " Licencia(" + prolic.Fecha.Date.ToString("dd/MM/yyyy") + ") y el valor máximo es la fecha de hoy.";*/
                     }
                     else
                         Mensaje = "El campo de Nombre del Documento debe cumplir:\n\n- No puede quedar vacío."
