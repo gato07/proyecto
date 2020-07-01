@@ -30,7 +30,7 @@ namespace CapaPresentación
         }
         public void DatosPrueba()
         {
-            for(int x=0;x<100;x++)
+            for(int x=0;x<17;x++)
             {
                 AvaluoPericial avaluo = new AvaluoPericial();
                 n.Items.Add(avaluo);

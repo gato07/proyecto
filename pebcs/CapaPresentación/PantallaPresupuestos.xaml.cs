@@ -209,6 +209,8 @@ namespace CapaPresentación
                     EstadoPresupuesto.SelectedIndex = sd.Aprobado;
                     tipoProyecto.SelectedIndex = sd.Id_Tipo_Proyecto-1;
                     IdTipodeproyecto = sd.Id_Tipo_Proyecto;
+                    Tipo_Proyecto p = new Tipo_Proyecto(sd.Id_Tipo_Proyecto);
+                    datosPresupuesto[2] = p.Tipo_Obra + " - " + p.Uso;
                     CargarConceptos(idp);
                 }
             }
@@ -229,7 +231,7 @@ namespace CapaPresentación
                     if (contenido[x].Eliminado == false)
                     {
                         Concepto n = new Concepto(contenido[x].Numero_Concepto);
-                        PresupuestoAgregado pres = (new PresupuestoAgregado() { ID = contenido[x].Numero_Concepto, Tipo = n.Tipo, ConceptoA = n.Nombre, ImporteA = Convert.ToDecimal(n.Costo), CantidadA = 1, TotalA = Convert.ToDecimal(n.Costo) });
+                        PresupuestoAgregado pres = (new PresupuestoAgregado() { ID = contenido[x].Numero_Concepto, Tipo = n.Tipo, ConceptoA = n.Nombre, ImporteA = Convert.ToDecimal(contenido[x].Costo), CantidadA = contenido[x].Cantidad, TotalA = Convert.ToDecimal(contenido[x].Total) });
                         ListaConceptosAgregados.Items.Add(pres);
                     }
                 }
@@ -466,6 +468,7 @@ namespace CapaPresentación
                 if (P != null)
                 {
                     IdTipodeproyecto = P.ID;
+                    datosPresupuesto[2] = P.TipoDeObra+" - "+P.Uso;
                 }
             }
             catch (Exception ex)
@@ -479,7 +482,9 @@ namespace CapaPresentación
             try
             {
                 string[,] vs = new string[ListaConceptosAgregados.Items.Count, 7];
+                datosPresupuesto[0] = TXT_Propietario.Text;
                 datosPresupuesto[1] = TXT_Solicitante.Text;
+                datosPresupuesto[3] = TXT_Metros.Text;
                 for (int x = 0; x < ListaConceptosAgregados.Items.Count; x++)
                 {
                     PresupuestoAgregado presupuestoAgregado = (PresupuestoAgregado)ListaConceptosAgregados.Items[x];
