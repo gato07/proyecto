@@ -308,6 +308,69 @@ namespace CapaAccesoDatos
             }
         }
 
+        public void dtsSelXNumPresupuesto(int Numero_Presupuesto)
+        {
+            try
+            {
+                Numero = 0;
+                Folio = "";
+                Fecha = new DateTime();
+                Numero_Licencia = "";
+                Vigencia = new DateTime();
+                Escrituras = false;
+                Constancia_Alineamiento = false;
+                Pago_Predial = false;
+                Recibo_Agua = false;
+                Planos_Arquitectonicos = false;
+                Planos_Estructurales = false;
+                Planos_Instalaciones = false;
+                Memoria_Calculo = false;
+                Id_Estado_Licencia = 0;
+                this.Numero_Presupuesto = 0;
+                Id_Cliente = 0;
+                Clave_Inmueble = 0;
+                Clave_Empleado = 0;
+                Numero_Proyecto_Original = null;
+                Eliminado = false;
+                Existe = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelXNumPresupuesto(" + Numero_Presupuesto + ");").Tables[0];
+                if (dt != null)
+                {
+                    Numero = Convert.ToInt16(dt.Rows[0]["Numero"]);
+                    Folio = dt.Rows[0]["Folio"].ToString();
+                    Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
+                    Numero_Licencia = dt.Rows[0]["Numero_Licencia"].ToString();
+                    Vigencia = Convert.ToDateTime(dt.Rows[0]["Vigencia"]);
+                    Escrituras = Convert.ToBoolean(dt.Rows[0]["Escrituras"]);
+                    Constancia_Alineamiento = Convert.ToBoolean(dt.Rows[0]["Constancia_Alineamiento"]);
+                    Pago_Predial = Convert.ToBoolean(dt.Rows[0]["Pago_Predial"]);
+                    Recibo_Agua = Convert.ToBoolean(dt.Rows[0]["Recibo_Agua"]);
+                    Planos_Arquitectonicos = Convert.ToBoolean(dt.Rows[0]["Planos_Arquitectonicos"]);
+                    Planos_Estructurales = Convert.ToBoolean(dt.Rows[0]["Planos_Estructurales"]);
+                    Planos_Instalaciones = Convert.ToBoolean(dt.Rows[0]["Planos_Instalaciones"]);
+                    Memoria_Calculo = Convert.ToBoolean(dt.Rows[0]["Memoria_Calculo"]);
+                    Id_Estado_Licencia = Convert.ToInt16(dt.Rows[0]["Id_Estado_Licencia"]);
+                    this.Numero_Presupuesto = Convert.ToInt16(dt.Rows[0]["Numero_Presupuesto"]);
+                    Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
+                    Clave_Inmueble = Convert.ToInt16(dt.Rows[0]["Clave_Inmueble"]);
+                    Clave_Empleado = Convert.ToInt16(dt.Rows[0]["Clave_Empleado"]);
+                    if (dt.Rows[0]["Numero_Proyecto_Original"] == DBNull.Value)
+                        Numero_Proyecto_Original = null;
+                    else
+                        Numero_Proyecto_Original = Convert.ToInt16(dt.Rows[0]["Numero_Proyecto_Original"]);
+                    Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
+                    Existe = true;
+                }
+                conexion.Desconectar();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public DataTable dtsSelNoTerminados()
         {
             try

@@ -299,6 +299,18 @@ namespace CapaLogica
             }
         }
 
+        public void SelXNumPresupuesto(int Numero_Presupuesto)
+        {
+            try
+            {
+                dtsSelXNumPresupuesto(Numero_Presupuesto);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia X Numero de Presupuesto";
+            }
+        }
+
         public DataTable SelNoTerminados()
         {
             try
