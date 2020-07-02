@@ -29,9 +29,9 @@
                         <RowDefinition  Height="50"/>
                     </Grid.RowDefinitions>
                     <ToggleButton Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
-                                  Margin="0,0,100,0" Name="Activador" IsChecked="False" />
+                                  Margin="0,0,100,0" Name="Activador" IsChecked="False" Click="Activador_Click" />
                     <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
-                             CaretBrush="#1ABC9C" BorderBrush="#1ABC9C"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" />
+                             CaretBrush="#1ABC9C" BorderBrush="#1ABC9C"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" KeyUp="TxtBusqueda_KeyUp" IsEnabled="False" />
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" 
                             Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" 
@@ -51,15 +51,20 @@
                         </StackPanel>
                     </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#1ABC9C" Height="28">
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Margin="0,0,8,4" BorderBrush="#1ABC9C" Height="28">
                         <ComboBoxItem
-                            Content="Nombre" />
+                            Content="Etiqueta" />
                         <ComboBoxItem
-                            Content="Puesto" />
+                            Content="Clave Catastral" />
                         <ComboBoxItem
-                            Content="Correo" />
+                            Content="Propietario" />
+                    </ComboBox>
+                    <ComboBox Name="OpcionesCanceladas" Grid.Row="2" Grid.Column="3" IsEnabled="False"
+                          materialDesign:HintAssist.Hint="Licencias Canceladas" Margin="0,0,8,4" BorderBrush="#1ABC9C" Height="28" SelectionChanged="OpcionesCanceladas_SelectionChanged">
                         <ComboBoxItem
-                            Content="Usuario" />
+                            Content="Encaptura" />
+                        <ComboBoxItem
+                            Content="Terminadas" />
                     </ComboBox>
                     <TextBlock Text="Licencias" Name="titulo" Foreground="#1ABC9C" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
                     <Grid Grid.Row="2" Grid.Column="0" >
