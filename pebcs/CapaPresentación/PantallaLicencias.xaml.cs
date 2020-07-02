@@ -330,17 +330,60 @@ namespace CapaPresentación
         {
             try
             {
-                if (OpcionesCanceladas.SelectedIndex==0)
+                if (OpcionesCanceladas.SelectedIndex == 0 || OpcionesCanceladas.SelectedIndex == -1)
                 {
-                    impiar();
-                    GenerarLicencias();
+                    if (Opciones.SelectedIndex == -1)
+                    {
+                        impiar();
+                        GenerarLicencias();
+                    }
+                    else if (Opciones.SelectedIndex == 0)
+                    {
+                        impiar();
+                        TxtBusqueda.MaxLength = 60;
+                        GenerarLicenciasLikeEtiqueta(TxtBusqueda);
+                    }
+                    else if (Opciones.SelectedIndex == 1)
+                    {
+                        impiar();
+                        TxtBusqueda.MaxLength = 255;
+                        GenerarLicenciasLikeClaveCatastral(TxtBusqueda);
+                    }
+                    else if (Opciones.SelectedIndex == 2)
+                    {
+                        impiar();
+                        TxtBusqueda.MaxLength = 15;
+                        GenerarLicenciasLikePropietario(TxtBusqueda);
+                    }
                 }
-                else if(OpcionesCanceladas.SelectedIndex==1)
+                else if (OpcionesCanceladas.SelectedIndex == 1)
                 {
-                    impiar();
-                    GenerarcanLicencias();
+                    if (Opciones.SelectedIndex == -1)
+                    {
+                        impiar();
+                        GenerarcanLicencias();
+                    }
+                    else if (Opciones.SelectedIndex == 0)
+                    {
+                        impiar();
+                        TxtBusqueda.MaxLength = 60;
+                        GenerarcanLicenciasLikeEtiqueta(TxtBusqueda);
+                    }
+                    else if (Opciones.SelectedIndex == 1)
+                    {
+                        impiar();
+                        TxtBusqueda.MaxLength = 255;
+                        GenerarcanLicenciasLikeClaveCatastral(TxtBusqueda);
+                    }
+                    else if (Opciones.SelectedIndex == 2)
+                    {
+                        impiar();
+                        TxtBusqueda.MaxLength = 15;
+                        GenerarcanLicenciasLikePropietario(TxtBusqueda);
+                    }
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
 
             }

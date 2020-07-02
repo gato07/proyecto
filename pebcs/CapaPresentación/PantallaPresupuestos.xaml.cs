@@ -451,9 +451,19 @@ namespace CapaPresentación
 
         private void Btn_GenerarLicencia_Click(object sender, RoutedEventArgs e)
         {
-            if(idpresupuesto!=0 && EstadoPresupuesto.SelectedIndex==1)
+            presupuesto = new Presupuesto(idpresupuesto);
+            if(idpresupuesto!=0 && presupuesto.Aprobado==1)
             {
-                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0,Mn, idpresupuesto));
+                Proyecto_Licencia licencia = new Proyecto_Licencia();
+                licencia.SelXNumPresupuesto(idpresupuesto);
+                if(licencia.Numero!=0)
+                {
+                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(licencia.Numero, Mn,0));
+                }
+                else if (licencia.Numero==0)
+                {
+                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0, Mn, idpresupuesto));
+                }
             }
         }
 

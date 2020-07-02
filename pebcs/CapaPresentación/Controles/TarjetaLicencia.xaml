@@ -34,7 +34,7 @@
                                 <RowDefinition Height="160*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right">
+                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right" Click="Button_Click">
                                 <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
                             </Button>
                             <Grid Grid.Row="1">
@@ -80,7 +80,7 @@
                                 <RowDefinition Height="160*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Titulo" Name="tituloBack" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right">
+                            <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 0 -15 0" HorizontalAlignment="Right" >
                                 <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
                             </Button>
                             <Grid Grid.Row="1">
@@ -94,9 +94,9 @@
                                     <RowDefinition Height="33*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60*"/>
+                                    <ColumnDefinition Width="50*"/>
                                     <ColumnDefinition Width="30*"/>
-                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="30*"/>
                                     <ColumnDefinition Width="30*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="1" Content="Ingreso" Name="ArmadoPaquete" HorizontalAlignment="Left" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
