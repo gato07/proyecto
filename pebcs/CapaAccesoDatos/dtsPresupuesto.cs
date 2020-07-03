@@ -219,15 +219,51 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXCampoEliminado(bool Eliminado = false)
+        public DataTable dtsSelLikeEtiqueta(string Etiqueta, int Aprobado)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelXCampoEliminado("
-                    + Eliminado + ");").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelLikeEtiqueta('" + Etiqueta
+                    + "'," + Aprobado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikeCatastral(string Clave_Catastral, int Aprobado)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelLikeCatastral('" + Clave_Catastral
+                    + "'," + Aprobado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelLikePropietario(string Nombre_Propietario, int Aprobado)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelLikePropietario('" + Nombre_Propietario
+                    + "'," + Aprobado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

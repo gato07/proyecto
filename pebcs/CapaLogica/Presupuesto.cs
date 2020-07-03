@@ -287,28 +287,41 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelActivos()
+        public DataTable SelLikeEtiqueta(string Etiqueta, int Aprobado)
         {
             try
             {
-                return dtsSelXCampoEliminado();
+                return dtsSelLikeEtiqueta(Etiqueta, Aprobado);
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos activos";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos X Etiqueta";
                 return null;
             }
         }
 
-        public DataTable SelEliminados()
+        public DataTable SelLikeCatastral(string Clave_Catastral, int Aprobado)
         {
             try
             {
-                return dtsSelXCampoEliminado(true);
+                return dtsSelLikeCatastral(Clave_Catastral, Aprobado);
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos eliminados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos X Clave catastral";
+                return null;
+            }
+        }
+
+        public DataTable SelLikePropietario(string Nombre_Propietario, int Aprobado)
+        {
+            try
+            {
+                return dtsSelLikePropietario(Nombre_Propietario, Aprobado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos X Nombre del propietario";
                 return null;
             }
         }
