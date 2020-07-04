@@ -287,6 +287,19 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelXAprobado(int Aprobado)
+        {
+            try
+            {
+                return dtsSelXAprobado(Aprobado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos X Aprobado";
+                return null;
+            }
+        }
+
         public DataTable SelLikeEtiqueta(string Etiqueta, int Aprobado)
         {
             try

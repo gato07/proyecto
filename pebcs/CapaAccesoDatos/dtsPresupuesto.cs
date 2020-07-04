@@ -219,6 +219,23 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelXAprobado(int Aprobado)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelXAprobado(" + Aprobado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public DataTable dtsSelLikeEtiqueta(string Etiqueta, int Aprobado)
         {
             try
