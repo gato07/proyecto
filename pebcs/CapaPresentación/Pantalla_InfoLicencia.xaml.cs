@@ -375,12 +375,16 @@ namespace CapaPresentación
                         PantallaCheck check = new PantallaCheck();
                         check.Show();
                     }
+                    else
+                    {
+                        MessageBox.Show(ProyectoLicencia.Mensaje);
+                    }
                 }
                 else if (F == true)
                 {
                     if(IDpresupuesto==0)
                     {
-                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 0, IdTipodeproyecto, 1);
+                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 1, IdTipodeproyecto, 1);
                         if (IDpresupuesto != 0)
                         {
                             IDlicen = ProyectoLicencia.Insertar( dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
@@ -394,7 +398,12 @@ namespace CapaPresentación
                             else if (IDlicen == 0)
                             {//elimina el prosupuesto si la licencia no se registro corretamente
                                 presupuesto.Depurar(IDpresupuesto);
+                                MessageBox.Show(ProyectoLicencia.Mensaje);
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show(presupuesto.Mensaje);
                         }
                     }
                     else if (IDpresupuesto!=0)
@@ -407,6 +416,10 @@ namespace CapaPresentación
                                 F = false;
                                 DesactivarCampos();
                             }
+                            else
+                        {
+                            MessageBox.Show(ProyectoLicencia.Mensaje);
+                        }
                     }
                 }
             }

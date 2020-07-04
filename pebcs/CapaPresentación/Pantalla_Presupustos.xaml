@@ -29,9 +29,9 @@
                         <RowDefinition  Height="50"/>
                     </Grid.RowDefinitions>
                     <ToggleButton Grid.Column="0" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
-                                  Name="Activador" IsChecked="False" HorizontalAlignment="Right" Width="95" />
+                                  Name="Activador" IsChecked="False" HorizontalAlignment="Right" Width="95" Click="Activador_Click" />
                     <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
-                             CaretBrush="#3498DB" BorderBrush="#3498DB"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" />
+                             CaretBrush="#3498DB" BorderBrush="#3498DB"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" KeyUp="TxtBusqueda_KeyUp" />
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7" 
                             Grid.Column="4" Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_Cerrar" 
@@ -51,15 +51,22 @@
                         </StackPanel>
                     </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,9,8,13" BorderBrush="#3498DB" Height="28">
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda"  Margin="0,9,8,13" BorderBrush="#3498DB" Height="28">
                         <ComboBoxItem
-                            Content="Nombre" />
+                            Content="Clave Catastral" />
                         <ComboBoxItem
-                            Content="Puesto" />
+                            Content="Etiqueta" />
                         <ComboBoxItem
-                            Content="Correo" />
+                            Content="Propietario" />
+                    </ComboBox>
+                    <ComboBox Name="OpcionesAprobado" Grid.Row="2" Grid.Column="3" IsEnabled="False" SelectionChanged="OpcionesAprobado_SelectionChanged"
+                          materialDesign:HintAssist.Hint="Aprobados" Margin="0,9,8,13" BorderBrush="#3498DB" Height="28">
                         <ComboBoxItem
-                            Content="Usuario" />
+                            Content="No Aprobado" />
+                        <ComboBoxItem
+                            Content="Aprobado" />
+                        <ComboBoxItem
+                            Content="En Espera" />
                     </ComboBox>
                     <TextBlock Text="Presupuestos" Name="titulo" Foreground="#3498DB" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
                     <Grid Grid.Row="2" Grid.Column="0" >

@@ -516,6 +516,10 @@ namespace CapaPresentación
                     PresupuestoLicenciaConstrucción construcción = new PresupuestoLicenciaConstrucción(idpresupuesto, vs, datosPresupuesto);
                     construcción.ShowDialog();
                 }
+                else
+                {
+                    MessageBox.Show(presupuesto.Mensaje);
+                }
             }
             catch (Exception ex)
             {
