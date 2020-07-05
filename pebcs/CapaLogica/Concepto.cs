@@ -246,6 +246,7 @@ namespace CapaLogica
             }
         }
 
+        /* NO SE UTILIZA */
         public DataTable SelNumeroNombreCostoXEli(bool Eliminado = false)
         {
             try
@@ -258,7 +259,9 @@ namespace CapaLogica
                 return null;
             }
         }
+        /* NO SE UTILIZA */
 
+        /* NO SE UTILIZA */
         public DataTable SelNumeroNombreCostoXTipEli(string Tipo, bool Eliminado = false)
         {
             try
@@ -271,6 +274,7 @@ namespace CapaLogica
                 return null;
             }
         }
+        /* NO SE UTILIZA */
 
         public DataTable SelLikeTipo(string Tipo, bool Eliminado = false)
         {

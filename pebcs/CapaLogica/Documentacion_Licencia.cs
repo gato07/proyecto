@@ -161,6 +161,7 @@ namespace CapaLogica
             }
         }
 
+        /* NO SE UTILIZA */
         public bool Eliminar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
             try
@@ -180,6 +181,10 @@ namespace CapaLogica
                 return false;
             }
         }
+
+        /* NO SE UTILIZA */
+
+        /* NO SE UTILIZA */
 
         public bool Activar(int Numero_Proyecto_Licencia, int Id_Estado_Licencia)
         {
@@ -201,6 +206,9 @@ namespace CapaLogica
             }
         }
 
+        /* NO SE UTILIZA */
+
+        /* NO SE UTILIZA */
         public DataTable SelActivos()
         {
             try
@@ -214,6 +222,9 @@ namespace CapaLogica
             }
         }
 
+        /* NO SE UTILIZA */
+
+        /* NO SE UTILIZA */
         public DataTable SelEliminados()
         {
             try
@@ -226,6 +237,8 @@ namespace CapaLogica
                 return null;
             }
         }
+
+        /* NO SE UTILIZA */
 
         public DataTable SelXNumeroProLic(int Numero_Proyecto_Licencia)
         {
