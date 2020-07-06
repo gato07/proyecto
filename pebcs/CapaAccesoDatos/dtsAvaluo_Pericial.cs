@@ -89,7 +89,7 @@ namespace CapaAccesoDatos
                 Existe = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                DataTable dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelXNumero(" + Numero + ");").Tables[0];
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelXNumero(" + Numero + ");").Tables[0];
                 if (dt != null)
                 {
                     this.Numero = Convert.ToInt16(dt.Rows[0]["Numero"]);
