@@ -14,7 +14,7 @@
                     <RowDefinition Height="140"/>
                 </Grid.RowDefinitions>
                 <materialDesign:ColorZone Name="IndicadorAlineamiento" CornerRadius="0 0 15 15" Grid.Row="0" Background="#52BE80 " Height="20" VerticalAlignment="Bottom">
-                    <TextBlock Text="Titulo" Name="titulo" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                    <TextBlock Text="Clave Catastral" Name="ClaveCatastral" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
                 </materialDesign:ColorZone>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -29,12 +29,12 @@
                     </Grid.ColumnDefinitions>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="No.Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0"/>
                     <DatePicker IsTodayHighlighted="True" materialDesign:HintAssist.Hint="Fecha Avaluo" Name="DTP_FechaAvaluo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5 0" BorderBrush="#2ECC71"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Uso De Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0" />
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Solicitante" x:Name="TXT_Solicitante" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Propietario" x:Name="TXT_NombrePropietario" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="0" Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="1"  Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Uso Del Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0" />
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Utilidad" x:Name="TXT_Utilidad" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Costo Neto" x:Name="TXT_CostoNeto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="0" Margin="5 0"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Pago de Derechos" x:Name="TXT_PagoDeDerechos" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="1"  Margin="5 0"/>
                 </Grid>
             </Grid>
         </materialDesign:Card>

@@ -16,7 +16,7 @@
                             <ColumnDefinition SharedSizeGroup="Checkerz" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <ToggleButton VerticalAlignment="Center" Name="tip" Click="tip_Click" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding Cabeza}" Background="#2ECC71"/>
+                        <ToggleButton VerticalAlignment="Center" Name="tip" IsChecked="{Binding IsSelected}" Style="{StaticResource MaterialDesignActionLightToggleButton}" Content="{Binding Cabeza}" Background="#2ECC71"/>
                         <StackPanel Margin="8 0 0 0" Grid.Column="1">
                             <TextBlock FontWeight="Bold"  Text="{Binding TipoDeObra}" />
                             <TextBlock  Text="{Binding Uso}" />
@@ -222,7 +222,7 @@
                                             </Grid.RowDefinitions>
                                             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="25,5,5,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="0" Height="35" />
                                             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="0" Grid.Column="1" Height="35"/>
-                                            <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}"/>
+                                            <ComboBox Name="tipoProyecto" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo De Proyecto" BorderBrush="#1ABC9C" Margin="25,5,25,5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListaTiposObra}" SelectionChanged="tipoProyecto_SelectionChanged" />
                                             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Genero" x:Name="TXT_Genero" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Grid.Column="1" Height="35"/>
                                         </Grid>
                                     </StackPanel>

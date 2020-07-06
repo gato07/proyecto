@@ -320,6 +320,26 @@ namespace CapaPresentación
             }
         }
 
+        private void tipoProyecto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                //ToggleButton toggle = (ToggleButton)sender;
+                //Button button = (Button)sender;
+                //Grid grid = (Grid)item.Parent;
+                TipoProyec P = (TipoProyec)tipoProyecto.SelectedItem;
+                if (P != null)
+                {
+                    IdTipodeproyecto = P.ID;
+                    MessageBox.Show(IdTipodeproyecto.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void Inmuebles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -335,25 +355,6 @@ namespace CapaPresentación
                     TXT_NumeroInterior.Text = p.NumeroInterior;
                     TXT_NumeroExterior.Text = p.NumeroExterior;
                     IDinmueble = p.ID;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void tip_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ToggleButton toggle = (ToggleButton)sender;
-                //Button button = (Button)sender;
-                Grid grid = (Grid)toggle.Parent;
-                TipoProyec P = (TipoProyec)grid.DataContext;
-                if (P != null)
-                {
-                    IdTipodeproyecto = P.ID;
                 }
             }
             catch (Exception ex)

@@ -7,6 +7,72 @@
              xmlns:local="clr-namespace:CapaPresentación"
              mc:Ignorable="d" 
              d:DesignHeight="712" d:DesignWidth="882">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ListadoClientes">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Nombre}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Apellido}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Telefono}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ListadoInmuebles">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding ClaveCatastral}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Propietario}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Colonia}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="3 0 0 0" Text="{Binding Calle}" />
+                    <TextBlock Grid.Column="2" Text="{Binding EntreCalles}" Margin="12 0 0 0" />
+                    <TextBlock Grid.Column="3"  Margin="3 0 0 0" Text="{Binding NumeroInterior}" />
+                    <TextBlock Grid.Column="4"  Margin="3 0 0 0" Text="{Binding NumeroExterior}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ListaDocumentacion">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="94*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="FileDocument" Grid.Column="0"/>
+                    <TextBlock Text="{Binding NombreDocumento}"  Grid.Column="1"/>
+                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}" Background="#1ABC9C" Grid.Column="2" IsChecked="{Binding ISCHECK}" >
+                        <ToggleButton.Content>
+                            <materialDesign:PackIcon Kind="Close" />
+                        </ToggleButton.Content>
+                        <materialDesign:ToggleButtonAssist.OnContent>
+                            <materialDesign:PackIcon Kind="Check" />
+                        </materialDesign:ToggleButtonAssist.OnContent>
+                    </ToggleButton>
+                </Grid>
+            </DataTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DatePicker.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ValidationErrorTemplate.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Menu.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <materialDesign:Card Height="712">
             <Grid>
@@ -28,14 +94,14 @@
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Text="Documentación" Foreground="#52BE80" HorizontalAlignment="Center" FontSize="31" FontWeight="Bold" Margin="7,0,70,0" Width="233" />
                             <ToggleButton Grid.Row="0" Margin="255,0,0,0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Habilitar Edición" Name="DocActivar" />
-                            <ListBox Grid.Row="1" Margin="5" Name="ArmadoPaquete" IsEnabled="False"/>
+                            <ListBox Grid.Row="1" Margin="5" Name="ArmadoPaquete" ItemTemplate="{StaticResource ListaDocumentacion}" IsEnabled="False"/>
                         </Grid>
                     </materialDesign:Card>
                     <materialDesign:Card Background="{DynamicResource MaterialDesignBackground}" Height="auto" Grid.Column="1" Margin="5">
                         <StackPanel>
                             <Expander HorizontalAlignment="Stretch" Header="Cliente">
                                 <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                    <ComboBox Name="Clientes" IsReadOnly="False" Grid.Row="1"  
+                                    <ComboBox Name="Clientes" IsReadOnly="False" Grid.Row="1"  ItemTemplate="{StaticResource ListadoClientes}"
                                                   materialDesign:HintAssist.Hint="Cliente" BorderBrush="#52BE80" Margin="25,5,25,5" VerticalAlignment="Stretch" >
                                     </ComboBox>
                                     <Grid Grid.Row="2">
@@ -51,8 +117,7 @@
                             <Border  Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
                             <Expander HorizontalAlignment="Stretch" Header="Inmueble">
                                 <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
-                                    <ComboBox Name="Inmuebles" IsReadOnly="False" materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#52BE80" Margin="25,5,25,5" Grid.Row="3" VerticalAlignment="Stretch" >
-                                    </ComboBox>
+                                    <ComboBox Name="Inmuebles" IsReadOnly="False" materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#52BE80" Margin="25,5,25,5" Grid.Row="3" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListadoInmuebles}" />
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="294*"/>
@@ -91,12 +156,15 @@
                                             <RowDefinition Height="45*"/>
                                             <RowDefinition Height="45*"/>
                                             <RowDefinition Height="45*"/>
+                                            <RowDefinition Height="45*"/>
                                         </Grid.RowDefinitions>
-                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Etiqueta" x:Name="TXT_Etiqueta" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="0" Grid.Column="0" Height="35" />
-                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros" x:Name="TXT_Metros" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="0" Grid.Column="1" Height="35"/>
-                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="No.Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="1" Grid.Column="0" Height="35"/>
-                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Uso Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="1" Grid.Column="1" Height="35"/>
-                                        <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDePagoDerechosAlineamiento" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5 5 25 5" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0" BorderBrush="#52BE80"/>
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="No.Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" Margin="5 5 25 5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="0" Grid.Column="0" Height="50"/>
+                                        <DatePicker materialDesign:HintAssist.Hint="Pago de Elaboracion" Name="DTP_FechaDePagoDerechosAlineamiento" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5 5 25 5" VerticalAlignment="Stretch" Height="50" Grid.Row="0" Grid.Column="1" BorderBrush="#52BE80"/>
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="10" materialDesign:HintAssist.Hint="Metros De Construccion" x:Name="TXT_MetrosDeConstruccion" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="1" Grid.Column="0" Height="35"/>
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Metros De Terreno" x:Name="TXT_MetrosDeTerreno" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="1" Grid.Column="1" Height="35" />
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Uso Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="2" Grid.Column="0" Height="35"/>
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Costo Neto" x:Name="TXT_CostoNeto" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="2" Grid.Column="1" Height="35"/>
+                                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" MaxLength="30" materialDesign:HintAssist.Hint="Pago De Derechos" x:Name="TXT_PagoDeDerechos" materialDesign:HintAssist.IsFloating="True" Margin="5,5,25,5" CaretBrush="#52BE80" BorderBrush="#52BE80" Grid.Row="3" Grid.Column="0" Height="35"/>
                                     </Grid>
                                 </StackPanel>
                             </Expander>

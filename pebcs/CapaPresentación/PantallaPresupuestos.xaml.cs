@@ -467,18 +467,15 @@ namespace CapaPresentación
             }
         }
 
-        private void tip_Click(object sender, RoutedEventArgs e)
+        private void tipoProyecto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                ToggleButton toggle = (ToggleButton)sender;
-                //Button button = (Button)sender;
-                Grid grid = (Grid)toggle.Parent;
-                TipoProyec P = (TipoProyec)grid.DataContext;
+                TipoProyec P = (TipoProyec)tipoProyecto.SelectedItem;
                 if (P != null)
                 {
                     IdTipodeproyecto = P.ID;
-                    datosPresupuesto[2] = P.TipoDeObra+" - "+P.Uso;
+                    datosPresupuesto[2] = P.TipoDeObra + " - " + P.Uso;
                 }
             }
             catch (Exception ex)

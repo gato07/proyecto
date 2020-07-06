@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CapaLogica;
 
 namespace CapaPresentación.Controles
 {
@@ -20,9 +21,26 @@ namespace CapaPresentación.Controles
     /// </summary>
     public partial class AvaluoPericial : UserControl
     {
-        public AvaluoPericial()
+        Avaluo_Pericial Avaluo;
+        Cliente cliente;
+        Inmueble inmueble;
+        public AvaluoPericial(int ID)
         {
             InitializeComponent();
+            CargarInfo(ID);
+        }
+        public void CargarInfo(int ID)
+        {
+            Avaluo = new Avaluo_Pericial(ID);
+            cliente = new Cliente(Avaluo.Id_Cliente);
+            inmueble = new Inmueble(Avaluo.Clave_Inmueble);
+            ClaveCatastral.Text = inmueble.Clave_Catastral;
+            TXT_NoFolio.Text = Avaluo.Folio;
+            DTP_FechaAvaluo.SelectedDate = Avaluo.Fecha;
+            TXT_Colonia.Text = inmueble.Colonia;
+            TXT_UsoInmueble.Text = Avaluo.Uso;
+            TXT_Propietario.Text = inmueble.Nombre_Propietario;
+            TXT_Utilidad.Text = (Convert.ToDecimal(TXT_CostoNeto.Text = Avaluo.Costo_Neto.ToString()) + Convert.ToDecimal(TXT_PagoDeDerechos.Text = Avaluo.Pago_Derechos.ToString())).ToString();
         }
     }
 }

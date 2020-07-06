@@ -1,4 +1,5 @@
-﻿using CapaPresentación.Controles;
+﻿using CapaLogica;
+using CapaPresentación.Controles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +23,27 @@ namespace CapaPresentación
     public partial class Pantalla_AvaluosPericial : UserControl
     {
         Menu_Principal2 Mn;
+        Avaluo_Pericial avaluo= new Avaluo_Pericial();
         public Pantalla_AvaluosPericial(object A)
         {
             InitializeComponent();
             Mn = A as Menu_Principal2;
-            DatosPrueba();
+            CargarAvaluos();
         }
-        public void DatosPrueba()
+        public void CargarAvaluos()
         {
-            for(int x=0;x<17;x++)
+            try
             {
-                AvaluoPericial avaluo = new AvaluoPericial();
-                n.Items.Add(avaluo);
+                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelTodos());
+                AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
+                for(int x=0;x<avaluos.Length;x++)
+                {
+                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero);
+                    n.Items.Add(CardAvaluos[x]);
+                }
+            }catch(Exception ex)
+            {
+
             }
         }
 
