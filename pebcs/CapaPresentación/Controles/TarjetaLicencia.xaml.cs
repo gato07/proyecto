@@ -73,7 +73,7 @@ namespace CapaPresentación.Controles
             }
         }
 
-        public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto,string Estado, DateTime date)
+        public void CargaDatosLicencia(int ID2,string etiqueta,string NoLicencia,string folio,string tipoobra,string uso ,string presupuesto)
         {
             try
             {
