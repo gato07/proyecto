@@ -24,10 +24,14 @@ namespace CapaPresentación.Controles
         Avaluo_Pericial Avaluo;
         Cliente cliente;
         Inmueble inmueble;
-        public AvaluoPericial(int ID)
+        Menu_Principal2 Mn;
+        int ID;
+        public AvaluoPericial(int Id,object A)
         {
             InitializeComponent();
-            CargarInfo(ID);
+            Mn = A as Menu_Principal2;
+            ID = Id;
+            CargarInfo(Id);
         }
         public void CargarInfo(int ID)
         {
@@ -41,6 +45,17 @@ namespace CapaPresentación.Controles
             TXT_UsoInmueble.Text = Avaluo.Uso;
             TXT_Propietario.Text = inmueble.Nombre_Propietario;
             TXT_Utilidad.Text = (Convert.ToDecimal(TXT_CostoNeto.Text = Avaluo.Costo_Neto.ToString()) + Convert.ToDecimal(TXT_PagoDeDerechos.Text = Avaluo.Pago_Derechos.ToString())).ToString();
+        }
+
+        private void Card_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Mn.AbrirFormHijo(new Pantalla_InfoAvaluo(ID)); ;
+            }catch(Exception ex)
+            {
+
+            }
         }
     }
 }

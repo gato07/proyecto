@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              mc:Ignorable="d" Height="180" Width="240">
     <Grid>
-        <materialDesign:Card Height="160" Margin="10">
+        <materialDesign:Card Height="160" Margin="10" MouseDoubleClick="Card_MouseDoubleClick">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20*"/>

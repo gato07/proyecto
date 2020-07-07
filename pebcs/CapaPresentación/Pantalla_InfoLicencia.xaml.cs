@@ -282,13 +282,20 @@ namespace CapaPresentación
 
         private void DocActivar_Click(object sender, RoutedEventArgs e)
         {
-            if(DocActivar.IsChecked==true)
+            try
             {
-                ArmadoPaquete.IsEnabled = true;
+                if (DocActivar.IsChecked == true)
+                {
+                    ArmadoPaquete.IsEnabled = true;
+                }
+                else
+                {
+                    ArmadoPaquete.IsEnabled = false;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                ArmadoPaquete.IsEnabled = false;
+
             }
         }
 

@@ -110,8 +110,8 @@
                         <RowDefinition  Height="50"/>
                     </Grid.RowDefinitions>
                     <ToggleButton Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
-                                  Margin="0,0,100,0" Name="Activador" IsChecked="False" />
-                    <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                                  Margin="0,0,100,0" Name="Activador" IsChecked="False" Click="Activador_Click" />
+                    <TextBox materialDesign:HintAssist.Hint="Busqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }" KeyUp="TxtBusqueda_KeyUp"
                              CaretBrush="#52BE80" BorderBrush="#52BE80"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusqueda" IsEnabled="False" />
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="119,4,0,4" IsEnabled="False"
                             Grid.Column="4" Grid.Row="1" Background="#52BE80" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
@@ -123,15 +123,28 @@
                         </StackPanel>
                     </Button>
                     <ComboBox Name="Opciones" Grid.Row="2" Grid.Column="2" IsEnabled="False"
-                          materialDesign:HintAssist.Hint="Opciones de Busqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#52BE80" Height="28">
+                          materialDesign:HintAssist.Hint="Opciones de Busqueda"  Margin="0,0,8,4" BorderBrush="#52BE80" Height="28">
                         <ComboBoxItem
-                            Content="Nombre" />
+                            Content="Clave Catastral" />
                         <ComboBoxItem
-                            Content="Puesto" />
+                            Content="Colonia" />
                         <ComboBoxItem
-                            Content="Correo" />
+                            Content="Cliente" />
                         <ComboBoxItem
-                            Content="Usuario" />
+                            Content="Propietario" />
+                    </ComboBox>
+                    <ComboBox Name="Estados" Grid.Row="2" Grid.Column="3" IsEnabled="False" SelectionChanged="Estados_SelectionChanged"
+                          materialDesign:HintAssist.Hint="Busqueda Por Estado"  Margin="0,0,8,4" BorderBrush="#52BE80" Height="28">
+                        <ComboBoxItem
+                            Content="En Captura" />
+                        <ComboBoxItem
+                            Content="Revision" />
+                        <ComboBoxItem
+                            Content="Observaciones" />
+                        <ComboBoxItem
+                            Content="Autorizado" />
+                        <ComboBoxItem
+                            Content="Entregado" />
                     </ComboBox>
                     <TextBlock Text="Avaluos Periciales" Name="titulo" Foreground="#52BE80" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>
                     <Grid Grid.Row="2" Grid.Column="0" >
