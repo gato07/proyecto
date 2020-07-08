@@ -125,20 +125,7 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXIdEstadoLic(int Id_Estado_Licencia)
-        {
-            try
-            {
-                return dtsSelXIdEstadoLic(Id_Estado_Licencia);
-            }
-            catch (Exception ex)
-            {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Avaluos Periciales X Id_Estado_Licencia";
-                return null;
-            }
-        }
-
-        public DataTable SelLikeNomCliente(string Nombre, int Id_Estado_Licencia = 0)
+        public DataTable SelLikeNomCliente(string Nombre = "", int Id_Estado_Licencia = 0)
         {
             try
             {
@@ -151,7 +138,7 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeCatastral(string Clave_Catastral, int Id_Estado_Licencia = 0)
+        public DataTable SelLikeCatastral(string Clave_Catastral = "", int Id_Estado_Licencia = 0)
         {
             try
             {
@@ -164,7 +151,7 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeNomPropietario(string Nombre_Propietario, int Id_Estado_Licencia = 0)
+        public DataTable SelLikeNomPropietario(string Nombre_Propietario = "", int Id_Estado_Licencia = 0)
         {
             try
             {
@@ -177,7 +164,7 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeColonia(string Colonia, int Id_Estado_Licencia = 0)
+        public DataTable SelLikeColonia(string Colonia = "", int Id_Estado_Licencia = 0)
         {
             try
             {

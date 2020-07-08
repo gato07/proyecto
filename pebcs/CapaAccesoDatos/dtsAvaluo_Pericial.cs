@@ -217,24 +217,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXIdEstadoLic(int Id_Estado_Licencia)
-        {
-            try
-            {
-                DataTable dt = null;
-                Conexion conexion = new Conexion();
-                conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelXIdEstadoLic(" + Id_Estado_Licencia + ");").Tables[0];
-                conexion.Desconectar();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
-        public DataTable dtsSelLikeNomCliente(string Nombre, int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeNomCliente(string Nombre = "", int Id_Estado_Licencia = 0)
         {
             try
             {
@@ -252,7 +235,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeCatastral(string Clave_Catastral, int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeCatastral(string Clave_Catastral = "", int Id_Estado_Licencia = 0)
         {
             try
             {
@@ -270,7 +253,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeNomPropietario(string Nombre_Propietario, int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeNomPropietario(string Nombre_Propietario = "", int Id_Estado_Licencia = 0)
         {
             try
             {
@@ -288,7 +271,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeColonia(string Colonia, int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeColonia(string Colonia = "", int Id_Estado_Licencia = 0)
         {
             try
             {
