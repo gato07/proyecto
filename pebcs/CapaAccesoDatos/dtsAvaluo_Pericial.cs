@@ -21,10 +21,17 @@ namespace CapaAccesoDatos
         public decimal Mts_Construccion { get; set; }
         public decimal Costo_Neto { get; set; }
         public decimal Pago_Derechos { get; set; }
+        public DateTime Fecha_Visita { get; set; }
+        public string Observacion_Visita { get; set; }
+        public DateTime Fecha_Recepcion { get; set; }
+        public string Observacion_Recepcion { get; set; }
+        public DateTime Fecha_Entrega { get; set; }
+        public string Observacion_Entrega { get; set; }
         public bool Escrituras { get; set; }
         public bool Manifestacion { get; set; }
         public bool Oficio_Subdivision { get; set; }
         public bool Oficio_Fusion { get; set; }
+        public bool Plano_Subdivision { get; set; }
         public int Id_Estado_Licencia { get; set; }
         public int Id_Cliente { get; set; }
         public int Clave_Inmueble { get; set; }
@@ -48,10 +55,17 @@ namespace CapaAccesoDatos
                 Mts_Construccion = 0.00m;
                 Costo_Neto = 0.00m;
                 Pago_Derechos = 0.00m;
+                Fecha_Visita = new DateTime();
+                Observacion_Visita = "";
+                Fecha_Recepcion = new DateTime();
+                Observacion_Recepcion = "";
+                Fecha_Entrega = new DateTime();
+                Observacion_Entrega = "";
                 Escrituras = false;
                 Manifestacion = false;
                 Oficio_Subdivision = false;
                 Oficio_Fusion = false;
+                Plano_Subdivision = false;
                 Id_Estado_Licencia = 0;
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
@@ -77,10 +91,17 @@ namespace CapaAccesoDatos
                 Mts_Construccion = 0.00m;
                 Costo_Neto = 0.00m;
                 Pago_Derechos = 0.00m;
+                Fecha_Visita = new DateTime();
+                Observacion_Visita = "";
+                Fecha_Recepcion = new DateTime();
+                Observacion_Recepcion = "";
+                Fecha_Entrega = new DateTime();
+                Observacion_Entrega = "";
                 Escrituras = false;
                 Manifestacion = false;
                 Oficio_Subdivision = false;
                 Oficio_Fusion = false;
+                Plano_Subdivision = false;
                 Id_Estado_Licencia = 0;
                 Id_Cliente = 0;
                 Clave_Inmueble = 0;
@@ -100,10 +121,17 @@ namespace CapaAccesoDatos
                     Mts_Construccion = Convert.ToDecimal(dt.Rows[0]["Mts_Construccion"]);
                     Costo_Neto = Convert.ToDecimal(dt.Rows[0]["Costo_Neto"]);
                     Pago_Derechos = Convert.ToDecimal(dt.Rows[0]["Pago_Derechos"]);
+                    Fecha_Visita = Convert.ToDateTime(dt.Rows[0]["Fecha_Visita"]);
+                    Observacion_Visita = dt.Rows[0]["Observacion_Visita"].ToString();
+                    Fecha_Recepcion = Convert.ToDateTime(dt.Rows[0]["Fecha_Recepcion"]);
+                    Observacion_Recepcion = dt.Rows[0]["Observacion_Recepcion"].ToString();
+                    Fecha_Entrega = Convert.ToDateTime(dt.Rows[0]["Fecha_Entrega"]);
+                    Observacion_Entrega = dt.Rows[0]["Observacion_Entrega"].ToString();
                     Escrituras = Convert.ToBoolean(dt.Rows[0]["Escrituras"]);
                     Manifestacion = Convert.ToBoolean(dt.Rows[0]["Manifestacion"]);
                     Oficio_Subdivision = Convert.ToBoolean(dt.Rows[0]["Oficio_Subdivision"]);
                     Oficio_Fusion = Convert.ToBoolean(dt.Rows[0]["Oficio_Fusion"]);
+                    Plano_Subdivision = Convert.ToBoolean(dt.Rows[0]["Plano_Subdivision"]);
                     Id_Estado_Licencia = Convert.ToInt16(dt.Rows[0]["Id_Estado_Licencia"]);
                     Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
                     Clave_Inmueble = Convert.ToInt16(dt.Rows[0]["Clave_Inmueble"]);
@@ -119,10 +147,11 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsAvaluo_Pericial(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
-            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, bool Escrituras, bool Manifestacion, 
-            bool Oficio_Subdivision, bool Oficio_Fusion, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble, 
-            int Clave_Empleado)
+        public dtsAvaluo_Pericial(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno, 
+            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Visita,
+            string Observacion_Visita, DateTime Fecha_Recepcion, string Observacion_Recepcion, DateTime Fecha_Entrega,
+            string Observacion_Entrega, bool Escrituras, bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion,
+                bool Plano_Subdivision, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
@@ -134,10 +163,17 @@ namespace CapaAccesoDatos
                 this.Mts_Construccion = Mts_Construccion;
                 this.Costo_Neto = Costo_Neto;
                 this.Pago_Derechos = Pago_Derechos;
+                this.Fecha_Visita = Fecha_Visita;
+                this.Observacion_Visita = Observacion_Visita;
+                this.Fecha_Recepcion = Fecha_Recepcion;
+                this.Observacion_Recepcion = Observacion_Recepcion;
+                this.Fecha_Entrega = Fecha_Entrega;
+                this.Observacion_Entrega = Observacion_Entrega;
                 this.Escrituras = Escrituras;
                 this.Manifestacion = Manifestacion;
                 this.Oficio_Subdivision = Oficio_Subdivision;
                 this.Oficio_Fusion = Oficio_Fusion;
+                this.Plano_Subdivision = Plano_Subdivision;
                 this.Id_Estado_Licencia = Id_Estado_Licencia;
                 this.Id_Cliente = Id_Cliente;
                 this.Clave_Inmueble = Clave_Inmueble;
@@ -152,8 +188,8 @@ namespace CapaAccesoDatos
         }
 
         public int dtsInsertar(string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
-            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, bool Escrituras, bool Manifestacion,
-            bool Oficio_Subdivision, bool Oficio_Fusion, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble,
+            decimal Mts_Construccion, DateTime Fecha_Visita, bool Escrituras, bool Manifestacion, bool Oficio_Subdivision, 
+            bool Oficio_Fusion, bool Plano_Subdivision, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble, 
             int Clave_Empleado)
         {
             try
@@ -161,10 +197,10 @@ namespace CapaAccesoDatos
                 int res = 0;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                DataTable dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_Insertar('" + Folio + "','"
-                    + Fecha.ToString("yyyy-MM-dd") + "','" + Uso + "'," + Mts_Terreno + "," + Mts_Construccion
-                    + "," + Costo_Neto + "," + Pago_Derechos + "," + Escrituras + "," + Manifestacion + ","
-                    + Oficio_Subdivision + "," + Oficio_Fusion + "," + Id_Estado_Licencia + "," + Id_Cliente + "," 
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_Insertar('" + Folio + "','" 
+                    + Fecha.ToString("yyyy-MM-dd") + "','" + Uso + "'," + Mts_Terreno + "," + Mts_Construccion + ",'" 
+                    + Fecha_Visita.ToString("yyyy-MM-dd") + "'," + Escrituras + "," + Manifestacion + "," + Oficio_Subdivision 
+                    + "," + Oficio_Fusion + "," + Plano_Subdivision + "," + Id_Estado_Licencia + "," + Id_Cliente + "," 
                     + Clave_Inmueble + "," + Clave_Empleado + ");").Tables[0];
                 if (dt != null)
                     res = Convert.ToInt16(dt.Rows[0]["Ultimo_Id"]);
@@ -178,8 +214,10 @@ namespace CapaAccesoDatos
         }
 
         public bool dtsActualizar(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
-            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, bool Escrituras, bool Manifestacion,
-            bool Oficio_Subdivision, bool Oficio_Fusion, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble)
+            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Visita,
+            string Observacion_Visita, DateTime Fecha_Recepcion, string Observacion_Recepcion, DateTime Fecha_Entrega,
+            string Observacion_Entrega, bool Escrituras, bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion,
+                bool Plano_Subdivision, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble)
         {
             try
             {
@@ -188,9 +226,11 @@ namespace CapaAccesoDatos
                 conexion.Conectar();
                 res = conexion.Consulta_Accion("CALL SP_AvalPeri_Actualizar(" + Numero + ",'" + Folio + "','"
                     + Fecha.ToString("yyyy-MM-dd") + "','" + Uso + "'," + Mts_Terreno + "," + Mts_Construccion
-                    + "," + Costo_Neto + "," + Pago_Derechos + "," + Escrituras + "," + Manifestacion + ","
-                    + Oficio_Subdivision + "," + Oficio_Fusion + "," + Id_Estado_Licencia + "," + Id_Cliente + ","
-                    + Clave_Inmueble + ");");
+                    + "," + Costo_Neto + "," + Pago_Derechos + ",'" + Fecha_Visita.ToString("yyyy-MM-dd") + "','" 
+                    + Observacion_Visita + "','" + Fecha_Recepcion.ToString("yyyy-MM-dd") + "','" + Observacion_Recepcion
+                    + "','" + Fecha_Entrega.ToString("yyyy-MM-dd") + "','" + Observacion_Entrega + "'," + Escrituras + "," 
+                    + Manifestacion + "," + Oficio_Subdivision + "," + Oficio_Fusion + "," + Plano_Subdivision + "," 
+                    + Id_Estado_Licencia + "," + Id_Cliente + "," + Clave_Inmueble + ");");
                 conexion.Desconectar();
                 return res;
             }
