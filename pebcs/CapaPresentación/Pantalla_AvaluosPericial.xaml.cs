@@ -46,11 +46,11 @@ namespace CapaPresentación
 
             }
         }
-        public void CargarAvaluosLikeCatastral(TextBox box)
+        public void CargarAvaluosLikeCatastral(TextBox box,int A)
         {
             try
             {
-                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeCatastral(box.Text));
+                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeCatastral(box.Text,A));
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
@@ -63,11 +63,11 @@ namespace CapaPresentación
 
             }
         }
-        public void CargarAvaluosLikeColonia(TextBox box)
+        public void CargarAvaluosLikeColonia(TextBox box,int A)
         {
             try
             {
-                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeColonia(box.Text));
+                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeColonia(box.Text,A));
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
@@ -80,11 +80,11 @@ namespace CapaPresentación
 
             }
         }
-        public void CargarAvaluosLikeCliente(TextBox box)
+        public void CargarAvaluosLikeCliente(TextBox box, int A)
         {
             try
             {
-                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeNomCliente(box.Text));
+                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeNomCliente(box.Text,A));
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
@@ -97,11 +97,11 @@ namespace CapaPresentación
 
             }
         }
-        public void CargarAvaluosLikePropietario(TextBox box)
+        public void CargarAvaluosLikePropietario(TextBox box, int A)
         {
             try
             {
-                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeNomPropietario(box.Text));
+                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelLikeNomPropietario(box.Text,A));
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
@@ -162,197 +162,46 @@ namespace CapaPresentación
         {
             try
             {
-                if (Opciones.SelectedIndex == 0 || Estados.SelectedIndex == -1)
+                int E=0;
+                if(Estados.SelectedIndex==-1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 0;
                 }
                 else if (Estados.SelectedIndex == 0)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 24;
                 }
                 else if (Estados.SelectedIndex == 1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 25;
                 }
                 else if (Estados.SelectedIndex == 2)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 23;
                 }
-                else if (Estados.SelectedIndex == 3)
+                if (Opciones.SelectedIndex == 0)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 60;
+                    CargarAvaluosLikeCatastral(TxtBusqueda, E);
                 }
-                else if (Estados.SelectedIndex == 4)
+                else if (Opciones.SelectedIndex == 1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 255;
+                    CargarAvaluosLikeColonia(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 2)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 15;
+                    CargarAvaluosLikeCliente(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 3)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 15;
+                    CargarAvaluosLikePropietario(TxtBusqueda, E);
                 }
 
             }
@@ -366,197 +215,52 @@ namespace CapaPresentación
         {
             try
             {
-                if (Opciones.SelectedIndex == 0 || Estados.SelectedIndex == -1)
+                int E = 0;
+                if (Estados.SelectedIndex == -1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 0;
                 }
                 else if (Estados.SelectedIndex == 0)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 24;
                 }
                 else if (Estados.SelectedIndex == 1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 25;
                 }
                 else if (Estados.SelectedIndex == 2)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    E = 23;
                 }
-                else if (Estados.SelectedIndex == 3)
+                if (Opciones.SelectedIndex == -1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 60;
+                    CargarAvaluosLikeCatastral(TxtBusqueda, E);
                 }
-                else if (Estados.SelectedIndex == 4)
+                else if (Opciones.SelectedIndex == 0)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarAvaluos();
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarAvaluosLikeCatastral(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarAvaluosLikeColonia(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikeCliente(TxtBusqueda);
-                    }
-                    else if (Opciones.SelectedIndex == 3)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarAvaluosLikePropietario(TxtBusqueda);
-                    }
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 60;
+                    CargarAvaluosLikeCatastral(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 1)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 255;
+                    CargarAvaluosLikeColonia(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 2)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 15;
+                    CargarAvaluosLikeCliente(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 3)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 15;
+                    CargarAvaluosLikePropietario(TxtBusqueda, E);
                 }
             }
             catch(Exception ex)

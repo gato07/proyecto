@@ -26,9 +26,9 @@ namespace CapaPresentación
         Inmueble inmueble = new Inmueble();
         Avaluo_Pericial Avaluo = new Avaluo_Pericial();
         string[] Documentacion = new string[] {"Escrituras Del Terreno","Manifestación","Oficion De Subdivición",
-                                               "Oficio De Fusión" };
+                                               "Oficio De Fusión","Plano de Subdivición" };
         int IDAvaluo;
-        bool[] dockcheck = new bool[4];
+        bool[] dockcheck = new bool[5];
         int Estado;
         int IDcliente;
         int IDinmueble;
@@ -154,6 +154,7 @@ namespace CapaPresentación
                 }
                 else
                 {
+                    Estado = 23;
                     cargarDocumentacion(null);
                 }
             }catch(Exception ex)
@@ -165,10 +166,10 @@ namespace CapaPresentación
         {
             try
             {
-                if(IDAvaluo==0)
+                if (IDAvaluo == 0)
                 {
-                    IDAvaluo= Avaluo.Insertar(TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text),Convert.ToDecimal(TXT_CostoNeto.Text),Convert.ToDecimal(TXT_PagoDeDerechos.Text),dockcheck[0],dockcheck[1],dockcheck[2],dockcheck[3],Estado, IDcliente, IDinmueble, 1);
-                    if(IDAvaluo==0)
+                    IDAvaluo = Avaluo.Insertar(TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDateTime(DTP_FechaDeVisita.SelectedDate), dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble, 1);
+                    if (IDAvaluo == 0)
                     {
                         MessageBox.Show(Avaluo.Mensaje);
                     }
@@ -178,9 +179,17 @@ namespace CapaPresentación
                         check.Show();
                     }
                 }
-                else if(IDAvaluo!=0)
+                else if (IDAvaluo != 0)
                 {
-                    bool n = Avaluo.Actualizar(IDAvaluo, TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text), Convert.ToDecimal(TXT_PagoDeDerechos.Text), dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], Estado, IDcliente, IDinmueble);
+                    if (DTP_FechaDeEntrga.SelectedDate.ToString() != "" || TXT_ObservacinesDeEntrega.Text != "")
+                    {
+                        Estado = 24;
+                    }
+                    else if (DTP_FechaDeRecepcion.SelectedDate.ToString() != "" || TXT_ObservacionesDeRecepcion.Text !="")
+                    {
+                        Estado = 25;
+                    }
+                    bool n = Avaluo.Actualizar(IDAvaluo, TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text), Convert.ToDecimal(TXT_PagoDeDerechos.Text),Convert.ToDateTime(DTP_FechaDeVisita.SelectedDate),TXT_ObservacionesDeVisita.Text,Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate),TXT_ObservacionesDeRecepcion.Text,Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate),TXT_ObservacinesDeEntrega.Text,dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3],dockcheck[4], Estado, IDcliente, IDinmueble);
                     if(n)
                     {
                         PantallaCheck check = new PantallaCheck();
@@ -271,66 +280,6 @@ namespace CapaPresentación
                 }
             }
             catch(Exception ex)
-            {
-
-            }
-        }
-
-        private void btn_Entregado_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Estado = 1;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void btn_Autorizado_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Estado = 1;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void btn_Observacion_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Estado = 1;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void btn_Revision_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Estado = 1;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void btn_EnCaptura_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Estado = 1;
-            }
-            catch (Exception ex)
             {
 
             }
