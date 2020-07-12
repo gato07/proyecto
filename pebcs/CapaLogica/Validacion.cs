@@ -241,6 +241,19 @@ namespace CapaLogica
             }
         }
 
+        public bool Val_FolioAvaluo(string Valor)
+        {
+            try
+            {
+                Regex expreg = new Regex(@"^LFGV\/[0-9]{2}\-[0-9]{2}\/[0-9]{4}$");
+                return expreg.IsMatch(Valor);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         #endregion Metodos
 
     }

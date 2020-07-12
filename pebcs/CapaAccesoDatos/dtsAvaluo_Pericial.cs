@@ -206,7 +206,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
+        public bool dtsActualizar(int Numero, DateTime Fecha, string Uso, decimal Mts_Terreno,
             decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Recepcion, 
             string Observacion_Recepcion, DateTime Fecha_Entrega, string Observacion_Entrega, bool Escrituras, 
             bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion, bool Plano_Subdivision, 
@@ -217,7 +217,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_AvalPeri_Actualizar(" + Numero + ",'" + Folio + "','"
+                res = conexion.Consulta_Accion("CALL SP_AvalPeri_Actualizar(" + Numero + ",'"
                     + Fecha.ToString("yyyy-MM-dd") + "','" + Uso + "'," + Mts_Terreno + "," + Mts_Construccion
                     + "," + Costo_Neto + "," + Pago_Derechos + ",'"  + Fecha_Recepcion.ToString("yyyy-MM-dd") + "','" 
                     + Observacion_Recepcion + "','" + Fecha_Entrega.ToString("yyyy-MM-dd") + "','" 
@@ -230,6 +230,70 @@ namespace CapaAccesoDatos
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        public void dtsSelXFolio(string Folio)
+        {
+            try
+            {
+                Numero = 0;
+                this.Folio = "";
+                Fecha = new DateTime();
+                Uso = "";
+                Mts_Terreno = 0.00m;
+                Mts_Construccion = 0.00m;
+                Costo_Neto = 0.00m;
+                Pago_Derechos = 0.00m;
+                Fecha_Recepcion = new DateTime();
+                Observacion_Recepcion = "";
+                Fecha_Entrega = new DateTime();
+                Observacion_Entrega = "";
+                Escrituras = false;
+                Manifestacion = false;
+                Oficio_Subdivision = false;
+                Oficio_Fusion = false;
+                Plano_Subdivision = false;
+                Id_Estado_Licencia = 0;
+                Id_Cliente = 0;
+                Clave_Inmueble = 0;
+                Clave_Empleado = 0;
+                Eliminado = false;
+                Existe = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelXFolio('" + Folio + "');").Tables[0];
+                if (dt != null)
+                {
+                    Numero = Convert.ToInt16(dt.Rows[0]["Numero"]);
+                    this.Folio = dt.Rows[0]["Folio"].ToString();
+                    Fecha = Convert.ToDateTime(dt.Rows[0]["Fecha"]);
+                    Uso = dt.Rows[0]["Uso"].ToString();
+                    Mts_Terreno = Convert.ToDecimal(dt.Rows[0]["Mts_Terreno"]);
+                    Mts_Construccion = Convert.ToDecimal(dt.Rows[0]["Mts_Construccion"]);
+                    Costo_Neto = Convert.ToDecimal(dt.Rows[0]["Costo_Neto"]);
+                    Pago_Derechos = Convert.ToDecimal(dt.Rows[0]["Pago_Derechos"]);
+                    Fecha_Recepcion = Convert.ToDateTime(dt.Rows[0]["Fecha_Recepcion"]);
+                    Observacion_Recepcion = dt.Rows[0]["Observacion_Recepcion"].ToString();
+                    Fecha_Entrega = Convert.ToDateTime(dt.Rows[0]["Fecha_Entrega"]);
+                    Observacion_Entrega = dt.Rows[0]["Observacion_Entrega"].ToString();
+                    Escrituras = Convert.ToBoolean(dt.Rows[0]["Escrituras"]);
+                    Manifestacion = Convert.ToBoolean(dt.Rows[0]["Manifestacion"]);
+                    Oficio_Subdivision = Convert.ToBoolean(dt.Rows[0]["Oficio_Subdivision"]);
+                    Oficio_Fusion = Convert.ToBoolean(dt.Rows[0]["Oficio_Fusion"]);
+                    Plano_Subdivision = Convert.ToBoolean(dt.Rows[0]["Plano_Subdivision"]);
+                    Id_Estado_Licencia = Convert.ToInt16(dt.Rows[0]["Id_Estado_Licencia"]);
+                    Id_Cliente = Convert.ToInt16(dt.Rows[0]["Id_Cliente"]);
+                    Clave_Inmueble = Convert.ToInt16(dt.Rows[0]["Clave_Inmueble"]);
+                    Clave_Empleado = Convert.ToInt16(dt.Rows[0]["Clave_Empleado"]);
+                    Eliminado = Convert.ToBoolean(dt.Rows[0]["Eliminado"]);
+                    Existe = true;
+                }
+                conexion.Desconectar();
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

@@ -75,12 +75,102 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Avaluo Pericial, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Folio, Fecha, Uso, Mts_Terreno,Mts_Construccion, Costo_Neto, Pago_Derechos, 
-                    Fecha_Recepcion, Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, Escrituras,
-                    Manifestacion, Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia, 
-                    Id_Cliente, Clave_Inmueble, Clave_Empleado);
-                if (res > 0)
-                    Mensaje = "El Avaluo Pericial fue registrado satisfactoriamente";
+                Avaluo_Pericial avaper = new Avaluo_Pericial();
+                avaper.SelXFolio(Folio);
+                if (avaper.Existe == false)
+                {
+                    if (validacion.Val_FolioAvaluo(Folio))
+                    {
+                        if (validacion.Val_Texto1(Uso, 1, 30))
+                        {
+                            if (Mts_Terreno >= 0m && Mts_Terreno <= 999999.99m)
+                            {
+                                if (Mts_Construccion >= 0m && Mts_Construccion <= 999999.99m)
+                                {
+                                    if (Costo_Neto >= 0.00m && Costo_Neto <= 9999999.99m)
+                                    {
+                                        if (Pago_Derechos >= 0.00m && Pago_Derechos <= 9999999.99m)
+                                        {
+                                            if (validacion.Val_Texto3(Observacion_Recepcion, 0, 255))
+                                            {
+                                                if (validacion.Val_Texto3(Observacion_Entrega, 0, 255))
+                                                {
+                                                    Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
+                                                    if (estlic.Existe)
+                                                    {
+                                                        Cliente cliente = new Cliente(Id_Cliente);
+                                                        if (cliente.Existe)
+                                                        {
+                                                            Inmueble inmueble = new Inmueble(Clave_Inmueble);
+                                                            if (inmueble.Existe)
+                                                            {
+                                                                Empleado empleado = new Empleado(Clave_Empleado);
+                                                                if (empleado.Existe)
+                                                                {
+                                                                    res = dtsInsertar(Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion,
+                                                                        Costo_Neto, Pago_Derechos, Fecha_Recepcion, Observacion_Recepcion,
+                                                                        Fecha_Entrega, Observacion_Entrega, Escrituras, Manifestacion,
+                                                                        Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision,
+                                                                        Id_Estado_Licencia, Id_Cliente, Clave_Inmueble, Clave_Empleado);
+                                                                    if (res > 0)
+                                                                        Mensaje = "El Avaluo Pericial fue registrado satisfactoriamente";
+                                                                }
+                                                                else
+                                                                    Mensaje = "No existe algún Empleado con la Clave indicada, ingrese una Clave real";
+                                                            }
+                                                            else
+                                                                Mensaje = "No existe algún Inmueble con la Clave indicada, ingrese una Clave real";
+                                                        }
+                                                        else
+                                                            Mensaje = "No existe algún Cliente con el Id indicado, ingrese un Id real";
+                                                    }
+                                                    else
+                                                        Mensaje = "No existe algún Estado de Licencia con Id indicado, ingrese un Id real";
+                                                }
+                                                else
+                                                    Mensaje = "El campo de Observación de Entrega debe cumplir:\n\n- Solo"
+                                                        + " puede contener caracteres alfabéticos, númericos, los simbolos"
+                                                        + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido del"
+                                                        + " campo es de 0 hasta 255 caracteres.";
+                                            }
+                                            else
+                                                Mensaje = "El campo de Observación de Recepción debe cumplir:\n\n- Solo"
+                                                    + " puede contener caracteres alfabéticos, númericos, los simbolos"
+                                                    + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido del"
+                                                    + " campo es de 0 hasta 255 caracteres.";
+                                        }
+                                        else
+                                            Mensaje = "El campo de Pago de Derechos debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                                + " contener valores númericos con dos puntos decimales.\n- El intervalo de"
+                                                + " valores permitidos en el campo va desde $0.00 hasta $9,999,999.99";
+                                    }
+                                    else
+                                        Mensaje = "El campo de Costo Neto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                            + " contener valores númericos con dos puntos decimales.\n- El intervalo de"
+                                            + " valores permitidos en el campo va desde $0.00 hasta $9,999,999.99";
+                                }
+                                else
+                                    Mensaje = "El campo de Mts. de Construcción debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                        + " puede contener valores númericos con dos puntos decimales.\n- El intervalo de valores"
+                                        + " permitidos en el campo va desde 0.00 hasta 999,999.99";
+                            }
+                            else
+                                Mensaje = "El campo de Mts. de Terreno debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                    + " puede contener valores númericos con dos puntos decimales.\n- El intervalo de valores"
+                                    + " permitidos en el campo va desde 0.00 hasta 999,999.99";
+                        }
+                        else
+                            Mensaje = "El campo de Uso debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                                + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1"
+                                + " hasta 30 caracteres.";
+                    }
+                    else
+                        Mensaje = "El campo de Folio debe cumplir:\n\n- No puede quedar vacío.\n- El formato valido de"
+                            + " caracteres es LFGV/##-##/####.\n- El unico tamaño permitido del campo es de 15 caracteres.";
+                }
+                else
+                    Mensaje = "No puede dar de alta este Avaluo Pericial con el Folio indicado ya que hay otro avaluo"
+                        + " existente en la base de datos que lo tiene asignado.";
                 return res;
             }
             catch (Exception ex)
@@ -91,7 +181,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
+        public bool Actualizar(int Numero, DateTime Fecha, string Uso, decimal Mts_Terreno,
             decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Recepcion,
             string Observacion_Recepcion, DateTime Fecha_Entrega, string Observacion_Entrega, bool Escrituras,
             bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion, bool Plano_Subdivision,
@@ -103,12 +193,89 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Avaluo Pericial, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion, Costo_Neto, Pago_Derechos,
-                    Fecha_Recepcion, Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, Escrituras, 
-                    Manifestacion, Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia,
-                    Id_Cliente, Clave_Inmueble);
-                if (res)
-                    Mensaje = "Los datos del Avaluo Pericial fueron actualizados satisfactoriamente";
+                Avaluo_Pericial avaper = new Avaluo_Pericial(Numero);
+                if(avaper.Existe)
+                {
+                    if (validacion.Val_Texto1(Uso, 1, 30))
+                    {
+                        if (Mts_Terreno >= 0m && Mts_Terreno <= 999999.99m)
+                        {
+                            if (Mts_Construccion >= 0m && Mts_Construccion <= 999999.99m)
+                            {
+                                if (Costo_Neto >= 0.00m && Costo_Neto <= 9999999.99m)
+                                {
+                                    if (Pago_Derechos >= 0.00m && Pago_Derechos <= 9999999.99m)
+                                    {
+                                        if (validacion.Val_Texto3(Observacion_Recepcion, 0, 255))
+                                        {
+                                            if (validacion.Val_Texto3(Observacion_Entrega, 0, 255))
+                                            {
+                                                Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
+                                                if (estlic.Existe)
+                                                {
+                                                    Cliente cliente = new Cliente(Id_Cliente);
+                                                    if (cliente.Existe)
+                                                    {
+                                                        Inmueble inmueble = new Inmueble(Clave_Inmueble);
+                                                        if (inmueble.Existe)
+                                                        {
+                                                            res = dtsActualizar(Numero, Fecha, Uso, Mts_Terreno, 
+                                                                Mts_Construccion, Costo_Neto, Pago_Derechos, Fecha_Recepcion, 
+                                                                Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, 
+                                                                Escrituras, Manifestacion, Oficio_Subdivision, Oficio_Fusion, 
+                                                                Plano_Subdivision, Id_Estado_Licencia, Id_Cliente, Clave_Inmueble);
+                                                            if (res)
+                                                                Mensaje = "Los datos del Avaluo Pericial fueron actualizados satisfactoriamente";
+                                                        }
+                                                        else
+                                                            Mensaje = "No existe algún Inmueble con la Clave indicada, ingrese una Clave real";
+                                                    }
+                                                    else
+                                                        Mensaje = "No existe algún Cliente con el Id indicado, ingrese un Id real";
+                                                }
+                                                else
+                                                    Mensaje = "No existe algún Estado de Licencia con Id indicado, ingrese un Id real";
+                                            }
+                                            else
+                                                Mensaje = "El campo de Observación de Entrega debe cumplir:\n\n- Solo"
+                                                    + " puede contener caracteres alfabéticos, númericos, los simbolos"
+                                                    + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido del"
+                                                    + " campo es de 0 hasta 255 caracteres.";
+                                        }
+                                        else
+                                            Mensaje = "El campo de Observación de Recepción debe cumplir:\n\n- Solo"
+                                                + " puede contener caracteres alfabéticos, númericos, los simbolos"
+                                                + " °¡!#$%&/=¿?,;.:- y espacios en blanco.\n- El tamaño valido del"
+                                                + " campo es de 0 hasta 255 caracteres.";
+                                    }
+                                    else
+                                        Mensaje = "El campo de Pago de Derechos debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                            + " contener valores númericos con dos puntos decimales.\n- El intervalo de"
+                                            + " valores permitidos en el campo va desde $0.00 hasta $9,999,999.99";
+                                }
+                                else
+                                    Mensaje = "El campo de Costo Neto debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede"
+                                        + " contener valores númericos con dos puntos decimales.\n- El intervalo de"
+                                        + " valores permitidos en el campo va desde $0.00 hasta $9,999,999.99";
+                            }
+                            else
+                                Mensaje = "El campo de Mts. de Construcción debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                    + " puede contener valores númericos con dos puntos decimales.\n- El intervalo de valores"
+                                    + " permitidos en el campo va desde 0.00 hasta 999,999.99";
+                        }
+                        else
+                            Mensaje = "El campo de Mts. de Terreno debe cumplir:\n\n- No puede quedar vacío.\n- Solo"
+                                + " puede contener valores númericos con dos puntos decimales.\n- El intervalo de valores"
+                                + " permitidos en el campo va desde 0.00 hasta 999,999.99";
+                    }
+                    else
+                        Mensaje = "El campo de Uso debe cumplir:\n\n- No puede quedar vacío.\n- Solo puede contener"
+                            + " caracteres alfabéticos y espacios en blanco.\n- El tamaño valido del campo es de 1"
+                            + " hasta 30 caracteres.";
+                }
+                else
+                    Mensaje = "No existe algún Avaluo Pericial registrado en la base de datos con ese Número,"
+                        + " por lo cual no se actualizará.";
                 return res;
             }
             catch (Exception ex)
@@ -116,6 +283,18 @@ namespace CapaLogica
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Avaluo Pericial, es posible"
                    + " que no se hayan modificado los datos correctamente";
                 return false;
+            }
+        }
+
+        public void SelXFolio(string Folio)
+        {
+            try
+            {
+                dtsSelXFolio(Folio);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error al querer consultar a los Avaluos Periciales por Folio";
             }
         }
 
