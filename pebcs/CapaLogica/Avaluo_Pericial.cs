@@ -45,14 +45,13 @@ namespace CapaLogica
         }
 
         public Avaluo_Pericial(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
-            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Visita,
-            string Observacion_Visita, DateTime Fecha_Recepcion, string Observacion_Recepcion, DateTime Fecha_Entrega,
-            string Observacion_Entrega, bool Escrituras, bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion,
-                bool Plano_Subdivision, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
-            base(Numero, Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion, Costo_Neto, Pago_Derechos, Fecha_Visita, 
-                Observacion_Visita, Fecha_Recepcion, Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, Escrituras, 
-                Manifestacion, Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia, Id_Cliente, 
-                Clave_Inmueble, Clave_Empleado)
+            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Recepcion,
+            string Observacion_Recepcion, DateTime Fecha_Entrega, string Observacion_Entrega, bool Escrituras,
+            bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion, bool Plano_Subdivision,
+            int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
+            base(Numero, Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion, Costo_Neto, Pago_Derechos, Fecha_Recepcion,
+            Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, Escrituras, Manifestacion, Oficio_Subdivision, 
+            Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia, Id_Cliente, Clave_Inmueble, Clave_Empleado)
         {
             try
             {
@@ -65,9 +64,10 @@ namespace CapaLogica
         }
 
         public int Insertar(string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
-            decimal Mts_Construccion, DateTime Fecha_Visita, bool Escrituras, bool Manifestacion, bool Oficio_Subdivision,
-            bool Oficio_Fusion, bool Plano_Subdivision, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble,
-            int Clave_Empleado)
+            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Recepcion,
+            string Observacion_Recepcion, DateTime Fecha_Entrega, string Observacion_Entrega, bool Escrituras,
+            bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion, bool Plano_Subdivision,
+            int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
         {
             try
             {
@@ -75,9 +75,10 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Avaluo Pericial, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion, Fecha_Visita, Escrituras, Manifestacion, 
-                    Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia, Id_Cliente, Clave_Inmueble,
-                    Clave_Empleado);
+                res = dtsInsertar(Folio, Fecha, Uso, Mts_Terreno,Mts_Construccion, Costo_Neto, Pago_Derechos, 
+                    Fecha_Recepcion, Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, Escrituras,
+                    Manifestacion, Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia, 
+                    Id_Cliente, Clave_Inmueble, Clave_Empleado);
                 if (res > 0)
                     Mensaje = "El Avaluo Pericial fue registrado satisfactoriamente";
                 return res;
@@ -91,10 +92,10 @@ namespace CapaLogica
         }
 
         public bool Actualizar(int Numero, string Folio, DateTime Fecha, string Uso, decimal Mts_Terreno,
-            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Visita,
-            string Observacion_Visita, DateTime Fecha_Recepcion, string Observacion_Recepcion, DateTime Fecha_Entrega,
-            string Observacion_Entrega, bool Escrituras, bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion,
-                bool Plano_Subdivision, int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble)
+            decimal Mts_Construccion, decimal Costo_Neto, decimal Pago_Derechos, DateTime Fecha_Recepcion,
+            string Observacion_Recepcion, DateTime Fecha_Entrega, string Observacion_Entrega, bool Escrituras,
+            bool Manifestacion, bool Oficio_Subdivision, bool Oficio_Fusion, bool Plano_Subdivision,
+            int Id_Estado_Licencia, int Id_Cliente, int Clave_Inmueble)
         {
             try
             {
@@ -102,10 +103,10 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Avaluo Pericial, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion, Costo_Neto, Pago_Derechos, 
-                    Fecha_Visita, Observacion_Visita, Fecha_Recepcion, Observacion_Recepcion, Fecha_Entrega, 
-                    Observacion_Entrega, Escrituras, Manifestacion, Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, 
-                    Id_Estado_Licencia, Id_Cliente, Clave_Inmueble);
+                res = dtsActualizar(Numero, Folio, Fecha, Uso, Mts_Terreno, Mts_Construccion, Costo_Neto, Pago_Derechos,
+                    Fecha_Recepcion, Observacion_Recepcion, Fecha_Entrega, Observacion_Entrega, Escrituras, 
+                    Manifestacion, Oficio_Subdivision, Oficio_Fusion, Plano_Subdivision, Id_Estado_Licencia,
+                    Id_Cliente, Clave_Inmueble);
                 if (res)
                     Mensaje = "Los datos del Avaluo Pericial fueron actualizados satisfactoriamente";
                 return res;
@@ -207,10 +208,6 @@ namespace CapaLogica
                         avaluo.Costo_Neto = Convert.ToDecimal(renglon["Costo_Neto"]);
                     if (Dt.Columns.Contains("Pago_Derechos"))
                         avaluo.Pago_Derechos = Convert.ToDecimal(renglon["Pago_Derechos"]);
-                    if (Dt.Columns.Contains("Fecha_Visita"))
-                        avaluo.Fecha_Visita = Convert.ToDateTime(renglon["Fecha_Visita"]);
-                    if (Dt.Columns.Contains("Observacion_Visita"))
-                        avaluo.Observacion_Visita = renglon["Observacion_Visita"].ToString();
                     if (Dt.Columns.Contains("Fecha_Recepcion"))
                         avaluo.Fecha_Recepcion = Convert.ToDateTime(renglon["Fecha_Recepcion"]);
                     if (Dt.Columns.Contains("Observacion_Recepcion"))
