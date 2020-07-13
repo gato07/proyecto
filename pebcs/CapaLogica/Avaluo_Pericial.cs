@@ -28,7 +28,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Avaluo_Pericial";
+                Mensaje = "Ocurrio un error en el constructor del Avaluo Pericial";
             }
         }
 
@@ -40,7 +40,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Avaluo_Pericial";
+                Mensaje = "Ocurrio un error en el constructor del Avaluo Pericial";
             }
         }
 
@@ -59,7 +59,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Avaluo_Pericial";
+                Mensaje = "Ocurrio un error en el constructor del Avaluo Pericial";
             }
         }
 

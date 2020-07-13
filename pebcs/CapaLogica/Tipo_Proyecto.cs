@@ -28,7 +28,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Tipo_Proyecto";
+                Mensaje = "Ocurrio un error en el constructor del Tipo de Proyecto";
             }
         }
 
@@ -40,7 +40,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Tipo_Proyecto";
+                Mensaje = "Ocurrio un error en el constructor del Tipo de Proyecto";
             }
         }
 
@@ -53,7 +53,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Tipo_Proyecto";
+                Mensaje = "Ocurrio un error en el constructor del Tipo de Proyecto";
             }
         }
 
@@ -65,7 +65,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Tipos_Proyecto";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Tipos de Proyecto";
                 return null;
             }
         }
@@ -93,7 +93,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en la construcción del arreglo de Tipos_Proyecto";
+                Mensaje = "Ocurrio un error en la construcción del arreglo de Tipos de Proyecto";
                 return new Tipo_Proyecto[0];
             }
         }

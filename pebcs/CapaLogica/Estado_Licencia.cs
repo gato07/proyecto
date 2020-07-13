@@ -28,7 +28,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Estado_Licencia";
+                Mensaje = "Ocurrio un error en el constructor del Estado de Licencia";
             }
         }
 
@@ -40,7 +40,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Estado_Licencia";
+                Mensaje = "Ocurrio un error en el constructor del Estado de Licencia";
             }
         }
 
@@ -52,7 +52,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Estado_Licencia";
+                Mensaje = "Ocurrio un error en el constructor del Estado de Licencia";
             }
         }
 
@@ -76,7 +76,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Estados_Licencia";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Estados de Licencia";
                 return null;
             }
         }
@@ -106,7 +106,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en la construcción del arreglo de Estados_Licencia";
+                Mensaje = "Ocurrio un error en la construcción del arreglo de Estados de Licencia";
                 return new Estado_Licencia[0];
             }
         }

@@ -28,7 +28,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor de la Documentacion_Licencia";
+                Mensaje = "Ocurrio un error en el constructor de la Documentacion de Licencia";
             }
         }
 
@@ -41,7 +41,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor de la Documentacion_Licencia";
+                Mensaje = "Ocurrio un error en el constructor de la Documentacion de Licencia";
             }
         }
 
@@ -55,7 +55,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor de la Documentacion_Licencia";
+                Mensaje = "Ocurrio un error en el constructor de la Documentacion de Licencia";
             }
         }
 
@@ -66,7 +66,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de dar de alta a la Documentacion_Licencia, es posible que no se haya insertado"
+                Mensaje = "Ocurrio un error en el proceso de dar de alta a la Documentacion de Licencia, es posible que no se haya insertado"
                     + " correctamente";
                 Proyecto_Licencia prolic = new Proyecto_Licencia(Numero_Proyecto_Licencia);
                 if(prolic.Existe)
@@ -84,7 +84,7 @@ namespace CapaLogica
                                 {
                                     res = dtsInsertar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
                                     if (res)
-                                        Mensaje = "La Documentacion_Licencia fue registrada satisfactoriamente";
+                                        Mensaje = "La Documentacion de Licencia fue registrada satisfactoriamente";
                                 }
                                 else
                                     Mensaje = "El campo de Nota debe cumplir:\n\n- Solo puede contener caracteres"
@@ -111,7 +111,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de dar de alta a la Documentacion_Licencia, es posible que no se haya insertado"
+                Mensaje = "Ocurrio un error en el proceso de dar de alta a la Documentacion de Licencia, es posible que no se haya insertado"
                     + " correctamente";
                 return false;
             }
@@ -124,7 +124,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización de datos de la Documentacion_Licencia, es posible"
+                Mensaje = "Ocurrio un error en el proceso de actualización de datos de la Documentacion de Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
                 Documentacion_Licencia doclic = new Documentacion_Licencia(Numero_Proyecto_Licencia,
                             Id_Estado_Licencia);
@@ -136,7 +136,7 @@ namespace CapaLogica
                         {
                             res = dtsActualizar(Numero_Proyecto_Licencia, Id_Estado_Licencia, Nombre_Documento, Fecha, Nota);
                             if (res)
-                                Mensaje = "Los datos de la Documentacion_Licencia fueron actualizados satisfactoriamente";
+                                Mensaje = "Los datos de la Documentacion de Licencia fueron actualizados satisfactoriamente";
                         }
                         else
                             Mensaje = "El campo de Nota debe cumplir:\n\n- Solo puede contener caracteres"
@@ -155,7 +155,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización de datos de la Documentacion_Licencia, es posible"
+                Mensaje = "Ocurrio un error en el proceso de actualización de datos de la Documentacion de Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
                 return false;
             }
@@ -167,16 +167,16 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Mensaje = "Ocurrio un error en el proceso de eliminación de la Documentacion_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de eliminación de la Documentacion de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 res = dtsEliminar(Numero_Proyecto_Licencia, Id_Estado_Licencia);
                 if (res)
-                    Mensaje = "La Documentacion_Licencia fue eliminada satisfactoriamente";
+                    Mensaje = "La Documentacion de Licencia fue eliminada satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de eliminación de la Documentacion_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de eliminación de la Documentacion de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
@@ -191,16 +191,16 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Mensaje = "Ocurrio un error en el proceso de activación de la Documentacion_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de activación de la Documentacion de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 res = dtsActivar(Numero_Proyecto_Licencia, Id_Estado_Licencia);
                 if (res)
-                    Mensaje = "La Documentacion_Licencia fue activada satisfactoriamente";
+                    Mensaje = "La Documentacion de Licencia fue activada satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de activación de la Documentacion_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de activación de la Documentacion de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
@@ -217,7 +217,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones_Licencia activas";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones de Licencia activas";
                 return null;
             }
         }
@@ -233,7 +233,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones_Licencia eliminadas";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones de Licencia eliminadas";
                 return null;
             }
         }
@@ -248,7 +248,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones_Licencia X Numero"
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todas las Documentaciones de Licencia X Numero"
                     + " de proyecto de licencia";
                 return null;
             }
@@ -283,7 +283,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en la construcción del arreglo de Documentaciones_Licencia";
+                Mensaje = "Ocurrio un error en la construcción del arreglo de Documentaciones de Licencia";
                 return new Documentacion_Licencia[0];
             }
         }

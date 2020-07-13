@@ -28,7 +28,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Proyecto_Licencia";
+                Mensaje = "Ocurrio un error en el constructor del Proyecto de Licencia";
             }
         }
 
@@ -40,7 +40,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Proyecto_Licencia";
+                Mensaje = "Ocurrio un error en el constructor del Proyecto de Licencia";
             }
         }
 
@@ -58,7 +58,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Proyecto_Licencia";
+                Mensaje = "Ocurrio un error en el constructor del Proyecto de Licencia";
             }
         }
 
@@ -70,7 +70,7 @@ namespace CapaLogica
             {
                 int res = 0;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
+                Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto de Licencia, es posible que no se haya insertado"
                     + " correctamente";
                 Estado_Licencia estlic = new Estado_Licencia(Id_Estado_Licencia);
                 if(estlic.Existe)
@@ -91,7 +91,7 @@ namespace CapaLogica
                                         Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo, 
                                         Id_Estado_Licencia, Numero_Presupuesto, Id_Cliente, Clave_Inmueble, Clave_Empleado);
                                     if (res > 0)
-                                        Mensaje = "El Proyecto Licencia fue registrado satisfactoriamente";
+                                        Mensaje = "El Proyecto de Licencia fue registrado satisfactoriamente";
                                 }
                                 else
                                     Mensaje = "No existe algún Empleado con la Clave indicada, ingrese una Clave real";
@@ -106,12 +106,12 @@ namespace CapaLogica
                         Mensaje = "No existe algún Presupuesto con el Numero indicado, ingrese un Número real";
                 }
                 else
-                    Mensaje = "No existe algún Estado de Proyecto_Licencia con el Id indicado, ingrese un Id real";
+                    Mensaje = "No existe algún Estado de Proyecto de Licencia con el Id indicado, ingrese un Id real";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto_Licencia, es posible que no se haya insertado"
+                Mensaje = "Ocurrio un error en el proceso de dar de alta al Proyecto de Licencia, es posible que no se haya insertado"
                     + " correctamente";
                 return 0;
             }
@@ -125,7 +125,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto_Licencia, es posible"
+                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto de Licencia, es posible"
                    + " que no se hayan modificado los datos correctamente";
                 Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
                 if (prolic.Existe)
@@ -133,15 +133,15 @@ namespace CapaLogica
                     res = dtsActualizar(Numero, Escrituras, Constancia_Alineamiento, Pago_Predial, Recibo_Agua, 
                         Planos_Arquitectonicos, Planos_Estructurales, Planos_Instalaciones, Memoria_Calculo);
                     if (res)
-                        Mensaje = "Los datos de la documentación del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                        Mensaje = "Los datos de la documentación del Proyecto de Licencia fueron actualizados satisfactoriamente";
                 }
                 else
-                    Mensaje = "No existe algún Proyecto_Licencia con el Número indicado, por lo cual no se actualizara";
+                    Mensaje = "No existe algún Proyecto de Licencia con el Número indicado, por lo cual no se actualizara";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto_Licencia, es posible"
+                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Proyecto de Licencia, es posible"
                     + " que no se hayan modificado los datos correctamente";
                 return false;
             }
@@ -154,7 +154,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto de Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
                 Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
                 if (prolic.Existe)
@@ -168,10 +168,10 @@ namespace CapaLogica
                             {
                                 res = dtsActualizarSeguimiento(Numero, Folio, Numero_Licencia, Vigencia, Id_Estado_Licencia);
                                 if (res)
-                                    Mensaje = "Los datos del Seguimiento del Proyecto_Licencia fueron actualizados satisfactoriamente";
+                                    Mensaje = "Los datos del Seguimiento del Proyecto de Licencia fueron actualizados satisfactoriamente";
                             }
                             else
-                                Mensaje = "No existe algún Estado de Proyecto_Licencia con el Id indicado, ingrese un Id real";
+                                Mensaje = "No existe algún Estado de Proyecto de Licencia con el Id indicado, ingrese un Id real";
                         }
                         else
                             Mensaje = "El campo de Número de licencia debe cumplir:\n- El formato del campo es ####/##."
@@ -182,12 +182,12 @@ namespace CapaLogica
                         + "\n- El tamaño permitido del campo es de 4 hasta 7 caracteres.";
                 }
                 else
-                    Mensaje = "No existe algún Proyecto_Licencia con el Número indicado, por lo cual no se actualizara";
+                    Mensaje = "No existe algún Proyecto de Licencia con el Número indicado, por lo cual no se actualizara";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Seguimiento del Proyecto de Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
                 return false;
             }
@@ -199,8 +199,8 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto_Licencia,"
-                    +" es posible que no se hayan modificado los datos correctamente";
+                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto de Licencia,"
+                    + " es posible que no se hayan modificado los datos correctamente";
                 Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
                 if (prolic.Existe)
                 {
@@ -209,18 +209,18 @@ namespace CapaLogica
                     {
                         res = dtsActualizarIdEstadoLic(Numero, Id_Estado_Licencia);
                         if (res)
-                            Mensaje = "El Estado de Proyecto_Licencia fue actualizado satisfactoriamente";
+                            Mensaje = "El Estado del Proyecto de Licencia fue actualizado satisfactoriamente";
                     }
                     else
-                        Mensaje = "No existe algún Estado de Proyecto_Licencia con el Id indicado, ingrese un Id real";
+                        Mensaje = "No existe algún Estado de Proyecto de Licencia con el Id indicado, ingrese un Id real";
                 }
                 else
-                    Mensaje = "No existe algún Proyecto_Licencia con el Número indicado, por lo cual no se actualizara";
+                    Mensaje = "No existe algún Proyecto de Licencia con el Número indicado, por lo cual no se actualizara";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Estado de la licencia del Proyecto de Licencia,"
                     + " es posible que no se hayan modificado los datos correctamente";
                 return false;
             }
@@ -232,7 +232,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización del Numero_Proyecto_Original de la licencia  del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Numero de Proyecto Original de la Licencia  del Proyecto de Licencia,"
                     + " es posible que no se haya modificado correctamente";
                 Proyecto_Licencia prolic = new Proyecto_Licencia(Numero);
                 if (prolic.Existe)
@@ -242,18 +242,18 @@ namespace CapaLogica
                     {
                         res = dtsActualizarNumProOriginal(Numero, Numero_Proyecto_Original);
                         if (res)
-                            Mensaje = "Se ha agregado la prórroga al Proyecto_Licencia satisfactoriamente";
+                            Mensaje = "Se ha agregado la prórroga al Proyecto de Licencia satisfactoriamente";
                     }
                     else
                         Mensaje = "El Proyecto Licencia que sera la prórroga no existe";
                 }
                 else
-                    Mensaje = "El Proyecto Licencia al que se le quiere agregar la prórroga no existe";
+                    Mensaje = "El Proyecto de Licencia al que se le quiere agregar la prórroga no existe";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización del Numero_Proyecto_Original de la licencia  del Proyecto_Licencia,"
+                Mensaje = "Ocurrio un error en el proceso de actualización del Numero de Proyecto Original de la Licencia  del Proyecto de Licencia,"
                     + " es posible que no se haya modificado correctamente";
                 return false;
             }
@@ -264,16 +264,16 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Mensaje = "Ocurrio un error en el proceso de eliminación del Proyecto_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de eliminación del Proyecto de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 res = dtsEliminar(Numero);
                 if (res)
-                    Mensaje = "El Proyecto_Licencia fue eliminado satisfactoriamente";
+                    Mensaje = "El Proyecto de Licencia fue eliminado satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de eliminación del Proyecto_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de eliminación del Proyecto de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
@@ -284,16 +284,16 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Mensaje = "Ocurrio un error en el proceso de activación del Proyecto_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de activación del Proyecto de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 res = dtsActivar(Numero);
                 if (res)
-                    Mensaje = "El Proyecto_Licencia fue activado satisfactoriamente";
+                    Mensaje = "El Proyecto de Licencia fue activado satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de activación del Proyecto_Licencia, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de activación del Proyecto de Licencia, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
@@ -307,7 +307,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia X Numero de Presupuesto";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia X Numero de Presupuesto";
             }
         }
 
@@ -319,7 +319,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia No Terminados";
                 return null;
             }
         }
@@ -332,7 +332,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia Terminados";
                 return null;
             }
         }
@@ -345,7 +345,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados X Etiqueta";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia No Terminados X Etiqueta";
                 return null;
             }
         }
@@ -358,7 +358,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados X Etiqueta";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia Terminados X Etiqueta";
                 return null;
             }
         }
@@ -371,7 +371,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados X Clave Catastral";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia No Terminados X Clave Catastral";
                 return null;
             }
         }
@@ -384,7 +384,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados X Clave Catastral";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia Terminados X Clave Catastral";
                 return null;
             }
         }
@@ -397,7 +397,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia No Terminados X Nombre del Propietario";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia No Terminados X Nombre del Propietario";
                 return null;
             }
         }
@@ -410,7 +410,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos_Licencia Terminados X Nombre del Propietario";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyectos de Licencia Terminados X Nombre del Propietario";
                 return null;
             }
         }
@@ -477,7 +477,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en la construcción del arreglo de Proyectos_Licencia";
+                Mensaje = "Ocurrio un error en la construcción del arreglo de Proyectos de Licencia";
                 return new Proyecto_Licencia[0];
             }
         }

@@ -28,7 +28,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Presupuesto_Contenido";
+                Mensaje = "Ocurrio un error en el constructor del Contenido del Presupuesto";
             }
         }
 
@@ -40,7 +40,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Presupuesto_Contenido";
+                Mensaje = "Ocurrio un error en el constructor del Contenido del Presupuesto";
             }
         }
 
@@ -53,7 +53,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el constructor del Presupuesto_Contenido";
+                Mensaje = "Ocurrio un error en el constructor del Contenido del Presupuesto";
             }
         }
 
@@ -63,7 +63,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto_Contenido, es posible que no se haya insertado"
+                Mensaje = "Ocurrio un error en el proceso de dar de alta al Contenido del Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
                 Presupuesto presupuesto = new Presupuesto(Numero_Presupuesto);
                 if(presupuesto.Existe)
@@ -112,7 +112,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de dar de alta al Presupuesto_Contenido, es posible que no se haya insertado"
+                Mensaje = "Ocurrio un error en el proceso de dar de alta al Contenido del Presupuesto, es posible que no se haya insertado"
                     + " correctamente";
                 return false;
             }
@@ -124,7 +124,7 @@ namespace CapaLogica
             {
                 bool res = false;
                 Validacion validacion = new Validacion();
-                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Presupuesto_Contenido, es posible"
+                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Contenido del Presupuesto, es posible"
                    + " que no se hayan modificado los datos correctamente";
                 Presupuesto_Contenido precont = new Presupuesto_Contenido(Numero_Presupuesto, Numero_Concepto);
                 if (precont.Existe)
@@ -161,7 +161,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Presupuesto_Contenido, es posible"
+                Mensaje = "Ocurrio un error en el proceso de actualización de datos del Contenido del Presupuesto, es posible"
                    + " que no se hayan modificado los datos correctamente";
                 return false;
             }
@@ -172,16 +172,16 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Mensaje = "Ocurrio un error en el proceso de eliminación del Presupuesto_Contenido, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de eliminación del Contenido del Presupuesto, es posible que no se haya borrado"
                     + " correctamente";
                 res = dtsEliminar(Numero_Presupuesto, Numero_Concepto);
                 if (res)
-                    Mensaje = "El Presupuesto_Contenido fue eliminado satisfactoriamente";
+                    Mensaje = "El Contenido del Presupuesto fue eliminado satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de eliminación del Presupuesto_Contenido, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de eliminación del Contenido del Presupuesto, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
@@ -192,16 +192,16 @@ namespace CapaLogica
             try
             {
                 bool res = false;
-                Mensaje = "Ocurrio un error en el proceso de activación del Presupuesto_Contenido, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de activación del Contenido del Presupuesto, es posible que no se haya borrado"
                     + " correctamente";
                 res = dtsActivar(Numero_Presupuesto, Numero_Concepto);
                 if (res)
-                    Mensaje = "El Presupuesto_Contenido fue activado satisfactoriamente";
+                    Mensaje = "El Contenido del Presupuestoo fue activado satisfactoriamente";
                 return res;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de activación del Presupuesto_Contenido, es posible que no se haya borrado"
+                Mensaje = "Ocurrio un error en el proceso de activación del Contenido del Presupuesto, es posible que no se haya borrado"
                     + " correctamente";
                 return false;
             }
@@ -215,7 +215,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos_Contenido activos";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Contenidos de Presupuesto activos";
                 return null;
             }
         }
@@ -228,7 +228,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos_Contenido eliminados";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Contenido de Presupuesto eliminados";
                 return null;
             }
         }
@@ -241,7 +241,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Presupuestos_Contenido por Número del presupuesto";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Contenidos del Presupuesto por Número del presupuesto";
                 return null;
             }
         }
@@ -275,7 +275,7 @@ namespace CapaLogica
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en la construcción del arreglo de Presupuestos_Contenido";
+                Mensaje = "Ocurrio un error en la construcción del arreglo de Contenidos del Presupuesto";
                 return new Presupuesto_Contenido[0];
             }
         }
