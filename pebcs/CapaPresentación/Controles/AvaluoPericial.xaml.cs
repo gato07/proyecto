@@ -38,7 +38,8 @@ namespace CapaPresentación.Controles
             Avaluo = new Avaluo_Pericial(ID);
             cliente = new Cliente(Avaluo.Id_Cliente);
             inmueble = new Inmueble(Avaluo.Clave_Inmueble);
-            ClaveCatastral.Text = inmueble.Clave_Catastral;
+            ClaveCatastralBack.Text= ClaveCatastral.Text = inmueble.Clave_Catastral;
+            TXT_Cliente.Text = cliente.Nombre;
             TXT_NoFolio.Text = Avaluo.Folio;
             DTP_FechaAvaluo.SelectedDate = Avaluo.Fecha;
             TXT_Colonia.Text = inmueble.Colonia;

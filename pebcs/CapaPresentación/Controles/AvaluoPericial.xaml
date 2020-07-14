@@ -6,37 +6,77 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              mc:Ignorable="d" Height="180" Width="240">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <materialDesign:Card Height="160" Margin="10" MouseDoubleClick="Card_MouseDoubleClick">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="140"/>
-                </Grid.RowDefinitions>
-                <materialDesign:ColorZone Name="IndicadorAlineamiento" CornerRadius="0 0 15 15" Grid.Row="0" Background="#52BE80 " Height="20" VerticalAlignment="Bottom">
-                    <TextBlock Text="Clave Catastral" Name="ClaveCatastral" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
-                </materialDesign:ColorZone>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="25*"/>
-                        <RowDefinition Height="25*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="120*"/>
-                        <ColumnDefinition Width="100*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="No.Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0"/>
-                    <DatePicker IsTodayHighlighted="True" materialDesign:HintAssist.Hint="Fecha Avaluo" Name="DTP_FechaAvaluo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5 0" BorderBrush="#2ECC71"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Uso Del Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0" />
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Utilidad" x:Name="TXT_Utilidad" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Costo Neto" x:Name="TXT_CostoNeto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="0" Margin="5 0"/>
-                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Pago de Derechos" x:Name="TXT_PagoDeDerechos" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="1"  Margin="5 0"/>
-                </Grid>
-            </Grid>
-        </materialDesign:Card>
+        <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}" Margin="10" Name="CardLicencia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <materialDesign:Flipper.FrontContent>
+                <materialDesign:Card Width="auto" Height="auto" MouseDoubleClick="Card_MouseDoubleClick">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="140"/>
+                        </Grid.RowDefinitions>
+                        <materialDesign:ColorZone Name="IndicadorAlineamiento" CornerRadius="0 0 15 15" Margin="30 0" Grid.Row="0" Background="#52BE80 " Height="20" VerticalAlignment="Bottom">
+                            <TextBlock Text="Clave Catastral" Name="ClaveCatastral" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                        </materialDesign:ColorZone>
+                        <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 -5 -10 0" HorizontalAlignment="Right">
+                            <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
+                        </Button>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25*"/>
+                                <RowDefinition Height="25*"/>
+                                <RowDefinition Height="25*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120*"/>
+                                <ColumnDefinition Width="100*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="No.Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0"/>
+                            <DatePicker IsTodayHighlighted="True" materialDesign:HintAssist.Hint="Fecha Avaluo" Name="DTP_FechaAvaluo" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5 0" BorderBrush="#2ECC71"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Uso Del Inmueble" x:Name="TXT_UsoInmueble" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Propietario" x:Name="TXT_Propietario" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0" />
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Cliente" x:Name="TXT_Cliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0"/>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </materialDesign:Flipper.FrontContent>
+            <materialDesign:Flipper.BackContent>
+                <materialDesign:Card>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="160*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110*"/>
+                                <ColumnDefinition Width="110*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25*"/>
+                                <RowDefinition Height="25*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Costo Neto" x:Name="TXT_CostoNeto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Pago de Derechos" x:Name="TXT_PagoDeDerechos" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Utilidad" x:Name="TXT_Utilidad" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0"  Margin="5 0"/>
+                        </Grid>
+                        <materialDesign:ColorZone Name="IndicadorAlineamientoBack" Margin="30 0" CornerRadius="0 0 15 15" Grid.Row="0" Background="#52BE80 " Height="20" VerticalAlignment="Bottom">
+                            <TextBlock Text="Clave Catastral" Name="ClaveCatastralBack" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                        </materialDesign:ColorZone>
+                        <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 -5 -10 0" HorizontalAlignment="Right">
+                            <materialDesign:PackIcon Kind="Arrow" HorizontalAlignment="Right" />
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+            </materialDesign:Flipper.BackContent>
+        </materialDesign:Flipper>
     </Grid>
 </UserControl>

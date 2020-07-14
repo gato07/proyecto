@@ -198,14 +198,11 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="100*"/>
                                 <RowDefinition Height="100*"/>
-                                <RowDefinition Height="100*"/>
                             </Grid.RowDefinitions>
-                            <DatePicker materialDesign:HintAssist.Hint="Fecha de Ingreso" Name="DTP_FechaDeVisita" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5,5" VerticalAlignment="Stretch" Height="50" Grid.Row="0" Grid.Column="0"/>
-                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="255" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeVisita" materialDesign:HintAssist.IsFloating="True" Margin="5,5" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="0" Grid.Column="1" Height="50" />
-                            <DatePicker materialDesign:HintAssist.Hint="Fecha de Ingreso" Name="DTP_FechaDeRecepcion" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5,5" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
-                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="255" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeRecepcion" materialDesign:HintAssist.IsFloating="True" Margin="5,5" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="1" Grid.Column="1" Height="50" />
-                            <DatePicker materialDesign:HintAssist.Hint="Pago de Derechos" Name="DTP_FechaDeEntrga" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5,5" VerticalAlignment="Stretch" Height="50" Grid.Row="2" Grid.Column="0"/>
-                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="255" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesDeEntrega" materialDesign:HintAssist.IsFloating="True" Margin="5,5" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="2" Grid.Column="1" Height="50" />
+                            <DatePicker materialDesign:HintAssist.Hint="Fecha Autorización" Name="DTP_FechaDeRecepcion" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5,5" VerticalAlignment="Stretch" Height="50" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="255" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacionesDeRecepcion" materialDesign:HintAssist.IsFloating="True" Margin="5,5" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="0" Grid.Column="1" Height="50" />
+                            <DatePicker materialDesign:HintAssist.Hint="Fecha De Entrega" Name="DTP_FechaDeEntrga" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="5,5" VerticalAlignment="Stretch" Height="50" Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="255" materialDesign:HintAssist.Hint="Observaciones" x:Name="TXT_ObservacinesDeEntrega" materialDesign:HintAssist.IsFloating="True" Margin="5,5" CaretBrush="#F1C40F" BorderBrush="#F1C40F" Grid.Row="1" Grid.Column="1" Height="50" />
                         </Grid>
                     </Grid>
                 </Grid>

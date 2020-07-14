@@ -168,7 +168,7 @@ namespace CapaPresentación
             {
                 if (IDAvaluo == 0)
                 {
-                    IDAvaluo = Avaluo.Insertar(TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDateTime(DTP_FechaDeVisita.SelectedDate), dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble, 1);
+                    IDAvaluo = Avaluo.Insertar(TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text),Convert.ToDecimal(TXT_PagoDeDerechos.Text),Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate),TXT_ObservacionesDeRecepcion.Text,Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate),TXT_ObservacinesDeEntrega.Text,dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble, 1);
                     if (IDAvaluo == 0)
                     {
                         MessageBox.Show(Avaluo.Mensaje);
@@ -189,7 +189,7 @@ namespace CapaPresentación
                     {
                         Estado = 25;
                     }
-                    bool n = Avaluo.Actualizar(IDAvaluo, TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text), Convert.ToDecimal(TXT_PagoDeDerechos.Text),Convert.ToDateTime(DTP_FechaDeVisita.SelectedDate),TXT_ObservacionesDeVisita.Text,Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate),TXT_ObservacionesDeRecepcion.Text,Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate),TXT_ObservacinesDeEntrega.Text,dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3],dockcheck[4], Estado, IDcliente, IDinmueble);
+                    bool n = Avaluo.Actualizar(IDAvaluo,Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text), Convert.ToDecimal(TXT_PagoDeDerechos.Text), Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate), TXT_ObservacionesDeRecepcion.Text, Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate), TXT_ObservacinesDeEntrega.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble);
                     if(n)
                     {
                         PantallaCheck check = new PantallaCheck();
