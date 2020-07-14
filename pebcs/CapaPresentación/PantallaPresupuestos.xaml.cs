@@ -108,12 +108,12 @@ namespace CapaPresentación
                 ListaConcepto = new Concepto();
                 if (x == 0)
                 {
-                    ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pago De Honorarios", false));
+                    ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pago de honorarios", false));
                     tipos = "Pago de honorarios";
                 }
                 else if (x == 1)
                 {
-                    ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pagos Ante Ayuntamiento", false));
+                    ListConceptos = ListaConcepto.TableToArray(ListaConcepto.dtsSelNumeroNombreCostoXTipEli("Pagos ante ayuntamiento", false));
                     tipos = "Pagos ante ayuntamiento";
                 }
                 for (int p = 0; p < ListConceptos.Length; p++)

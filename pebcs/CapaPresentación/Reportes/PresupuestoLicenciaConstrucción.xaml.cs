@@ -25,6 +25,7 @@ namespace CapaPresentación.Reportes
         string[,] listado;
         string[] Info;
         int IDPresupuesto;
+        bool mayor = false;
         public PresupuestoLicenciaConstrucción(int NumeroPresupuesto,string [,] A,string[] B)
         {
             try
@@ -52,29 +53,6 @@ namespace CapaPresentación.Reportes
                 LB_Solicitante.Text = vs[1];
                 Texto.Text = "Por medio de la presente y no sin antes saludarle se atiende su solicitud de presupuesto de firma y " +
                     "gestoría para licencia de construcción para " + vs[2] + " sobre " + vs[3] + " m2 en base a los siguientes conceptos.";
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-        private void BtnImprimir_MouseLeave(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                BtnImprimir.Margin = new Thickness(565, 47, 0, 62);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        private void BtnImprimir_MouseMove(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                BtnImprimir.Margin = new Thickness(500, 47, 0, 62);
             }
             catch (Exception ex)
             {

@@ -170,8 +170,8 @@
                     </materialDesign:Card>
                     <ComboBox Name="OpcionesTipo" Grid.Row="2" Grid.Column="2"
                               materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22" >
-                        <ComboBoxItem Content="Pago De Honorarios" />
-                        <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                        <ComboBoxItem Content="Pago de honorarios" />
+                        <ComboBoxItem Content="Pagos ante ayuntamiento" />
                     </ComboBox>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre" Name="TXTNombre" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcion" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>
@@ -190,7 +190,7 @@
                     <ComboBox Name="OpcionesTipoModificar" Grid.Row="2" Grid.Column="2" 
                               materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22" >
                         <ComboBoxItem Content="Pago De Honorarios" />
-                        <ComboBoxItem Content="Pago Ante Ayuntamiento" />
+                        <ComboBoxItem Content="Pags Ante Ayuntamiento" />
                     </ComboBox>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre" Name="TXTNombreModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="75"/>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripción" Name="TXTDescripcionModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#E67E22" BorderBrush="#E67E22" MaxLength="255"/>

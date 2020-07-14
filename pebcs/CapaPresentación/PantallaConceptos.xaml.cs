@@ -190,11 +190,11 @@ namespace CapaPresentación
                 {
                     if (OpcionesTipoModificar.SelectedIndex == 0)
                     {
-                        tipo = "Pago De Honorarios";
+                        tipo = "Pago de honorarios";
                     }
                     else if (OpcionesTipoModificar.SelectedIndex == 1)
                     {
-                        tipo = "Pago Ante Ayuntamiento";
+                        tipo = "Pagos ante ayuntamiento";
                     }
                     res = concepto.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), tipo, TXTNombreModificar.Text, TXTDescripcionModificar.Text, costo);
                     if (res)
@@ -274,12 +274,12 @@ namespace CapaPresentación
                 if(data.Row.ItemArray[1].ToString().Length==18)
                 {
                     OpcionesTipoModificar.SelectedIndex = 0;
-                    tipo = "Pago De Honorarios";
+                    tipo = "Pago de honorarios";
                 }
                 else if (data.Row.ItemArray[1].ToString().Length == 22)
                 {
                     OpcionesTipoModificar.SelectedIndex = 1;
-                    tipo = "Pago Ante Ayuntamiento";
+                    tipo = "Pagos ante ayuntamiento";
 
                 }
                 //TXTTipoModificar.Text = data.Row.ItemArray[1].ToString();
