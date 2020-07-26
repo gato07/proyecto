@@ -149,6 +149,7 @@ namespace CapaPresentación
                     Opciones.SelectedIndex = -1;
                     Estados.SelectedIndex = -1;
                     TxtBusqueda.Clear();
+                    n.Items.Clear();
                     CargarAvaluos();
                 }
             }
