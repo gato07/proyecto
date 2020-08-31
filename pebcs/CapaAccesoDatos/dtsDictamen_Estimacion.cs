@@ -14,6 +14,7 @@ namespace CapaAccesoDatos
         #region Propiedades
 
         public int Numero { get; set; }
+        public string Etiqueta { get; set; }
         public bool Tipo { get; set; }
         public DateTime Fecha_Registro { get; set; }
         public DateTime Visita_Programada { get; set; }
@@ -42,6 +43,7 @@ namespace CapaAccesoDatos
             {
 
                 Numero = 0;
+                Etiqueta = "";
                 Tipo = false;
                 Fecha_Registro = new DateTime();
                 Visita_Programada = new DateTime();
@@ -71,6 +73,7 @@ namespace CapaAccesoDatos
             try
             {
                 this.Numero = 0;
+                Etiqueta = "";
                 Tipo = false;
                 Fecha_Registro = new DateTime();
                 Visita_Programada = new DateTime();
@@ -94,6 +97,7 @@ namespace CapaAccesoDatos
                 if (dt != null)
                 {
                     this.Numero = Convert.ToInt16(dt.Rows[0]["Numero"]);
+                    Etiqueta = dt.Rows[0]["Etiqueta"].ToString();
                     Tipo = Convert.ToBoolean(dt.Rows[0]["Tipo"]);
                     Fecha_Registro = Convert.ToDateTime(dt.Rows[0]["Fecha_Registro"]);
                     Visita_Programada = Convert.ToDateTime(dt.Rows[0]["Visita_Programada"]);
@@ -120,7 +124,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public dtsDictamen_Estimacion(int Numero, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada, 
+        public dtsDictamen_Estimacion(int Numero, string Etiqueta, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada, 
             bool Elaboracion, string Observacion_Elaboracion, bool Entregado, bool Manifestacion, 
             bool Oficio_Subdivision, bool Escrituras, bool Licencia_Construccion, bool Otra, 
             string Otra_Nombre, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
@@ -128,6 +132,7 @@ namespace CapaAccesoDatos
             try
             {
                 this.Numero = Numero;
+                this.Etiqueta = Etiqueta;
                 this.Tipo = Tipo;
                 this.Fecha_Registro = Fecha_Registro;
                 this.Visita_Programada = Visita_Programada;
@@ -152,7 +157,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public int dtsInsertar(bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
+        public int dtsInsertar(string Etiqueta, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
             bool Elaboracion, string Observacion_Elaboracion, bool Entregado, bool Manifestacion,
             bool Oficio_Subdivision, bool Escrituras, bool Licencia_Construccion, bool Otra,
             string Otra_Nombre, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
@@ -162,7 +167,7 @@ namespace CapaAccesoDatos
                 int res = 0;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                DataTable dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_Insertar(" + Tipo + ",'"
+                DataTable dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_Insertar('" + Etiqueta + "'," + Tipo + ",'"
                     + Fecha_Registro.ToString("yyyy-MM-dd") + "','" + Visita_Programada.ToString("yyyy-MM-dd") 
                     + "'," + Elaboracion + ",'" + Observacion_Elaboracion + "'," + Entregado + "," 
                     + Manifestacion + "," + Oficio_Subdivision + "," + Escrituras + "," + Licencia_Construccion 
@@ -179,7 +184,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public bool dtsActualizar(int Numero, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
+        public bool dtsActualizar(int Numero, string Etiqueta, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
             bool Elaboracion, string Observacion_Elaboracion, bool Entregado, bool Manifestacion,
             bool Oficio_Subdivision, bool Escrituras, bool Licencia_Construccion, bool Otra,
             string Otra_Nombre, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
@@ -189,7 +194,7 @@ namespace CapaAccesoDatos
                 bool res = false;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                res = conexion.Consulta_Accion("CALL SP_DictEsti_Actualizar(" + Numero + "," + Tipo + ",'"
+                res = conexion.Consulta_Accion("CALL SP_DictEsti_Actualizar(" + Numero + ",'" + Etiqueta + "'," + Tipo + ",'"
                     + Fecha_Registro.ToString("yyyy-MM-dd") + "','" + Visita_Programada.ToString("yyyy-MM-dd")
                     + "'," + Elaboracion + ",'" + Observacion_Elaboracion + "'," + Entregado + ","
                     + Manifestacion + "," + Oficio_Subdivision + "," + Escrituras + "," + Licencia_Construccion
@@ -238,15 +243,15 @@ namespace CapaAccesoDatos
             }
         }
 
-
-        public DataTable dtsSelTodos()
+        public DataTable dtsSelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "")
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_SelTodos();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_XTipoLikeEtiqueta(" + Tipo + ",'" 
+                    + Etiqueta + "');").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -255,6 +260,43 @@ namespace CapaAccesoDatos
                 return null;
             }
         }
+
+        public DataTable dtsSelXTipoLikeCatastral(bool Tipo = false, string Clave_Catastral = "")
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_XTipoLikeCatastral(" + Tipo + ",'" 
+                    + Clave_Catastral + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public DataTable dtsSelXTipoLikePropietario(bool Tipo = false, string Nombre_Propietario = "")
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_XTipoLikePropietario(" + Tipo + ",'" 
+                    + Nombre_Propietario + "');").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
         #endregion Metodos
 

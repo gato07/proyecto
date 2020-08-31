@@ -44,11 +44,11 @@ namespace CapaLogica
             }
         }
 
-        public Dictamen_Estimacion(int Numero, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
+        public Dictamen_Estimacion(int Numero, string Etiqueta, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
             bool Elaboracion, string Observacion_Elaboracion, bool Entregado, bool Manifestacion,
             bool Oficio_Subdivision, bool Escrituras, bool Licencia_Construccion, bool Otra,
             string Otra_Nombre, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado) :
-            base(Numero, Tipo, Fecha_Registro, Visita_Programada, Elaboracion, Observacion_Elaboracion, Entregado,
+            base(Numero, Etiqueta, Tipo, Fecha_Registro, Visita_Programada, Elaboracion, Observacion_Elaboracion, Entregado,
                 Manifestacion, Oficio_Subdivision, Escrituras, Licencia_Construccion, Otra, Otra_Nombre, Id_Cliente, 
                 Clave_Inmueble, Clave_Empleado)
         {
@@ -62,7 +62,7 @@ namespace CapaLogica
             }
         }
 
-        public int Insertar(bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
+        public int Insertar(string Etiqueta, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
             bool Elaboracion, string Observacion_Elaboracion, bool Entregado, bool Manifestacion,
             bool Oficio_Subdivision, bool Escrituras, bool Licencia_Construccion, bool Otra,
             string Otra_Nombre, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
@@ -73,7 +73,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de dar de alta al Dictamen/Estimación, es posible que no se haya insertado"
                     + " correctamente";
-                res = dtsInsertar(Tipo, Fecha_Registro, Visita_Programada, Elaboracion, Observacion_Elaboracion, Entregado,
+                res = dtsInsertar(Etiqueta, Tipo, Fecha_Registro, Visita_Programada, Elaboracion, Observacion_Elaboracion, Entregado,
                 Manifestacion, Oficio_Subdivision, Escrituras, Licencia_Construccion, Otra, Otra_Nombre, Id_Cliente,
                 Clave_Inmueble, Clave_Empleado);
                 if (res > 0)
@@ -88,7 +88,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Actualizar(int Numero, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
+        public bool Actualizar(int Numero, string Etiqueta, bool Tipo, DateTime Fecha_Registro, DateTime Visita_Programada,
             bool Elaboracion, string Observacion_Elaboracion, bool Entregado, bool Manifestacion,
             bool Oficio_Subdivision, bool Escrituras, bool Licencia_Construccion, bool Otra,
             string Otra_Nombre, int Id_Cliente, int Clave_Inmueble, int Clave_Empleado)
@@ -99,7 +99,7 @@ namespace CapaLogica
                 Validacion validacion = new Validacion();
                 Mensaje = "Ocurrio un error en el proceso de actualización de datos del Dictamen/Estimación, es posible"
                    + " que no se hayan modificado los datos correctamente";
-                res = dtsActualizar(Numero, Tipo, Fecha_Registro, Visita_Programada, Elaboracion, Observacion_Elaboracion, Entregado,
+                res = dtsActualizar(Numero, Etiqueta, Tipo, Fecha_Registro, Visita_Programada, Elaboracion, Observacion_Elaboracion, Entregado,
                 Manifestacion, Oficio_Subdivision, Escrituras, Licencia_Construccion, Otra, Otra_Nombre, Id_Cliente,
                 Clave_Inmueble, Clave_Empleado);
                 if (res)
@@ -153,15 +153,41 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTodos()
+        public DataTable SelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "")
         {
             try
             {
-                return dtsSelTodos();
+                return dtsSelXTipoLikeEtiqueta(Tipo, Etiqueta);
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Dictamenes/Estimaciones";
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Dictamenes/Estimaciones X Tipo y Etiqueta";
+                return null;
+            }
+        }
+
+        public DataTable SelXTipoLikeCatastral(bool Tipo = false, string Clave_Catastral = "")
+        {
+            try
+            {
+                return dtsSelXTipoLikeCatastral(Tipo, Clave_Catastral);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Dictamenes/Estimaciones X Tipo y Clave catastral";
+                return null;
+            }
+        }
+
+        public DataTable SelXTipoLikePropietario(bool Tipo = false, string Nombre_Propietario = "")
+        {
+            try
+            {
+                return dtsSelXTipoLikePropietario(Tipo, Nombre_Propietario);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Dictamenes/Estimaciones X Tipo y Nombre del propietario";
                 return null;
             }
         }
@@ -177,6 +203,8 @@ namespace CapaLogica
                     Dictamen_Estimacion dicest = new Dictamen_Estimacion();
                     if (Dt.Columns.Contains("Numero"))
                         dicest.Numero = Convert.ToInt16(renglon["Numero"]);
+                    if (Dt.Columns.Contains("Etiqueta"))
+                        dicest.Etiqueta = renglon["Etiqueta"].ToString();
                     if (Dt.Columns.Contains("Tipo"))
                         dicest.Tipo = Convert.ToBoolean(renglon["Tipo"]);
                     if (Dt.Columns.Contains("Fecha_Registro"))
