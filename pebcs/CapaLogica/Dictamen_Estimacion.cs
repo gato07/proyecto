@@ -153,11 +153,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "")
+        public DataTable SelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "", bool Eliminado = false)
         {
             try
             {
-                return dtsSelXTipoLikeEtiqueta(Tipo, Etiqueta);
+                return dtsSelXTipoLikeEtiqueta(Tipo, Etiqueta, Eliminado);
             }
             catch (Exception ex)
             {
@@ -166,11 +166,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXTipoLikeCatastral(bool Tipo = false, string Clave_Catastral = "")
+        public DataTable SelXTipoLikeCatastral(bool Tipo = false, string Clave_Catastral = "", bool Eliminado = false)
         {
             try
             {
-                return dtsSelXTipoLikeCatastral(Tipo, Clave_Catastral);
+                return dtsSelXTipoLikeCatastral(Tipo, Clave_Catastral, Eliminado);
             }
             catch (Exception ex)
             {
@@ -179,11 +179,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXTipoLikePropietario(bool Tipo = false, string Nombre_Propietario = "")
+        public DataTable SelXTipoLikePropietario(bool Tipo = false, string Nombre_Propietario = "", bool Eliminado = false)
         {
             try
             {
-                return dtsSelXTipoLikePropietario(Tipo, Nombre_Propietario);
+                return dtsSelXTipoLikePropietario(Tipo, Nombre_Propietario, Eliminado);
             }
             catch (Exception ex)
             {

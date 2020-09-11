@@ -243,7 +243,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "")
+        public DataTable dtsSelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "", bool Eliminado = false)
         {
             try
             {
@@ -251,7 +251,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_XTipoLikeEtiqueta(" + Tipo + ",'" 
-                    + Etiqueta + "');").Tables[0];
+                    + Etiqueta + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -261,7 +261,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXTipoLikeCatastral(bool Tipo = false, string Clave_Catastral = "")
+        public DataTable dtsSelXTipoLikeCatastral(bool Tipo = false, string Clave_Catastral = "", bool Eliminado = false)
         {
             try
             {
@@ -269,7 +269,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_XTipoLikeCatastral(" + Tipo + ",'" 
-                    + Clave_Catastral + "');").Tables[0];
+                    + Clave_Catastral + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -279,7 +279,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXTipoLikePropietario(bool Tipo = false, string Nombre_Propietario = "")
+        public DataTable dtsSelXTipoLikePropietario(bool Tipo = false, string Nombre_Propietario = "", bool Eliminado = false)
         {
             try
             {
@@ -287,7 +287,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_XTipoLikePropietario(" + Tipo + ",'" 
-                    + Nombre_Propietario + "');").Tables[0];
+                    + Nombre_Propietario + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
