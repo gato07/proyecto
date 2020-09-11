@@ -29,17 +29,17 @@ namespace CapaPresentación
         int numcliente, numinmueble, numeroestimacion;
         bool ela = false, entre = false, manis = false, oficio = false, escrituras = false, licencia = false, otra = false;
         List<DictamenEstructural> lit = new List<DictamenEstructural>();
+        List<DictamenEstructural> lit2 = new List<DictamenEstructural>();
         public Pantalla_Dictamen_Estimacion()
         {
             InitializeComponent();
-            CargarDatos();
+            CargarDatosactivos();
+            CargarDatosinactivos();
             CargarClientes();
             CargarInmuebles();
         }
         private void btnConceptoModificar_Click(object sender, RoutedEventArgs e)
         {
-            CargarDatos();
-            limpiar();
         }
         public class DictamenEstructural
         {
@@ -81,6 +81,7 @@ namespace CapaPresentación
         }
         private void llenardatalikeClavecatastral(string texto)
         {
+            lit.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
             Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto));
@@ -92,6 +93,7 @@ namespace CapaPresentación
         }
         private void llenardatalikeetiqueta(string texto)
         {
+            lit.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
             Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto));
@@ -103,6 +105,7 @@ namespace CapaPresentación
         }
         private void llenardatalikepropietario(string texto)
         {
+            lit.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
             Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto));
@@ -114,36 +117,39 @@ namespace CapaPresentación
         }
         private void llenardatalikeClavecatastraleliminado(string texto)
         {
+            lit2.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto,true));
+            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto, true));
             for (int x = 0; x < datos.Length; x++)
             {
-                lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
             }
-            GridConceptosActivos.ItemsSource = lit;
+            GridConceptosActivos.ItemsSource = lit2;
         }
         private void llenardatalikeetiquetaeliminado(string texto)
         {
+            lit2.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto,true));
+            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto, true));
             for (int x = 0; x < datos.Length; x++)
             {
-                lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
             }
-            GridConceptosActivos.ItemsSource = lit;
+            GridConceptosActivos.ItemsSource = lit2;
         }
         private void llenardatalikepropietarioeliminado(string texto)
         {
+            lit2.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto,true));
+            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto, true));
             for (int x = 0; x < datos.Length; x++)
             {
-                lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
             }
-            GridConceptosActivos.ItemsSource = lit;
+            GridConceptosActivos.ItemsSource = lit2;
         }
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
@@ -182,16 +188,20 @@ namespace CapaPresentación
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
-            dictamen.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
-            CargarDatos();
+            DictamenEstructural dictamen2 = (DictamenEstructural)GridConceptosActivos.SelectedItem;
+            if (dictamen2 != null)
+            {
+                dictamen.Eliminar(dictamen2.ID);
+                CargarDatosactivos();
+                CargarDatosinactivos();
+            }
         }
 
         private void TxtBusquedaActivos_KeyUp(object sender, KeyEventArgs e)
         {
             if (OpcionesActivos.SelectedIndex == -1)
             {
-                CargarDatos();
+                CargarDatosactivos();
             }
             else if (OpcionesActivos.SelectedIndex == 0)
             {
@@ -223,11 +233,12 @@ namespace CapaPresentación
         {
             try
             {
-                Inmueblea p = (Inmueblea)Inmuebles.SelectedItem;
-                if (p != null)
+                DictamenEstructural dictamen2 = (DictamenEstructural)GridConceptosInactivos.SelectedItem;
+                if (dictamen2 != null)
                 {
-                    dictamen.Activar(p.ID);
-                    CargarDatos();
+                    dictamen.Activar(dictamen2.ID);
+                    CargarDatosactivos();
+                    CargarDatosinactivos();
                 }
             }
             catch (Exception ex)
@@ -255,7 +266,7 @@ namespace CapaPresentación
                     TxtBusquedaInactivos.Clear();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -267,7 +278,7 @@ namespace CapaPresentación
             {
                 if (OpcionesInactivos.SelectedIndex == -1)
                 {
-                    CargarDatos();
+                    CargarDatosinactivos();
                 }
                 else if (OpcionesInactivos.SelectedIndex == 0)
                 {
@@ -282,7 +293,7 @@ namespace CapaPresentación
                     llenardatalikeetiquetaeliminado(TxtBusquedaInactivos.Text);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -396,22 +407,31 @@ namespace CapaPresentación
 
             }
         }
-        public void CargarDatos()
+        public void CargarDatosactivos()
         {
+            GridConceptosActivos.ItemsSource = null;
+            lit.Clear();
             DataTable table = new DataTable();
             dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(true, ""));
+            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, ""));
             for (int x = 0; x < datos.Length; x++)
             {
                 lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
             }
             GridConceptosActivos.ItemsSource = lit;
-            Dictamen_Estimacion[] datos2 = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(true, "",true));
+        }
+        public void CargarDatosinactivos()
+        {
+            GridConceptosInactivos.ItemsSource = null;
+            lit2.Clear();
+            dictamen = new Dictamen_Estimacion();
+            DataTable table2 = new DataTable();
+            Dictamen_Estimacion[] datos2 = dictamen.TableToArray(table2 = dictamen.SelXTipoLikeCatastral(false, "", true));
             for (int x = 0; x < datos2.Length; x++)
             {
-                lit.Add(new DictamenEstructural() { ID = datos2[x].Numero, Etiqueta = datos2[x].Etiqueta, Tipo = datos2[x].Tipo, FechaRegistro = datos2[x].Fecha_Registro, FechaVisita = datos2[x].Visita_Programada, Elaboracion = datos2[x].Elaboracion, Observacion = datos2[x].Observacion_Elaboracion, Entregado = datos2[x].Entregado, Manifestacion = datos2[x].Manifestacion, Oficiosub = datos2[x].Oficio_Subdivision, Escrituras = datos2[x].Escrituras, Licencia = datos2[x].Licencia_Construccion, Otra = datos2[x].Otra, OtraNombre = datos2[x].Otra_Nombre, cliente = datos2[x].Id_Cliente, inmueble = datos2[x].Clave_Inmueble });
+                lit2.Add(new DictamenEstructural() { ID = datos2[x].Numero, Etiqueta = datos2[x].Etiqueta, Tipo = datos2[x].Tipo, FechaRegistro = datos2[x].Fecha_Registro, FechaVisita = datos2[x].Visita_Programada, Elaboracion = datos2[x].Elaboracion, Observacion = datos2[x].Observacion_Elaboracion, Entregado = datos2[x].Entregado, Manifestacion = datos2[x].Manifestacion, Oficiosub = datos2[x].Oficio_Subdivision, Escrituras = datos2[x].Escrituras, Licencia = datos2[x].Licencia_Construccion, Otra = datos2[x].Otra, OtraNombre = datos2[x].Otra_Nombre, cliente = datos2[x].Id_Cliente, inmueble = datos2[x].Clave_Inmueble });
             }
-            GridConceptosInactivos.ItemsSource = lit;
+            GridConceptosInactivos.ItemsSource = lit2;
         }
         public void limpiar()
         {
@@ -501,14 +521,16 @@ namespace CapaPresentación
             {
                 sacarbool();
                 dictamen.Insertar(TXTetiqueta.Text, false, Convert.ToDateTime(DTP_FechaRegistro.SelectedDate), Convert.ToDateTime(DTP_FechaVisita.SelectedDate), ela, TXTObservaciionElaboracion.Text, entre, manis, oficio, escrituras, licencia, otra, TXTOtra.Text, numcliente, numinmueble, 1);
-                CargarDatos();
+                CargarDatosactivos();
+                CargarDatosinactivos();
                 limpiar();
             }
             else if (numeroestimacion != 0)
             {
                 sacarbool();
                 dictamen.Actualizar(numeroestimacion, TXTetiqueta.Text, false, Convert.ToDateTime(DTP_FechaRegistro.SelectedDate), Convert.ToDateTime(DTP_FechaVisita.SelectedDate), ela, TXTObservaciionElaboracion.Text, entre, manis, oficio, escrituras, licencia, otra, TXTOtra.Text, numcliente, numinmueble, 1);
-                CargarDatos();
+                CargarDatosactivos();
+                CargarDatosinactivos();
                 limpiar();
             }
         }
