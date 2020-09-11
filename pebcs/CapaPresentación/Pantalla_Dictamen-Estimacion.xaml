@@ -166,9 +166,9 @@
                                             <ColumnDefinition Width="100" />
                                         </Grid.ColumnDefinitions>
                                         <ToggleButton Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
-                                                      Margin="0,0,0,0" Name="ActivadorInactivos" IsChecked="False" />
+                                                      Margin="0,0,0,0" Name="ActivadorInactivos" IsChecked="False" Click="ActivadorInactivos_Click" />
                                         <TextBox materialDesign:HintAssist.Hint="Búsqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
-                                                 CaretBrush="#16A085" BorderBrush="#16A085"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaInactivos" IsEnabled="False" />
+                                                 CaretBrush="#16A085" BorderBrush="#16A085"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaInactivos" IsEnabled="False" KeyUp="TxtBusquedaInactivos_KeyUp" />
                                         <ComboBox Name="OpcionesInactivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
                                                   materialDesign:HintAssist.Hint="Opciones de Búsqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#16A085" Height="28">
                                             <ComboBoxItem
