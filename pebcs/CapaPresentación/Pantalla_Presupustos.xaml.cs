@@ -31,7 +31,7 @@ namespace CapaPresentación
             {
                 InitializeComponent();
                 Mn = A as Menu_Principal2;
-                CargarPresupuestos(1);
+                CargarPresupuestos(2);
             }
             catch (Exception ex)
             {
@@ -167,6 +167,7 @@ namespace CapaPresentación
                     Opciones.SelectedIndex = -1;
                     OpcionesAprobado.SelectedIndex = -1;
                     TxtBusqueda.Clear();
+                    CargarPresupuestos(2);
                 }
             }
             catch(Exception ex)
@@ -179,85 +180,36 @@ namespace CapaPresentación
         {
             try
             {
-                if (OpcionesAprobado.SelectedIndex == 0 || OpcionesAprobado.SelectedIndex == -1)
+                int E = 0;
+                if (OpcionesAprobado.SelectedIndex == 0)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarPresupuestos(0);
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarPresupuestosLikeClaveCatastral(TxtBusqueda,0);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarPresupuestosLikeEtiqueta(TxtBusqueda,0);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarPresupuestosLikePropietario(TxtBusqueda,0);
-                    }
+                    E = 0;
                 }
                 else if (OpcionesAprobado.SelectedIndex == 1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarPresupuestos(1);
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarPresupuestosLikeClaveCatastral(TxtBusqueda, 1);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarPresupuestosLikeEtiqueta(TxtBusqueda, 1);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarPresupuestosLikePropietario(TxtBusqueda, 1);
-
-                    }
+                    E = 1;
                 }
                 else if (OpcionesAprobado.SelectedIndex == 2)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarPresupuestos(2);
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarPresupuestosLikeClaveCatastral(TxtBusqueda, 2);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarPresupuestosLikeEtiqueta(TxtBusqueda, 2);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarPresupuestosLikePropietario(TxtBusqueda, 2);
-
-                    }
+                    E = 2;
+                }
+                if (Opciones.SelectedIndex == 0)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 60;
+                    CargarPresupuestosLikeClaveCatastral(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 1)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 255;
+                    CargarPresupuestosLikeEtiqueta(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 2)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 15;
+                    CargarPresupuestosLikePropietario(TxtBusqueda, E);
                 }
             }
             catch(Exception ex)
@@ -270,85 +222,36 @@ namespace CapaPresentación
         {
             try
             {
-                if (OpcionesAprobado.SelectedIndex == 0 || OpcionesAprobado.SelectedIndex == -1)
+                int E = 0;
+                if (OpcionesAprobado.SelectedIndex == 0)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarPresupuestos(0);
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarPresupuestosLikeClaveCatastral(TxtBusqueda, 0);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarPresupuestosLikeEtiqueta(TxtBusqueda, 0);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarPresupuestosLikePropietario(TxtBusqueda, 0);
-                    }
+                    E = 0;
                 }
                 else if (OpcionesAprobado.SelectedIndex == 1)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarPresupuestos(1);
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarPresupuestosLikeClaveCatastral(TxtBusqueda, 1);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarPresupuestosLikeEtiqueta(TxtBusqueda, 1);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarPresupuestosLikePropietario(TxtBusqueda, 1);
-
-                    }
+                    E = 1;
                 }
                 else if (OpcionesAprobado.SelectedIndex == 2)
                 {
-                    if (Opciones.SelectedIndex == -1)
-                    {
-                        n.Items.Clear();
-                        CargarPresupuestos(2);
-                    }
-                    else if (Opciones.SelectedIndex == 0)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 60;
-                        CargarPresupuestosLikeClaveCatastral(TxtBusqueda, 2);
-                    }
-                    else if (Opciones.SelectedIndex == 1)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 255;
-                        CargarPresupuestosLikeEtiqueta(TxtBusqueda, 2);
-                    }
-                    else if (Opciones.SelectedIndex == 2)
-                    {
-                        n.Items.Clear();
-                        TxtBusqueda.MaxLength = 15;
-                        CargarPresupuestosLikePropietario(TxtBusqueda, 2);
-
-                    }
+                    E = 2;
+                }
+                if (Opciones.SelectedIndex == 0)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 60;
+                    CargarPresupuestosLikeClaveCatastral(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 1)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 255;
+                    CargarPresupuestosLikeEtiqueta(TxtBusqueda, E);
+                }
+                else if (Opciones.SelectedIndex == 2)
+                {
+                    n.Items.Clear();
+                    TxtBusqueda.MaxLength = 15;
+                    CargarPresupuestosLikePropietario(TxtBusqueda, E);
                 }
             }
             catch (Exception ex)

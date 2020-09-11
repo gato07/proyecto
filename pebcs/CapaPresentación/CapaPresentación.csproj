@@ -97,11 +97,17 @@
     <Compile Include="Controles\AvaluoPericial.xaml.cs">
       <DependentUpon>AvaluoPericial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EstimacionDeValor.xaml.cs">
+      <DependentUpon>EstimacionDeValor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pantalla_AvaluosPericial.xaml.cs">
       <DependentUpon>Pantalla_AvaluosPericial.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pantalla_CargaDeTrabajo.xaml.cs">
       <DependentUpon>Pantalla_CargaDeTrabajo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantalla_Dictamen-Estimacion.xaml.cs">
+      <DependentUpon>Pantalla_Dictamen-Estimacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pantalla_InfoAvaluo.xaml.cs">
       <DependentUpon>Pantalla_InfoAvaluo.xaml</DependentUpon>
@@ -129,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controles\TarjetaLicencia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EstimacionDeValor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pantalla_CargaDeTrabajo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantalla_Dictamen-Estimacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

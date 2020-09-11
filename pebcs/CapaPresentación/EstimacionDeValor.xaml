@@ -1,0 +1,272 @@
+﻿<UserControl x:Class="CapaPresentación.EstimacionDeValor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación"
+             mc:Ignorable="d" 
+             d:DesignHeight="712" d:DesignWidth="882">
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="ListadoInmuebles">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding ClaveCatastral}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Propietario}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Colonia}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="3 0 0 0" Text="{Binding Calle}" />
+                    <TextBlock Grid.Column="2" Text="{Binding EntreCalles}" Margin="12 0 0 0" />
+                    <TextBlock Grid.Column="3"  Margin="3 0 0 0" Text="{Binding NumeroInterior}" />
+                    <TextBlock Grid.Column="4"  Margin="3 0 0 0" Text="{Binding NumeroExterior}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ListadoClientes">
+                <Grid TextElement.FontSize="10" TextElement.FontStyle="Italic" Margin="8 0 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Nombre}" />
+                    <TextBlock Grid.Column="1" Margin="3 0 0 0" Text="{Binding Apellido}" />
+                    <TextBlock Grid.Row="1" Text="{Binding Telefono}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Control.Resources>
+    <Grid>
+        <materialDesign:Card Height="712">
+            <StackPanel>
+                <StackPanel Margin="25,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180*" />
+                            <ColumnDefinition Width="162*" />
+                            <ColumnDefinition Width="172*" />
+                            <ColumnDefinition Width="172*" />
+                            <ColumnDefinition Width="171*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="50"/>
+                            <RowDefinition  Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,4" 
+                            Grid.Column="4" Grid.Row="0" Background="#27AE60" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_Cerrar" 
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" >
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="CloseBoxMultiple"/>
+                                <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Text="Estimación de Valor" Name="titulo" Foreground="#16A085" FontSize="30" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Grid Grid.Row="1" Grid.Column="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="ACTIVOS:" Name="ACTIVOS" Foreground="#27AE60" FontSize="15" FontWeight="Bold" Grid.Row="0"/>
+                            <TextBlock Text="INACTIVOS:" Name="INACTIVOS" Foreground="#27AE60" FontSize="15" FontWeight="Bold" Grid.Row="1"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+                <TabControl Height="610" Margin="0 0 0 0">
+                    <TabItem Header="Activos">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Margin="0,0,0,0" Grid.Column="0" Grid.Row="0">
+                                    <Grid  Margin="0 0 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="300" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton Grid.Column="0" Grid.Row="1" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" Click="ActivadorActivos_Click"
+                                                      Margin="0,0,0,0" Name="ActivadorActivos" IsChecked="False" />
+                                        <TextBox materialDesign:HintAssist.Hint="Búsqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }" KeyUp="TxtBusquedaActivos_KeyUp"
+                                                 CaretBrush="#27AE60" BorderBrush="#27AE60"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaActivos" IsEnabled="False" />
+                                        <ComboBox Name="OpcionesActivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
+                                                  materialDesign:HintAssist.Hint="Opciones de Búsqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#16A085" Height="28">
+                                            <ComboBoxItem
+                                                Content="Clave Catastral" />
+                                            <ComboBoxItem
+                                                Content="Etiqueta" />
+                                            <ComboBoxItem
+                                                Content="Propietario" />
+                                        </ComboBox>
+                                    </Grid>
+                                </StackPanel>
+                                <materialDesign:PopupBox Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}" PlacementMode="LeftAndAlignMiddles" UnfurlOrientation="Horizontal" 
+                                                     Margin="0,0,30,0" HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" 
+                                                     Background="#27AE60" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button ToolTip="Agregar Concepto" Name="BtnAgregar" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=Formulario}" Click="BtnAgregar_Click"
+                                            Background="#27AE60" IsEnabled="True">
+                                            <materialDesign:PackIcon Kind="Add" />
+                                        </Button>
+                                        <Button ToolTip="Eliminar Concepto" Name="BtnEliminar" Click="BtnEliminar_Click"
+                                            Background="#27AE60">
+                                            <materialDesign:PackIcon Kind="Delete" />
+                                        </Button>
+                                        <Button ToolTip="Modificar Concepto" Name="BtnModificar" Click="BtnModificar_Click"
+                                            Background="#27AE60">
+                                            <materialDesign:PackIcon Kind="Edit" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                                <DataGrid  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0" Name="GridConceptosActivos" AutoGenerateColumns="True" Background="Transparent" MouseDoubleClick="GridConceptosActivos_MouseDoubleClick"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Inactivos">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="120"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Margin="25,0,0,0" Grid.Column="0" Grid.Row="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="300" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" 
+                                                      Margin="0,0,0,0" Name="ActivadorInactivos" IsChecked="False" />
+                                        <TextBox materialDesign:HintAssist.Hint="Búsqueda Por Campo"  Style="{StaticResource MaterialDesignFloatingHintTextBox }"
+                                                 CaretBrush="#27AE60" BorderBrush="#27AE60"  Grid.Column="1" Margin="0,0,0,13" Grid.Row="2" Name="TxtBusquedaInactivos" IsEnabled="False" />
+                                        <ComboBox Name="OpcionesInactivos" Grid.Row="2" Grid.Column="2" IsEnabled="False"
+                                                  materialDesign:HintAssist.Hint="Opciones de Búsqueda" Grid.ColumnSpan="2"  Margin="0,0,8,4" BorderBrush="#27AE60" Height="28">
+                                            <ComboBoxItem
+                                                Content="Tipo" />
+                                            <ComboBoxItem
+                                                Content="Nombre" />
+                                            <ComboBoxItem
+                                                Content="Descripción" />
+                                        </ComboBox>
+                                    </Grid>
+                                </StackPanel>
+                                <Button Grid.Row="0" Grid.Column="1" materialDesign:ButtonAssist.CornerRadius="5 0 0 5" 
+                                     Background="#27AE60" Style="{DynamicResource MaterialDesignRaisedButton}"
+                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                     Name="BtnRestaurar" Click="BtnRestaurar_Click"
+                                     Margin="0,4,0,0"  Height="36" HorizontalAlignment="Right" Width="39" >
+                                    <StackPanel Width="150" Margin="-10 0 0 0">
+                                        <materialDesign:PackIcon Kind="FileRestore" />
+                                        <TextBlock Text="RESTAURAR" Margin="20 -18 0 0"/>
+                                    </StackPanel>
+                                </Button>
+                                <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0" Name="GridConceptosInactivos"  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                                          AutoGenerateColumns="True">
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:DialogHost IsOpen="False" Name="Formulario" >
+            <materialDesign:DialogHost.DialogContent>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="250"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:Card Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Estimacion de Valor</TextBlock>
+                    </materialDesign:Card>
+                    <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Etiqueta" Margin="8" Name="TXTetiqueta" materialDesign:HintAssist.IsFloating="True"  CaretBrush="#27AE60" BorderBrush="#27AE60" MaxLength="75"/>
+                    <ComboBox Grid.Row="2" Grid.Column="0" Name="Clientes" IsReadOnly="False" ItemTemplate="{StaticResource ListadoClientes}" Margin="8"
+                                                  materialDesign:HintAssist.Hint="Cliente" BorderBrush="#27AE60" VerticalAlignment="Stretch" SelectionChanged="Clientes_SelectionChanged" />
+                    <ComboBox Grid.Row="3" Grid.Column="0" Name="Inmuebles" IsReadOnly="False" materialDesign:HintAssist.Hint="Inmueble" BorderBrush="#27AE60" Margin="8" VerticalAlignment="Stretch" ItemTemplate="{StaticResource ListadoInmuebles}" SelectionChanged="Inmuebles_SelectionChanged"/>
+                    <DatePicker Grid.Row="4" Grid.Column="0" materialDesign:HintAssist.Hint="Fecha de Registro" Name="DTP_FechaRegistro" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="8" VerticalAlignment="Stretch"/>
+                    <DatePicker Grid.Row="5" Grid.Column="0" materialDesign:HintAssist.Hint="Fecha de Visita" Name="DTP_FechaVisita" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="8" VerticalAlignment="Stretch"/>
+                    <ComboBox Name="elaboracion" Grid.Row="6" Grid.Column="0"
+                              materialDesign:HintAssist.Hint="Elaborado" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <TextBox Grid.Row="7" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="8" materialDesign:HintAssist.Hint="Observacion" Name="TXTObservaciionElaboracion" materialDesign:HintAssist.IsFloating="True" CaretBrush="#27AE60" BorderBrush="#27AE60" MaxLength="11"/>
+                    <ComboBox Name="Entregado" Grid.Row="1" Grid.Column="1"
+                              materialDesign:HintAssist.Hint="Entregado" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <ComboBox Name="Manifestacion" Grid.Row="2" Grid.Column="1"
+                              materialDesign:HintAssist.Hint="Manifestación" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <ComboBox Name="OficioSub" Grid.Row="3" Grid.Column="1"
+                              materialDesign:HintAssist.Hint="Oficio de Subdivisión" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <ComboBox Name="Escrituras" Grid.Row="4" Grid.Column="1"
+                              materialDesign:HintAssist.Hint="Escrituras" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <ComboBox Name="Licencia" Grid.Row="5" Grid.Column="1"
+                              materialDesign:HintAssist.Hint="Licencia de Construcción" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <ComboBox Name="Otra" Grid.Row="6" Grid.Column="1"
+                              materialDesign:HintAssist.Hint="Otra" Margin="8" BorderBrush="#27AE60" >
+                        <ComboBoxItem Content="NO"/>
+                        <ComboBoxItem Content="SI"/>
+                    </ComboBox>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Row="7" Grid.Column="1" Margin="8" materialDesign:HintAssist.Hint="Otra" Name="TXTOtra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#27AE60" BorderBrush="#27AE60" MaxLength="75"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Grid.Row="8" Grid.Column="0" Name="btnAgregarConcepto" Content="Agregar" Margin="4" Background="#27AE60" Click="btnAgregarConcepto_Click"/>
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Grid.Row="8" Grid.Column="1" Content="Cancelar" Margin="4" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=FormularioConcepto}" Background="#27AE60"/>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>

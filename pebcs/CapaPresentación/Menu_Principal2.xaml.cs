@@ -381,5 +381,15 @@ namespace CapaPresentación
         {
             AbrirFormHijo(new Pantalla_AvaluosPericial(this));
         }
+
+        private void BtnDictamenes_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirFormHijo(new Pantalla_Dictamen_Estimacion());
+        }
+
+        private void BtnEstimaciones_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirFormHijo(new EstimacionDeValor());
+        }
     }
 }
