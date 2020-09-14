@@ -362,6 +362,19 @@ namespace CapaLogica
                 return null;
             }
         }
+
+        public DataTable SelXEmpleado(int Clave_Empleado)
+        {
+            try
+            {
+                return dtsSelXEmpleado(Clave_Empleado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Avaluos Periciales X Empleado";
+                return null;
+            }
+        }
         public Avaluo_Pericial[] TableToArray(DataTable Dt)
         {
             try

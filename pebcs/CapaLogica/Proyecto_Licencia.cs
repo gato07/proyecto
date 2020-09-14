@@ -415,6 +415,19 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelXEmpleado(int Clave_Empleado)
+        {
+            try
+            {
+                return dtsSelXEmpleado(Clave_Empleado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Proyecto de Licencia X Empleado";
+                return null;
+            }
+        }
+
         public Proyecto_Licencia[] TableToArray(DataTable Dt)
         {
             try

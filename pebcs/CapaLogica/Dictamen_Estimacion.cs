@@ -191,6 +191,18 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelXEmpleado(int Clave_Empleado)
+        {
+            try
+            {
+                return dtsSelXEmpleado(Clave_Empleado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos(as) los(as) Dictamenes/Estimaciones X Empleado";
+                return null;
+            }
+        }
         public Dictamen_Estimacion[] TableToArray(DataTable Dt)
         {
             try
