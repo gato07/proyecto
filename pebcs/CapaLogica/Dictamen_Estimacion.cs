@@ -191,11 +191,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXEmpleado(int Clave_Empleado)
+        public DataTable SelXEmpleado(bool Tipo, int Clave_Empleado)
         {
             try
             {
-                return dtsSelXEmpleado(Clave_Empleado);
+                return dtsSelXEmpleado(Tipo, Clave_Empleado);
             }
             catch (Exception ex)
             {
