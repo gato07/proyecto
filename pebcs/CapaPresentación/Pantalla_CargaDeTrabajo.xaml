@@ -127,25 +127,28 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <TabControl Grid.Row="3" ItemContainerStyle="{StaticResource EstiloTab}" Margin="0 5 0 0" >
-                            <TabItem Header="Presupuestos" Name="PresupuestosTAB" Background="#3498DB" >
-                                <Grid>
-                                    <ListBox Name="ListPresupuestos" ItemTemplate="{StaticResource ListadoClientes}"/>
-                                </Grid>
-                            </TabItem>
                             <TabItem Header="Licencias" Name="LicenciasTAB" Background="#1ABC9C">
                                 <Grid>
+                                    <ListBox Name="Listlicencias" ItemTemplate="{StaticResource ListadoClientes}"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Estimaciones de Valor" Name="EstimacionesdeValorTAB" Background="#27AE60" >
                                 <Grid>
+                                    <ListBox Name="Listestimaciones" ItemTemplate="{StaticResource ListadoClientes}"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Dictamen Estructural" Name="DictamenEstructuralTAB" Background="#16A085" >
                                 <Grid>
+                                    <ListBox Name="Listdictamen" ItemTemplate="{StaticResource ListadoClientes}"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Avaluo Pericial" Name="AvaluoPericialTAB" Background="#1ABC9C" >
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="23*"/>
+                                        <ColumnDefinition Width="50*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ListBox Name="Listavaluo" ItemTemplate="{StaticResource ListadoClientes}" Grid.ColumnSpan="2" Margin="0,0,0,-0.4"/>
                                 </Grid>
                             </TabItem>
                         </TabControl>
