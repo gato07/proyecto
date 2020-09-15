@@ -336,6 +336,7 @@ namespace CapaPresentación
         {
             try
             {
+                AbrirFormHijo(new Pantalla_CargaDeTrabajo());
             }catch(Exception ex)
             {
 
