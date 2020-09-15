@@ -4,6 +4,10 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -15,6 +19,12 @@ namespace CapaPresentación
         public Pantalla_CargaDeTrabajo()
         {
             InitializeComponent();
+            string NombreUsuario = "A";
+            GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+            String[] roles = { "IngenieroS" };
+            GenericPrincipal MyPrincipal =
+            new GenericPrincipal(identidad, roles);
+            Thread.CurrentPrincipal = MyPrincipal;
             CargarEmpleados();
         }
         public class ChipEmpleado
@@ -47,6 +57,9 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission("A", "Ingeniero");
+                MyPermission.Demand();
+
                 Card n = (Card)sender;
                 Grid grid = (Grid)n.Parent;
                 ChipEmpleado chip = (ChipEmpleado)grid.DataContext;
@@ -68,7 +81,7 @@ namespace CapaPresentación
             }
             catch (Exception ex)
             {
-
+                
             }
         }
         public void cargarlicencias(int id)
