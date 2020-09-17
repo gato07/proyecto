@@ -44,44 +44,25 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXPerfil(int Perfil)
+        public string[] SelXPerfil(int Perfil)
         {
             try
             {
-                return dtsSelXPerfil(Perfil);
-            }
-            catch (Exception ex)
-            {
-                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Permisos X Perfil";
-                return null;
-            }
-        }
-
-        public Permiso[] TableToArray(DataTable Dt)
-        {
-            try
-            {
+                DataTable dt = null;
+                dt = dtsSelXPerfil(Perfil);
+                string[] permisos = new string[dt.Rows.Count];
                 int i = 0;
-                Permiso[] permisos = new Permiso[Dt.Rows.Count];
-                foreach (DataRow renglon in Dt.Rows)
+                foreach (DataRow renglon in dt.Rows)
                 {
-                    Permiso permiso = new Permiso();
-                    if (Dt.Columns.Contains("Perfil"))
-                        permiso.Perfil = Convert.ToInt16(renglon["Perfil"]);
-                    if (Dt.Columns.Contains("Proceso"))
-                        permiso.Proceso = renglon["Proceso"].ToString();
-                    if (Dt.Columns.Contains("Subproceso"))
-                        permiso.Subproceso = renglon["Subproceso"].ToString();
-                    permiso.Existe = true;
-                    permisos[i] = permiso;
+                    permisos[i] = renglon["Subproceso"].ToString();
                     i++;
                 }
                 return permisos;
             }
             catch (Exception ex)
             {
-                Mensaje = "Ocurrio un error en la construcción del arreglo de Permisos";
-                return new Permiso[0];
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Permisos X Perfil";
+                return new string[0];
             }
         }
 
