@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="CapaPresentación.TarjetaLicenciaInactiva"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentación"
+             mc:Ignorable="d" 
+             d:DesignHeight="220" d:DesignWidth="320">
+    <Grid>
+        <materialDesign:Card MouseDoubleClick="CardFront_MouseDoubleClick" Width="auto" Height="auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="290*"/>
+                </Grid.ColumnDefinitions>
+                <materialDesign:ColorZone Name="IndicadorAlineamiento" Grid.Column="0" Background="#F1C40F" Height="30" Margin="0,0,0,138" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorUsoDeSuelo" Grid.Column="0" Background="#27AE60" Height="30" Margin="0,0,0,108" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorSupervisionTecnica" Grid.Column="0" Background="#2980B9" Height="30" Margin="0,0,0,78" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorLicencia" Grid.Column="0" Background="#E74C3C" Height="30" Margin="0,0,0,48" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorLicenciaProrroga" Grid.Column="0" Background="#EC7063 " Height="30" Margin="0,0,0,30" VerticalAlignment="Bottom"/>
+                <materialDesign:ColorZone Name="IndicadorTerminacionObra" Grid.Column="0" Background="#884EA0" Height="30" VerticalAlignment="Bottom"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="160*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0,22,94.4,0.4" HorizontalAlignment="Right" Click="Button_Click" Grid.RowSpan="2">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Upload"/>
+                            <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="33*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="145*"/>
+                            <ColumnDefinition Width="145*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="No.Licencia" x:Name="TXT_NoLicencia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="0" Margin="5 0 5 0"/>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Folio" x:Name="TXT_Folio" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="0" Grid.Column="1" Margin="5 0 5 0"/>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Tipo de Obra" x:Name="TXT_TipoObra" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="0" Margin="5 0 5 0"/>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Uso" x:Name="TXT_Uso" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="1" Grid.Column="1"  Margin="5 0 5 0"/>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Presupuesto" x:Name="TXT_presupuesto" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="0" Margin="5 0 5 0" />
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Nombre Cliente" x:Name="TXT_Cliente" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="2" Grid.Column="1" Margin="5 0 5 0"/>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Clave Catastral" x:Name="TXT_ClaveCatastral" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="0" Margin="5 0 5 5"/>
+                        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Colonia" x:Name="TXT_Colonia" materialDesign:HintAssist.IsFloating="True" CaretBrush="#2ECC71" BorderBrush="#2ECC71" Grid.Row="3" Grid.Column="1"  Margin="5 0 5 5"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

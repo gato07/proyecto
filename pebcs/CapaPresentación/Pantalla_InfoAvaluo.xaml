@@ -81,6 +81,15 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="662*"/>
                 </Grid.RowDefinitions>
+                <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7,0,0" 
+                            Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_CancelarLicencia"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" VerticalAlignment="Top" >
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Cancel"/>
+                        <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                    </StackPanel>
+                </Button>
                 <TextBlock Text="Agregar Avaluo" Name="titulo" Foreground="#52BE80" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>
                 <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,1,0,0" Grid.Row="1"
                             Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"

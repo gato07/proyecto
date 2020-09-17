@@ -97,6 +97,12 @@
     <Compile Include="Controles\AvaluoPericial.xaml.cs">
       <DependentUpon>AvaluoPericial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controles\AvaluoPericialInactivo.xaml.cs">
+      <DependentUpon>AvaluoPericialInactivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\PresupuestoInactivo.xaml.cs">
+      <DependentUpon>PresupuestoInactivo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EstimacionDeValor.xaml.cs">
       <DependentUpon>EstimacionDeValor.xaml</DependentUpon>
     </Compile>
@@ -118,7 +124,14 @@
     <Compile Include="Reportes\PresupuestoLicenciaConstrucción.xaml.cs">
       <DependentUpon>PresupuestoLicenciaConstrucción.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controles\TarjetaLicenciaInactiva.xaml.cs">
+      <DependentUpon>TarjetaLicenciaInactiva.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controles\AvaluoPericial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controles\AvaluoPericialInactivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controles\Presupuesto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controles\PresupuestoInactivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reportes\PresupuestoLicenciaConstrucción.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controles\TarjetaLicenciaInactiva.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

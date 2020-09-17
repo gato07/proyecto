@@ -135,7 +135,16 @@
                                 <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,62,0,102" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,46,0.2,0" 
+                            Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                            Name="Btn_CancelarLicencia" Click="Btn_CancelarLicencia_Click"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" VerticalAlignment="Top" >
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="Cancel"/>
+                                <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,96,0.2,68" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_GenerarLicencia"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" HorizontalAlignment="Right" Width="47" Click="Btn_GenerarLicencia_Click" >
                             <StackPanel>
@@ -143,7 +152,7 @@
                                 <TextBlock Text="Limpiar" Margin="20 -17 0 0"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,120,0,40" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,144,0.2,20" Background="#3498DB" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_GenerarPresupuesto" Click="Btn_GenerarPresupuesto_Click"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" MouseLeave="Btn_GenerarPresupuesto_MouseLeave" MouseMove="Btn_GenerarPresupuesto_MouseMove" HorizontalAlignment="Right" Width="47" >
                             <StackPanel>
