@@ -50,7 +50,8 @@ namespace CapaPresentación
             try
             {
                 Empleado empleado = new Empleado();
-                if (empleado.Loguear(txt_Usuario.Text, txt_Password.Password))
+                int ID = empleado.Loguear(txt_Usuario.Text, txt_Password.Password);
+                if (ID>0)
                 {
                     Menu_Principal2 Ventana = new Menu_Principal2();
                     Ventana.ShowDialog();
