@@ -415,7 +415,7 @@ namespace CapaLogica
             }
         }
 
-        public bool Loguear(string Usuario, string Contrasena)
+        public int Loguear(string Usuario, string Contrasena)
         {
             try
             {
@@ -424,18 +424,18 @@ namespace CapaLogica
                 if (empleado.Existe)
                 {
                     if (Seguridad.Desencriptar(empleado.SelContrasenaXClave(empleado.Clave)) == Contrasena)
-                        return true;
+                        return empleado.Clave;
                     else
                         Mensaje = "Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo";
                 }
                 else
                     Mensaje = "Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo";
-                return false;
+                return 0;
             }
             catch (Exception ex)
             {
                 Mensaje = "Nombre de usuario y/o contraseña incorrecto(s), intente de nuevo";
-                return false;
+                return 0;
             }
         }
 
