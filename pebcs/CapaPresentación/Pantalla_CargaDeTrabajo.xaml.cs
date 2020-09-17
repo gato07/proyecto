@@ -21,11 +21,12 @@ namespace CapaPresentación
             InitializeComponent();
             string NombreUsuario = "A";
             GenericIdentity identidad = new GenericIdentity(NombreUsuario);
-            String[] roles = { "IngenieroS" };
+            String[] roles = { "Ingeniero","ine"};
             GenericPrincipal MyPrincipal =
             new GenericPrincipal(identidad, roles);
             Thread.CurrentPrincipal = MyPrincipal;
             CargarEmpleados();
+
         }
         public class ChipEmpleado
         {
@@ -57,9 +58,8 @@ namespace CapaPresentación
         {
             try
             {
-                PrincipalPermission MyPermission = new PrincipalPermission("A", "Ingeniero");
+                PrincipalPermission MyPermission = new PrincipalPermission("A", "ine");
                 MyPermission.Demand();
-
                 Card n = (Card)sender;
                 Grid grid = (Grid)n.Parent;
                 ChipEmpleado chip = (ChipEmpleado)grid.DataContext;
@@ -81,7 +81,6 @@ namespace CapaPresentación
             }
             catch (Exception ex)
             {
-                
             }
         }
         public void cargarlicencias(int id)
