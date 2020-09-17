@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -22,6 +26,7 @@ namespace CapaPresentación
     /// </summary>
     public partial class Pantalla_InfoAvaluo : UserControl
     {
+        string NombreUsuario;
         Cliente cliente = new Cliente();
         Inmueble inmueble = new Inmueble();
         Avaluo_Pericial Avaluo = new Avaluo_Pericial();
@@ -32,17 +37,36 @@ namespace CapaPresentación
         int Estado;
         int IDcliente;
         int IDinmueble;
-        public Pantalla_InfoAvaluo(int ID)
+        public Pantalla_InfoAvaluo(int ID,int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 CargarClientes();
                 CargarInmuebles();
                 IDAvaluo = ID;
                 CargarInfo(IDAvaluo);
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
             {
 
             }
@@ -75,6 +99,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 if (n != null)
                 {
                     for (int x = 0; x < Documentacion.Length; x++)
@@ -102,6 +128,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 Cliente[] c = cliente.TableToArray(cliente.SelActivos());
                 for (int x = 0; x < c.Length; x++)
                 {
@@ -118,6 +146,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 Inmueble[] c = inmueble.TableToArray(inmueble.SelActivos());
                 for (int x = 0; x < c.Length; x++)
                 {
@@ -134,6 +164,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 if (id!=0)
                 {
                     Avaluo = new Avaluo_Pericial(id);
@@ -166,6 +198,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A1");
+                MyPermission.Demand();
                 if (IDAvaluo == 0)
                 {
                     IDAvaluo = Avaluo.Insertar(TXT_NoFolio.Text, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text),Convert.ToDecimal(TXT_PagoDeDerechos.Text),Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate),TXT_ObservacionesDeRecepcion.Text,Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate),TXT_ObservacinesDeEntrega.Text,dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble, 1);
@@ -179,18 +213,26 @@ namespace CapaPresentación
                         check.Show();
                     }
                 }
-                else if (IDAvaluo != 0)
+            }catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A2");
+                MyPermission.Demand();
+                if (IDAvaluo != 0)
                 {
                     if (DTP_FechaDeEntrga.SelectedDate.ToString() != "" || TXT_ObservacinesDeEntrega.Text != "")
                     {
                         Estado = 24;
                     }
-                    else if (DTP_FechaDeRecepcion.SelectedDate.ToString() != "" || TXT_ObservacionesDeRecepcion.Text !="")
+                    else if (DTP_FechaDeRecepcion.SelectedDate.ToString() != "" || TXT_ObservacionesDeRecepcion.Text != "")
                     {
                         Estado = 25;
                     }
-                    bool n = Avaluo.Actualizar(IDAvaluo,Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text), Convert.ToDecimal(TXT_PagoDeDerechos.Text), Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate), TXT_ObservacionesDeRecepcion.Text, Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate), TXT_ObservacinesDeEntrega.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble);
-                    if(n)
+                    bool n = Avaluo.Actualizar(IDAvaluo, Convert.ToDateTime(DTP_FechaDeElaboracion.SelectedDate), TXT_UsoInmueble.Text, Convert.ToDecimal(TXT_MetrosDeTerreno.Text), Convert.ToDecimal(TXT_MetrosDeConstruccion.Text), Convert.ToDecimal(TXT_CostoNeto.Text), Convert.ToDecimal(TXT_PagoDeDerechos.Text), Convert.ToDateTime(DTP_FechaDeRecepcion.SelectedDate), TXT_ObservacionesDeRecepcion.Text, Convert.ToDateTime(DTP_FechaDeEntrga.SelectedDate), TXT_ObservacinesDeEntrega.Text, dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], Estado, IDcliente, IDinmueble);
+                    if (n)
                     {
                         PantallaCheck check = new PantallaCheck();
                         check.Show();
@@ -200,7 +242,8 @@ namespace CapaPresentación
                         MessageBox.Show(Avaluo.Mensaje);
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
 
             }

@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -23,22 +27,46 @@ namespace CapaPresentación
     public partial class Pantalla_AvaluosPericial : UserControl
     {
         Menu_Principal2 Mn;
+        string NombreUsuario;
         Avaluo_Pericial avaluo= new Avaluo_Pericial();
-        public Pantalla_AvaluosPericial(object A)
+        int IdUSUATIO;
+        public Pantalla_AvaluosPericial(object A,int iDe)
         {
             InitializeComponent();
+            CargarRolesUsuarios(iDe);
             Mn = A as Menu_Principal2;
             CargarAvaluos();
+            IdUSUATIO = iDe;
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public void CargarAvaluos()
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelTodos());
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for(int x=0;x<avaluos.Length;x++)
                 {
-                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero,Mn);
+                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero,Mn, IdUSUATIO);
                     n.Items.Add(CardAvaluos[x]);
                 }
             }catch(Exception ex)
@@ -54,7 +82,7 @@ namespace CapaPresentación
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
-                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn);
+                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn, IdUSUATIO);
                     n.Items.Add(CardAvaluos[x]);
                 }
             }
@@ -71,7 +99,7 @@ namespace CapaPresentación
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
-                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn);
+                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn, IdUSUATIO);
                     n.Items.Add(CardAvaluos[x]);
                 }
             }
@@ -88,7 +116,7 @@ namespace CapaPresentación
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
-                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn);
+                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn, IdUSUATIO);
                     n.Items.Add(CardAvaluos[x]);
                 }
             }
@@ -105,7 +133,7 @@ namespace CapaPresentación
                 AvaluoPericial[] CardAvaluos = new AvaluoPericial[avaluos.Length];
                 for (int x = 0; x < avaluos.Length; x++)
                 {
-                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn);
+                    CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero, Mn, IdUSUATIO);
                     n.Items.Add(CardAvaluos[x]);
                 }
             }
@@ -119,7 +147,9 @@ namespace CapaPresentación
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_InfoAvaluo(0));
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A1");
+                MyPermission.Demand();
+                Mn.AbrirFormHijo(new Pantalla_InfoAvaluo(0, IdUSUATIO));
             }catch(Exception ex)
             {
 
@@ -163,6 +193,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 int E=0;
                 if(Estados.SelectedIndex==-1)
                 {
@@ -216,6 +248,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "A4");
+                MyPermission.Demand();
                 int E = 0;
                 if (Estados.SelectedIndex == -1)
                 {

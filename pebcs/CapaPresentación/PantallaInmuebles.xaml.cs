@@ -14,6 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using CapaLogica;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -23,14 +27,34 @@ namespace CapaPresentación
     public partial class PantallaInmuebles : UserControl
     {
         Inmueble inmueble = new Inmueble();
-        public PantallaInmuebles()
+        string NombreUsuario;
+        public PantallaInmuebles(int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 LlenarData();
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
             {
 
             }
@@ -83,6 +107,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 DataTable table = new DataTable();
                 table = PresentacionTable(inmueble.SelActivos());
                 GridInmueblesActivos.ItemsSource = table.AsDataView();
@@ -101,6 +127,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -123,6 +151,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -145,6 +175,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -167,6 +199,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -189,6 +223,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I2");
+                MyPermission.Demand();
                 bool res = false;
                 DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
                 res = inmueble.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTClaveCatastralModificar.Text, TXTNombrePropietarioModificar.Text, TXTTelefonoPropietarioModificar.Text, TXTColoniaModificar.Text, TXTCalleModificar.Text, TXTEntreCallesModificar.Text, TXTNumeroInteriorModificar.Text, TXTNumeroExteriorModificar.Text);
@@ -211,6 +247,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I1");
+                MyPermission.Demand();
                 bool re = false;
                 re = inmueble.Insertar(TXTClaveCatastral.Text, TXTNombrePropietario.Text, TXTTelefonoPropietario.Text, TXTColonia.Text, TXTCalle.Text, TXTEntreCalles.Text, TXTNumeroInterior.Text, TXTNumeroExterior.Text);
                 if (re)
@@ -254,6 +292,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I2");
+                MyPermission.Demand();
                 DataRowView data = (GridInmueblesInactivos as DataGrid).SelectedItem as DataRowView;
                 inmueble.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
                 LlenarData();
@@ -269,6 +309,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I3");
+                MyPermission.Demand();
                 DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
                 inmueble.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
                 LlenarData();
@@ -284,6 +326,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I2");
+                MyPermission.Demand();
                 DataRowView data = (GridInmueblesActivos as DataGrid).SelectedItem as DataRowView;
                 TXTClaveCatastralModificar.Text = data.Row.ItemArray[1].ToString();
                 TXTNombrePropietarioModificar.Text = data.Row.ItemArray[2].ToString();
@@ -352,6 +396,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 //ACTIVOS
                 if (OpcionesActivos.SelectedIndex == -1)
                 {
@@ -411,6 +457,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "I4");
+                MyPermission.Demand();
                 //INACTIVOS
                 if (OpcionesInactivos.SelectedIndex == -1)
                 {

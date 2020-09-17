@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CapaLogica;
+using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using TestStack.White.ScreenObjects;
-using Microsoft.Win32;
-using System.IO;
-using CapaLogica;
-using CapaPresentación.Controles;
 
 namespace CapaPresentación
 {
@@ -30,7 +21,7 @@ namespace CapaPresentación
             {
                 InitializeComponent();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -43,7 +34,7 @@ namespace CapaPresentación
                 ButtonOpenMenu.Visibility = Visibility.Collapsed;
                 ButtonCloseMenu.Visibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -56,7 +47,7 @@ namespace CapaPresentación
                 ButtonOpenMenu.Visibility = Visibility.Visible;
                 ButtonCloseMenu.Visibility = Visibility.Collapsed;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -68,7 +59,7 @@ namespace CapaPresentación
             {
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -83,7 +74,7 @@ namespace CapaPresentación
                 btnCerrarModulo.Visibility = Visibility.Visible;
                 btnAgregarAModulo.Visibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -97,7 +88,7 @@ namespace CapaPresentación
                 UserControl userControl = formhijo as UserControl;
                 PanelPrincipal.Children.Add(userControl);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -111,7 +102,7 @@ namespace CapaPresentación
                 btnCerrarModulo.Visibility = Visibility.Hidden;
                 btnAgregarAModulo.Visibility = Visibility.Hidden;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -145,7 +136,7 @@ namespace CapaPresentación
                     buttonimg.Background = imgb;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -167,7 +158,7 @@ namespace CapaPresentación
                 }
                 AbrirFormHijo(new PantallaUsuario(this));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -195,7 +186,7 @@ namespace CapaPresentación
                 titulo.Text = "CLIENTES";
                 btnCerrarModulo.Visibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -209,7 +200,7 @@ namespace CapaPresentación
                 titulo.Text = "INMUEBLES";
                 btnCerrarModulo.Visibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

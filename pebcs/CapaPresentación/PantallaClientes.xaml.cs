@@ -3,6 +3,10 @@ using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -11,12 +15,14 @@ namespace CapaPresentación
     /// </summary>
     public partial class PantallaClientes : UserControl
     {
+        string NombreUsuario;
         Cliente cliente = new Cliente();
-        public PantallaClientes()
+        public PantallaClientes(int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 LlenarData();
             }
             catch(Exception ex)
@@ -24,7 +30,24 @@ namespace CapaPresentación
 
             }
         }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
+            {
 
+            }
+        }
         private DataTable PresentacionTable(DataTable Dt)
         {
             try
@@ -55,6 +78,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 DataTable table = new DataTable();
                 table = PresentacionTable(cliente.SelActivos());
                 GridClientesActivos.ItemsSource = table.AsDataView();
@@ -73,6 +98,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -95,6 +122,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -117,6 +146,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -139,6 +170,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -161,6 +194,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C1");
+                MyPermission.Demand();
                 bool res = false;
                 res = cliente.Insertar(TXTRfc.Text, TXTNombre.Text, TXTApellido.Text, TXTTelefono.Text, TXTEmail.Text);
                 if (res)
@@ -182,6 +217,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C3");
+                MyPermission.Demand();
                 DataRowView data = (GridClientesActivos as DataGrid).SelectedItem as DataRowView;
                 cliente.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
                 LlenarData();
@@ -212,6 +249,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C2");
+                MyPermission.Demand();
                 DataRowView data = (GridClientesActivos as DataGrid).SelectedItem as DataRowView;
                 TXTRfcModificar.Text = data.Row.ItemArray[1].ToString();
                 TXTNombreModificar.Text = data.Row.ItemArray[2].ToString();
@@ -229,6 +268,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C2");
+                MyPermission.Demand();
                 bool res = false;
                 DataRowView data = (GridClientesActivos as DataGrid).SelectedItem as DataRowView;
                 res = cliente.Actualizar(Convert.ToInt16(data.Row.ItemArray[0].ToString()), TXTRfcModificar.Text, TXTNombreModificar.Text, TXTApellidoModificar.Text, TXTTelefonoModificar.Text, TXTEmailModificar.Text);
@@ -273,6 +314,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C2");
+                MyPermission.Demand();
                 DataRowView data = (GridClientesInactivos as DataGrid).SelectedItem as DataRowView;
                 cliente.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
                 LlenarData();
@@ -380,6 +423,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 //Activos
                 if (OpcionesActivos.SelectedIndex == -1)
                 {
@@ -415,6 +460,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "C4");
+                MyPermission.Demand();
                 //Inactivos
                 if (OpcionesInactivos.SelectedIndex == -1)
                 {

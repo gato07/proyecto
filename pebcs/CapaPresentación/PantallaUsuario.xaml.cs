@@ -14,6 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
 using CapaPresentación.Controles;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -22,19 +26,41 @@ namespace CapaPresentación
     /// </summary>
     public partial class PantallaUsuario : UserControl
     {
+        string NombreUsuario;
         Flipper[] flippers;
         FlipperUsuarioInactivo[] flipperInactivos;
         //RowDefinition rowDefinition;
         //ColumnDefinition columnDefinition;
         Menu_Principal2 Mn;
+        int IdUSUATIO;
         //Empleado emp;
-        public PantallaUsuario(object A)
+        public PantallaUsuario(object A,int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 generartarjetas();
+                IdUSUATIO = iDe;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
             }
             catch (Exception ex)
             {
@@ -45,6 +71,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E4");
+                MyPermission.Demand();
                 Empleado empleado = new Empleado();
                 Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelActivos());
                 Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelEliminados());
@@ -57,7 +85,7 @@ namespace CapaPresentación
                 //agregarfila(flippers.Length + flipperInactivos.Length);
                 for (int x = 0; x < flippers.Length; x++)
                 {
-                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x] = new Flipper(this, Mn, IdUSUATIO);
                     flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
@@ -75,7 +103,7 @@ namespace CapaPresentación
                 }
                 for (int x = 0; x < flipperInactivos.Length; x++)
                 {
-                    flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                    flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn, IdUSUATIO);
                     flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                     //Grid.SetColumn(flipperInactivos[x], columna - 1);
                     //Grid.SetRow(flipperInactivos[x], fila - 1);
@@ -113,6 +141,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E4");
+                MyPermission.Demand();
                 Empleado empleado = new Empleado();
                 Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeNombre(Busqueda.Text, false));
                 Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeNombre(Busqueda.Text, true));
@@ -124,7 +154,7 @@ namespace CapaPresentación
                 //agregarfila(flippers.Length + flipperInactivos.Length);
                 for (int x = 0; x < flippers.Length; x++)
                 {
-                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x] = new Flipper(this, Mn, IdUSUATIO);
                     flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
@@ -144,7 +174,7 @@ namespace CapaPresentación
                 {
                     for (int x = 0; x < flipperInactivos.Length; x++)
                     {
-                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn, IdUSUATIO);
                         flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                         //Grid.SetColumn(flipperInactivos[x], columna - 1);
                         //Grid.SetRow(flipperInactivos[x], fila - 1);
@@ -171,6 +201,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E4");
+                MyPermission.Demand();
                 Empleado empleado = new Empleado();
                 Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeUsuario(Busqueda.Text, false));
                 Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeUsuario(Busqueda.Text, true));
@@ -182,7 +214,7 @@ namespace CapaPresentación
                 //agregarfila(flippers.Length + flipperInactivos.Length);
                 for (int x = 0; x < flippers.Length; x++)
                 {
-                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x] = new Flipper(this, Mn, IdUSUATIO);
                     flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
@@ -202,7 +234,7 @@ namespace CapaPresentación
                 {
                     for (int x = 0; x < flipperInactivos.Length; x++)
                     {
-                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn);
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this, Mn, IdUSUATIO);
                         flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                         //Grid.SetColumn(flipperInactivos[x], columna - 1);
                         //Grid.SetRow(flipperInactivos[x], fila - 1);
@@ -228,7 +260,9 @@ namespace CapaPresentación
         public void generartarjetasLikeCorreo(TextBox Busqueda)
         {
             try
-            { 
+            {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E4");
+                MyPermission.Demand();
                 Empleado empleado = new Empleado();
                 Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelLikeEmail(Busqueda.Text, false));
                 Empleado[] empleadosInactivos = empleado.TableToArray(empleado.SelLikeEmail(Busqueda.Text, true));
@@ -240,7 +274,7 @@ namespace CapaPresentación
                 //agregarfila(flippers.Length + flipperInactivos.Length);
                 for (int x = 0; x < flippers.Length; x++)
                 {
-                    flippers[x] = new Flipper(this, Mn);
+                    flippers[x] = new Flipper(this, Mn, IdUSUATIO);
                     flippers[x].CargarDatosTarjeta(empleadosActivos[x].Clave, empleadosActivos[x].Nombre, empleadosActivos[x].Domicilio, empleadosActivos[x].Telefono, empleadosActivos[x].Email, empleadosActivos[x].Foto, empleadosActivos[x].Perfil, empleadosActivos[x].Usuario);
                     //Grid.SetColumn(flippers[x], columna - 1);
                     //Grid.SetRow(flippers[x], fila - 1);
@@ -260,7 +294,7 @@ namespace CapaPresentación
                 {
                     for (int x = 0; x < flipperInactivos.Length; x++)
                     {
-                        flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn);
+                        flipperInactivos[x] = new FlipperUsuarioInactivo(this,Mn, IdUSUATIO);
                         flipperInactivos[x].CargarDatosTarjeta(empleadosInactivos[x].Clave, empleadosInactivos[x].Nombre, empleadosInactivos[x].Domicilio, empleadosInactivos[x].Telefono, empleadosInactivos[x].Email, empleadosInactivos[x].Foto, empleadosInactivos[x].Perfil, empleadosInactivos[x].Usuario);
                         //Grid.SetColumn(flipperInactivos[x], columna - 1);
                         //Grid.SetRow(flipperInactivos[x], fila - 1);
@@ -411,7 +445,9 @@ namespace CapaPresentación
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_PerfilUsuario(null, Mn));
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E1");
+                MyPermission.Demand();
+                Mn.AbrirFormHijo(new Pantalla_PerfilUsuario(null, Mn, IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -436,6 +472,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E4");
+                MyPermission.Demand();
                 if (Opciones.SelectedIndex == -1)
                 {
                     impiar();

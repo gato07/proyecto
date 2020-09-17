@@ -26,12 +26,14 @@ namespace CapaPresentación.Controles
         Inmueble inmueble;
         Menu_Principal2 Mn;
         int ID;
-        public AvaluoPericial(int Id,object A)
+        int IdUSUATIO;
+        public AvaluoPericial(int Id,object A,int iDe)
         {
             InitializeComponent();
             Mn = A as Menu_Principal2;
             ID = Id;
             CargarInfo(Id);
+            IdUSUATIO = iDe;
         }
         public void CargarInfo(int ID)
         {
@@ -52,7 +54,7 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_InfoAvaluo(ID)); ;
+                Mn.AbrirFormHijo(new Pantalla_InfoAvaluo(ID, IdUSUATIO)); ;
             }catch(Exception ex)
             {
 

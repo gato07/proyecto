@@ -28,13 +28,15 @@ namespace CapaPresentación.Controles
         Menu_Principal2 MN;
         PantallaCheck check = new PantallaCheck();
         string[] Datos = new string[10];
-        public Flipper(Object A,Object B)
+        int IdUSUATIO;
+        public Flipper(Object A,Object B,int iDe)
         {
             try
             {
                 InitializeComponent();
                 Win = A as PantallaUsuario;
                 MN = B as Menu_Principal2;
+                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {
@@ -131,7 +133,7 @@ namespace CapaPresentación.Controles
             {
                 //this.Cursor = Cursors.Wait;
                 //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
-                MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos, MN));
+                MN.AbrirFormHijo(new Pantalla_PerfilUsuario(Datos, MN, IdUSUATIO));
             }
             catch (Exception ex)
             {

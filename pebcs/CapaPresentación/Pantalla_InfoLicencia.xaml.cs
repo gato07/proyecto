@@ -15,6 +15,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static CapaPresentación.Pantalla_CargaDeTrabajo;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -23,6 +27,7 @@ namespace CapaPresentación
     /// </summary>
     public partial class Pantalla_InfoLicencia : UserControl
     {
+        string NombreUsuario;
         Tipo_Proyecto tipProyecto = new Tipo_Proyecto();
         Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia();
         Presupuesto presupuesto = new Presupuesto();
@@ -33,12 +38,14 @@ namespace CapaPresentación
         string[] Documentacion = new string[] {"Escrituras Del Terreno","Constacia De Alineamiento y No Oficial","Cosntacia De Pago Del Impuesto Predial",
                                                "Contrato o Recibo De Agua Potable","Planos Arquitectonicos De La Obra","Planos Estructurales De La Obra","Planos De Instalación De La Obra","Memoria De Calculo" };
         bool[] dockcheck = new bool[8];
+        int IdUSUATIO;
         Menu_Principal2 Mn;
-        public Pantalla_InfoLicencia( int IDLicencia,Object A,int IDpresu)
+        public Pantalla_InfoLicencia( int IDLicencia,Object A,int IDpresu,int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 CargarClientes();
                 CargarInmuebles();
@@ -46,6 +53,25 @@ namespace CapaPresentación
                 CargarDatos(IDLicencia, IDpresu);
                 IDlicen = IDLicencia;
                 IDpresupuesto = IDpresu;
+                IdUSUATIO = iDe;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
             }
             catch (Exception ex)
             {
@@ -57,7 +83,9 @@ namespace CapaPresentación
         {
             try
             {
-                if(iDpRESU!=0)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
+                if (iDpRESU!=0)
                 {
                     Presupuesto prec = new Presupuesto(iDpRESU);
                     Etiqueta.Text = TXT_Etiqueta.Text = prec.Etiqueta;
@@ -106,6 +134,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
                 if (n != null)
                 {
                     for (int x = 0; x < Documentacion.Length; x++)
@@ -133,6 +163,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
                 Cliente[] c = cliente.TableToArray(cliente.SelActivos());
                 for (int x = 0; x < c.Length; x++)
                 {
@@ -149,6 +181,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
                 Inmueble[] c = inmueble.TableToArray(inmueble.SelActivos());
                 for (int x = 0; x < c.Length; x++)
                 {
@@ -228,6 +262,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
                 Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
                 string n = null;
                 for (int x = 0; x < _Proyectos.Length-5; x++)
@@ -303,9 +339,11 @@ namespace CapaPresentación
         {
             try
             {
-                if(IDlicen!=0)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L2");
+                MyPermission.Demand();
+                if (IDlicen!=0)
                 {
-                    Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia(IDlicen, Mn));
+                    Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia(IDlicen, Mn, IdUSUATIO));
                 }
             }
             catch(Exception ex)
@@ -317,9 +355,11 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L2");
+                MyPermission.Demand();
                 ProyectoLicencia = new Proyecto_Licencia(IDlicen);
                 if(ProyectoLicencia.Existe)
-                    Mn.AbrirFormHijo(new PantallaPresupuestos(ProyectoLicencia.Numero_Presupuesto, Mn));
+                    Mn.AbrirFormHijo(new PantallaPresupuestos(ProyectoLicencia.Numero_Presupuesto, Mn, IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -374,6 +414,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L2");
+                MyPermission.Demand();
                 if (F == false)
                 {
                     bool n = false;
@@ -388,14 +430,24 @@ namespace CapaPresentación
                         MessageBox.Show(ProyectoLicencia.Mensaje);
                     }
                 }
-                else if (F == true)
+               
+            }
+            catch (Exception ex)
+            {
+
+            }
+            try
+            {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                if (F == true)
                 {
-                    if(IDpresupuesto==0)
+                    if (IDpresupuesto == 0)
                     {
-                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text,TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 1, IdTipodeproyecto, 1);
+                        IDpresupuesto = presupuesto.Insertar(TXT_Etiqueta.Text, TXT_NombreCliente.Text, TXT_Propietario.Text, TXT_Genero.Text, Convert.ToDecimal(TXT_Metros.Text), 0, 1, IdTipodeproyecto, 1);
                         if (IDpresupuesto != 0)
                         {
-                            IDlicen = ProyectoLicencia.Insertar( dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
+                            IDlicen = ProyectoLicencia.Insertar(dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
                             if (IDlicen != 0)
                             {
                                 PantallaCheck check = new PantallaCheck();
@@ -414,24 +466,24 @@ namespace CapaPresentación
                             MessageBox.Show(presupuesto.Mensaje);
                         }
                     }
-                    else if (IDpresupuesto!=0)
+                    else if (IDpresupuesto != 0)
                     {
-                            IDlicen = ProyectoLicencia.Insertar( dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
-                            if (IDlicen != 0)
-                            {
-                                PantallaCheck check = new PantallaCheck();
-                                check.Show();
-                                F = false;
-                                DesactivarCampos();
-                            }
-                            else
+                        IDlicen = ProyectoLicencia.Insertar(dockcheck[0], dockcheck[1], dockcheck[2], dockcheck[3], dockcheck[4], dockcheck[5], dockcheck[6], dockcheck[7], 1, IDpresupuesto, IDcliente, IDinmueble, 1);
+                        if (IDlicen != 0)
+                        {
+                            PantallaCheck check = new PantallaCheck();
+                            check.Show();
+                            F = false;
+                            DesactivarCampos();
+                        }
+                        else
                         {
                             MessageBox.Show(ProyectoLicencia.Mensaje);
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
 
             }

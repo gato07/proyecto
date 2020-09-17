@@ -15,6 +15,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Data;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -23,6 +27,7 @@ namespace CapaPresentación
     /// </summary>
     public partial class Pantalla_Dictamen_Estimacion : UserControl
     {
+        string NombreUsuario;
         Dictamen_Estimacion dictamen;
         Cliente cliente = new Cliente();
         Inmueble inmueble = new Inmueble();
@@ -30,13 +35,32 @@ namespace CapaPresentación
         bool ela = false, entre = false, manis = false, oficio = false, escrituras = false, licencia = false, otra = false;
         List<DictamenEstructural> lit = new List<DictamenEstructural>();
         List<DictamenEstructural> lit2 = new List<DictamenEstructural>();
-        public Pantalla_Dictamen_Estimacion()
+        public Pantalla_Dictamen_Estimacion(int iDe)
         {
             InitializeComponent();
+            CargarRolesUsuarios(iDe);
             CargarDatosactivos();
             CargarDatosinactivos();
             CargarClientes();
             CargarInmuebles();
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         private void btnConceptoModificar_Click(object sender, RoutedEventArgs e)
         {
@@ -81,75 +105,128 @@ namespace CapaPresentación
         }
         private void llenardatalikeClavecatastral(string texto)
         {
-            lit.Clear();
-            DataTable table = new DataTable();
-            dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto));
-            for (int x = 0; x < datos.Length; x++)
+            try
             {
-                lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                lit.Clear();
+                DataTable table = new DataTable();
+                dictamen = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto));
+                for (int x = 0; x < datos.Length; x++)
+                {
+                    lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                }
+                GridConceptosActivos.ItemsSource = lit;
             }
-            GridConceptosActivos.ItemsSource = lit;
+            catch (Exception ex)
+            {
+
+            }
         }
         private void llenardatalikeetiqueta(string texto)
         {
-            lit.Clear();
-            DataTable table = new DataTable();
-            dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto));
-            for (int x = 0; x < datos.Length; x++)
+            try
             {
-                lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                lit.Clear();
+                DataTable table = new DataTable();
+                dictamen = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto));
+                for (int x = 0; x < datos.Length; x++)
+                {
+                    lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                }
+                GridConceptosActivos.ItemsSource = lit;
             }
-            GridConceptosActivos.ItemsSource = lit;
+            catch(Exception ex)
+            {
+
+            }
         }
         private void llenardatalikepropietario(string texto)
         {
-            lit.Clear();
-            DataTable table = new DataTable();
-            dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto));
-            for (int x = 0; x < datos.Length; x++)
+            try
             {
-                lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                lit.Clear();
+                DataTable table = new DataTable();
+                dictamen = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto));
+                for (int x = 0; x < datos.Length; x++)
+                {
+                    lit.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                }
+                GridConceptosActivos.ItemsSource = lit;
             }
-            GridConceptosActivos.ItemsSource = lit;
+            catch(Exception ex)
+            { 
+            }
         }
         private void llenardatalikeClavecatastraleliminado(string texto)
         {
-            lit2.Clear();
-            DataTable table = new DataTable();
-            dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto, true));
-            for (int x = 0; x < datos.Length; x++)
+            try
             {
-                lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                lit2.Clear();
+                DataTable table = new DataTable();
+                dictamen = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeCatastral(false, texto, true));
+                for (int x = 0; x < datos.Length; x++)
+                {
+                    lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                }
+                GridConceptosActivos.ItemsSource = lit2;
             }
-            GridConceptosActivos.ItemsSource = lit2;
+            catch(Exception ex)
+            {
+
+            }
         }
         private void llenardatalikeetiquetaeliminado(string texto)
         {
-            lit2.Clear();
-            DataTable table = new DataTable();
-            dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto, true));
-            for (int x = 0; x < datos.Length; x++)
+            try
             {
-                lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                lit2.Clear();
+                DataTable table = new DataTable();
+                dictamen = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikeEtiqueta(false, texto, true));
+                for (int x = 0; x < datos.Length; x++)
+                {
+                    lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                }
+                GridConceptosActivos.ItemsSource = lit2;
             }
-            GridConceptosActivos.ItemsSource = lit2;
+            catch(Exception ex)
+            {
+
+            }
         }
         private void llenardatalikepropietarioeliminado(string texto)
         {
-            lit2.Clear();
-            DataTable table = new DataTable();
-            dictamen = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto, true));
-            for (int x = 0; x < datos.Length; x++)
+            try
             {
-                lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                lit2.Clear();
+                DataTable table = new DataTable();
+                dictamen = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] datos = dictamen.TableToArray(table = dictamen.SelXTipoLikePropietario(false, texto, true));
+                for (int x = 0; x < datos.Length; x++)
+                {
+                    lit2.Add(new DictamenEstructural() { ID = datos[x].Numero, Etiqueta = datos[x].Etiqueta, Tipo = datos[x].Tipo, FechaRegistro = datos[x].Fecha_Registro, FechaVisita = datos[x].Visita_Programada, Elaboracion = datos[x].Elaboracion, Observacion = datos[x].Observacion_Elaboracion, Entregado = datos[x].Entregado, Manifestacion = datos[x].Manifestacion, Oficiosub = datos[x].Oficio_Subdivision, Escrituras = datos[x].Escrituras, Licencia = datos[x].Licencia_Construccion, Otra = datos[x].Otra, OtraNombre = datos[x].Otra_Nombre, cliente = datos[x].Id_Cliente, inmueble = datos[x].Clave_Inmueble });
+                }
+                GridConceptosActivos.ItemsSource = lit2;
             }
-            GridConceptosActivos.ItemsSource = lit2;
+            catch(Exception ex)
+            {
+
+            }
         }
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
@@ -188,32 +265,50 @@ namespace CapaPresentación
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DictamenEstructural dictamen2 = (DictamenEstructural)GridConceptosActivos.SelectedItem;
-            if (dictamen2 != null)
+            try
             {
-                dictamen.Eliminar(dictamen2.ID);
-                CargarDatosactivos();
-                CargarDatosinactivos();
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D3");
+                MyPermission.Demand();
+                DictamenEstructural dictamen2 = (DictamenEstructural)GridConceptosActivos.SelectedItem;
+                if (dictamen2 != null)
+                {
+                    dictamen.Eliminar(dictamen2.ID);
+                    CargarDatosactivos();
+                    CargarDatosinactivos();
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
         private void TxtBusquedaActivos_KeyUp(object sender, KeyEventArgs e)
         {
-            if (OpcionesActivos.SelectedIndex == -1)
+            try
             {
-                CargarDatosactivos();
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
+                if (OpcionesActivos.SelectedIndex == -1)
+                {
+                    CargarDatosactivos();
+                }
+                else if (OpcionesActivos.SelectedIndex == 0)
+                {
+                    llenardatalikeClavecatastral(TxtBusquedaActivos.Text);
+                }
+                else if (OpcionesActivos.SelectedIndex == 1)
+                {
+                    llenardatalikeetiqueta(TxtBusquedaActivos.Text);
+                }
+                else if (OpcionesActivos.SelectedIndex == 2)
+                {
+                    llenardatalikepropietario(TxtBusquedaActivos.Text);
+                }
             }
-            else if (OpcionesActivos.SelectedIndex == 0)
+            catch(Exception ex)
             {
-                llenardatalikeClavecatastral(TxtBusquedaActivos.Text);
-            }
-            else if (OpcionesActivos.SelectedIndex == 1)
-            {
-                llenardatalikeetiqueta(TxtBusquedaActivos.Text);
-            }
-            else if (OpcionesActivos.SelectedIndex == 2)
-            {
-                llenardatalikepropietario(TxtBusquedaActivos.Text);
+
             }
         }
 
@@ -221,6 +316,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D1");
+                MyPermission.Demand();
                 numeroestimacion = 0;
             }
             catch (Exception ex)
@@ -233,6 +330,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D2");
+                MyPermission.Demand();
                 DictamenEstructural dictamen2 = (DictamenEstructural)GridConceptosInactivos.SelectedItem;
                 if (dictamen2 != null)
                 {
@@ -276,6 +375,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
                 if (OpcionesInactivos.SelectedIndex == -1)
                 {
                     CargarDatosinactivos();
@@ -303,6 +404,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D2");
+                MyPermission.Demand();
                 DictamenEstructural dictamen = (DictamenEstructural)GridConceptosActivos.SelectedItem;
                 if (dictamen != null)
                 {
@@ -379,6 +482,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
                 Cliente[] c = cliente.TableToArray(cliente.SelActivos());
                 for (int x = 0; x < c.Length; x++)
                 {
@@ -395,6 +500,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+                MyPermission.Demand();
                 Inmueble[] c = inmueble.TableToArray(inmueble.SelActivos());
                 for (int x = 0; x < c.Length; x++)
                 {
@@ -409,6 +516,8 @@ namespace CapaPresentación
         }
         public void CargarDatosactivos()
         {
+            PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+            MyPermission.Demand();
             GridConceptosActivos.ItemsSource = null;
             lit.Clear();
             DataTable table = new DataTable();
@@ -422,6 +531,8 @@ namespace CapaPresentación
         }
         public void CargarDatosinactivos()
         {
+            PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D4");
+            MyPermission.Demand();
             GridConceptosInactivos.ItemsSource = null;
             lit2.Clear();
             dictamen = new Dictamen_Estimacion();
@@ -517,21 +628,39 @@ namespace CapaPresentación
 
         private void btnAgregarConcepto_Click(object sender, RoutedEventArgs e)
         {
-            if (numeroestimacion == 0)
+            try
             {
-                sacarbool();
-                dictamen.Insertar(TXTetiqueta.Text, false, Convert.ToDateTime(DTP_FechaRegistro.SelectedDate), Convert.ToDateTime(DTP_FechaVisita.SelectedDate), ela, TXTObservaciionElaboracion.Text, entre, manis, oficio, escrituras, licencia, otra, TXTOtra.Text, numcliente, numinmueble, 1);
-                CargarDatosactivos();
-                CargarDatosinactivos();
-                limpiar();
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D1");
+                MyPermission.Demand();
+                if (numeroestimacion == 0)
+                {
+                    sacarbool();
+                    dictamen.Insertar(TXTetiqueta.Text, false, Convert.ToDateTime(DTP_FechaRegistro.SelectedDate), Convert.ToDateTime(DTP_FechaVisita.SelectedDate), ela, TXTObservaciionElaboracion.Text, entre, manis, oficio, escrituras, licencia, otra, TXTOtra.Text, numcliente, numinmueble, 1);
+                    CargarDatosactivos();
+                    CargarDatosinactivos();
+                    limpiar();
+                }
             }
-            else if (numeroestimacion != 0)
+            catch(Exception ex)
             {
-                sacarbool();
-                dictamen.Actualizar(numeroestimacion, TXTetiqueta.Text, false, Convert.ToDateTime(DTP_FechaRegistro.SelectedDate), Convert.ToDateTime(DTP_FechaVisita.SelectedDate), ela, TXTObservaciionElaboracion.Text, entre, manis, oficio, escrituras, licencia, otra, TXTOtra.Text, numcliente, numinmueble, 1);
-                CargarDatosactivos();
-                CargarDatosinactivos();
-                limpiar();
+
+            }
+            try
+            {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "D2");
+                MyPermission.Demand();
+                if (numeroestimacion != 0)
+                {
+                    sacarbool();
+                    dictamen.Actualizar(numeroestimacion, TXTetiqueta.Text, false, Convert.ToDateTime(DTP_FechaRegistro.SelectedDate), Convert.ToDateTime(DTP_FechaVisita.SelectedDate), ela, TXTObservaciionElaboracion.Text, entre, manis, oficio, escrituras, licencia, otra, TXTOtra.Text, numcliente, numinmueble, 1);
+                    CargarDatosactivos();
+                    CargarDatosinactivos();
+                    limpiar();
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
     }

@@ -26,12 +26,14 @@ namespace CapaPresentación.Controles
         int ID;
         Menu_Principal2 Mn;
         int n, n2, n3, n4, n5,n6 = 0;
-        public TarjetaLicencia(Object A)
+        int IdUSUATIO;
+        public TarjetaLicencia(Object A,int iDe)
         {
             try
             {
                 InitializeComponent();
                 Mn = A as Menu_Principal2;
+                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {
@@ -43,7 +45,7 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(ID,Mn,0));
+                Mn.AbrirFormHijo(new Pantalla_InfoLicencia(ID,Mn,0, IdUSUATIO));
             }catch(Exception ex)
             {
 
@@ -53,7 +55,7 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia(ID,Mn));
+                Mn.AbrirFormHijo(new Pantalla_SeguimientoLicencia(ID,Mn, IdUSUATIO));
             }
             catch(Exception ex)
             {

@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -22,14 +26,17 @@ namespace CapaPresentación
     /// </summary>
     public partial class Pantalla_SeguimientoLicencia : UserControl
     {
+        string NombreUsuario;
         int IDlicen;
         Proyecto_Licencia ProyectoLicencia = new Proyecto_Licencia();
         Proyecto_Licencia ProyectoLicenciaProrroga = new Proyecto_Licencia();
         CapaLogica.Presupuesto pre = new CapaLogica.Presupuesto();
         Menu_Principal2 Mn;
-        public Pantalla_SeguimientoLicencia(int IDlicencia, Object A)
+        int IdUSUATIO;
+        public Pantalla_SeguimientoLicencia(int IDlicencia, Object A,int iDe)
         {
             InitializeComponent();
+            CargarRolesUsuarios(iDe);
             Mn = A as Menu_Principal2;
             IDlicen = IDlicencia;
             ProyectoLicencia = new Proyecto_Licencia(IDlicencia);
@@ -37,28 +44,58 @@ namespace CapaPresentación
             CargarProcesos(pre.Id_Tipo_Proyecto, pre.Mts);
             CargarIfoProcesos(IDlicen);
             CargarDatos(IDlicen);
+            IdUSUATIO = iDe;
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public void CargarDatos(int IDeLicencia)
         {
-            ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
-            pre = new CapaLogica.Presupuesto(ProyectoLicencia.Numero_Presupuesto);
-            TXT_NoFolio.Text = ProyectoLicencia.Folio;
-            TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
-            DTP_Vigencia.SelectedDate = ProyectoLicencia.Vigencia;
-            ProyectoLicenciaProrroga = new Proyecto_Licencia((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0));
-            if (ProyectoLicenciaProrroga.Existe)
+            try
             {
-                TXT_NoFolioProrroga.Text = ProyectoLicenciaProrroga.Folio;
-                TXT_NoLicenciaProrroga.Text = ProyectoLicenciaProrroga.Numero_Licencia;
-                DTP_VigenciaProrroga.SelectedDate = ProyectoLicenciaProrroga.Vigencia;
-                LICENCIAPRORROGATAB.IsEnabled = true;
-                LICENCIAPRORROGATAB.Opacity = 1;
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
+                ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
+                pre = new CapaLogica.Presupuesto(ProyectoLicencia.Numero_Presupuesto);
+                TXT_NoFolio.Text = ProyectoLicencia.Folio;
+                TXT_NoLicencia.Text = ProyectoLicencia.Numero_Licencia;
+                DTP_Vigencia.SelectedDate = ProyectoLicencia.Vigencia;
+                ProyectoLicenciaProrroga = new Proyecto_Licencia((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0));
+                if (ProyectoLicenciaProrroga.Existe)
+                {
+                    TXT_NoFolioProrroga.Text = ProyectoLicenciaProrroga.Folio;
+                    TXT_NoLicenciaProrroga.Text = ProyectoLicenciaProrroga.Numero_Licencia;
+                    DTP_VigenciaProrroga.SelectedDate = ProyectoLicenciaProrroga.Vigencia;
+                    LICENCIAPRORROGATAB.IsEnabled = true;
+                    LICENCIAPRORROGATAB.Opacity = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         private void CargarIfoProcesos(int IDeLicencia)
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
+                MyPermission.Demand();
                 Documentacion_Licencia documentacion_Licencia = new Documentacion_Licencia();
                 ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
                 Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0)));
@@ -400,7 +437,9 @@ namespace CapaPresentación
         {
             try
             {
-                while(true)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                while (true)
                 {
                     bool caso1 = false, caso2 = false;
                     bool cambio = false;
@@ -518,7 +557,9 @@ namespace CapaPresentación
         {
             try
             {
-               while(true)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                while (true)
                 {
                     bool caso1 = false, caso2 = false;
                     bool cambio = false;
@@ -635,7 +676,9 @@ namespace CapaPresentación
         {
             try
             {
-                while(true)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                while (true)
                 {
                     bool caso1 = false, caso2 = false;
                     bool cambio = false;
@@ -752,7 +795,9 @@ namespace CapaPresentación
         {
             try
             {
-                while(true)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                while (true)
                 {
                     bool caso1 = false, caso2 = false;
                     bool cambio = false;
@@ -869,7 +914,9 @@ namespace CapaPresentación
         {
             try
             {
-                while(true)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                while (true)
                 {
                     bool caso1 =false,caso2 = false;
                     bool cambio = false;
@@ -986,9 +1033,11 @@ namespace CapaPresentación
         {
             try
             {
-                if(IDlicen!=0)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L2");
+                MyPermission.Demand();
+                if (IDlicen!=0)
                 {
-                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IDlicen, Mn,0));
+                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(IDlicen, Mn,0, IdUSUATIO));
                 }
             }catch(Exception ex)
             {
@@ -1000,7 +1049,9 @@ namespace CapaPresentación
         {
             try
             {
-               while(true)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
+                while (true)
                 {
                     bool caso1 = false, caso2 = false;
                     bool cambio = false;
@@ -1118,6 +1169,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L1");
+                MyPermission.Demand();
                 int idtipopro =0;
                 ProyectoLicencia = new Proyecto_Licencia (IDlicen);
                 CapaLogica.Presupuesto pres = new CapaLogica.Presupuesto(ProyectoLicencia.Numero_Presupuesto);
@@ -1171,6 +1224,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L2");
+                MyPermission.Demand();
                 bool n=ProyectoLicencia.ActualizarIdEstadoLic(IDlicen,20);
                 if(n==true)
                 {

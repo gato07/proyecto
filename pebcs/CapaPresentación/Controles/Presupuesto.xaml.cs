@@ -23,12 +23,14 @@ namespace CapaPresentación.Controles
     {
         int IDPRES;
         Menu_Principal2 Mn;
-        public Presupuesto(object A)
+        int IdUSUATIO;
+        public Presupuesto(object A,int iDe)
         {
             try
             {
                 InitializeComponent();
                 Mn = A as Menu_Principal2;
+                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {
@@ -82,7 +84,7 @@ namespace CapaPresentación.Controles
         {
             try
             {
-                Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES,Mn));
+                Mn.AbrirFormHijo(new PantallaPresupuestos(IDPRES,Mn, IdUSUATIO));
             }
             catch (Exception ex)
             {

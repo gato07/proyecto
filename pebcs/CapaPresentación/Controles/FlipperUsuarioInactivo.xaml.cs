@@ -27,7 +27,8 @@ namespace CapaPresentación.Controles
         PantallaUsuario Win;
         Menu_Principal2 MN;
         string[] Datos = new string[10];
-        public FlipperUsuarioInactivo(object A, Object B)
+        int IdUSUATIO;
+        public FlipperUsuarioInactivo(object A, Object B ,int iDe)
         {
             try
             {
@@ -38,6 +39,7 @@ namespace CapaPresentación.Controles
                 timer.Interval = TimeSpan.FromSeconds(2);
                 timer.Tick += Timer_Tick;
                 timer.Start();
+                IdUSUATIO = iDe;
             }
             catch(Exception ex)
             {
@@ -92,7 +94,7 @@ namespace CapaPresentación.Controles
                 check.ShowDialog();
                 //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
                 emp.Activar(ID);
-                MN.AbrirFormHijo(new PantallaUsuario(MN));
+                MN.AbrirFormHijo(new PantallaUsuario(MN, IdUSUATIO));
             }
             catch(Exception ex)
             {

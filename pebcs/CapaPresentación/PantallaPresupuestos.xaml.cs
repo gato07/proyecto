@@ -17,6 +17,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
 using CapaPresentación.Reportes;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -25,6 +29,7 @@ namespace CapaPresentación
     /// </summary>
     public partial class PantallaPresupuestos : UserControl
     {
+        string NombreUsuario;
         Concepto ListaConcepto;
         Concepto[] ListConceptos;
         Presupuesto presupuesto = new Presupuesto();
@@ -35,23 +40,44 @@ namespace CapaPresentación
         bool Aprobado = false;
         int aproaux, IdTipodeproyecto;
         Menu_Principal2 Mn;
-        public PantallaPresupuestos(int IDPresupuesto,Object A)
+        int IdUSUATIO;
+        public PantallaPresupuestos(int IDPresupuesto, Object A, int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 idpresupuesto = IDPresupuesto;
                 Mn = A as Menu_Principal2;
                 CargarInfo(idpresupuesto);
                 CargarTipoProyectos();
+                IdUSUATIO = iDe;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
         }
+            private void CargarRolesUsuarios(int ID)
+            {
+                try
+                {
+                    Empleado empleado = new Empleado(ID);
+                    Permiso permiso = new Permiso();
+                    NombreUsuario = empleado.Nombre;
+                    GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                    String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                    GenericPrincipal MyPrincipal =
+                    new GenericPrincipal(identidad, roles);
+                    Thread.CurrentPrincipal = MyPrincipal;
+                }
+                catch (Exception ex)
+                {
 
-        private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
+                }
+            }
+
+            private void Btn_Cerrar_MouseLeave(object sender, MouseEventArgs e)
         {
             try
             {
@@ -103,6 +129,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 string tipos = null;
                 ListaConceptos.Items.Clear();
                 ListaConcepto = new Concepto();
@@ -161,6 +189,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 Tipo_Proyecto[] _Proyectos = tipProyecto.TableToArray(tipProyecto.SelTodos());
                 string n = null;
                 for (int x = 0; x < _Proyectos.Length-5; x++)
@@ -198,7 +228,9 @@ namespace CapaPresentación
         {
             try
             {
-                if(idp!=0)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
+                if (idp!=0)
                 {
                     Presupuesto sd = new Presupuesto(idpresupuesto);
                     TXT_Etiqueta.Text = sd.Etiqueta;
@@ -224,6 +256,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 Presupuesto_Contenido presupuesto = new Presupuesto_Contenido();
                 Presupuesto_Contenido[] contenido = presupuesto.TableToArray(presupuesto.SelXNumPresupuesto(id));
                 for (int x = 0; x < contenido.Length; x++)
@@ -246,7 +280,9 @@ namespace CapaPresentación
         {
             try
             {
-                if(m!=null)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
+                if (m!=null)
                 {
                     Presupuesto_Contenido sa = new Presupuesto_Contenido();
                     Presupuesto_Contenido[] l = sa.TableToArray(sa.SelXNumPresupuesto(idpresupuesto));
@@ -315,6 +351,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P1");
+                MyPermission.Demand();
                 Button button = (Button)sender;
                 Grid grid = (Grid)button.Parent;
                 PresupuestoAgregado P = (PresupuestoAgregado)grid.DataContext;
@@ -451,19 +489,29 @@ namespace CapaPresentación
 
         private void Btn_GenerarLicencia_Click(object sender, RoutedEventArgs e)
         {
-            presupuesto = new Presupuesto(idpresupuesto);
-            if(idpresupuesto!=0 && presupuesto.Aprobado==1)
+
+            try
             {
-                Proyecto_Licencia licencia = new Proyecto_Licencia();
-                licencia.SelXNumPresupuesto(idpresupuesto);
-                if(licencia.Numero!=0)
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P2");
+                MyPermission.Demand();
+                presupuesto = new Presupuesto(idpresupuesto);
+                if (idpresupuesto != 0 && presupuesto.Aprobado == 1)
                 {
-                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(licencia.Numero, Mn,0));
+                    Proyecto_Licencia licencia = new Proyecto_Licencia();
+                    licencia.SelXNumPresupuesto(idpresupuesto);
+                    if (licencia.Numero != 0)
+                    {
+                        Mn.AbrirFormHijo(new Pantalla_InfoLicencia(licencia.Numero, Mn, 0, IdUSUATIO));
+                    }
+                    else if (licencia.Numero == 0)
+                    {
+                        Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0, Mn, idpresupuesto, IdUSUATIO));
+                    }
                 }
-                else if (licencia.Numero==0)
-                {
-                    Mn.AbrirFormHijo(new Pantalla_InfoLicencia(0, Mn, idpresupuesto));
-                }
+            }
+            catch(Exception EX)
+            {
+
             }
         }
 
@@ -488,6 +536,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P1");
+                MyPermission.Demand();
                 string[,] vs = new string[ListaConceptosAgregados.Items.Count, 7];
                 datosPresupuesto[0] = TXT_Propietario.Text;
                 datosPresupuesto[1] = TXT_Solicitante.Text;

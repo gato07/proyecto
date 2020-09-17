@@ -19,11 +19,13 @@ namespace CapaPresentación
     /// </summary>
     public partial class Menu_Principal2 : Window
     {
-        public Menu_Principal2()
+        int IdUSUATIO;
+        public Menu_Principal2(int id)
         {
             try
             {
                 InitializeComponent();
+                IdUSUATIO = id;
             }
             catch(Exception ex)
             {
@@ -48,7 +50,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaUsuario(this));
+                AbrirFormHijo(new PantallaUsuario(this, IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -59,7 +61,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaClientes());
+                AbrirFormHijo(new PantallaClientes(IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -70,7 +72,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaConceptos());
+                AbrirFormHijo(new PantallaConceptos(IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -81,7 +83,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaInmuebles());
+                AbrirFormHijo(new PantallaInmuebles(IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -276,7 +278,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new PantallaLicencias(this));
+                AbrirFormHijo(new PantallaLicencias(this, IdUSUATIO));
             }
             catch (Exception ex)
             {
@@ -288,7 +290,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new Pantalla_Presupustos(this));
+                AbrirFormHijo(new Pantalla_Presupustos(this, IdUSUATIO));
             }
             catch (Exception ex)
             {
@@ -336,7 +338,7 @@ namespace CapaPresentación
         {
             try
             {
-                AbrirFormHijo(new Pantalla_CargaDeTrabajo());
+                AbrirFormHijo(new Pantalla_CargaDeTrabajo(IdUSUATIO));
             }catch(Exception ex)
             {
 
@@ -380,17 +382,38 @@ namespace CapaPresentación
 
         private void BtnAvaluosPericiales_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new Pantalla_AvaluosPericial(this));
+            try
+            {
+                AbrirFormHijo(new Pantalla_AvaluosPericial(this, IdUSUATIO));
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void BtnDictamenes_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new Pantalla_Dictamen_Estimacion());
+            try
+            {
+                AbrirFormHijo(new Pantalla_Dictamen_Estimacion(IdUSUATIO));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void BtnEstimaciones_Click(object sender, RoutedEventArgs e)
         {
-            AbrirFormHijo(new EstimacionDeValor());
+            try
+            {
+                AbrirFormHijo(new EstimacionDeValor(IdUSUATIO));
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

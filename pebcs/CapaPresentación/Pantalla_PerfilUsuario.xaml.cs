@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CapaLogica;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -22,19 +26,41 @@ namespace CapaPresentación
     /// 
     public partial class Pantalla_PerfilUsuario : UserControl
     {
+        string NombreUsuario;
         Menu_Principal2 Mn;
         Empleado emp;
         int ID;
         bool empleado;
-        public Pantalla_PerfilUsuario(string []A,object B)
+        int IdUSUATIO;
+        public Pantalla_PerfilUsuario(string []A,object B,int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 LlenarDatos(A);
                 Mn = B as Menu_Principal2;
+                IdUSUATIO = iDe;
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
             {
 
             }
@@ -43,6 +69,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E4");
+                MyPermission.Demand();
                 if (vs != null)
                 {
                     ID = Convert.ToInt16(vs[0]);
@@ -143,7 +171,7 @@ namespace CapaPresentación
         {
             try
             {
-                Mn.AbrirFormHijo(new PantallaUsuario(Mn));
+                Mn.AbrirFormHijo(new PantallaUsuario(Mn, IdUSUATIO));
             }
             catch(Exception ex)
             {
@@ -155,6 +183,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E3");
+                MyPermission.Demand();
                 emp = new Empleado();
                 bool n = false;
                 n=emp.Eliminar(ID);
@@ -200,17 +230,13 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E2");
+                MyPermission.Demand();
                 bool res = false;
                 if (empleado)
                 {
                     emp = new Empleado();
                     res = emp.Actualizar(ID, TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Password);
-                }
-                else if (empleado == false)
-                {
-                    emp = new Empleado();
-                    res = emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Password);
-
                 }
                 if (res==true)
                 {
@@ -221,6 +247,29 @@ namespace CapaPresentación
                     MessageBox.Show(emp.Mensaje);
             }
             catch(Exception ex)
+            {
+
+            }
+            try
+            {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "E1");
+                MyPermission.Demand();
+                bool res = false;
+                if (empleado == false)
+                {
+                    emp = new Empleado();
+                    res = emp.Insertar(TXTNombreCompleto.Text, TXTDomicilio.Text, TXTTelefono.Text, TXTEmail.Text, img.ImageSource.ToString(), Convert.ToInt16(listPerfil.SelectedIndex.ToString()), TXTUsuario.Text, TXTConstraseña.Password);
+
+                }
+                if (res == true)
+                {
+                    PantallaCheck check = new PantallaCheck();
+                    check.ShowDialog();
+                }
+                else
+                    MessageBox.Show(emp.Mensaje);
+            }
+            catch (Exception EX)
             {
 
             }

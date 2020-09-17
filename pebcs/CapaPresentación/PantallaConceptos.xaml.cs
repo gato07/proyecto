@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 using CapaLogica;
 using System.Data;
 using System.Globalization;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -23,16 +27,36 @@ namespace CapaPresentación
     /// </summary>
     public partial class PantallaConceptos : UserControl
     {
+        string NombreUsuario;
         Concepto concepto = new Concepto();
         string tipo;
-        public PantallaConceptos()
+        public PantallaConceptos(int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 LlenarData();
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
             {
 
             }
@@ -64,6 +88,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U4");
+                MyPermission.Demand();
                 DataTable table = new DataTable();
                 table = PresentacionTable(concepto.SelActivos());
                 GridConceptosActivos.ItemsSource = table.AsDataView();
@@ -83,6 +109,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table = new DataTable();
@@ -105,6 +133,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -127,6 +157,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U4");
+                MyPermission.Demand();
                 if (Actividad)
                 {
                     DataTable table2 = new DataTable();
@@ -149,6 +181,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U1");
+                MyPermission.Demand();
                 bool res = false;
                 if (Decimal.TryParse(TXTCosto.Text.Trim(), NumberStyles.Currency,
                     CultureInfo.CurrentCulture.NumberFormat, out decimal costo))
@@ -183,6 +217,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U2");
+                MyPermission.Demand();
                 bool res = false;
                 DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
                 if (Decimal.TryParse(TXTCostoModificar.Text.Trim(), NumberStyles.Currency, 
@@ -240,6 +276,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U2");
+                MyPermission.Demand();
                 DataRowView data = (GridConceptosInactivos as DataGrid).SelectedItem as DataRowView;
                 concepto.Activar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
                 LlenarData();
@@ -255,6 +293,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U3");
+                MyPermission.Demand();
                 DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
                 concepto.Eliminar(Convert.ToInt16(data.Row.ItemArray[0].ToString()));
                 LlenarData();
@@ -270,6 +310,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U2");
+                MyPermission.Demand();
                 DataRowView data = (GridConceptosActivos as DataGrid).SelectedItem as DataRowView;
                 if(data.Row.ItemArray[1].ToString().Length==18)
                 {
@@ -321,6 +363,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U4");
+                MyPermission.Demand();
                 //ACTIVOS
                 if (OpcionesActivos.SelectedIndex == -1)
                 {
@@ -375,6 +419,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "U4");
+                MyPermission.Demand();
                 //INACTIVOS
                 if (OpcionesInactivos.SelectedIndex == -1)
                 {

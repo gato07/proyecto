@@ -14,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Principal;
+using System.Security.Permissions;
+using System.Threading;
+using System.Security;
 
 namespace CapaPresentación
 {
@@ -23,15 +27,37 @@ namespace CapaPresentación
     /// 
     public partial class Pantalla_Presupustos : UserControl
     {
+        string NombreUsuario;
         Menu_Principal2 Mn;
         CapaLogica.Presupuesto presupuesto = new CapaLogica.Presupuesto();
-        public Pantalla_Presupustos(object A)
+        int IdUSUATIO;
+        public Pantalla_Presupustos(object A,int iDe)
         {
             try
             {
                 InitializeComponent();
+                CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 CargarPresupuestos(2);
+                IdUSUATIO = iDe;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
             }
             catch (Exception ex)
             {
@@ -42,11 +68,13 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 CapaLogica.Presupuesto[] presupuestos = presupuesto.TableToArray(presupuesto.SelXAprobado(N));
                 Controles.Presupuesto[] PresCard = new Controles.Presupuesto[presupuestos.Length];
                 for (int x = 0; x < PresCard.Length; x++)
                 {
-                    PresCard[x] = new Controles.Presupuesto(Mn);
+                    PresCard[x] = new Controles.Presupuesto(Mn, IdUSUATIO);
                     PresCard[x].CargarDatos(presupuestos[x].Etiqueta, presupuestos[x].Numero, presupuestos[x].Nombre_Solicitante, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
                     n.Items.Add(PresCard[x]);
                 }
@@ -60,11 +88,13 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 CapaLogica.Presupuesto[] presupuestos = presupuesto.TableToArray(presupuesto.SelLikeCatastral(box.Text, aprobado));
                 Controles.Presupuesto[] PresCard = new Controles.Presupuesto[presupuestos.Length];
                 for (int x = 0; x < PresCard.Length; x++)
                 {
-                    PresCard[x] = new Controles.Presupuesto(Mn);
+                    PresCard[x] = new Controles.Presupuesto(Mn, IdUSUATIO);
                     PresCard[x].CargarDatos(presupuestos[x].Etiqueta, presupuestos[x].Numero, presupuestos[x].Nombre_Solicitante, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
                     n.Items.Add(PresCard[x]);
                 }
@@ -78,11 +108,13 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 CapaLogica.Presupuesto[] presupuestos = presupuesto.TableToArray(presupuesto.SelLikePropietario(box.Text, aprobado));
                 Controles.Presupuesto[] PresCard = new Controles.Presupuesto[presupuestos.Length];
                 for (int x = 0; x < PresCard.Length; x++)
                 {
-                    PresCard[x] = new Controles.Presupuesto(Mn);
+                    PresCard[x] = new Controles.Presupuesto(Mn, IdUSUATIO);
                     PresCard[x].CargarDatos(presupuestos[x].Etiqueta, presupuestos[x].Numero, presupuestos[x].Nombre_Solicitante, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
                     n.Items.Add(PresCard[x]);
                 }
@@ -96,11 +128,13 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 CapaLogica.Presupuesto[] presupuestos = presupuesto.TableToArray(presupuesto.SelLikeEtiqueta(box.Text, aprobado));
                 Controles.Presupuesto[] PresCard = new Controles.Presupuesto[presupuestos.Length];
                 for (int x = 0; x < PresCard.Length; x++)
                 {
-                    PresCard[x] = new Controles.Presupuesto(Mn);
+                    PresCard[x] = new Controles.Presupuesto(Mn, IdUSUATIO);
                     PresCard[x].CargarDatos(presupuestos[x].Etiqueta, presupuestos[x].Numero, presupuestos[x].Nombre_Solicitante, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
                     n.Items.Add(PresCard[x]);
                 }
@@ -139,7 +173,9 @@ namespace CapaPresentación
         {
             try
             {
-                Mn.AbrirFormHijo(new PantallaPresupuestos(0,Mn)) ;
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P1");
+                MyPermission.Demand();
+                Mn.AbrirFormHijo(new PantallaPresupuestos(0,Mn, IdUSUATIO)) ;
             }catch(Exception ex)
             {
 
@@ -180,6 +216,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 int E = 0;
                 if (OpcionesAprobado.SelectedIndex == 0)
                 {
@@ -222,6 +260,8 @@ namespace CapaPresentación
         {
             try
             {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "P4");
+                MyPermission.Demand();
                 int E = 0;
                 if (OpcionesAprobado.SelectedIndex == 0)
                 {

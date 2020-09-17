@@ -8,6 +8,8 @@ using System.Security.Principal;
 using System.Security.Permissions;
 using System.Threading;
 using System.Security;
+using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace CapaPresentación
 {
@@ -16,18 +18,34 @@ namespace CapaPresentación
     /// </summary>
     public partial class Pantalla_CargaDeTrabajo : UserControl
     {
-        public Pantalla_CargaDeTrabajo()
+        string NombreUsuario;
+        public Pantalla_CargaDeTrabajo(int iDe)
         {
             InitializeComponent();
-            string NombreUsuario = "A";
-            GenericIdentity identidad = new GenericIdentity(NombreUsuario);
-            String[] roles = { "Ingeniero","ine"};
-            GenericPrincipal MyPrincipal =
-            new GenericPrincipal(identidad, roles);
-            Thread.CurrentPrincipal = MyPrincipal;
+            CargarRolesUsuarios(iDe);
             CargarEmpleados();
 
         }
+
+        private void CargarRolesUsuarios(int ID)
+        {
+            try
+            {
+                Empleado empleado = new Empleado(ID);
+                Permiso permiso = new Permiso();
+                NombreUsuario = empleado.Nombre;
+                GenericIdentity identidad = new GenericIdentity(NombreUsuario);
+                String[] roles = permiso.SelXPerfil(empleado.Perfil);
+                GenericPrincipal MyPrincipal =
+                new GenericPrincipal(identidad, roles);
+                Thread.CurrentPrincipal = MyPrincipal;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public class ChipEmpleado
         {
             public int ID { get; set; }
@@ -46,19 +64,28 @@ namespace CapaPresentación
         }
         public void CargarEmpleados()
         {
-            Empleado empleado = new Empleado();
-            Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelActivos());
-            for (int x = 0; x < empleadosActivos.Length; x++)
+            try
             {
-                ChipEmpleado chip = (new ChipEmpleado() { ID = empleadosActivos[x].Clave, Empleado = empleadosActivos[x].Nombre, Ruta = empleadosActivos[x].Foto, Puesto = empleadosActivos[x].Perfil_Texto, Usuario = empleadosActivos[x].Usuario });
-                n.Items.Add(chip);
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "T4");
+                MyPermission.Demand();
+                Empleado empleado = new Empleado();
+                Empleado[] empleadosActivos = empleado.TableToArray(empleado.SelActivos());
+                for (int x = 0; x < empleadosActivos.Length; x++)
+                {
+                    ChipEmpleado chip = (new ChipEmpleado() { ID = empleadosActivos[x].Clave, Empleado = empleadosActivos[x].Nombre, Ruta = empleadosActivos[x].Foto, Puesto = empleadosActivos[x].Perfil_Texto, Usuario = empleadosActivos[x].Usuario });
+                    n.Items.Add(chip);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         private void tarjeta_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                PrincipalPermission MyPermission = new PrincipalPermission("A", "ine");
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "T4");
                 MyPermission.Demand();
                 Card n = (Card)sender;
                 Grid grid = (Grid)n.Parent;
@@ -77,78 +104,108 @@ namespace CapaPresentación
                     Cargarestimaciones(chip.ID);
                     CargarDictamenes(chip.ID);
                     Cargaravaluos(chip.ID);
+                    
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Usted no cuenta con los permisos necesarios");
             }
         }
         public void cargarlicencias(int id)
         {
-            Proyecto_Licencia proyecto = new Proyecto_Licencia();
-            Proyecto_Licencia[] licencias = proyecto.TableToArray(proyecto.SelXEmpleado(id));
-            for(int x=0;x<licencias.Length;x++)
+            try
             {
-                Inmueble inmueble = new Inmueble(licencias[x].Clave_Inmueble);
-                Cliente cliente = new Cliente(licencias[x].Id_Cliente);
-                Estado_Licencia estado = new Estado_Licencia(licencias[x].Id_Estado_Licencia);
-                CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado {Etiqueta=licencias[x].Numero_Licencia.ToString(),ClaveCatastral=inmueble.Clave_Catastral,Cliente=cliente.Nombre,FechaIngreso=licencias[x].Fecha.ToString(),Estatus=estado.Nombre });
-                Listlicencias.Items.Add(carga);
+                Proyecto_Licencia proyecto = new Proyecto_Licencia();
+                Proyecto_Licencia[] licencias = proyecto.TableToArray(proyecto.SelXEmpleado(id));
+                for (int x = 0; x < licencias.Length; x++)
+                {
+                    Inmueble inmueble = new Inmueble(licencias[x].Clave_Inmueble);
+                    Cliente cliente = new Cliente(licencias[x].Id_Cliente);
+                    Estado_Licencia estado = new Estado_Licencia(licencias[x].Id_Estado_Licencia);
+                    CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = licencias[x].Numero_Licencia.ToString(), ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = licencias[x].Fecha.ToString(), Estatus = estado.Nombre });
+                    Listlicencias.Items.Add(carga);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         public void Cargarestimaciones(int id)
         {
-            Dictamen_Estimacion estimacion = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] estimaciones = estimacion.TableToArray(estimacion.SelXEmpleado(true,id));
-            for(int x=0;x<estimaciones.Length;x++)
+            try
             {
-                Inmueble inmueble = new Inmueble(estimaciones[x].Clave_Inmueble);
-                Cliente cliente = new Cliente(estimaciones[x].Id_Cliente);
-                string estatus = "";
-                if(estimaciones[x].Elaboracion)
+                Dictamen_Estimacion estimacion = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] estimaciones = estimacion.TableToArray(estimacion.SelXEmpleado(true, id));
+                for (int x = 0; x < estimaciones.Length; x++)
                 {
-                    estatus = "ELABORADO";
+                    Inmueble inmueble = new Inmueble(estimaciones[x].Clave_Inmueble);
+                    Cliente cliente = new Cliente(estimaciones[x].Id_Cliente);
+                    string estatus = "";
+                    if (estimaciones[x].Elaboracion)
+                    {
+                        estatus = "ELABORADO";
+                    }
+                    else
+                    {
+                        estatus = "NO ELABORADO";
+                    }
+                    CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = estimaciones[x].Etiqueta, ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = estimaciones[x].Fecha_Registro.ToString(), Estatus = estatus });
+                    Listestimaciones.Items.Add(carga);
+
                 }
-                else
-                {
-                    estatus = "NO ELABORADO";
-                }
-                CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = estimaciones[x].Etiqueta, ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = estimaciones[x].Fecha_Registro.ToString(), Estatus = estatus});
-                Listestimaciones.Items.Add(carga);
+            }
+            catch(Exception ex)
+            {
 
             }
         }
         public void CargarDictamenes(int id)
         {
-            Dictamen_Estimacion estimacion = new Dictamen_Estimacion();
-            Dictamen_Estimacion[] estimaciones = estimacion.TableToArray(estimacion.SelXEmpleado(false, id));
-            for (int x = 0; x < estimaciones.Length; x++)
+            try
             {
-                Inmueble inmueble = new Inmueble(estimaciones[x].Clave_Inmueble);
-                Cliente cliente = new Cliente(estimaciones[x].Id_Cliente);
-                string estatus = "";
-                if (estimaciones[x].Elaboracion)
+                Dictamen_Estimacion estimacion = new Dictamen_Estimacion();
+                Dictamen_Estimacion[] estimaciones = estimacion.TableToArray(estimacion.SelXEmpleado(false, id));
+                for (int x = 0; x < estimaciones.Length; x++)
                 {
-                    estatus = "ELABORADO";
+                    Inmueble inmueble = new Inmueble(estimaciones[x].Clave_Inmueble);
+                    Cliente cliente = new Cliente(estimaciones[x].Id_Cliente);
+                    string estatus = "";
+                    if (estimaciones[x].Elaboracion)
+                    {
+                        estatus = "ELABORADO";
+                    }
+                    else
+                    {
+                        estatus = "NO ELABORADO";
+                    }
+                    CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = estimaciones[x].Etiqueta, ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = estimaciones[x].Fecha_Registro.ToString(), Estatus = estatus });
+                    Listdictamen.Items.Add(carga);
                 }
-                else
-                {
-                    estatus = "NO ELABORADO";
-                }
-                CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = estimaciones[x].Etiqueta, ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = estimaciones[x].Fecha_Registro.ToString(), Estatus = estatus });
-                Listdictamen.Items.Add(carga);
+            }
+            catch(Exception ex)
+            {
+
             }
         }
         public void Cargaravaluos(int id)
         {
-            Avaluo_Pericial avaluo = new Avaluo_Pericial();
-            Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelXEmpleado(id));
-            for(int x=0;x<avaluos.Length;x++)
+            try
             {
-                Inmueble inmueble = new Inmueble(avaluos[x].Clave_Inmueble);
-                Cliente cliente = new Cliente(avaluos[x].Id_Cliente);
-                CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = avaluos[x].Folio, ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = avaluos[x].Fecha.ToString(), Estatus = "-" });
-                Listavaluo.Items.Add(carga);
+                Avaluo_Pericial avaluo = new Avaluo_Pericial();
+                Avaluo_Pericial[] avaluos = avaluo.TableToArray(avaluo.SelXEmpleado(id));
+                for (int x = 0; x < avaluos.Length; x++)
+                {
+                    Inmueble inmueble = new Inmueble(avaluos[x].Clave_Inmueble);
+                    Cliente cliente = new Cliente(avaluos[x].Id_Cliente);
+                    CargaTrabajoEmpleado carga = (new CargaTrabajoEmpleado { Etiqueta = avaluos[x].Folio, ClaveCatastral = inmueble.Clave_Catastral, Cliente = cliente.Nombre, FechaIngreso = avaluos[x].Fecha.ToString(), Estatus = "-" });
+                    Listavaluo.Items.Add(carga);
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
         private void tarjeta_MouseEnter(object sender, MouseEventArgs e)
