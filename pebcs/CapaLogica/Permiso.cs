@@ -48,8 +48,7 @@ namespace CapaLogica
         {
             try
             {
-                DataTable dt = null;
-                dt = dtsSelXPerfil(Perfil);
+                DataTable dt = dtsSelXPerfil(Perfil);
                 string[] permisos = new string[dt.Rows.Count];
                 int i = 0;
                 foreach (DataRow renglon in dt.Rows)
