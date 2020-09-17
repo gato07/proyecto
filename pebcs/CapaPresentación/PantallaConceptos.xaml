@@ -185,7 +185,7 @@
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Width="400" Height="auto">
                     <materialDesign:Card>
-                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Conceptos</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Editar Concepto</TextBlock>
                     </materialDesign:Card>
                     <ComboBox Name="OpcionesTipoModificar" Grid.Row="2" Grid.Column="2" 
                               materialDesign:HintAssist.Hint="Tipo" Grid.ColumnSpan="2"  Margin="8" BorderBrush="#E67E22" >

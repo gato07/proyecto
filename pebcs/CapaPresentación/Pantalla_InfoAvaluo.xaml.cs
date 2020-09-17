@@ -168,6 +168,7 @@ namespace CapaPresentación
                 MyPermission.Demand();
                 if (id!=0)
                 {
+                    titulo.Text = "Editar Avaluo";
                     Avaluo = new Avaluo_Pericial(id);
                     TXT_NoFolio.Text = Avaluo.Folio;
                     DTP_FechaDeElaboracion.SelectedDate = Avaluo.Fecha;

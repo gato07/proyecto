@@ -81,7 +81,7 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="662*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="TITULO" Name="titulo" Foreground="#52BE80" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>
+                <TextBlock Text="Agregar Avaluo" Name="titulo" Foreground="#52BE80" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>
                 <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,1,0,0" Grid.Row="1"
                             Background="#1ABC9C" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_GuardarAvaluo" Click="Btn_GuardarAvaluo_Click"

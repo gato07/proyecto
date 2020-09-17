@@ -351,6 +351,7 @@ namespace CapaPresentación
                 DictamenEstructural dictamen = (DictamenEstructural)GridConceptosActivos.SelectedItem;
                 if (dictamen != null)
                 {
+                    tit.Text = "Editar Estimación de Valor";
                     numeroestimacion = dictamen.ID;
                     TXTetiqueta.Text = dictamen.Etiqueta;
                     Clientes.SelectedIndex = dictamen.cliente - 1;
@@ -501,6 +502,7 @@ namespace CapaPresentación
         }
         public void limpiar()
         {
+            tit.Text= "Agregar Estimación de Valor";
             TXTetiqueta.Clear();
             DTP_FechaRegistro.SelectedDate = null;
             DTP_FechaVisita.SelectedDate = null;

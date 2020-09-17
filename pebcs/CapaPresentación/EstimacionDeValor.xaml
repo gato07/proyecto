@@ -218,7 +218,7 @@
                         <RowDefinition Height="100*"/>
                     </Grid.RowDefinitions>
                     <materialDesign:Card Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Estimacion de Valor</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010" Name="tit" Text="Agregar Estimación de Valor"/>
                     </materialDesign:Card>
                     <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Etiqueta" Margin="8" Name="TXTetiqueta" materialDesign:HintAssist.IsFloating="True"  CaretBrush="#27AE60" BorderBrush="#27AE60" MaxLength="75"/>
                     <ComboBox Grid.Row="2" Grid.Column="0" Name="Clientes" IsReadOnly="False" ItemTemplate="{StaticResource ListadoClientes}" Margin="8"

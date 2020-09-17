@@ -232,6 +232,7 @@ namespace CapaPresentación
                 MyPermission.Demand();
                 if (idp!=0)
                 {
+                    Etiqueta.Text = "Editar Presupuesto";
                     Presupuesto sd = new Presupuesto(idpresupuesto);
                     TXT_Etiqueta.Text = sd.Etiqueta;
                     TXT_Propietario.Text = sd.Nombre_Propietario;

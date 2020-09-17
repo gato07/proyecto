@@ -409,6 +409,7 @@ namespace CapaPresentación
                 DictamenEstructural dictamen = (DictamenEstructural)GridConceptosActivos.SelectedItem;
                 if (dictamen != null)
                 {
+                    titulo2.Text = "Editar Dictamen Estructural";
                     numeroestimacion = dictamen.ID;
                     TXTetiqueta.Text = dictamen.Etiqueta;
                     Clientes.SelectedIndex = dictamen.cliente - 1;
@@ -565,6 +566,7 @@ namespace CapaPresentación
             otra = false;
             Otra.SelectedIndex = -1;
             TXTOtra.Clear();
+            titulo2.Text = "Agregar Dictamen Estructural";
         }
         public void sacarbool()
         {

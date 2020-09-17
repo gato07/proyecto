@@ -97,6 +97,7 @@ namespace CapaPresentación
                 }
                 else if(IDLicencia==0)
                 {
+                    Etiqueta.Text = "Editar Licencia";
                     cargarDocumentacion(null);
                     ActivarCampos();
                     F = true;

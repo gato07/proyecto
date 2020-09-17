@@ -96,6 +96,7 @@ namespace CapaPresentación
             {
                 PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L4");
                 MyPermission.Demand();
+                Etiqueta.Text = "Editar Seguimiento";
                 Documentacion_Licencia documentacion_Licencia = new Documentacion_Licencia();
                 ProyectoLicencia = new Proyecto_Licencia(IDeLicencia);
                 Documentacion_Licencia[] infoProrroga = documentacion_Licencia.TableToArray(documentacion_Licencia.SelXNumeroProLic((int)(ProyectoLicencia.Numero_Proyecto_Original ?? 0)));

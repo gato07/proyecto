@@ -56,41 +56,8 @@
                     <TabItem Header="Activos">
                         <Grid Background="#FFE5E5E5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="250"/>
-                                <RowDefinition Height="300"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <materialDesign:Card Grid.Row="0" materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="32" Height="230" Margin="10,10,10,0">
-                                <DockPanel Margin="0,0,0,-24">
-                                    <StackPanel Margin="0,0,515,0" Width="355">
-                                        <Label Margin="10 0 0 0">Inmuebles</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Dictamenes</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                    <StackPanel Margin="-420,0,0,0" Width="355">
-                                        <Label Margin="10 0 0 0">Licencias</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Estimaciones</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                </DockPanel>
-                            </materialDesign:Card>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -152,41 +119,8 @@
                     <TabItem Header="Inactivos">
                         <Grid Background="#FFE5E5E5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="250"/>
-                                <RowDefinition Height="300"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <materialDesign:Card Grid.Row="0" materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="32" Height="230" Margin="10,10,10,0">
-                                <DockPanel Margin="0,0,0,-24">
-                                    <StackPanel Margin="0,0,515,0" Width="355">
-                                        <Label Margin="10 0 0 0">Inmuebles</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Dictamenes</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                    <StackPanel Margin="-420,0,0,0" Width="355">
-                                        <Label Margin="10 0 0 0">Licencias</Label>
-                                        <ToggleButton Margin="-140 -20 0 0" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Default ToggleButton Style" />
-                                        <Label Margin="130 -25 0 0">Estimaciones</Label>
-                                        <ListView Margin="0,0,0,0">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn  Header="Inmueble" />
-                                                    <GridViewColumn  Header="Clave Catastral" />
-                                                    <GridViewColumn  Header="Colonia" />
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-                                    </StackPanel>
-                                </DockPanel>
-                            </materialDesign:Card>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -266,7 +200,7 @@
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel Width="400" Height="auto">
                     <materialDesign:Card>
-                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Datos Inmueble</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Margin="0 30 0 010">Editar Inmueble</TextBlock>
                     </materialDesign:Card>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Clave catastral" Name="TXTClaveCatastralModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="15"/>
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre del propietario" Name="TXTNombrePropietarioModificar" materialDesign:HintAssist.IsFloating="True" Margin="8" CaretBrush="#D35400" BorderBrush="#D35400" MaxLength="60"/>

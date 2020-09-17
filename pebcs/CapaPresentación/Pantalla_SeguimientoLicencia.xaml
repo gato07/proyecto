@@ -45,7 +45,7 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="400*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Name="Etiqueta" Foreground="#1ABC9C" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" />
+                <TextBlock Name="Etiqueta" Text="Agregar Seguimiento" Foreground="#1ABC9C" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Grid.Row="0" />
                 <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,7,0,0" 
                             Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
                             Name="Btn_CancelarLicencia" Click="Btn_CancelarLicencia_Click"
