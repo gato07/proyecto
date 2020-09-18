@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="220" d:DesignWidth="320">
     <Grid>
-        <materialDesign:Card MouseDoubleClick="CardFront_MouseDoubleClick" Width="auto" Height="auto">
+        <materialDesign:Card Width="auto" Height="auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -27,7 +27,7 @@
                         <RowDefinition Height="160*"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Titulo" Name="titulo" HorizontalAlignment="Center" VerticalContentAlignment="Top" FontSize="13" FontWeight="Bold"/>
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0,22,94.4,0.4" HorizontalAlignment="Right" Click="Button_Click" Grid.RowSpan="2">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,22,94.4,0.4" HorizontalAlignment="Right" Grid.RowSpan="2">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Upload"/>
                             <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>

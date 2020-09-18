@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CapaPresentación.Controles"
              mc:Ignorable="d" d:DesignWidth="210" Height="306.8">
     <Grid>
-        <materialDesign:Card Height="286" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10,10,9.6,0" Name="pres" MouseEnter="pres_MouseEnter" MouseLeave="pres_MouseLeave" MouseDoubleClick="pres_MouseDoubleClick" >
+        <materialDesign:Card Height="286" materialDesign:ShadowAssist.ShadowDepth="Depth3" Margin="10,10,9.6,0" Name="pres" >
             <Grid Margin="0,0,0.4,0.2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>

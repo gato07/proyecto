@@ -137,7 +137,7 @@
                         </Button>
                         <Button Style="{DynamicResource MaterialDesignRaisedButton}" Margin="0,46,0.2,0" 
                             Grid.Row="0" Background="#FF2300" materialDesign:ButtonAssist.CornerRadius="5 0 0 5"
-                            Name="Btn_CancelarLicencia" Click="Btn_CancelarLicencia_Click"
+                            Name="Btn_CancelarLicencia"
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" VerticalAlignment="Top" >
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="Cancel"/>
