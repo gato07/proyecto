@@ -219,14 +219,15 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelXAprobado(int Aprobado)
+        public DataTable dtsSelXAprobado(int Aprobado, bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelXAprobado(" + Aprobado + ");").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelXAprobado(" + Aprobado + "," 
+                    + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -236,7 +237,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeEtiqueta(string Etiqueta, int Aprobado)
+        public DataTable dtsSelLikeEtiqueta(string Etiqueta, int Aprobado, bool Eliminado = false)
         {
             try
             {
@@ -244,7 +245,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelLikeEtiqueta('" + Etiqueta
-                    + "'," + Aprobado + ");").Tables[0];
+                    + "'," + Aprobado + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -254,7 +255,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeCatastral(string Clave_Catastral, int Aprobado)
+        public DataTable dtsSelLikeCatastral(string Clave_Catastral, int Aprobado, bool Eliminado = false)
         {
             try
             {
@@ -262,7 +263,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelLikeCatastral('" + Clave_Catastral
-                    + "'," + Aprobado + ");").Tables[0];
+                    + "'," + Aprobado + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -272,7 +273,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikePropietario(string Nombre_Propietario, int Aprobado)
+        public DataTable dtsSelLikePropietario(string Nombre_Propietario, int Aprobado, bool Eliminado = false)
         {
             try
             {
@@ -280,7 +281,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_Presupuesto_SelLikePropietario('" + Nombre_Propietario
-                    + "'," + Aprobado + ");").Tables[0];
+                    + "'," + Aprobado + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

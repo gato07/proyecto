@@ -298,11 +298,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTodos()
+        public DataTable SelTodos(bool Eliminado = false)
         {
             try
             {
-                return dtsSelTodos();
+                return dtsSelTodos(Eliminado);
             }
             catch (Exception ex)
             {
@@ -311,11 +311,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeNomCliente(string Nombre = "", int Id_Estado_Licencia = 0)
+        public DataTable SelLikeNomCliente(string Nombre = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeNomCliente(Nombre, Id_Estado_Licencia);
+                return dtsSelLikeNomCliente(Nombre, Id_Estado_Licencia, Eliminado);
             }
             catch (Exception ex)
             {
@@ -324,11 +324,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeCatastral(string Clave_Catastral = "", int Id_Estado_Licencia = 0)
+        public DataTable SelLikeCatastral(string Clave_Catastral = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeCatastral(Clave_Catastral, Id_Estado_Licencia);
+                return dtsSelLikeCatastral(Clave_Catastral, Id_Estado_Licencia, Eliminado);
             }
             catch (Exception ex)
             {
@@ -337,11 +337,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeNomPropietario(string Nombre_Propietario = "", int Id_Estado_Licencia = 0)
+        public DataTable SelLikeNomPropietario(string Nombre_Propietario = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeNomPropietario(Nombre_Propietario, Id_Estado_Licencia);
+                return dtsSelLikeNomPropietario(Nombre_Propietario, Id_Estado_Licencia, Eliminado);
             }
             catch (Exception ex)
             {
@@ -350,11 +350,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeColonia(string Colonia = "", int Id_Estado_Licencia = 0)
+        public DataTable SelLikeColonia(string Colonia = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeColonia(Colonia, Id_Estado_Licencia);
+                return dtsSelLikeColonia(Colonia, Id_Estado_Licencia, Eliminado);
             }
             catch (Exception ex)
             {

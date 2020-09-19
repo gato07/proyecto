@@ -297,14 +297,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelTodos()
+        public DataTable dtsSelTodos(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelTodos();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelTodos(" + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -314,7 +314,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeNomCliente(string Nombre = "", int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeNomCliente(string Nombre = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
@@ -322,7 +322,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelLikeNomCliente('" + Nombre + "'," 
-                    + Id_Estado_Licencia + ");").Tables[0];
+                    + Id_Estado_Licencia + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -332,7 +332,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeCatastral(string Clave_Catastral = "", int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeCatastral(string Clave_Catastral = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelLikeCatastral('" + Clave_Catastral + "',"
-                    + Id_Estado_Licencia + ");").Tables[0];
+                    + Id_Estado_Licencia + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -350,7 +350,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeNomPropietario(string Nombre_Propietario = "", int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeNomPropietario(string Nombre_Propietario = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
@@ -358,7 +358,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelLikeNomPropietario('" + Nombre_Propietario + "',"
-                    + Id_Estado_Licencia + ");").Tables[0];
+                    + Id_Estado_Licencia + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -368,7 +368,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelLikeColonia(string Colonia = "", int Id_Estado_Licencia = 0)
+        public DataTable dtsSelLikeColonia(string Colonia = "", int Id_Estado_Licencia = 0, bool Eliminado = false)
         {
             try
             {
@@ -376,7 +376,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_AvalPeri_SelLikeColonia('" + Colonia + "',"
-                    + Id_Estado_Licencia + ");").Tables[0];
+                    + Id_Estado_Licencia + "," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }

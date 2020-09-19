@@ -287,11 +287,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelXAprobado(int Aprobado)
+        public DataTable SelXAprobado(int Aprobado, bool Eliminado = false)
         {
             try
             {
-                return dtsSelXAprobado(Aprobado);
+                return dtsSelXAprobado(Aprobado, Eliminado);
             }
             catch (Exception ex)
             {
@@ -300,11 +300,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeEtiqueta(string Etiqueta, int Aprobado)
+        public DataTable SelLikeEtiqueta(string Etiqueta, int Aprobado, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeEtiqueta(Etiqueta, Aprobado);
+                return dtsSelLikeEtiqueta(Etiqueta, Aprobado, Eliminado);
             }
             catch (Exception ex)
             {
@@ -313,11 +313,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikeCatastral(string Clave_Catastral, int Aprobado)
+        public DataTable SelLikeCatastral(string Clave_Catastral, int Aprobado, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikeCatastral(Clave_Catastral, Aprobado);
+                return dtsSelLikeCatastral(Clave_Catastral, Aprobado, Eliminado);
             }
             catch (Exception ex)
             {
@@ -326,11 +326,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelLikePropietario(string Nombre_Propietario, int Aprobado)
+        public DataTable SelLikePropietario(string Nombre_Propietario, int Aprobado, bool Eliminado = false)
         {
             try
             {
-                return dtsSelLikePropietario(Nombre_Propietario, Aprobado);
+                return dtsSelLikePropietario(Nombre_Propietario, Aprobado, Eliminado);
             }
             catch (Exception ex)
             {

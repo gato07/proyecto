@@ -242,6 +242,23 @@ namespace CapaAccesoDatos
             }
         }
 
+        public DataTable dtsSelTodos(bool Eliminado = false)
+        {
+            try
+            {
+                DataTable dt = null;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                dt = conexion.Consulta_Seleccion("CALL SP_DictEsti_SelTodos(" + Eliminado + ");").Tables[0];
+                conexion.Desconectar();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public DataTable dtsSelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "", bool Eliminado = false)
         {
             try

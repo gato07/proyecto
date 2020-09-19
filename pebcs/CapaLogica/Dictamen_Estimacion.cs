@@ -152,6 +152,19 @@ namespace CapaLogica
             }
         }
 
+        public DataTable SelTodos(bool Eliminado = false)
+        {
+            try
+            {
+                return dtsSelTodos(Eliminado);
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de Consultar a todos los Dictamenes/Estimaciones";
+                return null;
+            }
+        }
+
         public DataTable SelXTipoLikeEtiqueta(bool Tipo = false, string Etiqueta = "", bool Eliminado = false)
         {
             try
