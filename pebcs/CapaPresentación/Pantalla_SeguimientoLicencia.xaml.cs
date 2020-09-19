@@ -36,6 +36,7 @@ namespace CapaPresentación
         public Pantalla_SeguimientoLicencia(int IDlicencia, Object A,int iDe)
         {
             InitializeComponent();
+            IdUSUATIO = iDe;
             CargarRolesUsuarios(iDe);
             Mn = A as Menu_Principal2;
             IDlicen = IDlicencia;
@@ -44,7 +45,7 @@ namespace CapaPresentación
             CargarProcesos(pre.Id_Tipo_Proyecto, pre.Mts);
             CargarIfoProcesos(IDlicen);
             CargarDatos(IDlicen);
-            IdUSUATIO = iDe;
+
         }
         private void CargarRolesUsuarios(int ID)
         {
@@ -1227,8 +1228,8 @@ namespace CapaPresentación
             {
                 PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L2");
                 MyPermission.Demand();
-                bool n=ProyectoLicencia.ActualizarIdEstadoLic(IDlicen,20);
-                if(n==true)
+                bool n = ProyectoLicencia.Eliminar(IDlicen);
+                if (n==true)
                 {
                     PantallaCheck check = new PantallaCheck();
                     check.Show();

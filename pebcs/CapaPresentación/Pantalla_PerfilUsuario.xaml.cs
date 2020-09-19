@@ -37,10 +37,10 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 LlenarDatos(A);
                 Mn = B as Menu_Principal2;
-                IdUSUATIO = iDe;
             }
             catch(Exception ex)
             {

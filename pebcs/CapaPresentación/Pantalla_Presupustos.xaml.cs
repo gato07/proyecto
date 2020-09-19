@@ -36,10 +36,10 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 CargarPresupuestos(2);
-                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {
@@ -77,6 +77,14 @@ namespace CapaPresentación
                     PresCard[x] = new Controles.Presupuesto(Mn, IdUSUATIO);
                     PresCard[x].CargarDatos(presupuestos[x].Etiqueta, presupuestos[x].Numero, presupuestos[x].Nombre_Solicitante, presupuestos[x].Clave_Empleado.ToString(), presupuestos[x].Fecha, presupuestos[x].Aprobado.ToString(), presupuestos[x].Total.ToString());
                     n.Items.Add(PresCard[x]);
+                }
+                CapaLogica.Presupuesto[] presupuestos1 = presupuesto.TableToArray(presupuesto.SelXAprobado(N,true));
+                Controles.PresupuestoInactivo[] PresCard1 = new Controles.PresupuestoInactivo[presupuestos1.Length];
+                for (int x = 0; x < PresCard1.Length; x++)
+                {
+                    PresCard1[x] = new Controles.PresupuestoInactivo(Mn, IdUSUATIO);
+                    PresCard1[x].CargarDatos(presupuestos1[x].Etiqueta, presupuestos1[x].Numero, presupuestos1[x].Nombre_Solicitante, presupuestos1[x].Clave_Empleado.ToString(), presupuestos1[x].Fecha, presupuestos1[x].Aprobado.ToString(), presupuestos1[x].Total.ToString());
+                    n.Items.Add(PresCard1[x]);
                 }
             }
             catch (Exception ex)

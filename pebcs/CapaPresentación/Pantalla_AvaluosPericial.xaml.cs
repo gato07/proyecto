@@ -69,7 +69,15 @@ namespace CapaPresentación
                     CardAvaluos[x] = new AvaluoPericial(avaluos[x].Numero,Mn, IdUSUATIO);
                     n.Items.Add(CardAvaluos[x]);
                 }
-            }catch(Exception ex)
+                Avaluo_Pericial[] avaluos1 = avaluo.TableToArray(avaluo.SelTodos(true));
+                AvaluoPericialInactivo[] CardAvaluos1 = new AvaluoPericialInactivo[avaluos1.Length];
+                for (int x = 0; x < avaluos1.Length; x++)
+                {
+                    CardAvaluos1[x] = new AvaluoPericialInactivo(avaluos1[x].Numero, Mn, IdUSUATIO);
+                    n.Items.Add(CardAvaluos1[x]);
+                }
+            }
+            catch(Exception ex)
             {
 
             }

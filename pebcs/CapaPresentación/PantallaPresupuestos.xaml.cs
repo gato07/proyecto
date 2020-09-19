@@ -46,12 +46,13 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 idpresupuesto = IDPresupuesto;
                 Mn = A as Menu_Principal2;
                 CargarInfo(idpresupuesto);
                 CargarTipoProyectos();
-                IdUSUATIO = iDe;
+
             }
             catch (Exception ex)
             {
@@ -511,6 +512,19 @@ namespace CapaPresentación
                 }
             }
             catch(Exception EX)
+            {
+
+            }
+        }
+
+        private void Btn_CancelarLicencia_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                CapaLogica.Presupuesto presupuesto = new CapaLogica.Presupuesto();
+                presupuesto.Eliminar(idpresupuesto);
+            }
+            catch (Exception ex)
             {
 
             }

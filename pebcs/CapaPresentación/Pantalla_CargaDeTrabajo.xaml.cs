@@ -19,9 +19,11 @@ namespace CapaPresentación
     public partial class Pantalla_CargaDeTrabajo : UserControl
     {
         string NombreUsuario;
+        int IdUSUATIO;
         public Pantalla_CargaDeTrabajo(int iDe)
         {
             InitializeComponent();
+            IdUSUATIO = iDe;
             CargarRolesUsuarios(iDe);
             CargarEmpleados();
 

@@ -39,10 +39,10 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 generartarjetas();
-                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {

@@ -30,11 +30,13 @@ namespace CapaPresentación
         string NombreUsuario;
         Concepto concepto = new Concepto();
         string tipo;
+        int IdUSUATIO;
         public PantallaConceptos(int iDe)
         {
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 LlenarData();
             }

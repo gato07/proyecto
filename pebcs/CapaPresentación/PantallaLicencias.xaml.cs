@@ -36,10 +36,10 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 GenerarLicencias();
-                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {
@@ -80,6 +80,17 @@ namespace CapaPresentación
                     tarjetaLicencias[x] = new TarjetaLicencia(Mn, IdUSUATIO);
                     tarjetaLicencias[x].CargaDatosLicencia(Convert.ToInt32(Licenciasactivas.Rows[x]["Numero"]), Licenciasactivas.Rows[x]["Etiqueta"].ToString(), Licenciasactivas.Rows[x]["Numero_Licencia"].ToString(), Licenciasactivas.Rows[x]["Folio"].ToString(), Licenciasactivas.Rows[x]["Tipo_Obra"].ToString(), Licenciasactivas.Rows[x]["Uso"].ToString(), Licenciasactivas.Rows[x]["Total"].ToString());
                     n.Items.Add(tarjetaLicencias[x]);
+                }
+                Proyecto_Licencia proyecto1 = new Proyecto_Licencia();
+                DataTable Licenciasactiva1 = proyecto_.SelNoTerminados(true);
+                Documentacion_Licencia documentacion_Licencia1 = new Documentacion_Licencia();
+                TarjetaLicenciaInactiva[] tarjetaLicencias1 = new TarjetaLicenciaInactiva[Licenciasactiva1.Rows.Count];
+                for (int x = 0; x < tarjetaLicencias1.Length; x++)
+                {
+                    Documentacion_Licencia docLi = new Documentacion_Licencia();
+                    tarjetaLicencias1[x] = new TarjetaLicenciaInactiva(Mn, IdUSUATIO);
+                    tarjetaLicencias1[x].CargaDatosLicencia(Convert.ToInt32(Licenciasactiva1.Rows[x]["Numero"]), Licenciasactiva1.Rows[x]["Etiqueta"].ToString(), Licenciasactiva1.Rows[x]["Numero_Licencia"].ToString(), Licenciasactiva1.Rows[x]["Folio"].ToString(), Licenciasactiva1.Rows[x]["Tipo_Obra"].ToString(), Licenciasactiva1.Rows[x]["Uso"].ToString(), Licenciasactiva1.Rows[x]["Total"].ToString());
+                    n.Items.Add(tarjetaLicencias1[x]);
                 }
             }
             catch (Exception ex)

@@ -30,10 +30,10 @@ namespace CapaPresentación.Controles
         public AvaluoPericial(int Id,object A,int iDe)
         {
             InitializeComponent();
+            IdUSUATIO = iDe;
             Mn = A as Menu_Principal2;
             ID = Id;
             CargarInfo(Id);
-            IdUSUATIO = iDe;
         }
         public void CargarInfo(int ID)
         {

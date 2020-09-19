@@ -34,9 +34,11 @@ namespace CapaPresentación
         bool ela = false, entre = false, manis = false, oficio = false, escrituras = false, licencia = false, otra = false;
         List<DictamenEstructural> lit = new List<DictamenEstructural>();
         List<DictamenEstructural> lit2 = new List<DictamenEstructural>();
+        int IdUSUATIO;
         public EstimacionDeValor( int iDe)
         {
             InitializeComponent();
+            IdUSUATIO = iDe;
             CargarRolesUsuarios(iDe);
             CargarDatosactivos();
             CargarDatosinactivos();

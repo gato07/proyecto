@@ -28,11 +28,13 @@ namespace CapaPresentación
     {
         Inmueble inmueble = new Inmueble();
         string NombreUsuario;
+        int IdUSUATIO;
         public PantallaInmuebles(int iDe)
         {
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 LlenarData();
             }

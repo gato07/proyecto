@@ -45,6 +45,7 @@ namespace CapaPresentación
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 CargarClientes();
@@ -53,7 +54,6 @@ namespace CapaPresentación
                 CargarDatos(IDLicencia, IDpresu);
                 IDlicen = IDLicencia;
                 IDpresupuesto = IDpresu;
-                IdUSUATIO = iDe;
             }
             catch (Exception ex)
             {
@@ -363,6 +363,29 @@ namespace CapaPresentación
                     Mn.AbrirFormHijo(new PantallaPresupuestos(ProyectoLicencia.Numero_Presupuesto, Mn, IdUSUATIO));
             }
             catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void Btn_CancelarLicencia_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PrincipalPermission MyPermission = new PrincipalPermission(NombreUsuario, "L3");
+                MyPermission.Demand();
+                bool n = ProyectoLicencia.Eliminar(IDlicen); 
+                if (n == true)
+                {
+                    PantallaCheck check = new PantallaCheck();
+                    check.Show();
+                }
+                else
+                {
+                    MessageBox.Show(ProyectoLicencia.Mensaje);
+                }
+            }
+            catch (Exception ex)
             {
 
             }

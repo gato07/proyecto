@@ -21,7 +21,7 @@
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Fecha de elaboración" x:Name="TXT_FechaElaboración" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,89,5,0" Height="40" VerticalAlignment="Top"/>
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Aprobado" x:Name="TXT_Aprobado" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,131,5,0" Height="40" VerticalAlignment="Top" />
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" materialDesign:HintAssist.Hint="Total Del Presupuesto" x:Name="TXT_Total" materialDesign:HintAssist.IsFloating="True" CaretBrush="#3498DB" BorderBrush="#3498DB" Grid.Row="1" Margin="5,173,5,0" Height="40" VerticalAlignment="Top"/>
-                <Button Background="#3498DB" Style="{StaticResource MaterialDesignFlatButton}" 
+                <Button Background="#3498DB" Style="{StaticResource MaterialDesignFlatButton}"  Click="Btn_Restaurar_Click"
                                 Margin="0,214,-1,0" Name="Btn_Restaurar" Grid.Row="1" VerticalAlignment="Top">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Upload"/>

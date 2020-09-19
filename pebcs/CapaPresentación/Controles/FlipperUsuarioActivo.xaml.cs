@@ -34,9 +34,10 @@ namespace CapaPresentación.Controles
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 Win = A as PantallaUsuario;
                 MN = B as Menu_Principal2;
-                IdUSUATIO = iDe;
+
             }
             catch (Exception ex)
             {

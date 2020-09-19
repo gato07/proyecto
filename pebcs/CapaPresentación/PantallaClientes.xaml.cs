@@ -17,11 +17,13 @@ namespace CapaPresentación
     {
         string NombreUsuario;
         Cliente cliente = new Cliente();
+        int IdUSUATIO ;
         public PantallaClientes(int iDe)
         {
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 LlenarData();
             }

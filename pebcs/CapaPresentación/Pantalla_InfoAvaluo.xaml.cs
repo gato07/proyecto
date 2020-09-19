@@ -18,6 +18,7 @@ using System.Security.Principal;
 using System.Security.Permissions;
 using System.Threading;
 using System.Security;
+using System.Diagnostics;
 
 namespace CapaPresentación
 {
@@ -37,11 +38,13 @@ namespace CapaPresentación
         int Estado;
         int IDcliente;
         int IDinmueble;
+        int IdUSUATIO ;
         public Pantalla_InfoAvaluo(int ID,int iDe)
         {
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 CargarRolesUsuarios(iDe);
                 CargarClientes();
                 CargarInmuebles();
@@ -365,6 +368,18 @@ namespace CapaPresentación
                 }
             }
             catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Btn_CancelarLicencia_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Avaluo_Pericial pericial = new Avaluo_Pericial();
+                pericial.Eliminar(IDAvaluo);
+            }catch(Exception ex)
             {
 
             }

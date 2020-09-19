@@ -33,13 +33,14 @@ namespace CapaPresentación.Controles
             try
             {
                 InitializeComponent();
+                IdUSUATIO = iDe;
                 Win = A as PantallaUsuario;
                 MN = B as Menu_Principal2;
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = TimeSpan.FromSeconds(2);
                 timer.Tick += Timer_Tick;
                 timer.Start();
-                IdUSUATIO = iDe;
+
             }
             catch(Exception ex)
             {
