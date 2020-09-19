@@ -233,6 +233,40 @@ namespace CapaAccesoDatos
             }
         }
 
+        public bool dtsEliminar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_AvalPeri_Eliminar(" + Numero + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool dtsActivar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Conexion conexion = new Conexion();
+                conexion.Conectar();
+                res = conexion.Consulta_Accion("CALL SP_AvalPeri_Activar(" + Numero + ");");
+                conexion.Desconectar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public void dtsSelXFolio(string Folio)
         {
             try

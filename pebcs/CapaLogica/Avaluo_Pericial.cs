@@ -286,6 +286,46 @@ namespace CapaLogica
             }
         }
 
+        public bool Eliminar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de eliminación del Avaluo Pericial, es posible que no se haya borrado"
+                    + " correctamente";
+                res = dtsEliminar(Numero);
+                if (res)
+                    Mensaje = "El Avaluo Pericial fue eliminado satisfactoriamente";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de eliminación del Avaluo Pericial, es posible que no se haya borrado"
+                   + " correctamente";
+                return false;
+            }
+        }
+
+        public bool Activar(int Numero)
+        {
+            try
+            {
+                bool res = false;
+                Mensaje = "Ocurrio un error en el proceso de activación del Avaluo Pericial, es posible que no se haya borrado"
+                    + " correctamente";
+                res = dtsActivar(Numero);
+                if (res)
+                    Mensaje = "El Avaluo Pericial fue activado satisfactoriamente";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "Ocurrio un error en el proceso de activación del Avaluo Pericial, es posible que no se haya borrado"
+                    + " correctamente";
+                return false;
+            }
+        }
+
         public void SelXFolio(string Folio)
         {
             try
