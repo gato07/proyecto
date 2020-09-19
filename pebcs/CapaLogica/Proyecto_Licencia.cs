@@ -311,11 +311,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelNoTerminados()
+        public DataTable SelNoTerminados(bool Eliminado = false)
         {
             try
             {
-                return dtsSelNoTerminados();
+                return dtsSelNoTerminados(Eliminado);
             }
             catch (Exception ex)
             {
@@ -324,11 +324,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTerminados()
+        public DataTable SelTerminados(bool Eliminado = false)
         {
             try
             {
-                return dtsSelTerminados();
+                return dtsSelTerminados(Eliminado);
             }
             catch (Exception ex)
             {
@@ -337,11 +337,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelNoTerLikeEtiqueta(string Etiqueta)
+        public DataTable SelNoTerLikeEtiqueta(string Etiqueta, bool Eliminado = false)
         {
             try
             {
-                return dtsSelNoTerLikeEtiqueta(Etiqueta);
+                return dtsSelNoTerLikeEtiqueta(Etiqueta, Eliminado);
             }
             catch (Exception ex)
             {
@@ -350,11 +350,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTerLikeEtiqueta(string Etiqueta)
+        public DataTable SelTerLikeEtiqueta(string Etiqueta, bool Eliminado = false)
         {
             try
             {
-                return dtsSelTerLikeEtiqueta(Etiqueta);
+                return dtsSelTerLikeEtiqueta(Etiqueta, Eliminado);
             }
             catch (Exception ex)
             {
@@ -363,11 +363,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelNoTerLikeCatastral(string Clave_Catastral)
+        public DataTable SelNoTerLikeCatastral(string Clave_Catastral, bool Eliminado = false)
         {
             try
             {
-                return dtsSelNoTerLikeCatastral(Clave_Catastral);
+                return dtsSelNoTerLikeCatastral(Clave_Catastral, Eliminado);
             }
             catch (Exception ex)
             {
@@ -376,11 +376,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTerLikeCatastral(string Clave_Catastral)
+        public DataTable SelTerLikeCatastral(string Clave_Catastral, bool Eliminado = false)
         {
             try
             {
-                return dtsSelTerLikeCatastral(Clave_Catastral);
+                return dtsSelTerLikeCatastral(Clave_Catastral, Eliminado);
             }
             catch (Exception ex)
             {
@@ -389,11 +389,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelNoTerLikePropietario(string Nombre_Propietario)
+        public DataTable SelNoTerLikePropietario(string Nombre_Propietario, bool Eliminado = false)
         {
             try
             {
-                return dtsSelNoTerLikePropietario(Nombre_Propietario);
+                return dtsSelNoTerLikePropietario(Nombre_Propietario, Eliminado);
             }
             catch (Exception ex)
             {
@@ -402,11 +402,11 @@ namespace CapaLogica
             }
         }
 
-        public DataTable SelTerLikePropietario(string Nombre_Propietario)
+        public DataTable SelTerLikePropietario(string Nombre_Propietario, bool Eliminado = false)
         {
             try
             {
-                return dtsSelTerLikePropietario(Nombre_Propietario);
+                return dtsSelTerLikePropietario(Nombre_Propietario, Eliminado);
             }
             catch (Exception ex)
             {

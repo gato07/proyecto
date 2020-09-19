@@ -371,14 +371,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelNoTerminados()
+        public DataTable dtsSelNoTerminados(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerminados();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerminados(" + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -388,14 +388,14 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelTerminados()
+        public DataTable dtsSelTerminados(bool Eliminado = false)
         {
             try
             {
                 DataTable dt = null;
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
-                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerminados();").Tables[0];
+                dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerminados(" + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -405,7 +405,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelNoTerLikeEtiqueta(string Etiqueta)
+        public DataTable dtsSelNoTerLikeEtiqueta(string Etiqueta, bool Eliminado = false)
         {
             try
             {
@@ -413,7 +413,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerLikeEtiqueta('"
-                    + Etiqueta + "');").Tables[0];
+                    + Etiqueta + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -423,7 +423,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelTerLikeEtiqueta(string Etiqueta)
+        public DataTable dtsSelTerLikeEtiqueta(string Etiqueta, bool Eliminado = false)
         {
             try
             {
@@ -431,7 +431,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerLikeEtiqueta('"
-                    + Etiqueta + "');").Tables[0];
+                    + Etiqueta + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -441,7 +441,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelNoTerLikeCatastral(string Clave_Catastral)
+        public DataTable dtsSelNoTerLikeCatastral(string Clave_Catastral, bool Eliminado = false)
         {
             try
             {
@@ -449,7 +449,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerLikeCatastral('"
-                    + Clave_Catastral + "');").Tables[0];
+                    + Clave_Catastral + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -459,7 +459,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelTerLikeCatastral(string Clave_Catastral)
+        public DataTable dtsSelTerLikeCatastral(string Clave_Catastral, bool Eliminado = false)
         {
             try
             {
@@ -467,7 +467,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerLikeCatastral('"
-                    + Clave_Catastral + "');").Tables[0];
+                    + Clave_Catastral + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -477,7 +477,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelNoTerLikePropietario(string Nombre_Propietario)
+        public DataTable dtsSelNoTerLikePropietario(string Nombre_Propietario, bool Eliminado = false)
         {
             try
             {
@@ -485,7 +485,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelNoTerLikePropietario('"
-                    + Nombre_Propietario + "');").Tables[0];
+                    + Nombre_Propietario + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
@@ -495,7 +495,7 @@ namespace CapaAccesoDatos
             }
         }
 
-        public DataTable dtsSelTerLikePropietario(string Nombre_Propietario)
+        public DataTable dtsSelTerLikePropietario(string Nombre_Propietario, bool Eliminado = false)
         {
             try
             {
@@ -503,7 +503,7 @@ namespace CapaAccesoDatos
                 Conexion conexion = new Conexion();
                 conexion.Conectar();
                 dt = conexion.Consulta_Seleccion("CALL SP_ProyLice_SelTerLikePropietario('"
-                    + Nombre_Propietario + "');").Tables[0];
+                    + Nombre_Propietario + "'," + Eliminado + ");").Tables[0];
                 conexion.Desconectar();
                 return dt;
             }
