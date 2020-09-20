@@ -415,7 +415,7 @@ namespace CapaLogica
             }
         }
 
-        public int Loguear(string Usuario, string Contrasena)
+        public int Validar_Usuario(string Usuario, string Contrasena)
         {
             try
             {
