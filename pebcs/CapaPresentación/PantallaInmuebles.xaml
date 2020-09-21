@@ -162,7 +162,7 @@
                                      Margin="0,2" MouseLeave="BtnRestaurar_MouseLeave" Click="BtnRestaurar_Click" Height="36" HorizontalAlignment="Right" Width="39" >
                                     <StackPanel Width="150" Margin="-10 0 0 0">
                                         <materialDesign:PackIcon Kind="FileRestore" />
-                                        <TextBlock Text="RESTAURAR" Margin="20 -18 0 0"/>
+                                        <TextBlock Text="Activar" Margin="20 -18 0 0"/>
                                     </StackPanel>
                                 </Button>
                                 <DataGrid  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0" Background="Transparent" Name="GridInmueblesInactivos" CanUserSortColumns="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="True" materialDesign:DataGridAssist.CellPadding="13 8 8 8"

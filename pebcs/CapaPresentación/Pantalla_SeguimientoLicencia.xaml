@@ -52,7 +52,7 @@
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" VerticalAlignment="Top" >
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Cancel"/>
-                        <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                        <TextBlock Text="Eliminar" Margin="20 -17 0 0"/>
                     </StackPanel>
                 </Button>
                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="7" materialDesign:HintAssist.Hint="No. Folio" x:Name="TXT_NoFolio" materialDesign:HintAssist.IsFloating="True" Margin="25,11,672,11" CaretBrush="#1ABC9C" BorderBrush="#1ABC9C" Grid.Row="1" Height="35"/>

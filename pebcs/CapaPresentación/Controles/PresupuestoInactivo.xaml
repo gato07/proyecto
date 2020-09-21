@@ -25,7 +25,7 @@
                                 Margin="0,214,-1,0" Name="Btn_Restaurar" Grid.Row="1" VerticalAlignment="Top">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Upload"/>
-                        <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>
+                        <TextBlock Text="Activar" Margin="20 -17 0 0"/>
                     </StackPanel>
                 </Button>
             </Grid>

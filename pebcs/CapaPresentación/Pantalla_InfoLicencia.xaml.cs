@@ -46,14 +46,14 @@ namespace CapaPresentación
             {
                 InitializeComponent();
                 IdUSUATIO = iDe;
+                IDlicen = IDLicencia;
+                IDpresupuesto = IDpresu;
                 CargarRolesUsuarios(iDe);
                 Mn = A as Menu_Principal2;
                 CargarClientes();
                 CargarInmuebles();
                 CargarTipoProyectos();
                 CargarDatos(IDLicencia, IDpresu);
-                IDlicen = IDLicencia;
-                IDpresupuesto = IDpresu;
             }
             catch (Exception ex)
             {
@@ -97,13 +97,14 @@ namespace CapaPresentación
                 }
                 else if(IDLicencia==0)
                 {
-                    Etiqueta.Text = "Editar Licencia";
+                    Etiqueta.Text = "Agregar Licencia";
                     cargarDocumentacion(null);
                     ActivarCampos();
                     F = true;
                 }
                 else if (IDLicencia != 0)
                 {
+                    Etiqueta.Text = "Editar Licencia";
                     ProyectoLicencia = new Proyecto_Licencia(IDLicencia);
                     IDlicen = IDLicencia;
                     presupuesto = new Presupuesto(ProyectoLicencia.Numero_Presupuesto);

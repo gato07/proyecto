@@ -87,7 +87,7 @@
                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Height="36" Width="47" HorizontalAlignment="Right" VerticalAlignment="Top" >
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Cancel"/>
-                        <TextBlock Text="Cerrar" Margin="20 -17 0 0"/>
+                        <TextBlock Text="Eliminar" Margin="20 -17 0 0"/>
                     </StackPanel>
                 </Button>
                 <TextBlock Text="Agregar Avaluo" Name="titulo" Foreground="#52BE80" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>

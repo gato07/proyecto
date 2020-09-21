@@ -43,7 +43,7 @@
                                 Margin="0 4 0 0" Name="Btn_Restaurar" Click="Btn_Restaurar_Click">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Upload"/>
-                            <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>
+                            <TextBlock Text="Activar" Margin="20 -17 0 0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>

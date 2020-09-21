@@ -27,7 +27,7 @@
                 <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" Click="Button_Click" Margin="0,17,57,0" HorizontalAlignment="Right" Height="Auto" Width="117">
                     <StackPanel>
                         <materialDesign:PackIcon Kind="Upload"/>
-                        <TextBlock Text="Restaurar" Margin="20 -17 0 0"/>
+                        <TextBlock Text="Activar" Margin="20 -17 0 0"/>
                     </StackPanel>
                 </Button>
                 <Grid Grid.Row="1" Margin="0,1,0,0">
