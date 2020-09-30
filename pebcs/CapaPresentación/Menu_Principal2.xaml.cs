@@ -20,7 +20,7 @@ namespace CapaPresentación
     public partial class Menu_Principal2 : Window
     {
         int IdUSUATIO;
-        public Menu_Principal2(int id)
+        public Menu_Principal2(int id,object A)
         {
             try
             {

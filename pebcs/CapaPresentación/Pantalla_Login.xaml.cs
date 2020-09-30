@@ -53,7 +53,7 @@ namespace CapaPresentación
                 int ID = empleado.Validar_Usuario(txt_Usuario.Text, txt_Password.Password);
                 if (ID>0)
                 {
-                    Menu_Principal2 Ventana = new Menu_Principal2(ID);
+                    Menu_Principal2 Ventana = new Menu_Principal2(ID,this);
                     Ventana.ShowDialog();
        
                 }

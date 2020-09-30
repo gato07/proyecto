@@ -14,7 +14,7 @@ namespace CapaAccesoDatos
         {
             try
             {
-                string constr = "Server=localhost;Port=3306;Database=bd_control_avaluos;Uid=root;Password=root;";
+                string constr = "Server=192.168.1.200;Port=3306;Database=bd_control_avaluos;Uid=admin;Password=Administrador1.;";
                 //string constr = "Server=sql3.freemysqlhosting.net;Port=3306;Database=sql3328549;Uid=sql3328549;Password=NMeUbCLpIr;";
                 Conector = new MySqlConnection(constr);
             }

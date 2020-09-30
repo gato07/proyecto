@@ -111,7 +111,6 @@ namespace CapaPresentación
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Usted no cuenta con los permisos necesarios");
             }
         }
         public void cargarlicencias(int id)
