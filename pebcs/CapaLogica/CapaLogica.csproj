@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="WpfAnimatedGif" Version="1.4.18" />
   </ItemGroup>
 
